@@ -223,9 +223,10 @@
 //   content: none;
 // }
 
+@import '../styles/styles.scss';
 @import '../styles/themes.scss';
 
-
 body {
-  background-color: var($--theme-primary) !important;
+  background-color: var($--theme-background);
+  color: var($--theme-on-surface);
 }

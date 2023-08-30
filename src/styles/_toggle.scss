@@ -1,0 +1,6 @@
+.react-toggle--checked .react-toggle-track {
+  background-color: var($--theme-primary);
+}
+.react-toggle--checked:hover:not(.react-toggle--disabled) .react-toggle-track {
+  background-color: var($--theme-primary);
+}
