@@ -1,3 +1,7 @@
+
+@import '../styles/styles.scss';
+@import '../styles/themes.scss';
+
 .list {
   display: grid;
   margin: 0;
@@ -46,6 +50,7 @@
 
 .textCenter {
   text-align: center;
+  background-color: var($--theme-secondary) !important;
 }
 
 .intro {
