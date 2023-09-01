@@ -7,6 +7,23 @@
 /**
  * @type {import('gatsby').GatsbySSR['onRenderBody']}
  */
-exports.onRenderBody = ({ setHtmlAttributes }) => {
-  setHtmlAttributes({ lang: `en` })
-}
+const React = require('react');
+const HeadComponents = [
+  <link
+    href="https://fonts.googleapis.com/icon?family=Material+Icons"
+    rel="stylesheet"
+  />,
+  <link
+    href="https://fonts.googleapis.com/css?family=Montserrat:400,500,600,800"
+    rel="stylesheet"
+  />,
+  <link
+    rel="stylesheet"
+    href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+  />,
+];
+
+exports.onRenderBody = ({ setHtmlAttributes, setHeadComponents }) => {
+  setHtmlAttributes({ lang: `en` });
+  setHeadComponents(HeadComponents);
+};
