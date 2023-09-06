@@ -1,6 +1,7 @@
 import React, { useState, useRef } from 'react';
 
 import { NavBar } from './NavBar';
+import { MainMenu } from './MainMenu';
 
 import useOnClickOutside from '../helpers/onClickOutside';
 import { Link } from 'gatsby';
@@ -20,17 +21,10 @@ const Header = props => {
 
   return (
     <>
-      <header ref={ref} className={`top-bar top-bar--${props.pageTemplate}`}>
-        <button
-          onClick={handleClick}
-          className={`menu-button top-bar__button top-bar__button--${
-            props.pageTemplate
-          } js-trigger-menu ${active && 'active-menu-button'}`}
-        >
-          menu
-        </button>
-        <NavBar handleClick={handleClick} active={active} />
-
+      
+      <header ref={ref} className={``}>
+        <NavBar handleClick={handleClick} active={active}/>
+        <MainMenu handleClick={handleClick} active={active} />
         <DarkModeToggle />
       </header>
     </>

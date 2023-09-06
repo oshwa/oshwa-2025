@@ -10,9 +10,12 @@ import { useStaticQuery, graphql } from 'gatsby';
 
 import Header from './Header';
 import Footer from './Footer';
+import 'normalize.css';
 import '../vendor/foundation.min.css';
-import '../vendor/styleguide-v2.1.css';
-import './layout.scss';
+// import '../vendor/styleguide-v2.1.css';
+import '../styles/themes.scss';
+import '../styles/styles.scss';
+
 
 const Layout = ({ children }) => {
   const data = useStaticQuery(graphql`

@@ -28,9 +28,18 @@ $large: screen and
     min-width: 64em,
   );
 
+
 @import 'breakpoint';
 @import 'variables';
 @import 'mixins';
+@import 'typography';
 @import 'toggle';
 @import 'top-bar';
 @import 'menu';
+@import 'navbar';
+
+
+body {
+  background-color: var($--theme-background);
+  color: var($--theme-on-surface);
+}

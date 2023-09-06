@@ -8,17 +8,8 @@ import Seo from '../components/seo';
 const IndexPage = () => (
   <Layout>
     <div className="">
-      <StaticImage
-        src="../images/example.png"
-        loading="eager"
-        width={64}
-        quality={95}
-        formats={['auto', 'webp', 'avif']}
-        alt=""
-        style={{ marginBottom: `var(--space-3)` }}
-      />
       <h1>
-        Welcome to <b>Gatsby!</b>
+
       </h1>
     </div>
   </Layout>

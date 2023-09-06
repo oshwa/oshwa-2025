@@ -1,0 +1,30 @@
+@import './themes.scss';
+
+.navbar {
+  background-color: $transparent;
+  height: 3.5rem;
+  transition: $nav-transition;
+  .navbar-button {
+    display: flex;
+    border-radius: 0;
+    height: 3.5rem;
+    line-height: inherit;
+    cursor: pointer;
+    &__decorator {
+      padding-top: 4px;
+      background-color: var($--theme-primary);
+      color: var($--theme-on-primary);
+      height: 100%;
+      font-size: 3rem;
+    }
+    &__text {
+      align-self: center;
+      color: var($--theme-primary);
+      font-family: $sans-serif;
+      font-size: 1.3rem;
+      font-weight: $bold;
+      text-transform: uppercase;
+      padding: 1rem;
+    }
+  }
+}

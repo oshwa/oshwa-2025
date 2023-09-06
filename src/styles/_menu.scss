@@ -1,6 +1,5 @@
 .menu {
-  background-color: gray;
-  color: white;
+  background-color:  $--theme-primary-variant;
   display: none;
   position: absolute;
   top: 0;
@@ -77,6 +76,8 @@
 }
 
 .menu-button {
+  font-size: 1.3rem;
+  font-family: $sans-serif;
   position: absolute;
   left: 0;
   top: 0;
