@@ -1,0 +1,85 @@
+
+.main-nav {
+  button {
+    border-radius: 0;
+    height: 3.5rem;
+  }
+  padding-top: 96px;
+  background-color: var($--theme-primary);
+  width: $nav-active-margin;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  transform: translateX(calc(0px - $nav-active-margin));
+  transition: transform $nav-transition-speed;
+}
+
+.nav-link {
+  font-family: $sans-serif;
+  color: var($--theme-on-primary);
+  display: block;
+  padding: 0.5rem 5rem 1rem;
+  font-family: $sans-serif;
+  font-size: 1.3rem;
+  font-weight: $bold;
+  text-align: left;
+  transition: $nav-transition-speed;
+  text-decoration: none;
+
+  &:hover,
+  &:focus {
+    color: var($--theme-secondary);
+  }
+}
+
+.home-icon,
+.close-nav {
+  &:hover,
+  &:focus {
+    color: var($--theme-secondary);
+  }
+}
+
+.home-icon {
+  color: var($--theme-on-primary);
+  position: absolute;
+  top: 0;
+  right: 3rem;
+  width: 5rem;
+  font-size: 2rem;
+  max-width: 2rem;
+  span {
+    padding: 16px 4px;
+  }
+}
+
+.close-nav {
+  background-color: var($--theme-primary);
+  cursor: pointer;
+  color: var($--theme-on-primary);
+  font-size: 2rem;
+  position: absolute;
+  right: 4px;
+  top: 0;
+}
+
+main {
+  transition: $nav-transition;
+}
+
+.nav-active {
+  transform: translateX($nav-default-margin);
+}
+
+.main-active {
+  transform: translateX($nav-active-margin);
+}
+
+.open-nav {
+  transition: $nav-transition;
+}
+
+.nav-is-active > .open-nav {
+  margin-left: $nav-active-margin;
+}

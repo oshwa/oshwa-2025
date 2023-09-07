@@ -3,15 +3,14 @@ import { Link } from 'gatsby';
 import { StaticImage } from 'gatsby-plugin-image';
 
 import Layout from '../components/layout';
+import Main from '../components/Main';
 import Seo from '../components/seo';
 
 const IndexPage = () => (
   <Layout>
-    <div className="">
-      <h1>
-
-      </h1>
-    </div>
+    <>
+      <h1>hello</h1>
+    </>
   </Layout>
 );
 

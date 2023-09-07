@@ -1,0 +1,205 @@
+.top-bar {
+  &__button--gray {
+    // color: gray;
+  }
+}
+
+.top-bar {
+  height: 3.5rem;
+  left: 0;
+  position: fixed;
+  width: 100vw;
+  top: 0;
+  z-index: 4;
+
+  &--mobile-list {
+    @include breakpoint($small-only) {
+      width: 100%;
+    }
+  }
+
+  .main-menu {
+    z-index: 3;
+    box-shadow: none;
+    overflow-y: hidden;
+    overflow: scroll;
+    overflow-x: hidden;
+  }
+
+  .js-trigger-menu {
+    color: gray;
+
+    &--right {
+      background-color: orange;
+      font-size: 2rem;
+      padding: 1rem 0.25rem 0;
+      position: absolute;
+      right: 0;
+      bottom: 0;
+      top: 0;
+      z-index: -1;
+
+      &:hover {
+        background-color: green;
+      }
+    }
+  }
+}
+
+.top-bar.top-bar--white {
+  // background-color: white;
+  background-color: transparent;
+}
+
+.top-bar--gray {
+  background-color: gray;
+}
+
+.top-bar--no-logo {
+  background-color: transparent;
+}
+
+.top-bar--no-logo>.top-bar__logo-container {
+  display: none;
+}
+
+.top-bar--white>.top-bar__logo-container {
+  display: flex;
+}
+
+.top-bar__logo-container {
+  display: flex;
+  justify-content: center;
+  height: 3.5rem;
+  position: absolute;
+  top: 0;
+  left: 47.5%;
+
+  @include breakpoint($medium-only) {
+    left: 45%;
+  }
+
+  @include breakpoint($small-only) {
+    left: 40%;
+  }
+
+  img {
+    height: 2.7rem;
+    width: auto;
+    padding-top: 0.5rem;
+  }
+}
+
+.top-bar__menu-button {
+  background-color: transparent;
+  position: absolute;
+  left: 0;
+  border-radius: 0;
+
+  .menu-button__decorator {
+    background-color: purple;
+    display: inline-block;
+    height: 100%;
+    width: 2rem;
+    color: white;
+    border: purple solid 1px;
+
+    &:before {
+      font-size: 3.2rem;
+      content: 'more_vert';
+      @extend .u-material-icons;
+      margin-left: -0.6rem;
+    }
+  }
+
+  .menu-button__text {
+    background-color: transparent;
+    display: inline-block;
+    color: purple;
+    text-transform: uppercase;
+    font-family: $sans-serif;
+    font-weight: $bold;
+    font-size: 1rem;
+    top: -2px;
+    position: absolute;
+    text-align: start;
+    padding: 1.2rem 10px;
+  }
+}
+
+.below-topbar {
+  color: transparent;
+
+  .material-icons {
+    background-color: transparent;
+    font-size: 0.1rem;
+  }
+
+  .menu-text {
+    color: transparent;
+  }
+}
+
+.full-width {
+  width: 100%;
+}
+
+.nav-logo {
+  margin-top: 4rem;
+
+  @include breakpoint($medium-only) {
+    width: 11rem;
+    position: absolute;
+    right: 4rem;
+    bottom: 2rem;
+  }
+
+  @include breakpoint(screen and (min-width: 1024px) and (max-width: 1200px)) {
+    width: 10rem;
+    position: absolute;
+    right: 3rem;
+    bottom: 4rem;
+  }
+
+  @include breakpoint($medium-only) {
+    right: 3rem;
+    bottom: 3rem;
+  }
+}
+
+.js-active-menu {
+  display: block;
+}
+
+.top-bar__button--right.js-toggle-filters {
+  @include breakpoint($large) {
+    display: none;
+  }
+
+  border-radius: 0;
+
+  .filter-decorator {
+    &::before {
+      @extend .u-material-icons;
+      content: 'tune';
+      font-size: 2rem;
+      color: white;
+    }
+  }
+
+  .filter-decorator.js-active {
+    &::before {
+      @extend .u-material-icons;
+      content: 'close';
+      font-size: 2rem;
+      color: white;
+    }
+  }
+
+  background-color: yellow;
+  height: 3.5rem;
+  width: 3rem;
+  position: absolute;
+  right: 0;
+  top: 0;
+}

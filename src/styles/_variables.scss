@@ -40,4 +40,9 @@ $theme-map-dark: (
 $transparent: transparent;
 $bold: 700;
 
+// nav variables
+$nav-default-margin: 0;
+$nav-active-margin: 350px;
 $nav-transition: margin-left .2s ease;
+$nav-transition-speed: .2s ease;
+

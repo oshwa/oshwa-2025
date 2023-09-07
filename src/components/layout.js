@@ -5,10 +5,11 @@
  * See: https://www.gatsbyjs.com/docs/how-to/querying-data/use-static-query/
  */
 
-import * as React from 'react';
+import React, {useState} from 'react';
 import { useStaticQuery, graphql } from 'gatsby';
 
 import Header from './Header';
+import Main from './Main';
 import Footer from './Footer';
 import 'normalize.css';
 import '../vendor/foundation.min.css';
@@ -28,10 +29,21 @@ const Layout = ({ children }) => {
     }
   `);
 
+  const [active, setActive] = useState(false);
+
+  const handleClick = () => {
+    setActive(!active);
+    console.log(active);
+  };
+
+
   return (
     <>
-      <Header siteTitle={data.site.siteMetadata?.title || `Title`} />
+      <Header active={active} setActive={setActive} handleClick={handleClick} siteTitle={data.site.siteMetadata?.title || `Title`} />
+      <Main active={active} setActive={setActive}>
+
       {children}
+      </Main>
       <Footer />
     </>
   );

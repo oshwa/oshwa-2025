@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'gatsby';
+
 export const MainMenu = ({ handleClick, active }) => {
   return (
     <nav className={`menu ${active && 'active-menu'}`}>
