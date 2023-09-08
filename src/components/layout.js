@@ -36,11 +36,13 @@ const Layout = ({ children }) => {
     console.log(active);
   };
 
+  const navType = `left-push-nav`;
+
 
   return (
     <>
-      <Header active={active} setActive={setActive} handleClick={handleClick} siteTitle={data.site.siteMetadata?.title || `Title`} />
-      <Main active={active} setActive={setActive}>
+      <Header navType={navType} active={active} setActive={setActive} handleClick={handleClick} siteTitle={data.site.siteMetadata?.title || `Title`} />
+      <Main navType={navType} active={active} setActive={setActive}>
 
       {children}
       </Main>

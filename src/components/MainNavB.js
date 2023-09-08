@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'gatsby';
 
-export const MainMenu = ({ handleClick, active }) => {
+export const MainNavB = ({ handleClick, active }) => {
   return (
     <nav className={`menu ${active && 'active-menu'}`}>
       <div className="row expanded">

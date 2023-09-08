@@ -1,4 +1,3 @@
-
 .main-nav {
   button {
     border-radius: 0;
@@ -64,22 +63,29 @@
   top: 0;
 }
 
-main {
+
+// Left push nav 
+
+// push body
+main.left-push-nav {
   transition: $nav-transition;
 }
 
-.nav-active {
-  transform: translateX($nav-default-margin);
-}
-
-.main-active {
-  transform: translateX($nav-active-margin);
-}
-
-.open-nav {
-  transition: $nav-transition;
-}
-
-.nav-is-active > .open-nav {
-  margin-left: $nav-active-margin;
+// navmenu transition
+.left-push-nav {
+  .nav-active {
+    transform: translateX($nav-default-margin);
+  }
+  
+  .main-active {
+    transform: translateX($nav-active-margin);
+  }
+  
+  navbar-a.open-nav {
+    transition: $nav-transition;
+  }
+  
+  .nav-is-active > .open-nav {
+    margin-left: $nav-active-margin;
+  }
 }
