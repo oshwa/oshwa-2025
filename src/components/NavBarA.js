@@ -10,7 +10,7 @@ export const NavBarA = ({ handleClick, active }) => {
         onClick={handleClick}
         className={`navbar-a-button ${active ? 'navbar-a-button--active' : ''}`}
       >
-        <span className="navbar-a-button__decorator material-icons">more_vert</span>{' '}
+        <span className="navbar-a-button__decorator material-icons">menu</span>{' '}
         <span className="navbar-a-button__text">menu</span>
       </button>
       <DarkModeToggle />
