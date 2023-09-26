@@ -1,7 +1,9 @@
 import React from 'react';
 import { Link } from 'gatsby';
+import classNames from 'classnames';
 
 export const MainNavA = ({ handleClick, active }) => {
+  
   return (
     <nav className={`main-nav ${active && 'nav-active'}`}>
       <button className="material-icons close-nav" onClick={handleClick}>

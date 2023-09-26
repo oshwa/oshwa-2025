@@ -49,31 +49,116 @@ const Layout = ({ children }) => {
       <Main navType={navType} active={active} setActive={setActive}>
         {children}
       </Main>
-      <div class="p-8 bg-amber-300">
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-8">
-          <div class="p-4 bg-cyan-400 rounded-md flex items-center justify-center">
-            1
+      {/* layout one  */}
+      <div className="p-8">
+        <div className="grid lg:grid-cols-5 md:grid-cols-5">
+          <div className="p-4 col-span-3 flex justify-center">
+            <p>
+              Ad ea duis aliquip do irure. Reprehenderit sit qui culpa laboris
+              tempor sit mollit sint exercitation proident culpa minim Lorem id.
+              Dolore velit sit sunt deserunt duis. Laboris eu irure cupidatat
+              minim eu anim. Tempor excepteur sit nulla quis commodo do anim non
+              aliquip ea in magna reprehenderit consectetur. Magna est officia
+              duis consequat esse tempor velit aute ad laborum consectetur eu
+              mollit occaecat. Excepteur ipsum ut ea ipsum excepteur cupidatat
+              ea nisi occaecat Lorem eu. Qui occaecat qui do incididunt non amet
+              do deserunt reprehenderit. Aute minim elit elit veniam anim elit
+              do enim anim consectetur labore eiusmod.
+            </p>
           </div>
-          <div class="p-4 bg-cyan-400 rounded-md flex items-center justify-center">
-            2
+          <div className="p-4 col-span-2 justify-center">
+            <h2>Headline One</h2>
+            <p>
+              Ad ea duis aliquip do irure. Reprehenderit sit qui culpa laboris
+              tempor sit mollit sint exercitation proident culpa minim Lorem id.
+              Dolore velit sit sunt deserunt duis. Laboris eu irure cupidatat
+              minim eu anim. Tempor excepteur sit nulla quis commodo do anim non
+              aliquip ea in magna reprehenderit consectetur. Magna est officia
+              duis consequat esse tempor velit aute ad laborum consectetur eu
+              mollit occaecat. Excepteur ipsum ut ea ipsum excepteur cupidatat
+              ea nisi occaecat Lorem eu. Qui occaecat qui do incididunt non amet
+              do deserunt reprehenderit. Aute minim elit elit veniam anim elit
+              do enim anim consectetur labore eiusmod.
+            </p>
           </div>
-          <div class="p-4 bg-cyan-400 rounded-md flex items-center justify-center">
-            3
+        </div>
+      </div>
+
+      {/* layout two  */}
+      <div className="p-8">
+        <div className="grid lg:grid-cols-4">
+          <div className="p-4 col-span-1 flex justify-center">
+            <p>
+              Ad ea duis aliquip do irure. Reprehenderit sit qui culpa laboris
+              tempor sit mollit sint exercitation proident culpa minim Lorem id.
+              Dolore velit sit sunt deserunt duis. Laboris eu irure cupidatat
+              minim eu anim. Tempor excepteur sit nulla quis commodo do anim non
+              aliquip ea in magna reprehenderit consectetur. Magna est officia
+              duis consequat esse tempor velit aute ad laborum consectetur eu
+              mollit occaecat. Excepteur ipsum ut ea ipsum excepteur cupidatat
+              ea nisi occaecat Lorem eu. Qui occaecat qui do incididunt non amet
+              do deserunt reprehenderit. Aute minim elit elit veniam anim elit
+              do enim anim consectetur labore eiusmod.
+            </p>
           </div>
-          <div class="p-4 bg-cyan-400 rounded-md flex items-center justify-center">
-            4
+          <div className="p-4 col-span-3 justify-center">
+            <h2>Headline One</h2>
+            <p>
+              Ad ea duis aliquip do irure. Reprehenderit sit qui culpa laboris
+              tempor sit mollit sint exercitation proident culpa minim Lorem id.
+              Dolore velit sit sunt deserunt duis. Laboris eu irure cupidatat
+              minim eu anim. Tempor excepteur sit nulla quis commodo do anim non
+              aliquip ea in magna reprehenderit consectetur. Magna est officia
+              duis consequat esse tempor velit aute ad laborum consectetur eu
+              mollit occaecat. Excepteur ipsum ut ea ipsum excepteur cupidatat
+              ea nisi occaecat Lorem eu. Qui occaecat qui do incididunt non amet
+              do deserunt reprehenderit. Aute minim elit elit veniam anim elit
+              do enim anim consectetur labore eiusmod.
+            </p>
           </div>
-          <div class="p-4 bg-cyan-400 rounded-md flex items-center justify-center">
-            5
+        </div>
+      </div>
+
+      {/* layout 3 */}
+      <div className="p-8">
+        <div className="grid lg:grid-cols-4">
+          <div className="p-4 col-span-1 flex justify-center">
+            <p>
+              Ad ea duis aliquip do irure. Reprehenderit sit qui culpa laboris
+              tempor sit mollit sint exercitation proident culpa minim Lorem id.
+            </p>
           </div>
-          <div class="p-4 bg-cyan-400 rounded-md flex items-center justify-center">
-            6
+          <div className="p-4 col-span-1 flex justify-center">
+            <p>
+              Ad ea duis aliquip do irure. Reprehenderit sit qui culpa laboris
+              tempor sit mollit sint exercitation proident culpa minim Lorem id.
+            </p>
           </div>
-          <div class="p-4 bg-cyan-400 rounded-md flex items-center justify-center">
-            7
+
+          <div className="p-4 col-span-1 flex justify-center">
+            <p>
+              Ad ea duis aliquip do irure. Reprehenderit sit qui culpa laboris
+              tempor sit mollit sint exercitation proident culpa minim Lorem id.
+            </p>
           </div>
-          <div class="p-4 bg-cyan-400 rounded-md flex items-center justify-center">
-            8
+
+          <div className="p-4 col-span-1 flex justify-center">
+            <p>
+              Ad ea duis aliquip do irure. Reprehenderit sit qui culpa laboris
+              tempor sit mollit sint exercitation proident culpa minim Lorem id.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      {/* layout four */}
+      <div className="p-8">
+        <div className="grid lg:grid-cols-8 gap-4">
+          <div className="p-4 lg:col-start-1 lg:col-span-2 sm:col-span-8 flex">
+            <p>1</p>
+          </div>
+          <div className="p-4 lg:col-start-6 lg:col-span-3 sm:col-span-8  flex">
+            <p>2</p>
           </div>
         </div>
       </div>

@@ -9,7 +9,7 @@ const Header = ({ active, setActive, handleClick, navType }) => {
   const ref = useRef();
   useOnClickOutside(ref, () => setActive(false));
 
-  const headerClassNames = [`grid-cols-1`];
+  const headerClassNames = [`p-8`];
 
   return (
     <>
