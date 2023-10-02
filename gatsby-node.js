@@ -42,6 +42,8 @@ exports.createPages = async ({ graphql, actions }) => {
   //   defer: true,
   // });
   const projectPageTemplate = path.resolve(`src/templates/project-page.js`);
+
+  // project page generation
   const allProjects = await graphql(`
     query allOshwaCertificationsQuery {
       allOshwaCertifications {
@@ -65,6 +67,36 @@ exports.createPages = async ({ graphql, actions }) => {
       context: {
         id: edge.node.id,
         title: edge.node.projectName,
+      },
+    });
+  });
+
+  // generic page generation
+  const genericPageTemplate = path.resolve(`src/templates/generic-page.js`);
+
+  // project page generation
+  const allGenericPages = await graphql(`
+    query allGenericPageQuery {
+      allContentfulGenericPage {
+        edges {
+          node {
+            id
+            prettyUrl
+            title
+          }
+        }
+      }
+    }
+  `);
+  console.log(Object.keys(allGenericPages));
+  allGenericPages.data.allContentfulGenericPage.edges.forEach(edge => {
+    createPage({
+      path: `${edge.node.prettyUrl}`,
+      component: genericPageTemplate,
+      context: {
+        id: edge.node.id,
+        prettyUrl: edge.node.prettyUrl,
+        title: edge.node.title,
       },
     });
   });
