@@ -12,6 +12,8 @@ require('dotenv').config({
   path: `.env.${process.env.NODE_ENV}`,
 });
 
+const path = require(`path`);
+
 const fetch = require('node-fetch');
 
 let headers = {
@@ -31,13 +33,40 @@ async function getAllCertifications(offset = 0) {
   }
 }
 
-exports.createPages = async ({ actions }) => {
+exports.createPages = async ({ graphql, actions }) => {
   const { createPage } = actions;
-  createPage({
-    path: '/using-dsg',
-    component: require.resolve('./src/templates/using-dsg.js'),
-    context: {},
-    defer: true,
+  // createPage({
+  //   path: '/using-dsg',
+  //   component: require.resolve('./src/templates/using-dsg.js'),
+  //   context: {},
+  //   defer: true,
+  // });
+  const projectPageTemplate = path.resolve(`src/templates/project-page.js`);
+  const allProjects = await graphql(`
+    query allOshwaCertificationsQuery {
+      allOshwaCertifications {
+        edges {
+          node {
+            id
+            oshwaUid
+            projectName
+            projectWebsite
+            projectDescription
+          }
+        }
+      }
+    }
+  `);
+
+  allProjects.data.allOshwaCertifications.edges.forEach(edge => {
+    createPage({
+      path: `projects/${edge.node.id.toLowerCase()}`,
+      component: projectPageTemplate,
+      context: {
+        id: edge.node.id,
+        title: edge.node.projectName,
+      },
+    });
   });
 };
 
@@ -45,15 +74,6 @@ exports.sourceNodes = async ({
   actions: { createNode },
   createContentDigest,
 }) => {
-  // grabs single page of values for now
-  // const response = await fetch(
-  //   `https://certificationapi.oshwa.org/api/projects`,
-  //   {
-  //     headers: { limit: 1, Authorization: `Bearer ${process.env.OSHWA_API_KEY}` },
-  //   }
-  // );
-
-  // const data = await response.json();
   const allCertifications = await getAllCertifications();
   allCertifications.forEach(item => {
     createNode({
