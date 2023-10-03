@@ -1,6 +1,4 @@
-import React, { useState, useRef } from 'react';
-
-import useOnClickOutside from '../helpers/onClickOutside';
+import React from 'react';
 import { DarkModeToggle } from './DarkModeToggle';
 
 export const NavBarA = ({ handleClick, active }) => {

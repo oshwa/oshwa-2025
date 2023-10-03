@@ -8,3 +8,11 @@
 :root {
   @include spread-map($theme-map-light);
 }
+
+// body.dark {
+//   @include spread-map($theme-map-dark);
+// }
+
+// body {
+//   @include spread-map($theme-map-light);
+// }

@@ -1,6 +1,5 @@
 import React from 'react';
 import { Link } from 'gatsby';
-import classNames from 'classnames';
 
 export const MainNavA = ({ handleClick, active }) => {
   
@@ -12,8 +11,8 @@ export const MainNavA = ({ handleClick, active }) => {
       <Link className="home-icon" to="/" aria-label="home">
         <span className="material-icons">home</span>
       </Link>
-      <Link className="nav-link" to="/">
-        Link One
+      <Link className="nav-link" to="/projects">
+        Projects
       </Link>
       <Link className="nav-link" to="/">
         Link Two
