@@ -1,0 +1,92 @@
+.notched {
+  padding: 2rem;
+
+  &--bg {
+    background-color: white;
+    color: black;
+
+    &--hover {
+      &:hover {
+        background-color: white;
+      }
+    }
+
+    --notchSize: 10px;
+
+    clip-path: polygon(0% var(--notchSize),
+      var(--notchSize) 0%,
+      calc(100% - var(--notchSize)) 0%,
+      100% var(--notchSize),
+      100% calc(100% - var(--notchSize)),
+      calc(100% - var(--notchSize)) 100%,
+      var(--notchSize) 100%,
+      0% calc(100% - var(--notchSize)));
+  }
+
+  &--border {
+    --b: 1px;
+    --s: 10px;
+    margin-bottom: 2rem;
+    display: inline-block;
+    position: relative;
+    z-index: 0;
+
+    &::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      z-index: -1;
+      background: white;
+
+      --g1: #000 var(--b), #0000 0 calc(100% - var(--b)), #000 0;
+      --g2: #0000 calc(0.707*var(--s)),
+        #000 0 calc(0.707*var(--s) + var(--b)),
+        #0000 0 calc(100% - 0.707*var(--s) - var(--b)),
+        #000 0 calc(100% - 0.707*var(--s)),
+        #0000 0;
+      -webkit-mask:
+        linear-gradient(45deg, var(--g2)),
+        linear-gradient(-45deg, var(--g2)),
+        linear-gradient(90deg, var(--g1)) 50%/100% calc(100% - 2*var(--s)) no-repeat,
+        linear-gradient(180deg, var(--g1)) 50%/calc(100% - 2*var(--s)) 100% no-repeat;
+    }
+
+    &--hover {
+      &:hover {
+        background-color: white;
+        color: black;
+        --notchSize: 10px;
+
+        clip-path:
+          polygon(0% var(--notchSize),
+            var(--notchSize) 0%,
+            calc(100% - var(--notchSize)) 0%,
+            100% var(--notchSize),
+            100% calc(100% - var(--notchSize)),
+            calc(100% - var(--notchSize)) 100%,
+            var(--notchSize) 100%,
+            0% calc(100% - var(--notchSize)));
+      }
+    }
+  }
+}
+
+.yellow {
+  background-color: $yellow;
+}
+
+.green {
+  background-color: $green;
+}
+
+.blue {
+  background-color: $blue;
+}
+
+.red {
+  background-color: $red;
+}
+
+.orange {
+  background-color: $orange;
+}

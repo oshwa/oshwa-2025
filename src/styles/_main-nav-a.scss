@@ -3,6 +3,8 @@
     border-radius: 0;
     height: 3.5rem;
   }
+
+  z-index: 1;
   padding-top: 96px;
   background-color: var($--theme-primary);
   width: $nav-active-margin;
@@ -34,6 +36,7 @@
 
 .home-icon,
 .close-nav {
+
   &:hover,
   &:focus {
     color: var($--theme-secondary);
@@ -48,6 +51,7 @@
   width: 5rem;
   font-size: 2rem;
   max-width: 2rem;
+
   span {
     padding: 16px 4px;
   }
@@ -76,16 +80,16 @@ main.left-push-nav {
   .nav-active {
     transform: translateX($nav-default-margin);
   }
-  
+
   .main-active {
     transform: translateX($nav-active-margin);
   }
-  
+
   navbar-a.open-nav {
     transition: $nav-transition;
   }
-  
-  .nav-is-active > .open-nav {
+
+  .nav-is-active>.open-nav {
     margin-left: $nav-active-margin;
   }
 }
