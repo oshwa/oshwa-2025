@@ -1,16 +1,11 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import Toggle from 'react-toggle';
+import { useColorScheme } from '../helpers/useColorScheme';
 import 'react-toggle/style.css';
 
 export const DarkModeToggle = () => {
-  const [isDark, setIsDark] = useState(true);
-  useEffect(() => {
-    if (isDark) {
-      document.querySelector(':root').classList.add('dark');
-    } else {
-      document.querySelector(':root').classList.remove('dark');
-    }
-  }, [isDark]);
+  const { isDark, setIsDark } = useColorScheme();
+
   return (
     <Toggle
       checked={isDark}
@@ -20,3 +15,4 @@ export const DarkModeToggle = () => {
     />
   );
 };
+// 

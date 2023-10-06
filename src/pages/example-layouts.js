@@ -1,9 +1,5 @@
 import * as React from 'react';
-import { Link } from 'gatsby';
-import { StaticImage } from 'gatsby-plugin-image';
-import classNames from 'classnames';
 import Layout from '../components/layout';
-import Main from '../components/Main';
 import Seo from '../components/seo';
 
 const IndexPage = () => (
