@@ -1,67 +1,67 @@
-$sans-serif: 'Roboto Condensed', sans-serif;
-$serif: 'EB Garamond', serif;
+$primary-font: 'Antonio', sans-serif;
+$secondary-font: 'Noto Sans', serif;
 
 @mixin typography-headline-1 {
-  font-family: $sans-serif;
+  font-family: $primary-font;
   font-size: 97px;
 }
 
 @mixin typography-headline-2 {
-  font-family: $sans-serif;
+  font-family: $primary-font;
   font-size: 61px;
 }
 
 @mixin typography-headline-3 {
-  font-family: $sans-serif;
+  font-family: $primary-font;
   font-size: 48px;
 }
 
 @mixin typography-headline-4 {
-  font-family: $sans-serif;
+  font-family: $primary-font;
   font-size: 34px;
 }
 
 @mixin typography-headline-5 {
-  font-family: $sans-serif;
+  font-family: $primary-font;
   font-size: 24px;
 }
 
 @mixin typography-headline-6 {
-  font-family: $sans-serif;
+  font-family: $primary-font;
   font-size: 20px;
 }
 
 @mixin typography-body-1 {
-  font-family: $serif;
+  font-family: $secondary-font;
   font-size: 21px;
 }
 
 @mixin typography-body-2 {
-  font-family: $serif;
+  font-family: $secondary-font;
   font-size: 18px;
 }
 
 @mixin typography-subtitle-1 {
-  font-family: $sans-serif;
+  font-family: $primary-font;
   font-size: 16px;
 }
 
 @mixin typography-subtitle-2 {
-  font-family: $sans-serif;
+  font-family: $primary-font;
   font-size: 14px;
 }
 
 @mixin typography-button {
-  font-family: $serif;
+  font-family: $secondary-font;
   font-size: 18px;
 }
 
 @mixin typography-overline {
-  font-family: $serif;
+  font-family: $secondary-font;
   font-size: 13px;
 }
 
 @mixin typography-caption {
-  font-family: $serif;
+  font-family: $secondary-font;
   font-size: 16px;
 }

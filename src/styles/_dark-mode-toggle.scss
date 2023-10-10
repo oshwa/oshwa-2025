@@ -1,3 +1,7 @@
 .react-toggle {
   margin: 1rem;
 }
+
+.react-toggle--checked .react-toggle-track {
+  background-color: $blue;
+}

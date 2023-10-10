@@ -3,7 +3,7 @@ import { DarkModeToggle } from './DarkModeToggle';
 
 export const NavBarA = ({ handleClick, active }) => {
   return (
-    <div className="navbar-a open-nav">
+    <div className="navbar-a open-nav notched notched--border">
       <button
         onClick={handleClick}
         className={`navbar-a-button ${active ? 'navbar-a-button--active' : ''}`}
