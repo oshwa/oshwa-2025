@@ -1,25 +1,39 @@
-@import "tailwindcss/base";
-@import "tailwindcss/components";
-@import "tailwindcss/utilities";
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
 
 * {
   box-sizing: border-box;
 }
 
 // Breakpoints
-$small-only: screen and (max-width: 39.9375em,
+$small-only: screen and
+  (
+    max-width: 39.9375em,
   );
-$touch: screen and (max-width: 64em,
+$touch: screen and
+  (
+    max-width: 64em,
   );
-$medium: screen and (min-width: 40em,
+$medium: screen and
+  (
+    min-width: 40em,
   );
-$medium-only: screen and (min-width: 40em,
-  ) and (max-width: 63.9375em,
+$medium-only: screen and
+  (
+    min-width: 40em,
+  )
+  and
+  (
+    max-width: 63.9375em,
   );
-$large: screen and (min-width: 64em,
+$large: screen and
+  (
+    min-width: 64em,
   );
 
 @import 'breakpoint';
+@import 'utils';
 @import 'colors';
 @import 'variables';
 @import 'mixins';
@@ -32,8 +46,10 @@ $large: screen and (min-width: 64em,
 @import 'dark-mode-toggle';
 @import 'notched-div';
 @import 'people-template';
-
+@import 'link';
+@import 'index';
 body {
   background-color: var($--theme-background);
   color: var($--theme-on-surface);
 }
+

@@ -1,3 +1,5 @@
+@import 'colors';
+
 $--theme-primary: --theme-primary;
 $--theme-primary-variant: --theme-primary-variant;
 $--theme-secondary: --theme-secondary;
@@ -11,7 +13,7 @@ $--theme-on-surface: --theme-on-surface;
 
 // Default theme
 $theme-map-light: (
-  $--theme-primary: #6200ee,
+  $--theme-primary: $blue,
   $--theme-primary-variant: #3700b3,
   $--theme-secondary: #03dac6,
   $--theme-secondary-variant: #018786,
@@ -25,7 +27,7 @@ $theme-map-light: (
 
 // Override the default light theme
 $theme-map-dark: (
-  $--theme-primary: #bb86fc,
+  $--theme-primary: $blue,
   $--theme-primary-variant: #3700b3,
   $--theme-secondary: #03dac6,
   $--theme-secondary-variant: #018786,

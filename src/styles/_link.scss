@@ -1,0 +1,15 @@
+.link {
+
+}
+
+.link--arrow {
+  @include typography-button;
+  &::after {
+    content: url('../images/icons/arrow_forward_black_24dp.svg');
+    vertical-align: -5px;
+    margin-left: 4px;
+  }
+  &:hover {
+    filter: opacity(50%);
+  }
+}

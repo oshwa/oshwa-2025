@@ -1,0 +1,38 @@
+.index-banner {
+  display: flex;
+  flex-direction: column;
+  justify-content: end;
+}
+.index-image-container {
+  display: flex;
+  justify-content: space-between;
+  a {
+    align-self: end;
+  }
+}
+
+.featured-box {
+  &__title {
+    @include typography-headline-2;
+  }
+  &__date {
+    @include typography-button;
+    text-transform: uppercase;
+  }
+}
+
+
+.project-highlight {
+  &__count {
+    @include typography-headline-2;
+  }
+  &__text {
+    @include typography-body-1;
+  }  
+}
+
+.section-card {
+  &__title {
+    @include typography-headline-4;
+  }
+}
