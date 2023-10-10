@@ -31,6 +31,7 @@ $large: screen and (min-width: 64em,
 @import 'main-nav-a';
 @import 'dark-mode-toggle';
 @import 'notched-div';
+@import 'people-template';
 
 body {
   background-color: var($--theme-background);
