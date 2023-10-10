@@ -2,13 +2,13 @@
 
 
 .navbar-a {
-  display: flex;
+  display: flex !important;
   justify-content: space-between;
   align-items: center;
   background-color: $transparent;
   height: 3.5rem;
   transition: $nav-transition;
-  border: solid 1px var($--theme-on-background);
+  // border: solid 1px var($--theme-on-background);
   .navbar-a-button {
     display: flex;
     border-radius: 0;
@@ -20,7 +20,7 @@
       font-size: 2rem;
     }
     &__text {
-      font-family: $sans-serif;
+      font-family: $primary-font;
       font-size: 1.3rem;
       font-weight: $bold;
       text-transform: uppercase;

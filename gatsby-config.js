@@ -62,6 +62,23 @@ module.exports = {
         ],
       },
     },
+    {
+      resolve: `gatsby-omni-font-loader`,
+      options: {
+        enableListener: true,
+        preconnect: [`https://fonts.googleapis.com`, `https://fonts.gstatic.com`],
+        web: [
+          {
+            name: `Antonio`,
+            file: `https://fonts.googleapis.com/css2?family=Antonio:wght@700&display=swap`
+          },
+          {
+            name: `Noto Sans`,
+            file: `https://fonts.googleapis.com/css2?family=Noto+Sans:wght@700&display=swap`
+          },
+        ],
+      },
+    },
     `gatsby-transformer-sharp`,
     `gatsby-plugin-sharp`,
     {
