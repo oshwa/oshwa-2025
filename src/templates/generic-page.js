@@ -1,18 +1,16 @@
 import React from 'react';
 import { graphql } from 'gatsby';
+
 import Layout from '../components/layout';
+import { GenericHeader } from '../components/GenericHeader';
 
 export default function ProjectPage({ data }) {
   const pageData = data.contentfulGenericPage;
-  
+
   return (
     <Layout>
       <>
-        <div className="p-8">
-          <div className="p-4">
-            <h1>{pageData.title}</h1>
-          </div>
-        </div>
+        <GenericHeader title={pageData.title} />
       </>
     </Layout>
   );
