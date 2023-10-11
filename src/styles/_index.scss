@@ -57,7 +57,7 @@
   flex-direction: column;
   justify-content: space-between;
   &__title {
-    @include typography-headline-4;
+    @include typography-headline-2;
   }
   .temp-section-img {
     height: auto;
