@@ -12,27 +12,55 @@
 }
 
 .featured-box {
+  min-height: 30rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
   &__title {
     @include typography-headline-2;
+    font-weight: $bold;
   }
   &__date {
     @include typography-button;
+    font-weight: $bold;
     text-transform: uppercase;
+  }
+  &__description {
+    margin-bottom: 2rem;
   }
 }
 
 
 .project-highlight {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
   &__count {
-    @include typography-headline-2;
+    @include typography-headline-1;
   }
   &__text {
-    @include typography-body-1;
+    @include typography-body-2;
+    font-weight: $bold;
   }  
+  .link--arrow {
+    align-self: end;
+  }
+}
+
+.map-container {
+  min-height: 24rem;
 }
 
 .section-card {
+  height: 20rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
   &__title {
-    @include typography-headline-4;
+    @include typography-headline-2;
+  }
+  .temp-section-img {
+    height: auto;
+    width: 6rem;
   }
 }
