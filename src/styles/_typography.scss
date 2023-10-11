@@ -8,7 +8,7 @@ $secondary-font: 'Noto Sans', serif;
 
 @mixin typography-headline-2 {
   font-family: $primary-font;
-  font-size: 61px;
+  font-size: 38px;
 }
 
 @mixin typography-headline-3 {
@@ -33,13 +33,20 @@ $secondary-font: 'Noto Sans', serif;
 
 @mixin typography-body-1 {
   font-family: $secondary-font;
-  font-size: 21px;
+  font-size: 48px;
 }
 
 @mixin typography-body-2 {
   font-family: $secondary-font;
-  font-size: 18px;
+  font-size: 24px;
 }
+
+@mixin typography-body-3 {
+  font-family: $secondary-font;
+  font-size: 16px;
+  font-weight: $regular;
+}
+
 
 @mixin typography-subtitle-1 {
   font-family: $primary-font;

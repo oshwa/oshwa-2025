@@ -88,7 +88,7 @@ exports.createPages = async ({ graphql, actions }) => {
       }
     }
   `);
-  console.log(Object.keys(allGenericPages));
+  
   allGenericPages.data.allContentfulGenericPage.edges.forEach(edge => {
     createPage({
       path: `${edge.node.prettyUrl}`,

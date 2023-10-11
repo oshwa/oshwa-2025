@@ -48,8 +48,12 @@ $large: screen and
 @import 'people-template';
 @import 'link';
 @import 'index';
+
 body {
   background-color: var($--theme-background);
   color: var($--theme-on-surface);
+  p {
+    @include typography-body-3;
+  }
 }
 
