@@ -17,7 +17,7 @@
   flex-direction: column;
   justify-content: space-between;
   &__title {
-    @include typography-headline-2;
+    @include typography-headline-3;
     font-weight: $bold;
   }
   &__date {
@@ -57,7 +57,7 @@
   flex-direction: column;
   justify-content: space-between;
   &__title {
-    @include typography-headline-2;
+    @include typography-headline-3;
   }
   .temp-section-img {
     height: auto;

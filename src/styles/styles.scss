@@ -48,6 +48,9 @@ $large: screen and
 @import 'people-template';
 @import 'link';
 @import 'index';
+@import 'generic-header';
+@import 'people';
+@import 'heading';
 
 body {
   background-color: var($--theme-background);
@@ -56,4 +59,3 @@ body {
     @include typography-body-3;
   }
 }
-

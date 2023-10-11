@@ -14,8 +14,8 @@ export const MainNavA = ({ handleClick, active }) => {
       <Link className="nav-link" to="/projects">
         Projects
       </Link>
-      <Link className="nav-link" to="/">
-        Link Two
+      <Link className="nav-link" to="/people-template">
+        People Template
       </Link>
       <Link className="nav-link" to="/">
         Link Three

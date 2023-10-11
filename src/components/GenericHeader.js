@@ -1,12 +1,12 @@
 import React from 'react';
 
-export const GenericHeader = ({ title }) => {
+export const GenericHeader = ({ title, headerImageUrl }) => {
   return (
     <div className="p-8 pt-0 pb-5">
       <div className="grid lg:grid-cols-5 md:grid-cols-5">
-        <div className="col-span-3 lg:mr-5 md:mr-5 h-full notched  notched--bg notched--bg--img" style={{ backgroundImage: 'url(https://placehold.jp/800x500.png)' }}></div>
-        <div className="col-span-2 h-full notched notched--border">
-          <h1>{title}</h1>
+        <div className="col-span-3 lg:mr-5 md:mr-5 h-full notched  notched--bg notched--bg--img" style={{ backgroundImage: `url(${headerImageUrl})` }}></div>
+        <div className="generic-header  col-span-2 h-full notched notched--border">
+          <h1 className="generic-heading-1">{title}</h1>
           <p>
             Ad ea duis aliquip do irure. Reprehenderit sit qui culpa laboris
             tempor sit mollit sint exercitation proident culpa minim Lorem id.
