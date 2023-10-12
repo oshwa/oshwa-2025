@@ -6,12 +6,12 @@
 
 @function theme-var($key, $fallback: null, $map: $theme-map-light) {
   @if not map-has-key($map, $key) {
-      @error "key: '#{$key}', is not a key in map: #{$map}";
+    @error "key: '#{$key}', is not a key in map: #{$map}";
   }
   @if ($fallback) {
-      @return var($key, $fallback);
+    @return var($key, $fallback);
   } @else {
-      @return var($key);
+    @return var($key);
   }
 }
 
@@ -36,4 +36,21 @@
   -moz-osx-font-smoothing: grayscale;
   /* Support for IE. */
   font-feature-settings: 'liga';
+}
+
+@mixin notched-div-hover-state {
+  background-color: white;
+  color: black;
+  --notchSize: 10px;
+
+  clip-path: polygon(
+    0% var(--notchSize),
+    var(--notchSize) 0%,
+    calc(100% - var(--notchSize)) 0%,
+    100% var(--notchSize),
+    100% calc(100% - var(--notchSize)),
+    calc(100% - var(--notchSize)) 100%,
+    var(--notchSize) 100%,
+    0% calc(100% - var(--notchSize))
+  );
 }
