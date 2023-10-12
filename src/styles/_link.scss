@@ -19,3 +19,17 @@
     }
   }
 }
+
+.link--notched {
+  @include typography-button;
+  font-weight: $bold;
+  text-transform: uppercase;
+  width: 100%;
+  padding: 1rem;
+  text-align: center;
+  &:hover {
+    // background-color: var($--theme-on-background);
+    // color: var($--theme-surface);
+    @include notched-div-hover-state;
+  }
+}

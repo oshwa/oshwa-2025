@@ -1,0 +1,43 @@
+
+
+.profile {
+  padding: 0;
+  &__type {
+    @include typography-body-2;
+    font-weight: $bold;
+    text-transform: uppercase;
+  }
+  &__title {
+    @include typography-headline-3;
+    font-weight: $bold;
+  }
+}
+.links-container {
+  margin-top: 1rem;
+}
+
+.resource-wrapper {
+  &:hover {
+    // background-color: var($--theme-on-background);
+    // color: var($--theme-surface);
+    @include notched-div-hover-state;
+  }
+}
+.resource {
+  @include typography-body-5;
+  font-weight: $bold;
+  word-wrap: break-word;
+  min-height: 18rem;
+}
+
+.profile-certification {
+  min-height: 18rem;
+  p {
+    @include typography-body-5;
+    font-weight: $bold;
+    word-wrap: break-word;
+  }
+  @include typography-body-5;
+  font-weight: $bold;
+  word-wrap: break-word;
+}

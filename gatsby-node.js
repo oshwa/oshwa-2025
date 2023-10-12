@@ -41,7 +41,57 @@ exports.createPages = async ({ graphql, actions }) => {
   //   context: {},
   //   defer: true,
   // });
+  const profilePageTemplate = path.resolve(`src/templates/profile-page.js`);
   const projectPageTemplate = path.resolve(`src/templates/project-page.js`);
+
+  // profile page query
+  const allPeople = await graphql(`
+    query allPeopleQuery {
+      allContentfulPeople {
+        edges {
+          node {
+            id
+            displayName
+            prettyUrl
+            title
+            affiliation
+            email
+            twitter
+            type
+            photo {
+              id
+              file {
+                url
+                fileName
+                contentType
+              }
+            }
+            longDescription {
+              id
+              longDescription
+            }
+          }
+        }
+      }
+    }
+  `);
+
+  console.log(
+    Object.keys(allPeople.data.allContentfulPeople.edges[0]),
+    'all people'
+  );
+
+  allPeople.data.allContentfulPeople.edges.forEach(edge => {
+    createPage({
+      path: `people-template/${edge.node.prettyUrl}`,
+      component: profilePageTemplate,
+      context: {
+        id: edge.node.id,
+        title: edge.node.displayName,
+        email: edge.node.email,
+      },
+    });
+  });
 
   // project page generation
   const allProjects = await graphql(`
@@ -88,7 +138,7 @@ exports.createPages = async ({ graphql, actions }) => {
       }
     }
   `);
-  
+
   allGenericPages.data.allContentfulGenericPage.edges.forEach(edge => {
     createPage({
       path: `${edge.node.prettyUrl}`,

@@ -51,6 +51,17 @@ $secondary-font: 'Noto Sans', serif;
   font-weight: $regular;
 }
 
+// used for noto sans profile
+@mixin typography-body-4 {
+  font-family: $secondary-font;
+  font-size: 25px;
+}
+
+// noto sans profile resource titles
+@mixin typography-body-5 {
+  font-family: $secondary-font;
+  font-size: 26px;
+}
 
 @mixin typography-subtitle-1 {
   font-family: $primary-font;
