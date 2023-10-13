@@ -17,6 +17,9 @@ export const MainNavA = ({ handleClick, active }) => {
       <Link className="nav-link" to="/people-template">
         People Template
       </Link>
+      <Link className="nav-link" to="/resources">
+        Resources
+      </Link>
       <Link className="nav-link" to="/list-template">
         List Template
       </Link>
