@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'gatsby';
 
 export const MainNavA = ({ handleClick, active }) => {
-  
+
   return (
     <nav className={`main-nav ${active && 'nav-active'}`}>
       <button className="material-icons close-nav" onClick={handleClick}>
@@ -17,8 +17,8 @@ export const MainNavA = ({ handleClick, active }) => {
       <Link className="nav-link" to="/people-template">
         People Template
       </Link>
-      <Link className="nav-link" to="/">
-        Link Three
+      <Link className="nav-link" to="/list-template">
+        List Template
       </Link>
     </nav>
   );
