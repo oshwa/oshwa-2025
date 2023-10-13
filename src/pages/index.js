@@ -30,7 +30,7 @@ const IndexPage = () => {
       <>
         <div className="p-8 pt-0 pb-5">
           <div className="grid lg:grid-cols-5 md:grid-cols-5">
-            <div className="col-span-3 lg:mr-5 md:mr-5 notched notched--bg index-banner">
+            <div className="col-span-3 lg:mr-5 md:mr-5 notched notched--bg index-banner mb-5 md:mb-0">
               <div className="index-image-container">
                 <StaticImage
                   className="temp-index-img"
@@ -65,7 +65,7 @@ const IndexPage = () => {
 
         <div className="p-8 pt-0 pb-5">
           <div className="grid lg:grid-cols-4 md:grid-cols-3">
-            <div className="lg:col-span-1 md:col-span-1 lg:mr-5 md:mr-5 notched notched--bg yellow project-highlight">
+            <div className="lg:col-span-1 md:col-span-1 lg:mr-5 md:mr-5 mb-5 md:mb-0 notched notched--bg yellow project-highlight">
               <div>
                 <p className="project-highlight__count">
                   {data.allOshwaCertifications.totalCount}
@@ -84,7 +84,7 @@ const IndexPage = () => {
         <div className="p-8 pt-0 pb-5">
           <div className="grid lg:grid-cols-4 md:grid-cols-4">
             <Link to="/programs">
-              <div className="section-card lg:col-span-1 md:col-span-2 lg:mr-5 md:mr-5 notched notched--bg notched--bg--hover green">
+              <div className="section-card lg:col-span-1 md:col-span-2 lg:mr-5 md:mr-5 mb-5 md:mb-0 notched notched--bg notched--bg--hover green">
                 <h3 className="section-card__title">Programs</h3>
                 <StaticImage
                   className="temp-section-img"
@@ -94,7 +94,7 @@ const IndexPage = () => {
               </div>
             </Link>
             <Link to="/resources">
-              <div className="section-card lg:col-span-1 md:col-span-2 lg:mr-5 notched notched--bg blue">
+              <div className="section-card lg:col-span-1 md:col-span-2 lg:mr-5 md:mr-5 mb-5 md:mb-0 notched notched--bg blue">
                 <h3 className="section-card__title">Resources</h3>
                 <StaticImage
                   className="temp-section-img"
@@ -104,7 +104,7 @@ const IndexPage = () => {
               </div>
             </Link>
             <Link to="/events">
-              <div className="section-card lg:col-span-1 md:col-span-2 lg:mr-5 md:mr-5 notched notched--bg red">
+              <div className="section-card lg:col-span-1 md:col-span-2 lg:mr-5 md:mr-5 mb-5 md:mb-0 notched notched--bg red">
                 <h3 className="section-card__title">Events</h3>
                 <StaticImage
                   className="temp-section-img"

@@ -42,7 +42,7 @@
       position: absolute;
       inset: 0;
       z-index: -1;
-      background: white;
+      background: var($--theme-on-surface);
 
       --g1: #000 var(--b), #0000 0 calc(100% - var(--b)), #000 0;
       --g2: #0000 calc(0.707*var(--s)),
