@@ -1,0 +1,52 @@
+.filter-container {
+  position: relative;
+
+  span {
+    text-transform: uppercase;
+    font-family: $secondary-font;
+    font-weight: 600;
+    display: inline-block;
+  }
+
+  .filter {
+    margin-right: 1rem;
+
+    &:after {
+      content: 'expand_more';
+      @extend .u-material-icons;
+      vertical-align: middle;
+      margin-top: -2px;
+      margin-left: 5px;
+    }
+  }
+
+  .clear-filters {
+    position: absolute;
+    right: 0;
+  }
+}
+
+.list {
+  .list-item {
+    min-height: 22rem;
+    position: relative;
+
+    @include breakpoint($medium-only) {
+      min-height: 15rem;
+    }
+
+    .title {
+      font-size: 1.7rem;
+      font-weight: 600;
+    }
+
+    .type {
+      position: absolute;
+      font-size: 1.2rem;
+      bottom: 2.5rem;
+      text-transform: uppercase;
+      font-family: $secondary-font;
+      font-weight: 600;
+    }
+  }
+}
