@@ -1,31 +1,40 @@
 @import './themes.scss';
 
-
 .navbar-a {
   display: flex !important;
   justify-content: space-between;
   align-items: center;
-  background-color: $transparent;
+  background-color: var(--theme-background);
   height: 3.5rem;
   transition: $nav-transition;
-  // border: solid 1px var($--theme-on-background);
+
   .navbar-a-button {
     display: flex;
     border-radius: 0;
     // height: 3.5rem;
     line-height: initial;
     cursor: pointer;
+
     &__decorator {
       height: 100%;
       font-size: 2rem;
       margin-right: 0.25rem;
     }
+
     &__text {
       font-family: $secondary-font;
       font-size: 1.4rem;
       font-weight: $bold;
       text-transform: uppercase;
-      
+
     }
   }
+}
+
+.fixed-to-top {
+  position: sticky;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1;
 }
