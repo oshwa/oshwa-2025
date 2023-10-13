@@ -1,30 +1,32 @@
 import * as React from 'react';
-import { useStaticQuery, graphql } from 'gatsby';
+import { useStaticQuery, graphql, Link } from 'gatsby';
 import Layout from '../components/layout';
 
 export default function ResourcesPage() {
   const data = useStaticQuery(graphql`
-  query allResourcesQuery {
-    allContentfulProduct {
-      edges {
-        node {
-          id
-          title
-          prettyUrl
-          fixedNav
-          noIndex
-          people {
+    query allResourcesQuery {
+      allContentfulProduct {
+        edges {
+          node {
             id
-            displayName
-            prettyUrl 
+            title
+            prettyUrl
+            fixedNav
+            noIndex
+            type
+            publicationDate
+            people {
+              id
+              displayName
+              prettyUrl
+            }
           }
         }
       }
     }
-  }
-`);
+  `);
 
-let resources = data.allContentfulProduct;
+  let resources = data.allContentfulProduct;
 
   return (
     <Layout>
@@ -46,15 +48,18 @@ let resources = data.allContentfulProduct;
 
         <div className="p-8 pt-0 pb-5 list">
           <div className="grid lg:grid-cols-4 md:grid-cols-3 gap-5">
-            {resources && resources.edges.map(resource => (
-            <div className="lg:col-span-1 notched notched--border notched--border--hover list-item">
-              <p className="title">{resource.node.title}</p>
-              <span className="type">Type</span>
-            </div>
-            ))}
+            {resources &&
+              resources.edges.map(resource => (
+                <Link key={resource.node.id} to={resource.node.prettyUrl}>
+                  <div className="lg:col-span-1 notched notched--border notched--border--hover list-item">
+                    <p className="title">{resource.node.title}</p>
+                    <span className="type">Type</span>
+                  </div>
+                </Link>
+              ))}
           </div>
         </div>
       </>
     </Layout>
-  )
+  );
 }

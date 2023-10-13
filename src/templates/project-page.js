@@ -4,7 +4,7 @@ import Layout from '../components/layout';
 
 export default function ProjectPage({ data }) {
   const project = data.oshwaCertifications;
-  console.log(data);
+
   return (
     <Layout>
       <>
