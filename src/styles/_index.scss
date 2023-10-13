@@ -1,11 +1,13 @@
 .index-banner {
   display: flex;
   flex-direction: column;
-  justify-content: end;
+  justify-content: flex-end;
 }
+
 .index-image-container {
   display: flex;
   justify-content: space-between;
+
   a {
     align-self: end;
   }
@@ -16,15 +18,18 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+
   &__title {
     @include typography-headline-3;
     font-weight: $bold;
   }
+
   &__date {
     @include typography-button;
     font-weight: $bold;
     text-transform: uppercase;
   }
+
   &__description {
     margin-bottom: 2rem;
   }
@@ -35,13 +40,16 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+
   &__count {
     @include typography-headline-1;
   }
+
   &__text {
     @include typography-body-2;
     font-weight: $bold;
-  }  
+  }
+
   .link--arrow {
     align-self: end;
   }
@@ -56,9 +64,11 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+
   &__title {
     @include typography-headline-3;
   }
+
   .temp-section-img {
     height: auto;
     width: 6rem;

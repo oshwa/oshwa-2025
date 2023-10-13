@@ -35,7 +35,7 @@ const Layout = ({ children }) => {
     console.log(active);
   };
 
-  const navType = `left-push-nav`;
+  const navType = `left-push-nav fixed-to-top`;
 
   return (
     <>
@@ -50,7 +50,7 @@ const Layout = ({ children }) => {
         {children}
       </Main>
 
-      
+
       <Footer />
     </>
   );
