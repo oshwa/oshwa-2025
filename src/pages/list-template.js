@@ -1,5 +1,6 @@
 import * as React from 'react';
 import Layout from '../components/layout';
+import { FilterBar } from '../components/FilterBar';
 
 export default function ListTemplate() {
   return (
@@ -10,13 +11,7 @@ export default function ListTemplate() {
             <div className="col-span-10 mb-5 notched notched--border">
               <h1 className="generic-heading-1">List Template</h1>
             </div>
-            <div className="col-span-10 notched notched--border">
-              <div className="filter-container">
-                <span className="filter">Filter 1</span>
-                <span className="filter">Filter 2</span>
-                <span className="clear-filters">Clear filters</span>
-              </div>
-            </div>
+            <FilterBar />
           </div>
         </div>
 
