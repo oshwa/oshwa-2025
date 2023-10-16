@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { useStaticQuery, graphql, Link } from 'gatsby';
 import Layout from '../components/layout';
+import { FilterBar } from '../components/FilterBar';
 
 export default function ResourcesPage() {
   const data = useStaticQuery(graphql`
@@ -36,13 +37,7 @@ export default function ResourcesPage() {
             <div className="col-span-10 mb-5 notched notched--border">
               <h1 className="generic-heading-1">Resources</h1>
             </div>
-            <div className="col-span-10 notched notched--border">
-              <div className="filter-container">
-                <span className="filter">Filter 1</span>
-                <span className="filter">Filter 2</span>
-                <span className="clear-filters">Clear filters</span>
-              </div>
-            </div>
+            <FilterBar />
           </div>
         </div>
 
@@ -50,11 +45,9 @@ export default function ResourcesPage() {
           <div className="grid lg:grid-cols-4 md:grid-cols-3 gap-5">
             {resources &&
               resources.edges.map(resource => (
-                <Link key={resource.node.id} to={resource.node.prettyUrl}>
-                  <div className="lg:col-span-1 notched notched--border notched--border--hover list-item">
-                    <p className="title">{resource.node.title}</p>
-                    <span className="type">Type</span>
-                  </div>
+                <Link key={resource.node.id} to={resource.node.prettyUrl} className="lg:col-span-1 notched notched--border notched--border--hover list-item">
+                  <p className="title">{resource.node.title}</p>
+                  <span className="type">Type</span>
                 </Link>
               ))}
           </div>
