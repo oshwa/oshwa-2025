@@ -11,6 +11,7 @@
     "gatsby-omni-font-loader": "^2.0.2",
     "gatsby-plugin-google-fonts": "^1.0.1",
     "gatsby-plugin-image": "^3.12.1",
+    "gatsby-plugin-lunr": "^1.5.2",
     "gatsby-plugin-manifest": "^5.12.0",
     "gatsby-plugin-sass": "^6.12.0",
     "gatsby-plugin-sharp": "^5.12.1",
