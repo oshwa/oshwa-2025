@@ -12,9 +12,8 @@ require('dotenv').config({
   path: `.env.${process.env.NODE_ENV}`,
 });
 
-
-const resolveConfig = require("tailwindcss/resolveConfig");
-const tailwindConfig = require("./tailwind.config.js");
+const resolveConfig = require('tailwindcss/resolveConfig');
+const tailwindConfig = require('./tailwind.config.js');
 
 const fullConfig = resolveConfig(tailwindConfig);
 
@@ -66,15 +65,18 @@ module.exports = {
       resolve: `gatsby-omni-font-loader`,
       options: {
         enableListener: true,
-        preconnect: [`https://fonts.googleapis.com`, `https://fonts.gstatic.com`],
+        preconnect: [
+          `https://fonts.googleapis.com`,
+          `https://fonts.gstatic.com`,
+        ],
         web: [
           {
             name: `Antonio`,
-            file: `https://fonts.googleapis.com/css2?family=Antonio:wght@700&display=swap`
+            file: `https://fonts.googleapis.com/css2?family=Antonio:wght@700&display=swap`,
           },
           {
             name: `Noto Sans`,
-            file: `https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;700&display=swap`
+            file: `https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;700&display=swap`,
           },
         ],
       },
@@ -93,6 +95,56 @@ module.exports = {
         // theme_color: `#663399`,
         display: `minimal-ui`,
         icon: `src/images/gatsby-icon.png`, // This path is relative to the root of the site.
+      },
+    },
+    {
+      resolve: `gatsby-plugin-lunr`,
+      options: {
+        languages: [
+          {
+            // ISO 639-1 language codes. See https://lunrjs.com/guides/language_support.html for details
+            name: 'en',
+            // A function for filtering nodes. () => true by default
+            filterNodes: node => {
+              if (node.internal.type === 'ContentfulProduct') {
+                console.log(Object.keys(node));
+              }
+              return node.internal.type === 'ContentfulProduct';
+            },
+            // Add to index custom entries, that are not actually extracted from gatsby nodes
+            customEntries: [
+              {
+                title: 'Pictures',
+                content: 'awesome pictures',
+                url: '/pictures',
+              },
+            ],
+          },
+        ],
+        // Fields to index. If store === true value will be stored in index file.
+        // Attributes for custom indexing logic. See https://lunrjs.com/docs/lunr.Builder.html for details
+        fields: [
+          { name: 'title', store: true, attributes: { boost: 20 } },
+          { name: 'publicationDate', store: true },
+          { name: 'type', store: true },
+          { name: 'prettyUrl', store: true },
+        ],
+        // How to resolve each field's value for a supported node type
+        resolvers: {
+          // For any node of type MarkdownRemark, list how to resolve the fields' values
+          ContentfulProduct: {
+            title: node => node.title,
+            publicationDate: node => node.publicationDate,
+            type: node => node.type,
+            prettyUrl: node => node.prettyUrl,
+          },
+        },
+        //custom index file name, default is search_index.json
+        filename: 'search_index.json',
+        //custom options on fetch api call for search_ındex.json
+        fetchOptions: {
+          credentials: 'same-origin',
+        },
       },
     },
   ],
