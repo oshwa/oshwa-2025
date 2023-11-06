@@ -48,3 +48,12 @@ body {
     @include typography-body-3;
   }
 }
+
+
+ul[role='menu'] {
+  visibility: hidden;
+}
+
+ul[role='menu'].visible {
+  visibility: visible;
+}

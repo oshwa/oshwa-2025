@@ -32,7 +32,6 @@ const Layout = ({ children }) => {
 
   const handleClick = () => {
     setActive(!active);
-    console.log(active);
   };
 
   const navType = `left-push-nav fixed-to-top`;
