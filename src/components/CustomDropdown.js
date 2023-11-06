@@ -1,13 +1,18 @@
 import React from 'react';
 
-export default function CustomDropdown({ label, options, handler }) {
+import camelCase from 'lodash.camelcase';
+
+export default function CustomDropdown({ label, options, handleSearchQuery }) {
+  const onChange = event => {
+    handleSearchQuery(event.target);
+  };
   return (
     <>
-      <select id={label}>
-        <option value>- Select -</option>
+      <select id={camelCase(label)} onChange={onChange}>
+        <option value="all">{label}</option>
         {options.map((option, idx) => (
-          <option key={`${label}-${idx}`} value={option.value}>
-            {option.label}
+          <option key={`${label}-${idx}`} value={option}>
+            {option}
           </option>
         ))}
       </select>
