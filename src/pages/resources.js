@@ -37,6 +37,7 @@ export default function ResourcesPage() {
             <div className="col-span-10 mb-5 notched notched--border">
               <h1 className="generic-heading-1">Resources</h1>
             </div>
+            
             <FilterBar />
           </div>
         </div>

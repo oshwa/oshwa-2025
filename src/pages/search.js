@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'gatsby';
+import { Link, useStaticQuery } from 'gatsby';
 import Layout from '../components/layout';
 import { FilterBar } from '../components/FilterBar';
 
-const Search = () => {
+const Search = ({ data }) => {
+  
   const [query, setQuery] = useState(``);
   const [results, setResults] = useState([]);
 
@@ -14,8 +15,6 @@ const Search = () => {
 
     setResults(
       searchResults.map(({ ref }) => {
-        console.log(ref);
-
         return lunrIndex.store[ref];
       })
     );
@@ -48,16 +47,19 @@ const Search = () => {
           <div className="p-8 pt-0 pb-5 list">
             <div className="grid lg:grid-cols-4 md:grid-cols-3 gap-5">
               {results &&
-                results.map(resource => (
-                  <Link
-                    key={resource.id}
-                    to={`/resources/${resource.prettyUrl}`}
-                    className="lg:col-span-1 notched notched--border notched--border--hover list-item"
-                  >
-                    <p className="title">{resource.title}</p>
-                    <span className="type">Type</span>
-                  </Link>
-                ))}
+                results.map(
+                  resource =>
+                    resource.prettyUrl && (
+                      <Link
+                        key={resource.prettyUrl}
+                        to={`/resources/${resource.prettyUrl}`}
+                        className="lg:col-span-1 notched notched--border notched--border--hover list-item"
+                      >
+                        <p className="title"> {resource.title}</p>
+                        <span className="type">Type</span>
+                      </Link>
+                    )
+                )}
             </div>
           </div>
         </>

@@ -2,18 +2,10 @@
   position: relative;
   padding-top: 1.2rem;
   padding-bottom: 1.2rem;
-
-  span {
-    text-transform: uppercase;
-    font-family: $secondary-font;
-    font-weight: 600;
-    display: inline-block;
-    font-size: 1.2rem;
-  }
+  display: flex;
 
   &__filter {
     margin-right: 1rem;
-
     &:after {
       content: 'expand_more';
       @extend .u-material-icons;
