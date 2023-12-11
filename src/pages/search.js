@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'gatsby';
 import Layout from '../components/layout';
 import { FilterBar } from '../components/FilterBar';
+import GridCards from '../components/GridCards';
 import dayjs from 'dayjs';
 const sessionsName = 'resource-filters';
 
@@ -58,7 +59,7 @@ const Search = ({ data }) => {
     document.querySelector('#publicationDate').selectedIndex = 0;
     document.querySelector('#publicationType').selectedIndex = 0;
   };
-  
+
   useEffect(() => {
     const lunrIndex = window.__LUNR__['en'];
     matchFiltersToSessions();
@@ -74,44 +75,21 @@ const Search = ({ data }) => {
     <>
       <Layout>
         <>
-          <div className="p-8 pt-0 pb-5">
+          <div className="p-10 pt-0 pb-5">
             <div className="grid lg:grid-cols-5 md:grid-cols-5">
               <div className="col-span-10 mb-5 notched notched--border">
                 <h1 className="generic-heading-1">Resources</h1>
               </div>
-              <FilterBar
-                handleSearchQuery={handleSearchQuery}
-                handleClearFilters={clearFilters}
-              />
-              <div>{sessionStorage.getItem('resource-filters')}</div>
+              {/* <div>{sessionStorage.getItem('resource-filters')}</div> */}
             </div>
           </div>
 
-          <div className="p-8 pt-0 pb-5 list">
-            <div className="grid lg:grid-cols-4 md:grid-cols-3 gap-5">
-              {results &&
-                results.map(
-                  resource =>
-                    resource.prettyUrl && (
-                      <Link
-                        key={resource.prettyUrl}
-                        to={`/resources/${resource.prettyUrl}`}
-                        className="lg:col-span-1 notched notched--border notched--border--hover list-item"
-                      >
-                        <div>
-                          <p className="title"> {resource.title}</p>
-                          <p className="publicationDate">
-                            {dayjs(resource.publicationDate).format(
-                              'MMMM D, YYYY'
-                            )}
-                          </p>
-                        </div>
-                        <p className="type">{resource.type}</p>
-                      </Link>
-                    )
-                )}
-            </div>
-          </div>
+          <FilterBar
+            handleSearchQuery={handleSearchQuery}
+            handleClearFilters={clearFilters}
+          />
+          <GridCards items={results} />
+
         </>
       </Layout>
     </>

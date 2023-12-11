@@ -9,7 +9,7 @@ const Header = ({ active, setActive, handleClick, navType }) => {
   const ref = useRef();
   useOnClickOutside(ref, () => setActive(false));
 
-  const headerClassNames = [`p-8 pb-5`];
+  const headerClassNames = [`p-10 pb-5`];
 
   return (
     <>
