@@ -1,11 +1,22 @@
-.filters {
-  position: relative;
-  padding-top: 1.2rem;
-  padding-bottom: 1.2rem;
-  display: flex;
+.filter-item {
+  padding: 1rem 2rem;
+  @include typography-body-6;
+  select {
+    @include typography-body-6;
+    height: 2rem;
+    background-color: var($--theme-background);
+    color: var($--theme-on-surface);
+  }
+}
+
+.filters,
+.filter-bar {
+  &.notched--border {
+    display: grid;
+  }
 
   &__filter {
-    margin-right: 1rem;
+    // margin-right: 1rem;
     &:after {
       content: 'expand_more';
       @extend .u-material-icons;
@@ -15,8 +26,6 @@
     }
 
     &--clear {
-      position: absolute;
-      right: 2rem;
     }
   }
 }
@@ -24,30 +33,21 @@
 .list {
   .list-item {
     min-height: 22rem;
-    position: relative;
+    // position: relative;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    p {
-      outline: red solid 1px;
-    }
-
     @include breakpoint($medium-only) {
       min-height: 15rem;
     }
-
     .title {
       font-size: 1.7rem;
       font-weight: 600;
+      overflow-wrap: break-word;
     }
-
-    .type {
-      // position: absolute;
-      font-size: 1.2rem;
+    .type { 
       bottom: 2.5rem;
-      text-transform: uppercase;
-      font-family: $secondary-font;
-      font-weight: 600;
+      @include typography-body-6;
     }
   }
 }
