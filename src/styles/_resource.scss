@@ -1,0 +1,13 @@
+.resource-header {
+  &__title {
+    @include typography-headline-2;
+  }
+  &__named_authors {
+    @include typography-body-6;
+    text-transform: none;
+  }
+  &__image {
+
+
+  }
+}

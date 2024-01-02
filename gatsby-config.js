@@ -27,6 +27,7 @@ module.exports = {
   plugins: [
     `gatsby-plugin-image`,
     `gatsby-plugin-postcss`,
+    `gatsby-transformer-remark`,
     {
       resolve: `gatsby-plugin-sass`,
       options: {

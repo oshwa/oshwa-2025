@@ -1,6 +1,8 @@
 import React from 'react';
 import { graphql } from 'gatsby';
+import { GatsbyImage, getImage } from 'gatsby-plugin-image';
 import Layout from '../components/layout';
+import MarkdownText from '../components/MarkdownText';
 
 export default function ResourcePage({ data }) {
   const resource = data.contentfulProduct;
@@ -8,11 +10,37 @@ export default function ResourcePage({ data }) {
   return (
     <Layout>
       <>
-        <div className="p-8">
-          <div className="p-4">
-            
-            <h1>{resource.title}</h1>
-            
+        <div className="p-10 pt-0 pb-5">
+          <div className="grid lg:grid-cols-6 md:grid-cols-6 resource-header">
+            <div className="resource-header__title-wrapper col-span-3">
+              <h1 className="resource-header__title">{resource.title}</h1>
+              <p className="resource-header__named_authors">
+                {resource.fullAuthor.fullAuthor}
+              </p>
+              <p className="resource-introduction">
+                {resource.introduction.introduction}{' '}
+              </p>
+            </div>
+            <div className="resource-header__image col-span-2 col-start-5">
+              <GatsbyImage
+                image={getImage(resource.headerImage)}
+                alt="blog image"
+              />
+              <a className="button button--notched">{resource.button}</a>
+            </div>
+          </div>
+        </div>
+
+        {/* {% if page.fixed_nav %}
+            {% include components/fixed-nav.html %}
+          {% endif %} */}
+        <div className="p-10 pt-0 pb-5">
+          <div className="grid lg:grid-cols-6 md:grid-cols-6 resource-body">
+            <div className="col-span-3">
+              <MarkdownText
+                content={resource.markdownBody.childrenMarkdownRemark[0].html}
+              />
+            </div>
           </div>
         </div>
       </>
@@ -25,6 +53,24 @@ export const query = graphql`
     contentfulProduct(id: { eq: $id }) {
       id
       title
+      fullAuthor {
+        fullAuthor
+      }
+      headerImage {
+        id
+        gatsbyImage(width: 600)
+      }
+      introduction {
+        introduction
+      }
+      markdownBody {
+        id
+        childrenMarkdownRemark {
+          id
+          html
+          tableOfContents
+        }
+      }
       prettyUrl
       fixedNav
       noIndex

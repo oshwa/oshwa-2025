@@ -39,6 +39,8 @@ $large: screen and (min-width: 64em,
 @import 'profile';
 @import 'heading';
 @import 'list';
+@import 'resource';
+@import 'markdown';
 
 body {
   background-color: var($--theme-background);
