@@ -28,6 +28,20 @@ module.exports = {
     `gatsby-plugin-image`,
     `gatsby-plugin-postcss`,
     `gatsby-transformer-remark`,
+    // {
+    //   resolve: `gatsby-transformer-remark`,
+    //   options: {
+    //     plugins: [
+    //       {
+    //         resolve: `gatsby-remark-autolink-headers`,
+    //         options: {
+    //           offsetY: `1500`,
+    //           className: `custom-class`,
+    //         },
+    //       },
+    //     ],
+    //   },
+    // },
     {
       resolve: `gatsby-plugin-sass`,
       options: {

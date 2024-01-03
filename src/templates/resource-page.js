@@ -3,10 +3,11 @@ import { graphql } from 'gatsby';
 import { GatsbyImage, getImage } from 'gatsby-plugin-image';
 import Layout from '../components/layout';
 import MarkdownText from '../components/MarkdownText';
+import FixedNav from '../components/FixedNav';
 
 export default function ResourcePage({ data }) {
   const resource = data.contentfulProduct;
-  console.log(resource);
+  // console.log(resource);
   return (
     <Layout>
       <>
@@ -26,7 +27,7 @@ export default function ResourcePage({ data }) {
                 image={getImage(resource.headerImage)}
                 alt="blog image"
               />
-              <a className="button button--notched">{resource.button}</a>
+              <a href={resource.buttonUrl} className="button button--notched">{resource.buttonText}</a>
             </div>
           </div>
         </div>
@@ -34,6 +35,14 @@ export default function ResourcePage({ data }) {
         {/* {% if page.fixed_nav %}
             {% include components/fixed-nav.html %}
           {% endif %} */}
+        {resource.fixedNav && (
+          <FixedNav
+            toc={
+              resource.markdownBody.childrenMarkdownRemark[0].tableOfContents
+            }
+          />
+        )}
+
         <div className="p-10 pt-0 pb-5">
           <div className="grid lg:grid-cols-6 md:grid-cols-6 resource-body">
             <div className="col-span-3">
@@ -56,6 +65,8 @@ export const query = graphql`
       fullAuthor {
         fullAuthor
       }
+      buttonText
+      buttonUrl
       headerImage {
         id
         gatsbyImage(width: 600)
