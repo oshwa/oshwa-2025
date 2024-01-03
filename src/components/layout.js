@@ -8,7 +8,7 @@
 import React, { useState } from 'react';
 import { useStaticQuery, graphql } from 'gatsby';
 
-import Header from './Header';
+import Header from './header';
 import Main from './Main';
 import Footer from './Footer';
 import 'normalize.css';
