@@ -42,7 +42,7 @@ exports.createPages = async ({ graphql, actions }) => {
   //   defer: true,
   // });
 
-  const resourcePageTemplate = path.resolve(`src/templates/resource-page.js`);
+  const markdownResourcePageTemplate = path.resolve(`src/templates/markdown-resource-page.js`);
   const profilePageTemplate = path.resolve(`src/templates/profile-page.js`);
   const projectPageTemplate = path.resolve(`src/templates/project-page.js`);
 
@@ -74,7 +74,7 @@ exports.createPages = async ({ graphql, actions }) => {
   allResources.data.allContentfulProduct.edges.forEach(edge => {
     createPage({
       path: `resources/${edge.node.prettyUrl}`,
-      component: resourcePageTemplate,
+      component: markdownResourcePageTemplate,
       context: {
         id: edge.node.id,
         title: edge.node.title,
