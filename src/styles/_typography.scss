@@ -4,18 +4,19 @@ $secondary-font: 'Noto Sans', serif;
 // used in project count 
 @mixin typography-headline-1 {
   font-family: $primary-font;
-  font-size: 97px;
+  font-size: 120px;
 }
+
 // used in generic header 
 @mixin typography-headline-2 {
   font-family: $primary-font;
-  font-size: 60px;
+  font-size: 66px;
 }
 
 // used in featured box h2 and section card h2
 @mixin typography-headline-3 {
   font-family: $primary-font;
-  font-size: 38px;
+  font-size: 42px;
 }
 
 @mixin typography-headline-4 {
@@ -41,13 +42,13 @@ $secondary-font: 'Noto Sans', serif;
 // used for noto sans headers
 @mixin typography-body-2 {
   font-family: $secondary-font;
-  font-size: 24px;
+  font-size: 30px;
 }
 
 // default p state in body 
 @mixin typography-body-3 {
   font-family: $secondary-font;
-  font-size: 16px;
+  font-size: 18px;
   font-weight: $regular;
 }
 

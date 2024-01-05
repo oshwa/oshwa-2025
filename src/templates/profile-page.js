@@ -10,11 +10,11 @@ export default function ProfilePage({ data }) {
   return (
     <Layout>
       <>
-        <div className="p-8 pt-0 pb-5">
+        <div className="p-10 pt-0 pb-5">
           <div className="grid grid-cols-1 md:grid-cols-1 lg:grid-cols-12  profile-header">
             <div className="col-span-1 md:col-span-1 lg:col-span-3">
               <div
-                className="profile-image md:h-80 lg:h-80 h-60 notched notched--bg notched--bg--img"
+                className="profile-image h-96 notched notched--bg notched--bg--img"
                 style={{ backgroundImage: `url(${profile.photo.file.url})` }}
               ></div>
               <div className="links-container">
@@ -57,15 +57,15 @@ export default function ProfilePage({ data }) {
           </div>
         </div>
         {profile.featuredResearch && (
-          <div className="p-8  pt-0 pb-5">
+          <div className="p-10 pt-0 pb-5">
             <h2 className="generic-heading-2 py-8">Resources</h2>
-            <div className="grid lg:grid-cols-4 md:grid-cols-4">
+            <div className="grid lg:grid-cols-4 md:grid-cols-2 gap-5">
               {profile.featuredResearch &&
                 profile.featuredResearch.map(resource => {
                   return (
                     <Link
                       key={resource.id}
-                      className="lg:col-span-1 md:col-span-2 lg:mr-5 md:mr-5 notched notched--border resource-wrapper"
+                      className="col-span-1 mb-5 notched notched--border resource-wrapper"
                       to={resource.prettyUrl}
                     >
                       <div className="resource">
@@ -79,16 +79,16 @@ export default function ProfilePage({ data }) {
         )}
 
         {!!certifications.edges.length && (
-          <div className="p-8  pt-0 pb-5">
+          <div className="p-10 pt-0 pb-5">
             <h2 className="generic-heading-2 py-8">Certifications</h2>
-            <div className="grid lg:grid-cols-4 md:grid-cols-4">
+            <div className="grid lg:grid-cols-4 md:grid-cols-4 gap-5">
               {certifications &&
                 certifications.edges.map(project => {
                   console.log(project);
                   return (
                     <Link
                       key={project.node.id}
-                      className="lg:col-span-1 md:col-span-2 lg:mr-5 md:mr-5 notched notched--border resource-wrapper"
+                      className="lg:col-span-1 md:col-span-2 notched notched--border resource-wrapper"
                       to={`/projects/${project.node.oshwaUid.toLowerCase()}`}
                     >
                       <div className="profile-certification">

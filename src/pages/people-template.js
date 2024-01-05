@@ -66,7 +66,7 @@ export default function PeopleTemplate() {
           headerImageUrl={'https://placehold.jp/800x500.png'}
         />
 
-        <div className="p-8 pt-0 pb-5">
+        <div className="p-10 pt-0 pb-5">
           <h2 className="generic-heading-2 py-8">Team</h2>
           <div className="grid lg:grid-cols-4 md:grid-cols-4">
             {data.teamMembers.edges.map(teamMember => {
