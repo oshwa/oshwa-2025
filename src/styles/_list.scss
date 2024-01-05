@@ -1,31 +1,57 @@
 .filter-item {
-  padding: 1rem 2rem;
+  padding: 1rem 0 1rem 2rem;
   @include typography-body-6;
+
   select {
     @include typography-body-6;
     height: 2rem;
     background-color: var($--theme-background);
     color: var($--theme-on-surface);
+    padding-right: 2rem;
+
+    @include breakpoint($small-only) {
+      width: auto;
+    }
+
+    // remove default arrow
+    -webkit-appearance: none;
+    -moz-appearance: none;
+  }
+}
+
+.select-wrapper {
+  position: relative;
+  width: fit-content;
+
+  &::after {
+    @extend .u-material-icons;
+    content: 'expand_more';
+    position: absolute;
+    right: 0;
+    top: 5px;
   }
 }
 
 .filters,
 .filter-bar {
   &.notched--border {
-    display: grid;
+    // display: grid;
+    display: flex;
+    width: 100%;
+    padding-top: 0.2rem;
+    padding-bottom: 0.2rem;
+
+    @include breakpoint($small-only) {
+      display: block;
+    }
   }
 
   &__filter {
-    // margin-right: 1rem;
-    &:after {
-      content: 'expand_more';
-      @extend .u-material-icons;
-      vertical-align: middle;
-      margin-top: -2px;
-      margin-left: 5px;
-    }
-
     &--clear {
+      @include typography-body-6;
+      position: absolute;
+      right: 2.5rem;
+      top: 1.2rem;
     }
   }
 }
@@ -37,15 +63,18 @@
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+
     @include breakpoint($medium-only) {
       min-height: 15rem;
     }
+
     .title {
       font-size: 1.7rem;
       font-weight: 600;
       overflow-wrap: break-word;
     }
-    .type { 
+
+    .type {
       bottom: 2.5rem;
       @include typography-body-6;
     }

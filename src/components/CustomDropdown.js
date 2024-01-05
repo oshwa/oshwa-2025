@@ -8,14 +8,16 @@ export default function CustomDropdown({ label, defaultLabel, options, handleSea
   };
   return (
     <>
-      <select id={camelCase(label)} onChange={onChange}>
-        <option value="*">{defaultLabel}</option>
-        {options.map((option, idx) => (
-          <option key={`${label}-${idx}`} value={option}>
-            {option}
-          </option>
-        ))}
-      </select>
+      <div className="select-wrapper">
+        <select id={camelCase(label)} onChange={onChange}>
+          <option value="*">{defaultLabel}</option>
+          {options.map((option, idx) => (
+            <option key={`${label}-${idx}`} value={option}>
+              {option}
+            </option>
+          ))}
+        </select>
+      </div>
     </>
   );
 }
