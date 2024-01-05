@@ -33,7 +33,7 @@ export const FilterBar = ({ handleSearchQuery, handleClearFilters }) => {
   );
   return (
     <div className="p-10 pt-0 pb-5">
-      <div className="filter-bar grid lg:grid-cols-5 md:grid-cols-5 notched--border">
+      <div className="filter-bar grid lg:grid-cols-8 md:grid-cols-5 notched--border">
         <div className="filter-item lg:col-span-1 sm:col-span-5 ">
           <CustomDropdown
             handleSearchQuery={handleSearchQuery}
@@ -51,7 +51,7 @@ export const FilterBar = ({ handleSearchQuery, handleClearFilters }) => {
           />
         </div>
 
-        <button onClick={handleClearFilters} className="filters__filter--clear filter-item lg:col-span-1 sm:col-span-5 lg:col-start-5 sm:col-start-1 lg:text-right sm:text-left">
+        <button onClick={handleClearFilters} className="filters__filter--clear lg:col-span-1 sm:col-span-5 lg:col-start-5 sm:col-start-1 lg:text-right sm:text-left">
           Clear filters
         </button>
       </div>

@@ -75,7 +75,7 @@ const Search = ({ data }) => {
     <>
       <Layout>
         <>
-          <div className="p-10 pt-0 pb-5">
+          <div className="p-10 pt-0 pb-0">
             <div className="grid lg:grid-cols-5 md:grid-cols-5">
               <div className="col-span-10 mb-5 notched notched--border">
                 <h1 className="generic-heading-1">Resources</h1>
