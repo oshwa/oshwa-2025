@@ -1,6 +1,7 @@
 h1.generic-heading-1 {
   @include typography-headline-2;
 }
+
 h2.generic-heading-2 {
-    @include typography-headline-3;
+  @include typography-headline-3;
 }

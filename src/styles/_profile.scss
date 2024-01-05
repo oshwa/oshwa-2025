@@ -1,19 +1,24 @@
-
-
 .profile {
   padding: 0;
+
   &__type {
     @include typography-body-2;
     font-weight: $bold;
     text-transform: uppercase;
   }
+
   &__title {
     @include typography-headline-3;
     font-weight: $bold;
   }
 }
+
 .links-container {
   margin-top: 1rem;
+
+  a {
+    margin-bottom: 1rem;
+  }
 }
 
 .resource-wrapper {
@@ -23,6 +28,7 @@
     @include notched-div-hover-state;
   }
 }
+
 .resource {
   @include typography-body-5;
   font-weight: $bold;
@@ -32,11 +38,14 @@
 
 .profile-certification {
   min-height: 18rem;
+
   p {
     @include typography-body-5;
     font-weight: $bold;
+    font-size: 50px;
     word-wrap: break-word;
   }
+
   @include typography-body-5;
   font-weight: $bold;
   word-wrap: break-word;

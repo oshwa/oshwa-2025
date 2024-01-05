@@ -28,7 +28,7 @@ const IndexPage = () => {
   return (
     <Layout>
       <>
-        <div className="p-8 pt-0 pb-5">
+        <div className="p-10 pt-0 pb-5">
           <div className="grid lg:grid-cols-5 md:grid-cols-5">
             <div className="col-span-3 lg:mr-5 md:mr-5 notched notched--bg index-banner mb-5 md:mb-0">
               <div className="index-image-container">
@@ -63,7 +63,7 @@ const IndexPage = () => {
           </div>
         </div>
 
-        <div className="p-8 pt-0 pb-5">
+        <div className="p-10 pt-0 pb-5">
           <div className="grid lg:grid-cols-4 md:grid-cols-3">
             <div className="lg:col-span-1 md:col-span-1 lg:mr-5 md:mr-5 mb-5 md:mb-0 notched notched--bg yellow project-highlight">
               <div>
@@ -81,7 +81,7 @@ const IndexPage = () => {
           </div>
         </div>
 
-        <div className="p-8 pt-0 pb-5">
+        <div className="p-10 pt-0 pb-5">
           <div className="grid lg:grid-cols-4 md:grid-cols-4">
             <Link to="/programs">
               <div className="section-card lg:col-span-1 md:col-span-2 lg:mr-5 md:mr-5 mb-5 md:mb-0 notched notched--bg notched--bg--hover green">
