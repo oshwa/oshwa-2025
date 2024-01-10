@@ -4,9 +4,11 @@ import { GatsbyImage, getImage } from 'gatsby-plugin-image';
 import Layout from '../components/layout';
 import MarkdownText from '../components/MarkdownText';
 import FixedNav from '../components/FixedNav';
+import RichText from '../components/RichText';
 
 export default function ResourcePage({ data }) {
   const resource = data.contentfulProduct;
+
   // console.log(resource);
   return (
     <Layout>
@@ -46,9 +48,12 @@ export default function ResourcePage({ data }) {
         <div className="p-10 pt-0 pb-5">
           <div className="grid lg:grid-cols-6 md:grid-cols-6 resource-body">
             <div className="col-span-3">
-              <MarkdownText
-                content={resource.markdownBody.childrenMarkdownRemark[0].html}
-              />
+              {resource.body ?
+                <RichText content={resource.body} /> :
+                <MarkdownText
+                  content={resource.markdownBody.childrenMarkdownRemark[0].html}
+                />
+              }
             </div>
           </div>
         </div>
@@ -82,6 +87,38 @@ export const query = graphql`
           tableOfContents
         }
       }
+      body {
+        raw
+        references {
+          ... on ContentfulAsset {
+            contentful_id
+            __typename
+            title
+            description
+            url
+          }
+          ... on ContentfulFigure {
+             contentful_id
+            __typename
+            id
+            title
+            image {
+              url
+              gatsbyImage(width: 900)
+            }
+            caption {
+              caption
+            }
+            sys {
+              contentType {
+                sys {
+                  id
+                }
+              }
+            }
+          }
+        }
+      }
       prettyUrl
       fixedNav
       noIndex
@@ -92,6 +129,6 @@ export const query = graphql`
         displayName
         prettyUrl
       }
-    }
+    },
   }
 `;

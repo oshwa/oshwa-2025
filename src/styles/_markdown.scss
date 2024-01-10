@@ -1,4 +1,5 @@
-.markdown-content {
+.markdown-content,
+.richtext-content {
   h2 {
     @include typography-headline-3;
   }
@@ -6,7 +7,32 @@
   h3 {
     @include typography-headline-4;
   }
+
+  h4 {
+    @include typography-headline-5;
+  }
+
   p {
     padding: 2rem 0;
+  }
+
+  .font-bold {
+    font-weight: 700;
+  }
+
+  a {
+    border-bottom: 1px dotted;
+  }
+}
+
+.richtext-content {
+  .figure-container {
+    padding: 2rem 2rem 0 2rem;
+
+    h4 {
+      @include typography-body-4;
+      font-weight: bold;
+      margin-bottom: 1rem;
+    }
   }
 }
