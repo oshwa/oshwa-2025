@@ -1,0 +1,10 @@
+.toc {
+  // background-color: hotpink;
+  padding: 2rem 0;
+
+  &__anchor {
+    padding: 0 0 1rem 2rem;
+    display: inline-block;
+    font-family: $primary-font;
+  }
+}

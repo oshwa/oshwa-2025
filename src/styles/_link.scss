@@ -1,18 +1,19 @@
-.link {
-
-}
+.link {}
 
 .link--arrow {
   @include typography-button;
   font-weight: $bold;
+
   &::after {
     content: url('../images/icons/arrow_forward_black_24dp.svg');
     vertical-align: -5px;
     margin-left: 4px;
   }
+
   &:hover {
     filter: opacity(50%);
   }
+
   &.inverted {
     &::after {
       content: url('../images/icons/arrow_forward_white_24dp.svg');
@@ -27,9 +28,18 @@
   width: 100%;
   padding: 1rem;
   text-align: center;
+
   &:hover {
     // background-color: var($--theme-on-background);
     // color: var($--theme-surface);
     @include notched-div-hover-state;
+  }
+
+  &.inverted {
+    &:hover {
+      background-color: red;
+      // color: var($--theme-surface);
+      @include notched-div-hover-state;
+    }
   }
 }
