@@ -7,16 +7,29 @@
 }
 
 // Breakpoints
-$small-only: screen and (max-width: 39.9375em,
+$small-only: screen and
+  (
+    max-width: 39.9375em,
   );
-$touch: screen and (max-width: 64em,
+$touch: screen and
+  (
+    max-width: 64em,
   );
-$medium: screen and (min-width: 40em,
+$medium: screen and
+  (
+    min-width: 40em,
   );
-$medium-only: screen and (min-width: 40em,
-  ) and (max-width: 63.9375em,
+$medium-only: screen and
+  (
+    min-width: 40em,
+  )
+  and
+  (
+    max-width: 63.9375em,
   );
-$large: screen and (min-width: 64em,
+$large: screen and
+  (
+    min-width: 64em,
   );
 
 @import 'breakpoint';
@@ -43,6 +56,7 @@ $large: screen and (min-width: 64em,
 @import 'markdown';
 @import 'fixed-nav';
 @import 'toc';
+@import 'footer';
 
 body {
   background-color: var($--theme-background);
@@ -52,7 +66,6 @@ body {
     @include typography-body-3;
   }
 }
-
 
 ul[role='menu'] {
   visibility: hidden;

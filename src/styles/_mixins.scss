@@ -38,9 +38,13 @@
   font-feature-settings: 'liga';
 }
 
+@mixin reverse-color-theme {
+  background-color: var(--theme-on-surface);
+  color: var(--theme-surface);
+}
 @mixin notched-div-hover-state {
-  background-color: white;
-  color: black;
+  background-color: var(--theme-on-surface);
+  color: var(--theme-surface);
   --notchSize: 10px;
 
   clip-path: polygon(
@@ -53,4 +57,8 @@
     var(--notchSize) 100%,
     0% calc(100% - var(--notchSize))
   );
+}
+
+@mixin button-styles {
+  padding: 1rem;
 }

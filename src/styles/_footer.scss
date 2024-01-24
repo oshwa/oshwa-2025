@@ -1,0 +1,53 @@
+footer {
+  min-height: 18rem;
+  &.notched--border {
+
+    display: grid;
+  }
+}
+.footer-col form {
+}
+.footer__logo {
+  height: 5rem;
+  width: auto;
+}
+.footer__logo-wrapper {
+  height: 6rem;
+  width: auto;
+}
+footer.footer {
+  .signup-label {
+    @include typography-body-3;
+    font-weight: $bold;
+  }
+  .signup-input {
+    @include button-styles;
+  }
+  .signup-input {
+    background-color: var(--theme-background);
+    color: var(--theme-on-background);
+    display: inline;
+    margin: 0.5rem;
+    padding: 0.75rem;
+    width: calc(100% - 1rem);
+    &::placeholder {
+      text-transform: uppercase;
+      font-weight: $bold;
+    }
+  }
+  .signup-submit-wrapper {
+    display: inline;
+    padding: 0;
+    .signup-submit {
+      @include typography-body-3;
+      font-weight: $bold;
+      padding: 1rem;
+      text-align: center;
+      text-transform: uppercase;
+      width: 100%;
+      &:hover {
+        @include notched-div-hover-state;
+      }
+    }
+  }
+}
