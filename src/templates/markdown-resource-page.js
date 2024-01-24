@@ -29,7 +29,6 @@ export default function ResourcePage({ data }) {
                 image={getImage(resource.headerImage)}
                 alt="blog image"
               />
-              <a href={resource.buttonUrl} className="button button--notched">{resource.buttonText}</a>
             </div>
           </div>
         </div>
@@ -42,6 +41,7 @@ export default function ResourcePage({ data }) {
             toc={
               resource.markdownBody.childrenMarkdownRemark[0].tableOfContents
             }
+            content={resource.body}
           />
         )}
 
@@ -54,6 +54,9 @@ export default function ResourcePage({ data }) {
                   content={resource.markdownBody.childrenMarkdownRemark[0].html}
                 />
               }
+            </div>
+            <div className="col-span-2 col-start-5">
+              <a href={resource.buttonUrl} className="link link--notched notched notched--border">{resource.buttonText}</a>
             </div>
           </div>
         </div>

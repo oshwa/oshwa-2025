@@ -41,6 +41,8 @@ $large: screen and (min-width: 64em,
 @import 'list';
 @import 'resource';
 @import 'markdown';
+@import 'fixed-nav';
+@import 'toc';
 
 body {
   background-color: var($--theme-background);
