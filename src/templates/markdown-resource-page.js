@@ -17,12 +17,16 @@ export default function ResourcePage({ data }) {
           <div className="grid lg:grid-cols-6 md:grid-cols-6 resource-header">
             <div className="resource-header__title-wrapper col-span-3">
               <h1 className="resource-header__title">{resource.title}</h1>
-              <p className="resource-header__named_authors">
-                {resource.fullAuthor.fullAuthor}
-              </p>
+              {resource.fullAuthor && (
+                <p className="resource-header__named_authors">
+                  {resource.fullAuthor.fullAuthor}
+                </p>
+              )}
+              {resource.introduction && (
               <p className="resource-introduction">
                 {resource.introduction.introduction}{' '}
               </p>
+              )}
             </div>
             <div className="resource-header__image col-span-2 col-start-5">
               <GatsbyImage
@@ -48,15 +52,21 @@ export default function ResourcePage({ data }) {
         <div className="p-10 pt-0 pb-5">
           <div className="grid lg:grid-cols-6 md:grid-cols-6 resource-body">
             <div className="col-span-3">
-              {resource.body ?
-                <RichText content={resource.body} /> :
-                <MarkdownText
+              {resource.body ? (
+                <RichText content={resource.body} />
+              ) : (
+                resource.markdownBody && <MarkdownText
                   content={resource.markdownBody.childrenMarkdownRemark[0].html}
                 />
-              }
+              )}
             </div>
             <div className="col-span-2 col-start-5">
-              <a href={resource.buttonUrl} className="link link--notched notched notched--border">{resource.buttonText}</a>
+              <a
+                href={resource.buttonUrl}
+                className="link link--notched notched notched--border"
+              >
+                {resource.buttonText}
+              </a>
             </div>
           </div>
         </div>
@@ -101,7 +111,7 @@ export const query = graphql`
             url
           }
           ... on ContentfulFigure {
-             contentful_id
+            contentful_id
             __typename
             id
             title
@@ -132,6 +142,6 @@ export const query = graphql`
         displayName
         prettyUrl
       }
-    },
+    }
   }
 `;
