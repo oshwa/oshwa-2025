@@ -23,6 +23,9 @@ export const MainNavA = ({ handleClick, active }) => {
       <Link className="nav-link" to="/resources">
         Resources
       </Link>
+      <Link className="nav-link" to="/global-resources/pioneers-of-open/">
+        Example Resource Language Selector
+      </Link>
       <Link className="nav-link" to="/projects">
         Projects
       </Link>
