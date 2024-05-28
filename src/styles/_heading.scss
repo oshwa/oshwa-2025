@@ -4,4 +4,5 @@ h1.generic-heading-1 {
 
 h2.generic-heading-2 {
   @include typography-headline-3;
+  font-weight: 700;
 }

@@ -28,6 +28,7 @@
     @include typography-button;
     font-weight: $bold;
     text-transform: uppercase;
+    padding-bottom: 0.5rem;
   }
 
   &__description {
@@ -42,6 +43,8 @@
 
   &__count {
     @include typography-headline-1;
+    font-family: 'Antonio', sans-serif;
+    font-size: 130px;
     line-height: 1;
     padding-bottom: 2rem;
   }
