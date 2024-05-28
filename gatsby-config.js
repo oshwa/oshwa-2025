@@ -93,6 +93,10 @@ module.exports = {
             name: `Noto Sans`,
             file: `https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;700&display=swap`,
           },
+          {
+            name: `Roboto Condensed`,
+            file: `https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@700&display=swap`,
+          },
         ],
       },
     },

@@ -1,5 +1,6 @@
 .markdown-content,
 .richtext-content {
+
   h2 {
     @include typography-headline-3;
   }
@@ -12,12 +13,18 @@
     @include typography-headline-5;
   }
 
+  h2,
+  h3,
+  h4 {
+    font-weight: $bold;
+  }
+
   p {
     padding: 2rem 0;
   }
 
   .font-bold {
-    font-weight: 700;
+    font-weight: $bold;
   }
 
   a {
