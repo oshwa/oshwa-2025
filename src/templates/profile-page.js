@@ -2,6 +2,7 @@ import React from 'react';
 import { Link, graphql } from 'gatsby';
 import Layout from '../components/layout';
 import { NotchedButtonLink } from '../components/Link';
+import { Video } from '../components/Video';
 
 export default function ProfilePage({ data }) {
   const profile = data.contentfulPeople;
@@ -32,8 +33,14 @@ export default function ProfilePage({ data }) {
                     external={true}
                   />
                 )}
+                <Video
+                  title={profile.video.videoTitle}
+                  url={profile.video.videoUrl}
+                  size="large"
+                />
               </div>
             </div>
+
             <div className="profile col-span-1 md:col-span-1 lg:col-span-7 lg:col-start-5 notched">
               <div className="profile-info">
                 <p className="profile__type">OSHWA {profile.type}</p>
@@ -55,7 +62,13 @@ export default function ProfilePage({ data }) {
               </p>
             </div>
           </div>
+          <Video
+            title={profile.video.videoTitle}
+            url={profile.video.videoUrl}
+            size="medium-small"
+          />
         </div>
+
         {profile.featuredResearch && (
           <div className="p-10 pt-0 pb-5">
             <h2 className="generic-heading-2 py-8">Resources</h2>
@@ -132,6 +145,10 @@ export const query = graphql`
         id
         title
         prettyUrl
+      }
+      video {
+        videoTitle
+        videoUrl
       }
     }
     allOshwaCertifications(filter: { publicContact: { eq: $email } }) {

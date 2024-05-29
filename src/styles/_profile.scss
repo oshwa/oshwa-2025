@@ -2,9 +2,13 @@
   padding: 0;
 
   &__type {
-    @include typography-body-2;
+    @include typography-body-3;
     font-weight: $bold;
     text-transform: uppercase;
+
+    @include breakpoint($medium-only) {
+      padding-top: 2rem;
+    }
   }
 
   &__title {
@@ -49,4 +53,50 @@
   @include typography-body-5;
   font-weight: $bold;
   word-wrap: break-word;
+}
+
+.video-container {
+  padding: 2rem 0;
+  display: none;
+
+  &--large {
+    @include breakpoint($large) {
+      display: block;
+      padding-top: 3rem;
+    }
+  }
+
+  &--medium-small {
+    @include breakpoint($medium-only) {
+      display: block;
+    }
+  }
+
+  &__title {
+    @include typography-body-5;
+    font-weight: $bold;
+  }
+
+  &__video {
+    position: relative;
+    margin: 1rem 0;
+    aspect-ratio: 16/9;
+    width: 100%;
+
+    @include breakpoint($medium-only) {
+      height: 30rem;
+    }
+
+    @include breakpoint($small-only) {
+      height: 15rem;
+    }
+
+    iframe {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+    }
+  }
 }
