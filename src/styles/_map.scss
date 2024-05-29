@@ -1,0 +1,34 @@
+#map {
+  // min-height: 50vh;
+  svg#map-svg {
+    width: 100%;
+    height: 100%;
+  }
+}
+.loading {
+  height: 2rem;
+  
+    visibility: hidden;
+  
+  &.visible {
+    visibility: visible;
+  }
+}
+.tooltip {
+  display: none;
+  transition: display 5s ease-in-out 5s;
+  background: var($--theme-background);
+  color: var($--theme-on-background);
+  border: solid 1px var($--theme-on-background);
+  border-radius: 2px;
+  padding: 4px;
+  position: absolute;
+}
+
+.tooltip.visible {
+  display: block;
+}
+
+.legend {
+  color: var($--theme-on-background);
+}
