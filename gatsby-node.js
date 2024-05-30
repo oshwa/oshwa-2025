@@ -50,6 +50,7 @@ exports.createPages = async ({ graphql, actions }) => {
   );
   const profilePageTemplate = path.resolve(`src/templates/profile-page.js`);
   const projectPageTemplate = path.resolve(`src/templates/project-page.js`);
+  const blogPostPageTemplate = path.resolve(`src/templates/blog-post.js`);
 
   // global containers query
   const allGlobalResources = await graphql(`
@@ -120,6 +121,36 @@ exports.createPages = async ({ graphql, actions }) => {
     createPage({
       path: `resources/${edge.node.prettyUrl}`,
       component: markdownResourcePageTemplate,
+      context: {
+        id: edge.node.id,
+        title: edge.node.title,
+      },
+    });
+  });
+
+
+  const allBlogPosts = await graphql(`
+    query allBlogPostsQuery {
+      allContentfulBlogPost {
+        edges {
+          node {
+            id
+            prettyUrl
+            title
+            publicationDate
+            fullAuthor {
+              fullAuthor
+            }
+          }
+        }
+      }
+    }
+  `);
+
+  allBlogPosts.data.allContentfulBlogPost.edges.forEach(edge => {
+    createPage({
+      path: `blog-post/${edge.node.prettyUrl}`,
+      component: blogPostPageTemplate,
       context: {
         id: edge.node.id,
         title: edge.node.title,

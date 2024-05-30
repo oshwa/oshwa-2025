@@ -11,5 +11,9 @@
     margin-bottom: 1rem;
   }
 
+  &__date {
+    @include typography-body-6;
+  }
+
   &__image {}
 }
