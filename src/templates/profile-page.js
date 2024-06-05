@@ -33,11 +33,13 @@ export default function ProfilePage({ data }) {
                     external={true}
                   />
                 )}
-                <Video
-                  title={profile.video.videoTitle}
-                  url={profile.video.videoUrl}
-                  size="large"
-                />
+                {profile.video && (
+                  <Video
+                    title={profile.video.videoTitle}
+                    url={profile.video.videoUrl}
+                    size="large"
+                  />
+                )}
               </div>
             </div>
 
