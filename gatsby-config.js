@@ -139,6 +139,10 @@ module.exports = {
               },
             ],
           },
+          {
+            name: 'fr',
+            filterNodes: node => node.internal.type === 'ContentfulBlogPost',
+          },
         ],
         // Fields to index. If store === true value will be stored in index file.
         // Attributes for custom indexing logic. See https://lunrjs.com/docs/lunr.Builder.html for details
@@ -155,6 +159,12 @@ module.exports = {
             title: node => node.title,
             publicationDate: node => node.publicationDate,
             type: node => node.type,
+            prettyUrl: node => node.prettyUrl,
+          },
+          ContentfulBlogPost: {
+            title: node => node.title,
+            publicationDate: node => node.publicationDate,
+            // type: node => node.type,
             prettyUrl: node => node.prettyUrl,
           },
         },
