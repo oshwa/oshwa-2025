@@ -23,7 +23,9 @@ export default function BlogPost({ data }) {
                   {blogPost.fullAuthor.fullAuthor}
                 </p>
               )}
-              <RichText content={blogPost.body} />
+              {blogPost.body && (
+                <RichText content={blogPost.body} />
+              )}
             </div>
             <div className="resource-header__image col-span-2 col-start-5">
               side column
