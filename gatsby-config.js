@@ -124,24 +124,7 @@ module.exports = {
             // ISO 639-1 language codes. See https://lunrjs.com/guides/language_support.html for details
             name: 'en',
             // A function for filtering nodes. () => true by default
-            filterNodes: node => {
-              if (node.internal.type === 'ContentfulProduct') {
-                console.log(Object.keys(node));
-              }
-              return node.internal.type === 'ContentfulProduct';
-            },
-            // Add to index custom entries, that are not actually extracted from gatsby nodes
-            customEntries: [
-              {
-                title: 'Pictures',
-                content: 'awesome pictures',
-                url: '/pictures',
-              },
-            ],
-          },
-          {
-            name: 'fr',
-            filterNodes: node => node.internal.type === 'ContentfulBlogPost',
+            filterNodes: node => node.internal.type === 'ContentfulProduct' || 'ContentfulBlogPost',
           },
         ],
         // Fields to index. If store === true value will be stored in index file.
@@ -151,6 +134,7 @@ module.exports = {
           { name: 'publicationDate', store: true },
           { name: 'type', store: true },
           { name: 'prettyUrl', store: true },
+          { name: 'contentfulType', store: true },
         ],
         // How to resolve each field's value for a supported node type
         resolvers: {
@@ -160,12 +144,13 @@ module.exports = {
             publicationDate: node => node.publicationDate,
             type: node => node.type,
             prettyUrl: node => node.prettyUrl,
+            contentfulType: (node) => node.internal.type,
           },
           ContentfulBlogPost: {
             title: node => node.title,
             publicationDate: node => node.publicationDate,
-            // type: node => node.type,
             prettyUrl: node => node.prettyUrl,
+            contentfulType: (node) => node.internal.type,
           },
         },
         //custom index file name, default is search_index.json

@@ -1,14 +1,13 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'gatsby';
 import Layout from '../components/layout';
 import { FilterBar } from '../components/FilterBar';
 import GridCards from '../components/GridCards';
-import dayjs from 'dayjs';
 const sessionsName = 'resource-filters';
 
 const Search = ({ data }) => {
   const [query, setQuery] = useState(``);
   const [results, setResults] = useState([]);
+  const contentfulType = 'ContentfulProduct';
 
   const handleSearchQuery = event => {
     let pubDateSelect = document.querySelector('#publicationDate');
@@ -22,7 +21,9 @@ const Search = ({ data }) => {
       JSON.stringify({ pubDateValue, pubTypeValue })
     );
 
-    setQuery(`+title:* +publicationDate:${pubDateValue} +type:${pubTypeValue}`);
+    setQuery(
+      `+title:* +publicationDate:${pubDateValue} +type:${pubTypeValue} +contentfulType:${contentfulType}`
+    );
   };
 
   const matchFiltersToSessions = () => {
@@ -42,14 +43,14 @@ const Search = ({ data }) => {
     // set type filter to sessions
     if (savedSessionsQuery && savedSessionsQuery.pubTypeValue) {
       Array.from(pubTypeSelect.options).forEach((option, idx) => {
-        console.log(option, idx);
+        // console.log(option, idx);
         if (option.value === savedSessionsQuery.pubTypeValue) {
           pubTypeSelect.selectedIndex = idx;
         }
       });
     }
     setQuery(
-      `+title:* +publicationDate:${pubDateSelect.value} +type:${pubTypeSelect.value}`
+      `+title:* +publicationDate:${pubDateSelect.value} +type:${pubTypeSelect.value} +contentfulType:${contentfulType}`
     );
   };
 
@@ -90,7 +91,6 @@ const Search = ({ data }) => {
             listType="resources"
           />
           <GridCards items={results} listType="resources" />
-
         </>
       </Layout>
     </>

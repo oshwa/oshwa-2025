@@ -4,7 +4,7 @@ import CustomDropdown from './CustomDropdown';
 import uniq from 'lodash.uniq';
 
 export const FilterBar = ({ handleSearchQuery, handleClearFilters, listType }) => {
-  const dataProduct = useStaticQuery(graphql`
+  const data = useStaticQuery(graphql`
     query FilterQuery {
       allContentfulProduct {
         edges {
@@ -28,7 +28,7 @@ export const FilterBar = ({ handleSearchQuery, handleClearFilters, listType }) =
   `);
 
   const pubDates = uniq(
-    dataProduct.allContentfulProduct.edges
+    data.allContentfulProduct.edges
       .map(content => content.node)
       .map(node => node.publicationYear)
       .sort()
@@ -36,14 +36,14 @@ export const FilterBar = ({ handleSearchQuery, handleClearFilters, listType }) =
   );
 
   const pubTypes = uniq(
-    dataProduct.allContentfulProduct.edges
+    data.allContentfulProduct.edges
       .map(content => content.node)
       .map(node => node.type)
       .sort()
   );
 
   const pubDatesBlogPost = uniq(
-    dataProduct.allContentfulBlogPost.edges
+    data.allContentfulBlogPost.edges
       .map(content => content.node)
       .map(node => node.publicationYear)
       .sort()

@@ -7,6 +7,7 @@ const sessionsName = 'blog-post-filters';
 const SearchBlogPosts = () => {
   const [query, setQuery] = useState(``);
   const [results, setResults] = useState([]);
+  const contentfulType = 'ContentfulBlogPost';
 
   const handleSearchQuery = () => {
     let pubDateSelect = document.querySelector('#publicationDate');
@@ -17,17 +18,12 @@ const SearchBlogPosts = () => {
       JSON.stringify({ pubDateValue })
     );
 
-    setQuery(`+title:* +publicationDate:${pubDateValue}`);
+    setQuery(`+title:* +publicationDate:${pubDateValue} +contentfulType:${contentfulType}`);
   };
-
-  console.log("QUERY", query)
-  console.log("sessionStorage inside blog-post", sessionStorage)
-  console.log("results in blog-post", results)
 
   const matchFiltersToSessions = () => {
     let pubDateSelect = document.querySelector('#publicationDate');
     let savedSessionsQuery = JSON.parse(sessionStorage.getItem(sessionsName));
-    console.log("savedSessionsQuery inside blog posts", savedSessionsQuery)
 
     // set date filter to sessions
     if (savedSessionsQuery && savedSessionsQuery.pubDateValue) {
@@ -38,8 +34,7 @@ const SearchBlogPosts = () => {
       });
     }
     setQuery(
-      `+title:*`
-      // `+title:* +publicationDate:${pubDateSelect.value}`
+      `+title:* +publicationDate:${pubDateSelect.value} +contentfulType:${contentfulType}`
     );
   };
 
@@ -50,10 +45,9 @@ const SearchBlogPosts = () => {
   };
 
   useEffect(() => {
-    const lunrIndex = window.__LUNR__['fr'];
+    const lunrIndex = window.__LUNR__['en'];
     matchFiltersToSessions();
     const searchResults = lunrIndex.index.search(query);
-    console.log("searchResults", searchResults)
 
     setResults(
       searchResults.map(({ ref }) => {
