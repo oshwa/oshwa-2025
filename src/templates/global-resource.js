@@ -7,8 +7,10 @@ import FixedNav from '../components/FixedNav';
 import RichText from '../components/RichText';
 import LanguagePicker from '../components/LanguagePicker';
 
-export default function GlobalResourcePage({ data }) {
-  const [selectedLanguage, setSelectedLanguage] = useState('en');
+export default function GlobalResourcePage({ data, location }) {
+  const defaultLanguage = 'en';
+  const paramLanguage = location.search.split('=')[1];
+  const [selectedLanguage, setSelectedLanguage] = useState(paramLanguage ? paramLanguage : defaultLanguage);
 
   const availableLanguages =
     data.contentfulGlobalContainer.referencedLanguage.map(
