@@ -64,11 +64,13 @@ export default function ProfilePage({ data }) {
               </p>
             </div>
           </div>
-          <Video
-            title={profile.video.videoTitle}
-            url={profile.video.videoUrl}
-            size="medium-small"
-          />
+          {profile.video && (
+            <Video
+              title={profile.video.videoTitle}
+              url={profile.video.videoUrl}
+              size="medium-small"
+            />
+          )}
         </div>
 
         {profile.featuredResearch && (
