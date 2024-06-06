@@ -2,33 +2,27 @@ import React, { useState, useEffect } from 'react';
 import Layout from '../components/layout';
 import { FilterBar } from '../components/FilterBar';
 import GridCards from '../components/GridCards';
-const sessionsName = 'resource-filters';
+const sessionsName = 'blog-post-filters';
 
-const Search = ({ data }) => {
+const SearchBlogPosts = () => {
   const [query, setQuery] = useState(``);
   const [results, setResults] = useState([]);
-  const contentfulType = 'ContentfulProduct';
+  const contentfulType = 'ContentfulBlogPost';
 
-  const handleSearchQuery = event => {
+  const handleSearchQuery = () => {
     let pubDateSelect = document.querySelector('#publicationDate');
-    let pubTypeSelect = document.querySelector('#publicationType');
-
     let pubDateValue = pubDateSelect.value;
-    let pubTypeValue = pubTypeSelect.value;
 
     sessionStorage.setItem(
       sessionsName,
-      JSON.stringify({ pubDateValue, pubTypeValue })
+      JSON.stringify({ pubDateValue })
     );
 
-    setQuery(
-      `+title:* +publicationDate:${pubDateValue} +type:${pubTypeValue} +contentfulType:${contentfulType}`
-    );
+    setQuery(`+title:* +publicationDate:${pubDateValue} +contentfulType:${contentfulType}`);
   };
 
   const matchFiltersToSessions = () => {
     let pubDateSelect = document.querySelector('#publicationDate');
-    let pubTypeSelect = document.querySelector('#publicationType');
     let savedSessionsQuery = JSON.parse(sessionStorage.getItem(sessionsName));
 
     // set date filter to sessions
@@ -39,32 +33,22 @@ const Search = ({ data }) => {
         }
       });
     }
-
-    // set type filter to sessions
-    if (savedSessionsQuery && savedSessionsQuery.pubTypeValue) {
-      Array.from(pubTypeSelect.options).forEach((option, idx) => {
-        // console.log(option, idx);
-        if (option.value === savedSessionsQuery.pubTypeValue) {
-          pubTypeSelect.selectedIndex = idx;
-        }
-      });
-    }
     setQuery(
-      `+title:* +publicationDate:${pubDateSelect.value} +type:${pubTypeSelect.value} +contentfulType:${contentfulType}`
+      `+title:* +publicationDate:${pubDateSelect.value} +contentfulType:${contentfulType}`
     );
   };
 
   const clearFilters = () => {
     sessionStorage.removeItem(sessionsName);
-    setQuery(`+title:* +publicationDate:* +type:*`);
+    setQuery(`+title:* +publicationDate:*`);
     document.querySelector('#publicationDate').selectedIndex = 0;
-    document.querySelector('#publicationType').selectedIndex = 0;
   };
 
   useEffect(() => {
     const lunrIndex = window.__LUNR__['en'];
     matchFiltersToSessions();
     const searchResults = lunrIndex.index.search(query);
+
     setResults(
       searchResults.map(({ ref }) => {
         return lunrIndex.store[ref];
@@ -79,22 +63,20 @@ const Search = ({ data }) => {
           <div className="p-10 pt-0 pb-0">
             <div className="grid lg:grid-cols-5 md:grid-cols-5">
               <div className="col-span-10 mb-5 notched notched--border">
-                <h1 className="generic-heading-1">Resources</h1>
+                <h1 className="generic-heading-1">Blog Posts</h1>
               </div>
-              {/* <div>{sessionStorage.getItem('resource-filters')}</div> */}
             </div>
           </div>
-
           <FilterBar
-            handleSearchQuery={handleSearchQuery}
             handleClearFilters={clearFilters}
-            listType="resources"
+            handleSearchQuery={handleSearchQuery}
+            listType="blog-post"
           />
-          <GridCards items={results} listType="resources" />
+          <GridCards items={results} listType="blog-post" />
         </>
       </Layout>
     </>
   );
 };
 
-export default Search;
+export default SearchBlogPosts;

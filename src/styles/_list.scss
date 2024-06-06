@@ -78,6 +78,14 @@
       bottom: 2.5rem;
       @include typography-body-6;
     }
+
+    .publicationDate {
+      font-weight: $bold;
+
+      &--blog {
+        padding-bottom: 0.5rem;
+      }
+    }
   }
 }
 
