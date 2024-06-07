@@ -6,6 +6,8 @@ import Seo from '../components/seo';
 
 import { ArrowLink } from '../components/Link';
 
+import Map from '../components/Map';
+
 const IndexPage = () => {
   const data = useStaticQuery(graphql`
     query IndexQuery {
@@ -77,7 +79,9 @@ const IndexPage = () => {
               <ArrowLink text="All Certified Projects" location="/projects" />
             </div>
 
-            <div className="lg:col-span-3 md:col-span-2 h-full notched notched--border map-container"></div>
+            <div className="lg:col-span-3 md:col-span-2 h-full notched notched--border map-container">
+              <Map />
+            </div>
           </div>
         </div>
 
