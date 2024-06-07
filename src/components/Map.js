@@ -42,7 +42,16 @@ const Legend = ({ color }) => {
       )
       .call(tickAdjust)
       .call(g => g.select('.domain').remove());
-  }, [height, marginBottom, marginTop, tickFormat, tickSize, tickValues, ticks, x]);
+  }, [
+    height,
+    marginBottom,
+    marginTop,
+    tickFormat,
+    tickSize,
+    tickValues,
+    ticks,
+    x,
+  ]);
 
   return (
     <svg ref={svgRef} width={width} height={height}>
@@ -86,11 +95,12 @@ const Map = () => {
       const headers = {
         Authorization: `Bearer ${process.env.OSHWA_BEARER_TOKEN}`,
       };
+      console.log(headers, 'headers');
       const limit = 1000;
       let baseUrl = `https://certificationapi.oshwa.org/api/projects?offset=${offset}&limit=${limit}`;
 
       let response = await getCertifications(baseUrl, headers);
-
+      console.log(response, 'response');
       if (response.items.length >= limit) {
         allCertifications = allCertifications.concat(response.items);
         return getAllCertifications((offset += limit), allCertifications);
@@ -143,7 +153,7 @@ const Map = () => {
     .domain(legendData.keys)
     .range(legendData.colors);
 
-  const getColor = (d) => {
+  const getColor = d => {
     return d > 50
       ? '#56BFAB'
       : d > 20
@@ -155,7 +165,7 @@ const Map = () => {
       : d > 1
       ? '#D7DF23'
       : '#333333';
-  }
+  };
 
   const allSvgPaths = mapAttrs.data.features
     .filter(shape => shape.properties.SOV_A3 !== 'ATA')
@@ -224,6 +234,6 @@ const Map = () => {
       </div>
     </>
   );
-}
+};
 
 export default Map;
