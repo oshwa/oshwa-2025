@@ -13,7 +13,7 @@ require('dotenv').config({
 });
 
 const path = require(`path`);
-
+const fs = require('fs');
 const fetch = require('node-fetch');
 
 let headers = {
@@ -31,6 +31,36 @@ async function getAllCertifications(offset = 0) {
   } else {
     return data.items;
   }
+}
+
+async function downloadMapData() {
+  let oshwaData = await getAllCertifications();
+
+  let certificationCountries = oshwaData.map(cert => cert.country);
+
+  let certificationCounts = {};
+
+  certificationCountries.forEach(country => {
+    if (certificationCounts[country]) {
+      certificationCounts[country] += 1;
+    } else {
+      certificationCounts[country] = 1;
+    }
+  });
+  fs.writeFile(
+    `${__dirname}/src/data/oshwa-certifications.json`,
+    JSON.stringify(certificationCounts),
+    err => {
+      if (err) console.log(err);
+      else {
+        // console.log('File written successfully\n');
+        // console.log('The written has the following contents:');
+        // console.log(
+        //   fs.readFileSync(`${__dirname}/src/data/oshwa-certifications.json`)
+        // );
+      }
+    }
+  );
 }
 
 exports.createPages = async ({ graphql, actions }) => {
@@ -276,4 +306,6 @@ exports.sourceNodes = async ({
       },
     });
   });
+
+  await downloadMapData();
 };

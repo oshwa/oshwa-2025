@@ -2,6 +2,8 @@ import React, { useState, useEffect, useRef } from 'react';
 import * as d3 from 'd3';
 import featureCollection from '../data/ne_110m_admin_0_countries.json';
 
+import certificationData from '../data/oshwa-certifications.json';
+
 // https://www.sitepoint.com/d3-js-react-interactive-data-visualizations/
 
 const Legend = ({ color }) => {
@@ -42,7 +44,16 @@ const Legend = ({ color }) => {
       )
       .call(tickAdjust)
       .call(g => g.select('.domain').remove());
-  }, [height, marginBottom, marginTop, tickFormat, tickSize, tickValues, ticks, x]);
+  }, [
+    height,
+    marginBottom,
+    marginTop,
+    tickFormat,
+    tickSize,
+    tickValues,
+    ticks,
+    x,
+  ]);
 
   return (
     <svg ref={svgRef} width={width} height={height}>
@@ -74,47 +85,55 @@ const Map = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const getCertifications = async (url, headers) => {
-      const response = await fetch(url, { headers });
-      const data = await response.json();
-      return data;
-    };
-
-    const getAllCertifications = async (offset = 0, data = []) => {
-      let allCertifications = data;
-
-      const headers = {
-        Authorization: `Bearer ${process.env.OSHWA_BEARER_TOKEN}`,
-      };
-      const limit = 1000;
-      let baseUrl = `https://certificationapi.oshwa.org/api/projects?offset=${offset}&limit=${limit}`;
-
-      let response = await getCertifications(baseUrl, headers);
-
-      if (response.items.length >= limit) {
-        allCertifications = allCertifications.concat(response.items);
-        return getAllCertifications((offset += limit), allCertifications);
-      } else {
-        allCertifications = allCertifications.concat(response.items);
-      }
-      let certificationCountries = allCertifications.map(cert => cert.country);
-
-      let certificationCounts = {};
-
-      certificationCountries.forEach(country => {
-        if (certificationCounts[country]) {
-          certificationCounts[country] += 1;
-        } else {
-          certificationCounts[country] = 1;
-        }
-
-        setCertificationStats(certificationCounts);
-        setLoading(false);
-      });
-    };
-
-    getAllCertifications();
+    setCertificationStats(certificationData);
+    if (certificationStats) {
+      setLoading(false);
+    }
   }, []);
+
+  // useEffect(() => {
+  //   const getCertifications = async (url, headers) => {
+  //     const response = await fetch(url, { headers });
+  //     const data = await response.json();
+  //     return data;
+  //   };
+
+  //   const getAllCertifications = async (offset = 0, data = []) => {
+  //     let allCertifications = data;
+
+  //     const headers = {
+  //       Authorization: `Bearer ${process.env.OSHWA_BEARER_TOKEN}`,
+  //     };
+  //     console.log(headers, 'headers');
+  //     const limit = 1000;
+  //     let baseUrl = `https://certificationapi.oshwa.org/api/projects?offset=${offset}&limit=${limit}`;
+
+  //     let response = await getCertifications(baseUrl, headers);
+  //     console.log(response, 'response');
+  //     if (response.items.length >= limit) {
+  //       allCertifications = allCertifications.concat(response.items);
+  //       return getAllCertifications((offset += limit), allCertifications);
+  //     } else {
+  //       allCertifications = allCertifications.concat(response.items);
+  //     }
+  //     let certificationCountries = allCertifications.map(cert => cert.country);
+
+  //     let certificationCounts = {};
+
+  //     certificationCountries.forEach(country => {
+  //       if (certificationCounts[country]) {
+  //         certificationCounts[country] += 1;
+  //       } else {
+  //         certificationCounts[country] = 1;
+  //       }
+
+  //       setCertificationStats(certificationCounts);
+  //       setLoading(false);
+  //     });
+  //   };
+
+  //   getAllCertifications();
+  // }, []);
 
   const mapAttrs = {
     width: 800,
@@ -143,7 +162,7 @@ const Map = () => {
     .domain(legendData.keys)
     .range(legendData.colors);
 
-  const getColor = (d) => {
+  const getColor = d => {
     return d > 50
       ? '#56BFAB'
       : d > 20
@@ -155,7 +174,7 @@ const Map = () => {
       : d > 1
       ? '#D7DF23'
       : '#333333';
-  }
+  };
 
   const allSvgPaths = mapAttrs.data.features
     .filter(shape => shape.properties.SOV_A3 !== 'ATA')
@@ -224,6 +243,6 @@ const Map = () => {
       </div>
     </>
   );
-}
+};
 
 export default Map;
