@@ -179,9 +179,10 @@ const Map = () => {
   const allSvgPaths = mapAttrs.data.features
     .filter(shape => shape.properties.SOV_A3 !== 'ATA')
     .map(shape => {
-      const color = getColor(certificationStats[shape.properties.SOVEREIGNT]);
-      const country = shape.properties.SOVEREIGNT;
-      const count = certificationStats[shape.properties.SOVEREIGNT] || 'N/A';
+      const color = getColor(certificationStats[shape.properties.ADMIN]);
+      const country = shape.properties.ADMIN;
+      console.log(shape.properties)
+      const count = certificationStats[shape.properties.ADMIN] || 'N/A';
 
       return (
         <path
