@@ -32,6 +32,9 @@ export const MainNavA = ({ handleClick, active }) => {
       <Link className="nav-link" to="/projects">
         Projects
       </Link>
+      <Link className="nav-link" to="/programs">
+        Programs
+      </Link>
     </nav>
   );
 };

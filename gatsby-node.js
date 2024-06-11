@@ -81,6 +81,7 @@ exports.createPages = async ({ graphql, actions }) => {
   const profilePageTemplate = path.resolve(`src/templates/profile-page.js`);
   const projectPageTemplate = path.resolve(`src/templates/project-page.js`);
   const blogPostPageTemplate = path.resolve(`src/templates/blog-post.js`);
+  const programPageTemplate = path.resolve(`src/templates/program.js`);
 
   // global containers query
   // const allGlobalResources = await graphql(`
@@ -278,6 +279,40 @@ exports.createPages = async ({ graphql, actions }) => {
   //     },
   //   });
   // });
+
+  // Program page query
+  const allPrograms = await graphql(`
+    query allProgramsQuery {
+      allContentfulProgram {
+        edges {
+          node {
+            id
+            title
+            shortDescription {
+              shortDescription
+            }
+            headerImage {
+              url
+            }
+            programYears {
+              title
+            }
+          }
+        }
+      }
+    }
+  `);
+
+  allPrograms.data.allContentfulProgram.edges.forEach(edge => {
+    createPage({
+      path: `programs/${edge.node.id}`,
+      component: programPageTemplate,
+      context: {
+        id: edge.node.id,
+        title: edge.node.title,
+      },
+    });
+  });
 };
 
 exports.sourceNodes = async ({
