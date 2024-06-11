@@ -7,17 +7,20 @@ import { Video } from '../components/Video';
 export default function ProfilePage({ data }) {
   const profile = data.contentfulPeople;
   const certifications = data.allOshwaCertifications;
-  console.log("certifications", certifications);
+  // console.log("certifications", certifications);
+
   return (
     <Layout>
       <>
         <div className="p-10 pt-0 pb-5">
-          <div className="grid grid-cols-1 md:grid-cols-1 lg:grid-cols-12  profile-header">
+          <div className="grid grid-cols-1 md:grid-cols-1 lg:grid-cols-12 profile-header">
             <div className="col-span-1 md:col-span-1 lg:col-span-3">
-              <div
-                className="profile-image h-96 notched notched--bg notched--bg--img"
-                style={{ backgroundImage: `url(${profile.image.file.url})` }}
-              ></div>
+              {profile.image && (
+                <div
+                  className="profile-image h-96 notched notched--bg notched--bg--img"
+                  style={{ backgroundImage: `url(${profile.image.url})` }}
+                ></div>
+              )}
               <div className="links-container">
                 {profile.buttonUrl && (
                   <NotchedButtonLink
@@ -130,10 +133,7 @@ export const query = graphql`
     contentfulPeople(id: { eq: $id }) {
       displayName
       image {
-        file {
-          url
-          fileName
-        }
+        url
         title
       }
       title
