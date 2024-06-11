@@ -6,21 +6,21 @@ import uniq from 'lodash.uniq';
 export const FilterBar = ({ handleSearchQuery, handleClearFilters, listType }) => {
   const data = useStaticQuery(graphql`
     query FilterQuery {
-      allContentfulProduct {
+      allContentfulResource {
         edges {
           node {
-            type
-            publicationYear: publicationDate(formatString: "YYYY")
-            publicationDate
+            title
+            publicationYear: resourceDate(formatString: "YYYY")
+            resourceDate
+            resourceType
           }
         }
       }
-
       allContentfulBlogPost {
         edges {
           node {
-            publicationYear: publicationDate(formatString: "YYYY")
-            publicationDate
+            publicationYear: date(formatString: "YYYY")
+            date
           }
         }
       }
@@ -28,7 +28,7 @@ export const FilterBar = ({ handleSearchQuery, handleClearFilters, listType }) =
   `);
 
   const pubDates = uniq(
-    data.allContentfulProduct.edges
+    data.allContentfulResource.edges
       .map(content => content.node)
       .map(node => node.publicationYear)
       .sort()
@@ -36,9 +36,9 @@ export const FilterBar = ({ handleSearchQuery, handleClearFilters, listType }) =
   );
 
   const pubTypes = uniq(
-    data.allContentfulProduct.edges
+    data.allContentfulResource.edges
       .map(content => content.node)
-      .map(node => node.type)
+      .map(node => node.resourceType)
       .sort()
   );
 

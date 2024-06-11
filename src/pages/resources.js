@@ -7,7 +7,7 @@ const sessionsName = 'resource-filters';
 const Search = ({ data }) => {
   const [query, setQuery] = useState(``);
   const [results, setResults] = useState([]);
-  const contentfulType = 'ContentfulProduct';
+  const contentfulType = 'ContentfulResource';
 
   const handleSearchQuery = event => {
     let pubDateSelect = document.querySelector('#publicationDate');
@@ -22,7 +22,7 @@ const Search = ({ data }) => {
     );
 
     setQuery(
-      `+title:* +publicationDate:${pubDateValue} +type:${pubTypeValue} +contentfulType:${contentfulType}`
+      `+title:* +resourceDate:${pubDateValue} +resourceType:${pubTypeValue} +contentfulType:${contentfulType}`
     );
   };
 
@@ -50,13 +50,13 @@ const Search = ({ data }) => {
       });
     }
     setQuery(
-      `+title:* +publicationDate:${pubDateSelect.value} +type:${pubTypeSelect.value} +contentfulType:${contentfulType}`
+      `+title:* +resourceDate:${pubDateSelect.value} +resourceType:${pubTypeSelect.value} +contentfulType:${contentfulType}`
     );
   };
 
   const clearFilters = () => {
     sessionStorage.removeItem(sessionsName);
-    setQuery(`+title:* +publicationDate:* +type:*`);
+    setQuery(`+title:* +resourceDate:* +resourceType:*`);
     document.querySelector('#publicationDate').selectedIndex = 0;
     document.querySelector('#publicationType').selectedIndex = 0;
   };

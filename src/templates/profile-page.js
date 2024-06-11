@@ -7,7 +7,7 @@ import { Video } from '../components/Video';
 export default function ProfilePage({ data }) {
   const profile = data.contentfulPeople;
   const certifications = data.allOshwaCertifications;
-  console.log(certifications);
+  console.log("certifications", certifications);
   return (
     <Layout>
       <>
@@ -16,7 +16,7 @@ export default function ProfilePage({ data }) {
             <div className="col-span-1 md:col-span-1 lg:col-span-3">
               <div
                 className="profile-image h-96 notched notched--bg notched--bg--img"
-                style={{ backgroundImage: `url(${profile.photo.file.url})` }}
+                style={{ backgroundImage: `url(${profile.image.file.url})` }}
               ></div>
               <div className="links-container">
                 {profile.buttonUrl && (
@@ -99,7 +99,7 @@ export default function ProfilePage({ data }) {
           <div className="p-10 pt-0 pb-5">
             <h2 className="generic-heading-2 py-8">Certifications</h2>
             <div className="grid lg:grid-cols-4 md:grid-cols-4 gap-5">
-              {certifications &&
+              {/* {certifications &&
                 certifications.edges.map(project => {
                   console.log(project);
                   return (
@@ -116,7 +116,7 @@ export default function ProfilePage({ data }) {
                       </div>
                     </Link>
                   );
-                })}
+                })} */}
             </div>
           </div>
         )}
@@ -126,14 +126,10 @@ export default function ProfilePage({ data }) {
 }
 
 export const query = graphql`
-  query ($id: String!, $email: String!) {
+  query ($id: String!) {
     contentfulPeople(id: { eq: $id }) {
       displayName
-      email
-      longDescription {
-        longDescription
-      }
-      photo {
+      image {
         file {
           url
           fileName
@@ -141,21 +137,11 @@ export const query = graphql`
         title
       }
       title
-      twitter
       type
-      buttonText
-      buttonUrl
-      featuredResearch {
-        id
-        title
-        prettyUrl
-      }
-      video {
-        videoTitle
-        videoUrl
-      }
+      externalUrl
+      externalUrlTitle
     }
-    allOshwaCertifications(filter: { publicContact: { eq: $email } }) {
+    allOshwaCertifications {
       edges {
         node {
           id

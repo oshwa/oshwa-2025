@@ -9,12 +9,12 @@ import { PersonContainer } from '../components/PersonContainer';
 export default function PeopleTemplate() {
   const data = useStaticQuery(graphql`
     query PeoplePageQuery {
-      teamMembers: allContentfulPeople(filter: { type: { eq: "Team" } }) {
+      teamMembers: allContentfulPeople(filter: { type: { eq: "OSHWA Team" } }) {
         edges {
           node {
             id
             displayName
-            photo {
+            image {
               id
               file {
                 url
@@ -25,20 +25,18 @@ export default function PeopleTemplate() {
             prettyUrl
             title
             affiliation
-            email
-            twitter
             type
           }
         }
       }
       boardMembers: allContentfulPeople(
-        filter: { type: { eq: "Board Member" } }
+        filter: { type: { eq: "OSHWA Board Members" } }
       ) {
         edges {
           node {
             id
             displayName
-            photo {
+            image {
               id
               file {
                 url
@@ -49,8 +47,6 @@ export default function PeopleTemplate() {
             prettyUrl
             title
             affiliation
-            email
-            twitter
             type
           }
         }
@@ -79,7 +75,7 @@ export default function PeopleTemplate() {
                   <PersonContainer
                     name={teamMember.node.displayName}
                     title={teamMember.node.title}
-                    profileImageUrl={teamMember.node.photo.file.url}
+                    profileImageUrl={teamMember.node.image.file.url}
                   />
                 </Link>
               );
@@ -122,7 +118,7 @@ export default function PeopleTemplate() {
                   <PersonContainer
                     name={boardMember.node.displayName}
                     title={boardMember.node.title}
-                    profileImageUrl={boardMember.node.photo.file.url}
+                    profileImageUrl={boardMember.node.image.file.url}
                   />
                 </Link>
               );

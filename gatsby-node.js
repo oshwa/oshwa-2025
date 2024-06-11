@@ -83,80 +83,78 @@ exports.createPages = async ({ graphql, actions }) => {
   const blogPostPageTemplate = path.resolve(`src/templates/blog-post.js`);
 
   // global containers query
-  const allGlobalResources = await graphql(`
-    query allGlobalContainersQuery {
-      allContentfulGlobalContainer {
-        edges {
-          node {
-            id
-            title
-            prettyUrl
-            referencedLanguage {
-              language
-              title
-              prettyUrl
-              fixedNav
-              noIndex
-              type
-              publicationDate
-              people {
-                id
-                displayName
-                prettyUrl
-              }
-            }
-          }
-        }
-      }
-    }
-  `);
+  // const allGlobalResources = await graphql(`
+  //   query allGlobalContainersQuery {
+  //     allContentfulGlobalContainer {
+  //       edges {
+  //         node {
+  //           id
+  //           title
+  //           prettyUrl
+  //           referencedLanguage {
+  //             language
+  //             title
+  //             prettyUrl
+  //             resourceType
+  //             resourceDate
+  //             people {
+  //               id
+  //               displayName
+  //               prettyUrl
+  //             }
+  //           }
+  //         }
+  //       }
+  //     }
+  //   }
+  // `);
 
-  allGlobalResources.data.allContentfulGlobalContainer.edges.forEach(edge => {
-    createPage({
-      path: `global-resources/${edge.node.prettyUrl}`,
-      component: globalResourceTemplate,
-      context: {
-        id: edge.node.id,
-        title: edge.node.title,
-        prettyUrl: edge.node.prettyUrl,
-      },
-    });
-  });
+  // allGlobalResources.data.allContentfulGlobalContainer.edges.forEach(edge => {
+  //   createPage({
+  //     path: `global-resources/${edge.node.prettyUrl}`,
+  //     component: globalResourceTemplate,
+  //     context: {
+  //       id: edge.node.id,
+  //       title: edge.node.title,
+  //       prettyUrl: edge.node.prettyUrl,
+  //     },
+  //   });
+  // });
+
   // resource page query
 
-  const allResources = await graphql(`
-    query allResourcesQuery {
-      allContentfulProduct {
-        edges {
-          node {
-            id
-            title
-            prettyUrl
-            fixedNav
-            noIndex
-            type
-            publicationDate
-            people {
-              id
-              displayName
-              prettyUrl
-            }
-          }
-        }
-      }
-    }
-  `);
+  // const allResources = await graphql(`
+  //   query allResourcesQuery {
+  //     allContentfulResource {
+  //       edges {
+  //         node {
+  //           id
+  //           title
+  //           prettyUrl
+  //           resourceType
+  //           resourceDate
+  //           people {
+  //             id
+  //             displayName
+  //             prettyUrl
+  //           }
+  //         }
+  //       }
+  //     }
+  //   }
+  // `);
 
-  allResources.data.allContentfulProduct.edges.forEach(edge => {
-    createPage({
-      path: `resources/${edge.node.prettyUrl}`,
-      component: markdownResourcePageTemplate,
-      context: {
-        id: edge.node.id,
-        title: edge.node.title,
-      },
-    });
-  });
+  // allResources.data.allContentfulResource.edges.forEach(edge => {
+
+  //   createPage({
+  //     path: `resources/${edge.node.prettyUrl}`,
+  //     component: markdownResourcePageTemplate,
+  //     context: {
+  //       id: edge.node.id,
+  //       title: edge.node.title,
+  //     },
+  //   });
+  // });
 
 
   const allBlogPosts = await graphql(`
@@ -165,12 +163,9 @@ exports.createPages = async ({ graphql, actions }) => {
         edges {
           node {
             id
-            prettyUrl
             title
-            publicationDate
-            fullAuthor {
-              fullAuthor
-            }
+            date
+            prettyUrl
           }
         }
       }
@@ -199,20 +194,14 @@ exports.createPages = async ({ graphql, actions }) => {
             prettyUrl
             title
             affiliation
-            email
-            twitter
             type
-            photo {
+            image {
               id
               file {
                 url
                 fileName
                 contentType
               }
-            }
-            longDescription {
-              id
-              longDescription
             }
           }
         }
@@ -227,7 +216,7 @@ exports.createPages = async ({ graphql, actions }) => {
       context: {
         id: edge.node.id,
         title: edge.node.displayName,
-        email: edge.node.email,
+        // email: edge.node.email,
       },
     });
   });
@@ -264,31 +253,31 @@ exports.createPages = async ({ graphql, actions }) => {
   const genericPageTemplate = path.resolve(`src/templates/generic-page.js`);
 
   // project page generation
-  const allGenericPages = await graphql(`
-    query allGenericPageQuery {
-      allContentfulGenericPage {
-        edges {
-          node {
-            id
-            prettyUrl
-            title
-          }
-        }
-      }
-    }
-  `);
+  // const allGenericPages = await graphql(`
+  //     query allGenericPageQuery {
+  //       allContentfulGenericPage {
+  //         edges {
+  //           node {
+  //             id
+  //             prettyUrl
+  //             title
+  //           }
+  //         }
+  //       }
+  //     }
+  //   `);
 
-  allGenericPages.data.allContentfulGenericPage.edges.forEach(edge => {
-    createPage({
-      path: `${edge.node.prettyUrl}`,
-      component: genericPageTemplate,
-      context: {
-        id: edge.node.id,
-        prettyUrl: edge.node.prettyUrl,
-        title: edge.node.title,
-      },
-    });
-  });
+  // allGenericPages.data.allContentfulGenericPage.edges.forEach(edge => {
+  //   createPage({
+  //     path: `${edge.node.prettyUrl}`,
+  //     component: genericPageTemplate,
+  //     context: {
+  //       id: edge.node.id,
+  //       prettyUrl: edge.node.prettyUrl,
+  //       title: edge.node.title,
+  //     },
+  //   });
+  // });
 };
 
 exports.sourceNodes = async ({

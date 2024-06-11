@@ -18,8 +18,10 @@ const SearchBlogPosts = () => {
       JSON.stringify({ pubDateValue })
     );
 
-    setQuery(`+title:* +publicationDate:${pubDateValue} +contentfulType:${contentfulType}`);
+    setQuery(`+title:* +date:${pubDateValue} +contentfulType:${contentfulType}`);
   };
+
+  console.log(results)
 
   const matchFiltersToSessions = () => {
     let pubDateSelect = document.querySelector('#publicationDate');
@@ -34,13 +36,13 @@ const SearchBlogPosts = () => {
       });
     }
     setQuery(
-      `+title:* +publicationDate:${pubDateSelect.value} +contentfulType:${contentfulType}`
+      `+title:* +date:${pubDateSelect.value} +contentfulType:${contentfulType}`
     );
   };
 
   const clearFilters = () => {
     sessionStorage.removeItem(sessionsName);
-    setQuery(`+title:* +publicationDate:*`);
+    setQuery(`+title:* +date:*`);
     document.querySelector('#publicationDate').selectedIndex = 0;
   };
 
