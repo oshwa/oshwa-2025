@@ -10,16 +10,9 @@ export const MainNavA = ({ handleClick, active }) => {
       <Link className="home-icon" to="/" aria-label="home">
         <span className="material-icons">home</span>
       </Link>
-
-      <Link className="nav-link" to="/people-template">
-        People Template
+      <Link className="nav-link" to="/people">
+        People
       </Link>
-      {/* <Link className="nav-link" to="/resources">
-        Resources
-      </Link>
-      <Link className="nav-link" to="/list-template">
-        List Template
-      </Link> */}
       <Link className="nav-link" to="/resources">
         Resources
       </Link>
