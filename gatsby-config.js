@@ -124,31 +124,32 @@ module.exports = {
             // ISO 639-1 language codes. See https://lunrjs.com/guides/language_support.html for details
             name: 'en',
             // A function for filtering nodes. () => true by default
-            filterNodes: node => node.internal.type === 'ContentfulProduct' || 'ContentfulBlogPost',
+            filterNodes: node => node.internal.type === 'ContentfulResource' || 'ContentfulBlogPost',
           },
         ],
         // Fields to index. If store === true value will be stored in index file.
         // Attributes for custom indexing logic. See https://lunrjs.com/docs/lunr.Builder.html for details
         fields: [
           { name: 'title', store: true, attributes: { boost: 20 } },
-          { name: 'publicationDate', store: true },
-          { name: 'type', store: true },
+          { name: 'resourceDate', store: true },
+          { name: 'date', store: true },
+          { name: 'resourceType', store: true },
           { name: 'prettyUrl', store: true },
           { name: 'contentfulType', store: true },
         ],
         // How to resolve each field's value for a supported node type
         resolvers: {
           // For any node of type MarkdownRemark, list how to resolve the fields' values
-          ContentfulProduct: {
+          ContentfulResource: {
             title: node => node.title,
-            publicationDate: node => node.publicationDate,
-            type: node => node.type,
+            resourceDate: node => node.resourceDate,
+            resourceType: node => node.resourceType,
             prettyUrl: node => node.prettyUrl,
             contentfulType: (node) => node.internal.type,
           },
           ContentfulBlogPost: {
             title: node => node.title,
-            publicationDate: node => node.publicationDate,
+            date: node => node.date,
             prettyUrl: node => node.prettyUrl,
             contentfulType: (node) => node.internal.type,
           },

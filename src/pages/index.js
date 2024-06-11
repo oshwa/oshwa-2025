@@ -14,19 +14,13 @@ const IndexPage = () => {
       contentfulIndex {
         id
         title
-        featuredResearch {
-          id
-          publicationDate(formatString: "DD MMMM YYYY")
-          title
-          prettyUrl
-          shortDescription
-        }
       }
       allOshwaCertifications {
         totalCount
       }
     }
   `);
+
   return (
     <Layout>
       <>
@@ -44,17 +38,17 @@ const IndexPage = () => {
             </div>
             <div className="col-span-2 h-full notched notched--border notched--border--hover featured-box">
               <div className="featured-box__header">
-                <p className="featured-box__date">
+                {/* <p className="featured-box__date">
                   {data.contentfulIndex.featuredResearch.publicationDate}
-                </p>
-                <h2 className="featured-box__title">
+                </p> */}
+                {/* <h2 className="featured-box__title">
                   {data.contentfulIndex.featuredResearch.title}
-                </h2>
+                </h2> */}
               </div>
               <div className="featured-box__body">
-                <p className="featured-box__description">
+                {/* <p className="featured-box__description">
                   {data.contentfulIndex.featuredResearch.shortDescription}
-                </p>
+                </p> */}
                 <ArrowLink
                   text="About OSHWA"
                   location="/about"

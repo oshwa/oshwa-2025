@@ -42,11 +42,7 @@ export const query = graphql`
     contentfulBlogPost(id: { eq: $id }) {
       id
       title
-      prettyUrl
-      publicationDate
-      fullAuthor {
-        fullAuthor
-      }
+      date
       body {
         raw
         references {
