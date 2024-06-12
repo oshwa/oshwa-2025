@@ -7,7 +7,7 @@ const sessionsName = 'resource-filters';
 const Search = ({ data }) => {
   const [query, setQuery] = useState(``);
   const [results, setResults] = useState([]);
-  const contentfulType = 'ContentfulResource';
+  const contentfulType = 'ContentfulGlobalResourceContainer';
 
   const handleSearchQuery = event => {
     let pubDateSelect = document.querySelector('#publicationDate');
@@ -70,6 +70,7 @@ const Search = ({ data }) => {
         return lunrIndex.store[ref];
       })
     );
+    console.log(results)
   }, [query]);
 
   return (

@@ -60,6 +60,7 @@ module.exports = {
       resolve: `gatsby-source-contentful`,
       options: {
         spaceId: process.env.CONTENTFUL_SPACE_ID,
+        environment: process.env.CONTENTFUL_ENVIRONMENT,
         // Learn about environment variables: https://gatsby.dev/env-vars
         accessToken: process.env.CONTENTFUL_ACCESS_TOKEN,
       },
@@ -124,7 +125,12 @@ module.exports = {
             // ISO 639-1 language codes. See https://lunrjs.com/guides/language_support.html for details
             name: 'en',
             // A function for filtering nodes. () => true by default
-            filterNodes: node => node.internal.type === 'ContentfulResource' || 'ContentfulBlogPost',
+            filterNodes: node => {
+              return (
+                node.internal.type === 'ContentfulGlobalResourceContainer' ||
+                'ContentfulBlogPost'
+              );
+            },
           },
         ],
         // Fields to index. If store === true value will be stored in index file.
@@ -140,18 +146,18 @@ module.exports = {
         // How to resolve each field's value for a supported node type
         resolvers: {
           // For any node of type MarkdownRemark, list how to resolve the fields' values
-          ContentfulResource: {
-            title: node => node.title,
+          ContentfulGlobalResourceContainer: {
+            title: node => node.resourceTitle,
             resourceDate: node => node.resourceDate,
             resourceType: node => node.resourceType,
             prettyUrl: node => node.prettyUrl,
-            contentfulType: (node) => node.internal.type,
+            contentfulType: node => node.internal.type,
           },
           ContentfulBlogPost: {
             title: node => node.title,
             date: node => node.date,
             prettyUrl: node => node.prettyUrl,
-            contentfulType: (node) => node.internal.type,
+            contentfulType: node => node.internal.type,
           },
         },
         //custom index file name, default is search_index.json
