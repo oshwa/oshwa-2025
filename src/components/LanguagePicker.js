@@ -2,6 +2,7 @@ import React from 'react';
 import Button from './Button';
 
 const LanguagePicker = ({ languages, handler }) => {
+  console.log(languages,'languages')
   const languageMap = {
     en: 'English',
     es: 'Spanish',
