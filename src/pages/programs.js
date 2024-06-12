@@ -15,8 +15,9 @@ const ProgramsPage = () => {
               shortDescription
             }
             programs {
-              title
               id
+              title
+              prettyUrl
             }
           }
         }
@@ -36,6 +37,7 @@ const ProgramsPage = () => {
       <GridCards
         items={pageData.programs}
         pageLocation="programs"
+        page="programs-page"
       />
     </Layout>
   )
