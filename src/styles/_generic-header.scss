@@ -7,4 +7,10 @@
   p:first-of-type {
     padding-top: 2rem;
   }
+
+  .program-title {
+    @include typography-body-6;
+    font-size: 1.7rem;
+    padding-bottom: 1rem;
+  }
 }
