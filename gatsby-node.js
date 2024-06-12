@@ -288,6 +288,7 @@ exports.createPages = async ({ graphql, actions }) => {
           node {
             id
             title
+            prettyUrl
             shortDescription {
               shortDescription
             }
@@ -305,7 +306,7 @@ exports.createPages = async ({ graphql, actions }) => {
 
   allPrograms.data.allContentfulProgram.edges.forEach(edge => {
     createPage({
-      path: `programs/${edge.node.id}`,
+      path: `programs/${edge.node.prettyUrl}`,
       component: programPageTemplate,
       context: {
         id: edge.node.id,
