@@ -10,6 +10,7 @@ import LanguagePicker from '../components/LanguagePicker';
 export default function GlobalResourcePage({ data, location }) {
   const defaultLanguage = 'English';
   const paramLanguage = location.search.split('=')[1];
+  console.log(location, 'location')
   const [selectedLanguage, setSelectedLanguage] = useState(
     paramLanguage ? paramLanguage : defaultLanguage
   );
@@ -23,8 +24,6 @@ export default function GlobalResourcePage({ data, location }) {
     data.contentfulGlobalResourceContainer.translatedResources.filter(
       resource => resource.language === selectedLanguage
     )[0];
-  console.log(globalContent);
-  console.log(translatedContent);
 
   const availableLanguages =
     data.contentfulGlobalResourceContainer.translatedResources.map(content => ({
@@ -46,11 +45,12 @@ export default function GlobalResourcePage({ data, location }) {
               <h1 className="resource-header__title">
                 {translatedContent.title}
               </h1>
-              {globalContent.namedAuthors && globalContent.namedAuthors.namedAuthors && (
-                <p className="resource-header__named_authors">
-                  {globalContent.namedAuthors.namedAuthors}
-                </p>
-              )}
+              {globalContent.namedAuthors &&
+                globalContent.namedAuthors.namedAuthors && (
+                  <p className="resource-header__named_authors">
+                    {globalContent.namedAuthors.namedAuthors}
+                  </p>
+                )}
 
               {translatedContent.shortDescription.shortDescription && (
                 <p className="resource-introduction">
@@ -85,18 +85,9 @@ export default function GlobalResourcePage({ data, location }) {
         <div className="p-10 pt-0 pb-5">
           <div className="grid lg:grid-cols-6 md:grid-cols-6 resource-body">
             <div className="col-span-3">
-              {/* {translatedContent.body ? (
-                <RichText content={translatedContent.body} />
-              ) : (
-                translatedContent.markdownBody && (
-                  <MarkdownText
-                    content={
-                      translatedContent.markdownBody.childrenMarkdownRemark[0]
-                        .html
-                    }
-                  />
-                )
-              )} */}
+              {translatedContent.body && (
+                <RichText content={translatedContent.body.raw} />
+              )}
             </div>
             {translatedContent.buttonUrl && (
               <div className="col-span-2 col-start-5">

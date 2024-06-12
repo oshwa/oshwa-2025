@@ -2,20 +2,16 @@ import React from 'react';
 import Button from './Button';
 
 const LanguagePicker = ({ languages, handler }) => {
-  console.log(languages,'languages')
-  const languageMap = {
-    en: 'English',
-    es: 'Spanish',
-  };
+  
   return (
     <>
       <div className="language-picker-wrapper">
-        {languages.map((lang, idx) => {
+        {languages.map((language, idx) => {
           return (
             <Button
-              key={`button-${lang}-${idx}`}
-              text={languageMap[lang]}
-              content={lang}
+              key={`button-${language}-${idx}`}
+              text={language.languageDisplay}
+              content={language.language}
               handler={handler}
             />
           );
