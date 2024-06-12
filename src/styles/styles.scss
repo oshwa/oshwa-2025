@@ -7,29 +7,16 @@
 }
 
 // Breakpoints
-$small-only: screen and
-  (
-    max-width: 39.9375em,
+$small-only: screen and (max-width: 39.9375em,
   );
-$touch: screen and
-  (
-    max-width: 64em,
+$touch: screen and (max-width: 64em,
   );
-$medium: screen and
-  (
-    min-width: 40em,
+$medium: screen and (min-width: 40em,
   );
-$medium-only: screen and
-  (
-    min-width: 40em,
-  )
-  and
-  (
-    max-width: 63.9375em,
+$medium-only: screen and (min-width: 40em,
+  ) and (max-width: 63.9375em,
   );
-$large: screen and
-  (
-    min-width: 64em,
+$large: screen and (min-width: 64em,
   );
 
 @import 'breakpoint';
@@ -59,6 +46,7 @@ $large: screen and
 @import 'footer';
 @import 'button';
 @import 'map';
+@import 'program';
 
 body {
   background-color: var($--theme-background);

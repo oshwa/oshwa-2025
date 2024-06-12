@@ -29,7 +29,7 @@ const GridCardsB = ({ items, pageLocation, page }) => {
               item =>
                 <Link
                   key={item.title}
-                  to={`/${pageLocation}/${item.prettyUrl}`}
+                  to={`/${pageLocation}/${item.prettyUrl ? item.prettyUrl : item.title}`}
                   className="lg:col-span-1 notched notched--border notched--border--hover list-item"
                 >
                   <h3>{item.title}</h3>

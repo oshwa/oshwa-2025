@@ -16,7 +16,7 @@ const Programs = ({ data }) => {
       />
       <GridCards
         items={pageData.programYears}
-        pageLocation="programs"
+        pageLocation="programs/years"
       />
     </Layout>
   )

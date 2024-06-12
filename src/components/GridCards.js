@@ -5,7 +5,7 @@ import dayjs from 'dayjs';
 const GridCards = ({ items, listType }) => {
   return (
     <>
-      <div className="p-10 pt-0 pb-5 list">
+      <div className={listType === "resources-ref" ? `p-0 pt-0 pb-5 list` : `p-10 pt-0 pb-5 list`}>
         <div className="grid lg:grid-cols-4 md:grid-cols-3 gap-5">
           {items &&
             items.map(
@@ -32,8 +32,8 @@ const GridCards = ({ items, listType }) => {
                     }
                   </div>
                   {
-                    listType === "resources" &&
-                    <p className="type">{item.type}</p>
+                    (listType === "resources" || listType === "resources-ref") &&
+                    <p className="type">{item.resourceType}</p>
                   }
                 </Link>
               // )

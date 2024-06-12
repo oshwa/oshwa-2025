@@ -1,0 +1,27 @@
+.featured-work {
+  @include breakpoint($large) {
+    padding: 4rem 10rem 2rem 10rem;
+  }
+
+  h3 {
+    @include typography-headline-3;
+  }
+
+  h4 {
+    @include typography-body-4;
+    font-weight: $bold;
+    padding: 0.5rem 0 1.5rem 0;
+  }
+
+  a {
+    margin-top: 2.5rem;
+  }
+
+  &__img {
+    text-align: center;
+
+    @include breakpoint($medium-only) {
+      padding: 2rem 5rem 2rem 5rem;
+    }
+  }
+}
