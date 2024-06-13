@@ -20,3 +20,11 @@ button.btn:hover {
 .language-picker-wrapper {
   margin-left: -4px;
 }
+
+.btn.language-selector {
+  &.selected {
+    background-color: var(--theme-on-surface);
+    color: var($--theme-background);
+    border: 2px solid var($--theme-on-surface);
+  }
+}
