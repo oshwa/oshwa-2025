@@ -13,11 +13,15 @@ export function useColorScheme() {
   useEffect(() => {
     if (isDark) {
       document.querySelector(':root').classList.add('dark');
+      document.querySelector('.image-theme--dark').style.display = 'block';
+      document.querySelector('.image-theme--light').style.display = 'none';
       if (windowGlobal?.localStorage != null) {
         localStorage.setItem('colorScheme', 'dark');
       }
     } else {
       document.querySelector(':root').classList.remove('dark');
+      document.querySelector('.image-theme--light').style.display = 'block';
+      document.querySelector('.image-theme--dark').style.display = 'none';
       if (windowGlobal?.localStorage != null) {
         localStorage.setItem('colorScheme', '');
       }
