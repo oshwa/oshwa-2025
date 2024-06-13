@@ -25,18 +25,18 @@ const IndexPage = () => {
     <Layout>
       <>
         <div className="p-10 pt-0 pb-5">
-          <div className="grid lg:grid-cols-5 md:grid-cols-5">
-            <div className="col-span-3 lg:mr-5 md:mr-5 notched notched--bg index-banner mb-5 md:mb-0">
+          <div className="grid lg:grid-cols-5 md:grid-cols-5 xs:pb-5">
+            <div className="col-span-3 lg:mr-5 md:mr-5 h-full notched notched--bg index-banner mb-20 md:mb-0">
               <div className="index-image-container">
                 <StaticImage
-                  className="temp-index-img"
-                  src="../images/example.png"
+                  className="main-logo"
+                  src="../images/lockup-color.svg"
                   alt="Temp Oshwa Logo"
                 />
                 <ArrowLink text="About OSHWA" location="/about" />
               </div>
             </div>
-            <div className="col-span-2 h-full notched notched--border notched--border--hover featured-box">
+            <div className="lg:col-span-2 md:col-span-2 h-full notched notched--border notched--border--hover featured-box xs:col-span-3 sm:col-span-3 xs:mt-5">
               <div className="featured-box__header">
                 {/* <p className="featured-box__date">
                   {data.contentfulIndex.featuredResearch.publicationDate}
@@ -84,41 +84,41 @@ const IndexPage = () => {
             <Link to="/programs">
               <div className="section-card lg:col-span-1 md:col-span-2 lg:mr-5 md:mr-5 mb-5 md:mb-0 notched notched--bg notched--bg--hover green">
                 <h3 className="section-card__title">Programs</h3>
-                <StaticImage
+                {/* <StaticImage
                   className="temp-section-img"
                   src="../images/example.png"
                   alt="Temp Oshwa Logo"
-                />
+                /> */}
               </div>
             </Link>
             <Link to="/resources">
               <div className="section-card lg:col-span-1 md:col-span-2 lg:mr-5 md:mr-5 mb-5 md:mb-0 notched notched--bg blue">
                 <h3 className="section-card__title">Resources</h3>
-                <StaticImage
+                {/* <StaticImage
                   className="temp-section-img"
                   src="../images/example.png"
                   alt="Temp Oshwa Logo"
-                />
+                /> */}
               </div>
             </Link>
             <Link to="/events">
               <div className="section-card lg:col-span-1 md:col-span-2 lg:mr-5 md:mr-5 mb-5 md:mb-0 notched notched--bg red">
                 <h3 className="section-card__title">Events</h3>
-                <StaticImage
+                {/* <StaticImage
                   className="temp-section-img"
                   src="../images/example.png"
                   alt="Temp Oshwa Logo"
-                />
+                /> */}
               </div>
             </Link>
             <Link to="/community">
               <div className="section-card lg:col-span-1 md:col-span-2 notched notched--bg orange">
                 <h3 className="section-card__title">Community</h3>
-                <StaticImage
+                {/* <StaticImage
                   className="temp-section-img"
                   src="../images/example.png"
                   alt="Temp Oshwa Logo"
-                />
+                /> */}
               </div>
             </Link>
           </div>
