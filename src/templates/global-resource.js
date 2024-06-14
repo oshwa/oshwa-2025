@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { graphql } from 'gatsby';
 import { GatsbyImage, getImage } from 'gatsby-plugin-image';
 import Layout from '../components/layout';
@@ -9,17 +9,27 @@ import LanguagePicker from '../components/LanguagePicker';
 
 export default function GlobalResourcePage({ data, location }) {
   const defaultLanguage = 'English';
-  const paramLanguage = location.search.split('=')[1];
-  console.log(location, 'location')
-  const [selectedLanguage, setSelectedLanguage] = useState(
-    paramLanguage ? paramLanguage : defaultLanguage
-  );
+
+  const [selectedLanguage, setSelectedLanguage] = useState(defaultLanguage);
 
   const handleLanguageSelect = e => {
     const lang = e.currentTarget.getAttribute('data-content') || 'English';
     setSelectedLanguage(lang);
   };
+
+  const capFirstLet = str => {
+    if (str.length) {
+      return str[0].toUpperCase() + str.slice(1);
+    }
+  };
+  const handleUrlParams = () => {
+    let languageSearchValue = new URLSearchParams(location.search).get(
+      'language'
+    );
+    setSelectedLanguage(capFirstLet(languageSearchValue) || defaultLanguage);
+  };
   const globalContent = data.contentfulGlobalResourceContainer;
+
   const translatedContent =
     data.contentfulGlobalResourceContainer.translatedResources.filter(
       resource => resource.language === selectedLanguage
@@ -31,6 +41,9 @@ export default function GlobalResourcePage({ data, location }) {
       languageDisplay: content.languageDisplay,
     }));
 
+  useEffect(() => {
+    handleUrlParams();
+  }, []);
   return (
     <Layout>
       <>
@@ -38,6 +51,7 @@ export default function GlobalResourcePage({ data, location }) {
           <LanguagePicker
             languages={availableLanguages}
             handler={handleLanguageSelect}
+            currentLanguage={selectedLanguage}
           />
 
           <div className="grid lg:grid-cols-6 md:grid-cols-6 resource-header">
@@ -68,7 +82,6 @@ export default function GlobalResourcePage({ data, location }) {
             </div>
           </div>
         </div>
-
         {/* {% if page.fixed_nav %}
             {% include components/fixed-nav.html %}
           {% endif %} */}
@@ -81,7 +94,6 @@ export default function GlobalResourcePage({ data, location }) {
             content={translatedContent.body}
           />
         )} */}
-
         <div className="p-10 pt-0 pb-5">
           <div className="grid lg:grid-cols-6 md:grid-cols-6 resource-body">
             <div className="col-span-3">
@@ -100,7 +112,7 @@ export default function GlobalResourcePage({ data, location }) {
               </div>
             )}
           </div>
-        </div>
+        </div>{' '}
       </>
     </Layout>
   );
