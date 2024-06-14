@@ -84,41 +84,48 @@ const IndexPage = () => {
             <Link to="/programs">
               <div className="section-card lg:col-span-1 md:col-span-2 lg:mr-5 md:mr-5 mb-5 md:mb-0 notched notched--bg notched--bg--hover green">
                 <h3 className="section-card__title">Programs</h3>
-                {/* <StaticImage
-                  className="temp-section-img"
-                  src="../images/example.png"
-                  alt="Temp Oshwa Logo"
-                /> */}
+                <>
+                  <StaticImage
+                    className="section-card__image image-theme--dark"
+                    src="../images/icon-programs.svg"
+                    alt="Temp Oshwa Logo"
+                  />
+                  <StaticImage
+                    className="section-card__image image-theme--light"
+                    src="../images/icon-programs-white.svg"
+                    alt="Temp Oshwa Logo"
+                  />
+                </>
               </div>
             </Link>
             <Link to="/resources">
               <div className="section-card lg:col-span-1 md:col-span-2 lg:mr-5 md:mr-5 mb-5 md:mb-0 notched notched--bg blue">
                 <h3 className="section-card__title">Resources</h3>
-                {/* <StaticImage
-                  className="temp-section-img"
-                  src="../images/example.png"
+                <StaticImage
+                  className="section-card__image"
+                  src="../images/icon-resources.svg"
                   alt="Temp Oshwa Logo"
-                /> */}
+                />
               </div>
             </Link>
             <Link to="/events">
               <div className="section-card lg:col-span-1 md:col-span-2 lg:mr-5 md:mr-5 mb-5 md:mb-0 notched notched--bg red">
                 <h3 className="section-card__title">Events</h3>
-                {/* <StaticImage
-                  className="temp-section-img"
-                  src="../images/example.png"
+                <StaticImage
+                  className="section-card__image"
+                  src="../images/icon-events.svg"
                   alt="Temp Oshwa Logo"
-                /> */}
+                />
               </div>
             </Link>
             <Link to="/community">
               <div className="section-card lg:col-span-1 md:col-span-2 notched notched--bg orange">
                 <h3 className="section-card__title">Community</h3>
-                {/* <StaticImage
-                  className="temp-section-img"
-                  src="../images/example.png"
+                <StaticImage
+                  className="section-card__image"
+                  src="../images/icon-community.svg"
                   alt="Temp Oshwa Logo"
-                /> */}
+                />
               </div>
             </Link>
           </div>
