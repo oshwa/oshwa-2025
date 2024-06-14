@@ -18,7 +18,7 @@ export default function GlobalResourcePage({ data, location }) {
   };
 
   const capFirstLet = str => {
-    if (str.length) {
+    if (str) {
       return str[0].toUpperCase() + str.slice(1);
     }
   };
