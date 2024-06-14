@@ -114,8 +114,15 @@
     @include typography-headline-3;
   }
 
-  // .temp-section-img {
-  //   height: auto;
-  //   width: 6rem;
-  // }
+  &__image {
+    width: 28%;
+
+    @include breakpoint($medium-only) {
+      width: 20%;
+    }
+
+    @include breakpoint($small-only) {
+      width: 24%;
+    }
+  }
 }

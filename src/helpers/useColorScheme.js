@@ -11,17 +11,26 @@ export function useColorScheme() {
   });
 
   useEffect(() => {
+    const imageDark = document.querySelectorAll('.image-theme--dark');
+    const imageLight = document.querySelectorAll('.image-theme--light');
+
+    const iterateImages = (imageSet, visibility) => {
+      imageSet.forEach((item) => {
+        item.style.display = visibility;
+      });
+    };
+
     if (isDark) {
       document.querySelector(':root').classList.add('dark');
-      document.querySelector('.image-theme--dark').style.display = 'block';
-      document.querySelector('.image-theme--light').style.display = 'none';
+      iterateImages(imageDark, 'block');
+      iterateImages(imageLight, 'none');
       if (windowGlobal?.localStorage != null) {
         localStorage.setItem('colorScheme', 'dark');
       }
     } else {
       document.querySelector(':root').classList.remove('dark');
-      document.querySelector('.image-theme--light').style.display = 'block';
-      document.querySelector('.image-theme--dark').style.display = 'none';
+      iterateImages(imageDark, 'none');
+      iterateImages(imageLight, 'block');
       if (windowGlobal?.localStorage != null) {
         localStorage.setItem('colorScheme', '');
       }
