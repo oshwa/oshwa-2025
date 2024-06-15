@@ -12,23 +12,26 @@ const Search = ({ data }) => {
   const handleSearchQuery = event => {
     let pubDateSelect = document.querySelector('#publicationDate');
     let pubTypeSelect = document.querySelector('#publicationType');
+    let pubAudienceSelect = document.querySelector('#publicationAudience');
 
     let pubDateValue = pubDateSelect.value;
     let pubTypeValue = pubTypeSelect.value;
+    let pubAudienceValue = pubAudienceSelect.value;
 
     sessionStorage.setItem(
       sessionsName,
-      JSON.stringify({ pubDateValue, pubTypeValue })
+      JSON.stringify({ pubDateValue, pubTypeValue, pubAudienceValue })
     );
 
     setQuery(
-      `+title:* +resourceDate:${pubDateValue} +resourceType:${pubTypeValue} +contentfulType:${contentfulType}`
+      `+title:* +resourceDate:${pubDateValue} +resourceType:${pubTypeValue} +resourceAudience:${pubAudienceValue} +contentfulType:${contentfulType}`
     );
   };
 
   const matchFiltersToSessions = () => {
     let pubDateSelect = document.querySelector('#publicationDate');
     let pubTypeSelect = document.querySelector('#publicationType');
+    let pubAudienceSelect = document.querySelector('#publicationAudience');
     let savedSessionsQuery = JSON.parse(sessionStorage.getItem(sessionsName));
 
     // set date filter to sessions
@@ -50,27 +53,28 @@ const Search = ({ data }) => {
       });
     }
     setQuery(
-      `+title:* +resourceDate:${pubDateSelect.value} +resourceType:${pubTypeSelect.value} +contentfulType:${contentfulType}`
+      `+title:* +resourceDate:${pubDateSelect.value} +resourceType:${pubTypeSelect.value} +resourceAudience:${pubAudienceSelect.value} +contentfulType:${contentfulType}`
     );
   };
 
   const clearFilters = () => {
     sessionStorage.removeItem(sessionsName);
-    setQuery(`+title:* +resourceDate:* +resourceType:*`);
+    setQuery(`+title:* +resourceDate:* +resourceType:* +resourceAudience:*`);
     document.querySelector('#publicationDate').selectedIndex = 0;
     document.querySelector('#publicationType').selectedIndex = 0;
+    document.querySelector('#publicationAudience').selectedIndex = 0;
   };
 
   useEffect(() => {
     const lunrIndex = window.__LUNR__['en'];
-    matchFiltersToSessions();
+    // matchFiltersToSessions();
     const searchResults = lunrIndex.index.search(query);
     setResults(
       searchResults.map(({ ref }) => {
         return lunrIndex.store[ref];
       })
     );
-    console.log(results)
+    console.log(results);
   }, [query]);
 
   return (
