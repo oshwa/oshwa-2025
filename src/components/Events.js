@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { useStaticQuery, graphql, Link } from 'gatsby';
+import { StaticImage } from 'gatsby-plugin-image';
 
 export const EventsTemplate = () => {
   const data = useStaticQuery(graphql`
@@ -14,6 +15,7 @@ export const EventsTemplate = () => {
             fields {
               slug
             }
+            type
           }
         }
       }
@@ -48,14 +50,46 @@ export const EventsTemplate = () => {
             return (
               <Link
                 key={event.node.fields.slug}
-                className="lg:col-span-1 md:col-span-2 lg:mr-5 md:mr-5 notched notched--border"
+                className="lg:col-span-1 md:col-span-2 lg:mr-5 md:mr-5 notched notched--border section-card"
                 to={`/events/${event.node.fields.slug}`}
               >
                 <div className="event-container">
                   <p className="event-title">{event.node.title}</p>
-                  <p>{event.node.dateEnd}</p>
                 </div>
 
+                {event.node.type === 'Open Hardware Summit' && (
+                  <>
+                    <StaticImage
+                      className="section-card__image image-theme--light"
+                      src="../images/icon-summit.svg"
+                      alt="Temp Oshwa Logo"
+                      placeholder='none'
+                    />
+                    <StaticImage
+                      className="section-card__image image-theme--dark"
+                      src="../images/icon-summit-white.svg"
+                      alt="Temp Oshwa Logo"
+                      placeholder='none'
+                    />
+                  </>
+                )}
+
+                {event.node.type === 'Open Hardware Month' && (
+                  <>
+                    <StaticImage
+                      className="section-card__image image-theme--light"
+                      src="../images/icon-ohmonth.svg"
+                      alt="Temp Oshwa Logo"
+                      placeholder='none'
+                    />
+                    <StaticImage
+                      className="section-card__image image-theme--dark"
+                      src="../images/icon-ohmonth-white.svg"
+                      alt="Temp Oshwa Logo"
+                      placeholder='none'
+                    />
+                  </>
+                )}
               </Link>
             );
           })}
@@ -67,13 +101,46 @@ export const EventsTemplate = () => {
             return (
               <Link
                 key={event.node.fields.slug}
-                className="lg:col-span-1 md:col-span-2 lg:mr-5 md:mr-5 notched notched--border"
+                className="lg:col-span-1 md:col-span-2 lg:mr-5 md:mr-5 notched notched--border section-card"
                 to={`/events/${event.node.fields.slug}`}
               >
                 <div className="event-container">
                   <p className="event-title">{event.node.title}</p>
-                  <p>{event.node.dateEnd}</p>
                 </div>
+
+                {event.node.type === 'Open Hardware Summit' && (
+                  <>
+                    <StaticImage
+                      className="section-card__image image-theme--light"
+                      src="../images/icon-summit.svg"
+                      alt="Temp Oshwa Logo"
+                      placeholder='none'
+                    />
+                    <StaticImage
+                      className="section-card__image image-theme--dark"
+                      src="../images/icon-summit-white.svg"
+                      alt="Temp Oshwa Logo"
+                      placeholder='none'
+                    />
+                  </>
+                )}
+
+                {event.node.type === 'Open Hardware Month' && (
+                  <>
+                    <StaticImage
+                      className="section-card__image image-theme--light"
+                      src="../images/icon-ohmonth.svg"
+                      alt="Temp Oshwa Logo"
+                      placeholder='none'
+                    />
+                    <StaticImage
+                      className="section-card__image image-theme--dark"
+                      src="../images/icon-ohmonth-white.svg"
+                      alt="Temp Oshwa Logo"
+                      placeholder='none'
+                    />
+                  </>
+                )}
               </Link>
             );
           })}
