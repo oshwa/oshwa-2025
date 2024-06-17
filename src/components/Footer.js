@@ -31,7 +31,7 @@ const Footer = () => {
           <fieldset className="signup-submit-wrapper notched notched--border my-4">
             <input
               type="email"
-              // placeholder="Email Address"
+              placeholder="Enter your email address"
               className="signup-input"
             />
           </fieldset>

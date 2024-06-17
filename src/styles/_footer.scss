@@ -41,6 +41,7 @@ footer.footer {
     &::placeholder {
       text-transform: uppercase;
       font-weight: $bold;
+      color: var(--theme-on-background);
     }
   }
 
