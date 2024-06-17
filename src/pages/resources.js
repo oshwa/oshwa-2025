@@ -52,6 +52,15 @@ const Search = ({ data }) => {
         }
       });
     }
+
+    // set audience filter to sessions
+    if (savedSessionsQuery && savedSessionsQuery.pubAudienceValue) {
+      Array.from(pubAudienceSelect.options).forEach((option, idx) => {
+        if (option.value === savedSessionsQuery.pubAudienceValue) {
+          pubAudienceSelect.selectedIndex = idx;
+        }
+      });
+    }
     setQuery(
       `+title:* +resourceDate:${pubDateSelect.value} +resourceType:${pubTypeSelect.value} +resourceAudience:${pubAudienceSelect.value} +contentfulType:${contentfulType}`
     );
@@ -67,7 +76,7 @@ const Search = ({ data }) => {
 
   useEffect(() => {
     const lunrIndex = window.__LUNR__['en'];
-    // matchFiltersToSessions();
+    matchFiltersToSessions();
     const searchResults = lunrIndex.index.search(query);
     setResults(
       searchResults.map(({ ref }) => {
