@@ -108,15 +108,15 @@ const Search = ({ data, location }) => {
     document.querySelector('#publicationDate').selectedIndex = 0;
     document.querySelector('#publicationType').selectedIndex = 0;
     document.querySelector('#publicationAudience').selectedIndex = 0;
+    location.search = ''; // tk remove from url
+    
   };
 
   useEffect(() => {
     const lunrIndex = window.__LUNR__['en'];
-    if (location.search) {
-      handleUrlParams();
-    } else {
-      matchFiltersToSessions();
-    }
+
+    handleUrlParams();
+    matchFiltersToSessions();
     const searchResults = lunrIndex.index.search(query);
     setResults(
       searchResults.map(({ ref }) => {
