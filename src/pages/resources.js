@@ -4,10 +4,16 @@ import { FilterBar } from '../components/FilterBar';
 import GridCards from '../components/GridCards';
 const sessionsName = 'resource-filters';
 
-const Search = ({ data }) => {
+const Search = ({ data, location }) => {
   const [query, setQuery] = useState(``);
   const [results, setResults] = useState([]);
   const contentfulType = 'ContentfulGlobalResourceContainer';
+
+  const capFirstLet = str => {
+    if (str) {
+      return str[0].toUpperCase() + str.slice(1);
+    }
+  };
 
   const handleSearchQuery = event => {
     let pubDateSelect = document.querySelector('#publicationDate');
@@ -26,6 +32,52 @@ const Search = ({ data }) => {
     setQuery(
       `+title:* +resourceDate:${pubDateValue} +resourceType:${pubTypeValue} +resourceAudience:${pubAudienceValue} +contentfulType:${contentfulType}`
     );
+  };
+
+  const handleUrlParams = () => {
+    console.log(location.search, 'location search');
+    let pubDateParam = new URLSearchParams(location.search).get('year') || '*';
+    let pubTypeParam = new URLSearchParams(location.search).get('type') || '*';
+    let pubAudienceParam =
+      new URLSearchParams(location.search).get('audience') || '*';
+
+    setPubDateQuery(pubDateParam);
+    setPubTypeQuery(capFirstLet(pubTypeParam));
+    setPubAudienceQuery(capFirstLet(pubAudienceParam));
+
+    setQuery(
+      `+title:* +resourceDate:${pubDateParam} +resourceType:${pubTypeParam} +resourceAudience:${pubAudienceParam} +contentfulType:${contentfulType}`
+    );
+
+  };
+
+  const setPubDateQuery = paramVal => {
+    let pubDateSelect = document.querySelector('#publicationDate');
+    Array.from(pubDateSelect.options).forEach((option, idx) => {
+      if (option.value === paramVal) {
+        pubDateSelect.selectedIndex = idx;
+      }
+    });
+  };
+
+  const setPubTypeQuery = paramVal => {
+    let pubTypeSelect = document.querySelector('#publicationType');
+    Array.from(pubTypeSelect.options).forEach((option, idx) => {
+      // console.log(option, idx);
+      if (option.value === paramVal) {
+        pubTypeSelect.selectedIndex = idx;
+      }
+    });
+  };
+
+  const setPubAudienceQuery = paramVal => {
+    let pubAudienceSelect = document.querySelector('#publicationAudience');
+    Array.from(pubAudienceSelect.options).forEach((option, idx) => {
+      // console.log(option, idx);
+      if (option.value === paramVal) {
+        pubAudienceSelect.selectedIndex = idx;
+      }
+    });
   };
 
   const matchFiltersToSessions = () => {
@@ -76,7 +128,11 @@ const Search = ({ data }) => {
 
   useEffect(() => {
     const lunrIndex = window.__LUNR__['en'];
-    matchFiltersToSessions();
+    if (location.search) {
+      handleUrlParams();
+    } else {
+      matchFiltersToSessions();
+    }
     const searchResults = lunrIndex.index.search(query);
     setResults(
       searchResults.map(({ ref }) => {
@@ -84,7 +140,7 @@ const Search = ({ data }) => {
       })
     );
     console.log(results);
-  }, [query]);
+  }, [query, location]);
 
   return (
     <>
