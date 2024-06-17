@@ -28,7 +28,7 @@ export const MainNavA = ({ handleClick, active }) => {
       <Link className="nav-link" to="/programs">
         Programs
       </Link>
-      <Link className="nav-link" to="/oshwa-events">
+      <Link className="nav-link" to="/events">
         Events
       </Link>
     </nav>

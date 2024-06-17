@@ -15,6 +15,7 @@ require('dotenv').config({
 const path = require(`path`);
 const fs = require('fs');
 const fetch = require('node-fetch');
+const _ = require('lodash');
 
 let headers = {
   headers: { Authorization: `Bearer ${process.env.OSHWA_BEARER_TOKEN}` },
@@ -63,6 +64,20 @@ async function downloadMapData() {
   );
 }
 
+exports.onCreateNode = ({ node, actions }) => {
+  const { createNodeField } = actions;
+
+  if (node.internal.type === `ContentfulEvent`) {
+    const slug = _.kebabCase(node.title);
+
+    createNodeField({
+      node,
+      name: `slug`,
+      value: slug,
+    })
+  }
+}
+
 exports.createPages = async ({ graphql, actions }) => {
   const { createPage } = actions;
   // createPage({
@@ -83,6 +98,7 @@ exports.createPages = async ({ graphql, actions }) => {
   const blogPostPageTemplate = path.resolve(`src/templates/blog-post.js`);
   const programPageTemplate = path.resolve(`src/templates/program.js`);
   const programYearPageTemplate = path.resolve(`src/templates/program-year.js`);
+  const eventPageTemplate = path.resolve(`src/templates/event-page.js`);
 
   // global resource containers query
   const allGlobalResourceContainers = await graphql(`
@@ -277,12 +293,15 @@ exports.createPages = async ({ graphql, actions }) => {
     `);
 
   allGenericPages.data.allContentfulGenericPage.edges.forEach(edge => {
+    let url = edge.node.prettyUrl;
+    if (edge.node.title === `OSHWA Events`) url = `events`;
+
     createPage({
-      path: `${edge.node.prettyUrl}`,
+      path: `${url}`,
       component: genericPageTemplate,
       context: {
         id: edge.node.id,
-        prettyUrl: edge.node.prettyUrl,
+        prettyUrl: url,
         title: edge.node.title,
       },
     });
@@ -352,6 +371,34 @@ exports.createPages = async ({ graphql, actions }) => {
     createPage({
       path: `programs/years/${edge.node.title}`,
       component: programYearPageTemplate,
+      context: {
+        id: edge.node.id,
+        title: edge.node.title,
+      },
+    });
+  });
+
+  // Event page query
+  const allEvents = await graphql(`
+    query allEventsQuery {
+      allContentfulEvent {
+        edges {
+          node {
+            id
+            title
+            fields {
+              slug
+            }
+          }
+        }
+      }
+    }
+  `);
+
+  allEvents.data.allContentfulEvent.edges.forEach(edge => {
+    createPage({
+      path: `/events/${edge.node.fields.slug}`,
+      component: eventPageTemplate,
       context: {
         id: edge.node.id,
         title: edge.node.title,

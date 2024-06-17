@@ -4,3 +4,15 @@
     font-weight: $bold;
   }
 }
+
+.event-body {
+  margin-top: 1rem;
+
+  .event-btn-links {
+    padding-top: 2rem;
+
+    a {
+      margin-bottom: 1rem;
+    }
+  }
+}

@@ -11,6 +11,9 @@ export const EventsTemplate = () => {
             title
             dateStart
             dateEnd
+            fields {
+              slug
+            }
           }
         }
       }
@@ -44,9 +47,9 @@ export const EventsTemplate = () => {
           {upcomingEvents.map(event => {
             return (
               <Link
-                key={event.node.id}
+                key={event.node.fields.slug}
                 className="lg:col-span-1 md:col-span-2 lg:mr-5 md:mr-5 notched notched--border"
-                to={`events/${event.node.id}`}
+                to={`/events/${event.node.fields.slug}`}
               >
                 <div className="event-container">
                   <p className="event-title">{event.node.title}</p>
@@ -63,9 +66,9 @@ export const EventsTemplate = () => {
           {pastEvents.map(event => {
             return (
               <Link
-                key={event.node.id}
+                key={event.node.fields.slug}
                 className="lg:col-span-1 md:col-span-2 lg:mr-5 md:mr-5 notched notched--border"
-                to={`events/${event.node.id}`}
+                to={`/events/${event.node.fields.slug}`}
               >
                 <div className="event-container">
                   <p className="event-title">{event.node.title}</p>
