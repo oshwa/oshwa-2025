@@ -48,7 +48,6 @@ const Search = ({ data, location }) => {
     setQuery(
       `+title:* +resourceDate:${pubDateParam} +resourceType:${pubTypeParam} +resourceAudience:${pubAudienceParam} +contentfulType:${contentfulType}`
     );
-
   };
 
   const setPubDateQuery = paramVal => {
@@ -63,7 +62,6 @@ const Search = ({ data, location }) => {
   const setPubTypeQuery = paramVal => {
     let pubTypeSelect = document.querySelector('#publicationType');
     Array.from(pubTypeSelect.options).forEach((option, idx) => {
-      // console.log(option, idx);
       if (option.value === paramVal) {
         pubTypeSelect.selectedIndex = idx;
       }
@@ -73,7 +71,6 @@ const Search = ({ data, location }) => {
   const setPubAudienceQuery = paramVal => {
     let pubAudienceSelect = document.querySelector('#publicationAudience');
     Array.from(pubAudienceSelect.options).forEach((option, idx) => {
-      // console.log(option, idx);
       if (option.value === paramVal) {
         pubAudienceSelect.selectedIndex = idx;
       }
@@ -88,30 +85,17 @@ const Search = ({ data, location }) => {
 
     // set date filter to sessions
     if (savedSessionsQuery && savedSessionsQuery.pubDateValue) {
-      Array.from(pubDateSelect.options).forEach((option, idx) => {
-        if (option.value === savedSessionsQuery.pubDateValue) {
-          pubDateSelect.selectedIndex = idx;
-        }
-      });
+      setPubDateQuery(savedSessionsQuery.pubDateValue);
     }
 
     // set type filter to sessions
     if (savedSessionsQuery && savedSessionsQuery.pubTypeValue) {
-      Array.from(pubTypeSelect.options).forEach((option, idx) => {
-        // console.log(option, idx);
-        if (option.value === savedSessionsQuery.pubTypeValue) {
-          pubTypeSelect.selectedIndex = idx;
-        }
-      });
+      setPubTypeQuery(savedSessionsQuery.pubTypeValue);
     }
 
     // set audience filter to sessions
     if (savedSessionsQuery && savedSessionsQuery.pubAudienceValue) {
-      Array.from(pubAudienceSelect.options).forEach((option, idx) => {
-        if (option.value === savedSessionsQuery.pubAudienceValue) {
-          pubAudienceSelect.selectedIndex = idx;
-        }
-      });
+      setPubAudienceQuery(savedSessionsQuery.pubAudienceValue);
     }
     setQuery(
       `+title:* +resourceDate:${pubDateSelect.value} +resourceType:${pubTypeSelect.value} +resourceAudience:${pubAudienceSelect.value} +contentfulType:${contentfulType}`
