@@ -4,65 +4,118 @@ import { FilterBar } from '../components/FilterBar';
 import GridCards from '../components/GridCards';
 const sessionsName = 'resource-filters';
 
-const Search = ({ data }) => {
+const Search = ({ data, location }) => {
   const [query, setQuery] = useState(``);
   const [results, setResults] = useState([]);
   const contentfulType = 'ContentfulGlobalResourceContainer';
 
+  const capFirstLet = str => {
+    if (str) {
+      return str[0].toUpperCase() + str.slice(1);
+    }
+  };
+
   const handleSearchQuery = event => {
     let pubDateSelect = document.querySelector('#publicationDate');
     let pubTypeSelect = document.querySelector('#publicationType');
+    let pubAudienceSelect = document.querySelector('#publicationAudience');
 
     let pubDateValue = pubDateSelect.value;
     let pubTypeValue = pubTypeSelect.value;
+    let pubAudienceValue = pubAudienceSelect.value;
 
     sessionStorage.setItem(
       sessionsName,
-      JSON.stringify({ pubDateValue, pubTypeValue })
+      JSON.stringify({ pubDateValue, pubTypeValue, pubAudienceValue })
     );
 
     setQuery(
-      `+title:* +resourceDate:${pubDateValue} +resourceType:${pubTypeValue} +contentfulType:${contentfulType}`
+      `+title:* +resourceDate:${pubDateValue} +resourceType:${pubTypeValue} +resourceAudience:${pubAudienceValue} +contentfulType:${contentfulType}`
     );
+  };
+
+  const handleUrlParams = () => {
+    console.log(location.search, 'location search');
+    let pubDateParam = new URLSearchParams(location.search).get('year') || '*';
+    let pubTypeParam = new URLSearchParams(location.search).get('type') || '*';
+    let pubAudienceParam =
+      new URLSearchParams(location.search).get('audience') || '*';
+
+    setPubDateQuery(pubDateParam);
+    setPubTypeQuery(capFirstLet(pubTypeParam));
+    setPubAudienceQuery(capFirstLet(pubAudienceParam));
+
+    setQuery(
+      `+title:* +resourceDate:${pubDateParam} +resourceType:${pubTypeParam} +resourceAudience:${pubAudienceParam} +contentfulType:${contentfulType}`
+    );
+  };
+
+  const setPubDateQuery = paramVal => {
+    let pubDateSelect = document.querySelector('#publicationDate');
+    Array.from(pubDateSelect.options).forEach((option, idx) => {
+      if (option.value === paramVal) {
+        pubDateSelect.selectedIndex = idx;
+      }
+    });
+  };
+
+  const setPubTypeQuery = paramVal => {
+    let pubTypeSelect = document.querySelector('#publicationType');
+    Array.from(pubTypeSelect.options).forEach((option, idx) => {
+      if (option.value === paramVal) {
+        pubTypeSelect.selectedIndex = idx;
+      }
+    });
+  };
+
+  const setPubAudienceQuery = paramVal => {
+    let pubAudienceSelect = document.querySelector('#publicationAudience');
+    Array.from(pubAudienceSelect.options).forEach((option, idx) => {
+      if (option.value === paramVal) {
+        pubAudienceSelect.selectedIndex = idx;
+      }
+    });
   };
 
   const matchFiltersToSessions = () => {
     let pubDateSelect = document.querySelector('#publicationDate');
     let pubTypeSelect = document.querySelector('#publicationType');
+    let pubAudienceSelect = document.querySelector('#publicationAudience');
     let savedSessionsQuery = JSON.parse(sessionStorage.getItem(sessionsName));
 
     // set date filter to sessions
     if (savedSessionsQuery && savedSessionsQuery.pubDateValue) {
-      Array.from(pubDateSelect.options).forEach((option, idx) => {
-        if (option.value === savedSessionsQuery.pubDateValue) {
-          pubDateSelect.selectedIndex = idx;
-        }
-      });
+      setPubDateQuery(savedSessionsQuery.pubDateValue);
     }
 
     // set type filter to sessions
     if (savedSessionsQuery && savedSessionsQuery.pubTypeValue) {
-      Array.from(pubTypeSelect.options).forEach((option, idx) => {
-        // console.log(option, idx);
-        if (option.value === savedSessionsQuery.pubTypeValue) {
-          pubTypeSelect.selectedIndex = idx;
-        }
-      });
+      setPubTypeQuery(savedSessionsQuery.pubTypeValue);
+    }
+
+    // set audience filter to sessions
+    if (savedSessionsQuery && savedSessionsQuery.pubAudienceValue) {
+      setPubAudienceQuery(savedSessionsQuery.pubAudienceValue);
     }
     setQuery(
-      `+title:* +resourceDate:${pubDateSelect.value} +resourceType:${pubTypeSelect.value} +contentfulType:${contentfulType}`
+      `+title:* +resourceDate:${pubDateSelect.value} +resourceType:${pubTypeSelect.value} +resourceAudience:${pubAudienceSelect.value} +contentfulType:${contentfulType}`
     );
   };
 
   const clearFilters = () => {
     sessionStorage.removeItem(sessionsName);
-    setQuery(`+title:* +resourceDate:* +resourceType:*`);
+    setQuery(`+title:* +resourceDate:* +resourceType:* +resourceAudience:*`);
     document.querySelector('#publicationDate').selectedIndex = 0;
     document.querySelector('#publicationType').selectedIndex = 0;
+    document.querySelector('#publicationAudience').selectedIndex = 0;
+    location.search = ''; // tk remove from url
+    
   };
 
   useEffect(() => {
     const lunrIndex = window.__LUNR__['en'];
+
+    handleUrlParams();
     matchFiltersToSessions();
     const searchResults = lunrIndex.index.search(query);
     setResults(
@@ -70,8 +123,8 @@ const Search = ({ data }) => {
         return lunrIndex.store[ref];
       })
     );
-    console.log(results)
-  }, [query]);
+    console.log(results);
+  }, [query, location]);
 
   return (
     <>

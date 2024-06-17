@@ -3,16 +3,21 @@ import { graphql, useStaticQuery } from 'gatsby';
 import CustomDropdown from './CustomDropdown';
 import uniq from 'lodash.uniq';
 
-export const FilterBar = ({ handleSearchQuery, handleClearFilters, listType }) => {
+export const FilterBar = ({
+  handleSearchQuery,
+  handleClearFilters,
+  listType,
+}) => {
   const data = useStaticQuery(graphql`
     query FilterQuery {
-      allContentfulResource {
+      allContentfulGlobalResourceContainer {
         edges {
           node {
-            title
+            resourceTitle
             publicationYear: resourceDate(formatString: "YYYY")
             resourceDate
             resourceType
+            resourceAudience
           }
         }
       }
@@ -28,7 +33,7 @@ export const FilterBar = ({ handleSearchQuery, handleClearFilters, listType }) =
   `);
 
   const pubDates = uniq(
-    data.allContentfulResource.edges
+    data.allContentfulGlobalResourceContainer.edges
       .map(content => content.node)
       .map(node => node.publicationYear)
       .sort()
@@ -36,11 +41,21 @@ export const FilterBar = ({ handleSearchQuery, handleClearFilters, listType }) =
   );
 
   const pubTypes = uniq(
-    data.allContentfulResource.edges
+    data.allContentfulGlobalResourceContainer.edges
       .map(content => content.node)
       .map(node => node.resourceType)
       .sort()
   );
+
+  const pubAudience = uniq(
+    data.allContentfulGlobalResourceContainer.edges
+      .map(content => content.node)
+      .map(node => node.resourceAudience)
+      .join()
+      .split(',')
+      .sort()
+  );
+
 
   const pubDatesBlogPost = uniq(
     data.allContentfulBlogPost.edges
@@ -58,20 +73,34 @@ export const FilterBar = ({ handleSearchQuery, handleClearFilters, listType }) =
             handleSearchQuery={handleSearchQuery}
             defaultLabel={`All Years`}
             label={`Publication Date`}
-            options={listType === "resources" ? pubDates : pubDatesBlogPost}
+            options={listType === 'resources' ? pubDates : pubDatesBlogPost}
           />
         </div>
-        {listType === "resources" &&
-          <div className="filter-item lg:col-span-1 lg:col-start-2 sm:col-span-5">
-            <CustomDropdown
-              handleSearchQuery={handleSearchQuery}
-              defaultLabel={`All Types`}
-              label={`Publication Type`}
-              options={pubTypes}
-            />
-          </div>
-        }
-        <button onClick={handleClearFilters} className="filters__filter--clear lg:col-span-1 sm:col-span-5 lg:col-start-5 sm:col-start-1 lg:text-right sm:text-left">
+        {listType === 'resources' && (
+          <>
+            <div className="filter-item lg:col-span-1 lg:col-start-2 sm:col-span-5">
+              <CustomDropdown
+                handleSearchQuery={handleSearchQuery}
+                defaultLabel={`All Types`}
+                label={`Publication Type`}
+                options={pubTypes}
+              />
+            </div>
+
+            <div className="filter-item lg:col-span-1 lg:col-start-2 sm:col-span-5">
+              <CustomDropdown
+                handleSearchQuery={handleSearchQuery}
+                defaultLabel={`All Audiences`}
+                label={`Publication Audience`}
+                options={pubAudience}
+              />
+            </div>
+          </>
+        )}
+        <button
+          onClick={handleClearFilters}
+          className="filters__filter--clear lg:col-span-1 sm:col-span-5 lg:col-start-5 sm:col-start-1 lg:text-right sm:text-left"
+        >
           Clear filters
         </button>
       </div>
