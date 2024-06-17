@@ -4,7 +4,7 @@ import { FilterBar } from '../components/FilterBar';
 import GridCards from '../components/GridCards';
 const sessionsName = 'blog-post-filters';
 
-const SearchBlogPosts = () => {
+const SearchBlogPosts = ({ location }) => {
   const [query, setQuery] = useState(``);
   const [results, setResults] = useState([]);
   const contentfulType = 'ContentfulBlogPost';
@@ -13,15 +13,14 @@ const SearchBlogPosts = () => {
     let pubDateSelect = document.querySelector('#publicationDate');
     let pubDateValue = pubDateSelect.value;
 
-    sessionStorage.setItem(
-      sessionsName,
-      JSON.stringify({ pubDateValue })
-    );
+    sessionStorage.setItem(sessionsName, JSON.stringify({ pubDateValue }));
 
-    setQuery(`+title:* +date:${pubDateValue} +contentfulType:${contentfulType}`);
+    setQuery(
+      `+title:* +date:${pubDateValue} +contentfulType:${contentfulType}`
+    );
   };
 
-  console.log(results)
+  console.log(results);
 
   const matchFiltersToSessions = () => {
     let pubDateSelect = document.querySelector('#publicationDate');
@@ -44,10 +43,30 @@ const SearchBlogPosts = () => {
     sessionStorage.removeItem(sessionsName);
     setQuery(`+title:* +date:*`);
     document.querySelector('#publicationDate').selectedIndex = 0;
+    location.search = ''; // tk remove from url
+  };
+
+  const handleUrlParams = () => {
+    let pubDateParam = new URLSearchParams(location.search).get('year') || '*';
+
+    setPubDateQuery(pubDateParam);
+    setQuery(
+      `+title:* +date:${pubDateParam} +contentfulType:${contentfulType}`
+    );
+  };
+
+  const setPubDateQuery = paramVal => {
+    let pubDateSelect = document.querySelector('#publicationDate');
+    Array.from(pubDateSelect.options).forEach((option, idx) => {
+      if (option.value === paramVal) {
+        pubDateSelect.selectedIndex = idx;
+      }
+    });
   };
 
   useEffect(() => {
     const lunrIndex = window.__LUNR__['en'];
+    handleUrlParams();
     matchFiltersToSessions();
     const searchResults = lunrIndex.index.search(query);
 
