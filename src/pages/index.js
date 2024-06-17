@@ -32,6 +32,7 @@ const IndexPage = () => {
                   className="main-logo"
                   src="../images/lockup-color.svg"
                   alt="Temp Oshwa Logo"
+                  placeholder='none'
                 />
                 <ArrowLink text="About OSHWA" location="/about" />
               </div>
@@ -89,11 +90,13 @@ const IndexPage = () => {
                     className="section-card__image image-theme--dark"
                     src="../images/icon-programs.svg"
                     alt="Temp Oshwa Logo"
+                    placeholder='none'
                   />
                   <StaticImage
                     className="section-card__image image-theme--light"
                     src="../images/icon-programs-white.svg"
                     alt="Temp Oshwa Logo"
+                    placeholder='none'
                   />
                 </>
               </div>
@@ -105,6 +108,7 @@ const IndexPage = () => {
                   className="section-card__image"
                   src="../images/icon-resources.svg"
                   alt="Temp Oshwa Logo"
+                  placeholder='none'
                 />
               </div>
             </Link>
@@ -115,6 +119,7 @@ const IndexPage = () => {
                   className="section-card__image"
                   src="../images/icon-events.svg"
                   alt="Temp Oshwa Logo"
+                  placeholder='none'
                 />
               </div>
             </Link>
@@ -125,6 +130,7 @@ const IndexPage = () => {
                   className="section-card__image"
                   src="../images/icon-community.svg"
                   alt="Temp Oshwa Logo"
+                  placeholder='none'
                 />
               </div>
             </Link>

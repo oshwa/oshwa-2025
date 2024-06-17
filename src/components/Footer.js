@@ -13,11 +13,13 @@ const Footer = () => {
               className="footer__logo image-theme--dark"
               src='../images/lockup-white.svg'
               alt="Oshwa Logo"
+              placeholder='none'
             />
             <StaticImage
               className="footer__logo image-theme--light"
               src='../images/lockup-black.svg'
               alt="Oshwa Logo"
+              placeholder='none'
             />
           </div>
         </div>
