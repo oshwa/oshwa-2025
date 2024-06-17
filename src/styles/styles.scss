@@ -47,6 +47,7 @@ $large: screen and (min-width: 64em,
 @import 'button';
 @import 'map';
 @import 'program';
+@import 'events';
 
 body {
   background-color: var($--theme-background);

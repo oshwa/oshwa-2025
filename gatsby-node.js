@@ -262,31 +262,31 @@ exports.createPages = async ({ graphql, actions }) => {
   const genericPageTemplate = path.resolve(`src/templates/generic-page.js`);
 
   // project page generation
-  // const allGenericPages = await graphql(`
-  //     query allGenericPageQuery {
-  //       allContentfulGenericPage {
-  //         edges {
-  //           node {
-  //             id
-  //             prettyUrl
-  //             title
-  //           }
-  //         }
-  //       }
-  //     }
-  //   `);
+  const allGenericPages = await graphql(`
+      query allGenericPageQuery {
+        allContentfulGenericPage {
+          edges {
+            node {
+              id
+              prettyUrl
+              title
+            }
+          }
+        }
+      }
+    `);
 
-  // allGenericPages.data.allContentfulGenericPage.edges.forEach(edge => {
-  //   createPage({
-  //     path: `${edge.node.prettyUrl}`,
-  //     component: genericPageTemplate,
-  //     context: {
-  //       id: edge.node.id,
-  //       prettyUrl: edge.node.prettyUrl,
-  //       title: edge.node.title,
-  //     },
-  //   });
-  // });
+  allGenericPages.data.allContentfulGenericPage.edges.forEach(edge => {
+    createPage({
+      path: `${edge.node.prettyUrl}`,
+      component: genericPageTemplate,
+      context: {
+        id: edge.node.id,
+        prettyUrl: edge.node.prettyUrl,
+        title: edge.node.title,
+      },
+    });
+  });
 
   // Program page query
   const allPrograms = await graphql(`
