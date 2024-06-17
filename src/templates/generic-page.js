@@ -4,6 +4,7 @@ import { graphql } from 'gatsby';
 import Layout from '../components/layout';
 import { GenericHeader } from '../components/GenericHeader';
 import { PeopleTemplate } from '../components/People';
+import { EventsTemplate } from '../components/Events';
 
 export default function ProjectPage({ data }) {
   const pageData = data.contentfulGenericPage;
@@ -19,6 +20,10 @@ export default function ProjectPage({ data }) {
 
         {pageData.title === "People" && (
           <PeopleTemplate />
+        )}
+
+        {pageData.title === "OSHWA Events" && (
+          <EventsTemplate />
         )}
       </>
     </Layout>

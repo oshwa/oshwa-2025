@@ -1,0 +1,6 @@
+.event-container {
+  .event-title {
+    @include typography-body-4;
+    font-weight: $bold;
+  }
+}
