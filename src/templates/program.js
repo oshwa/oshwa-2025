@@ -12,7 +12,7 @@ const Programs = ({ data }) => {
       <GenericHeader
         title={pageData.title}
         description={pageData.shortDescription.shortDescription}
-        headerImageUrl={pageData.headerImage.url}
+        headerImageUrl={pageData.headerImage.gatsbyImageData.images.fallback.src}
       />
       <GridCards
         items={pageData.programYears}
@@ -37,6 +37,7 @@ export const query = graphql`
       }
       headerImage {
         url
+        gatsbyImageData
       }
     }
   }
