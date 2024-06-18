@@ -151,7 +151,7 @@ export const query = graphql`
       works {
         id
         title
-        resourceType
+
       }
     }
   }

@@ -50,7 +50,7 @@ const options = {
 }
 
 const RichText = ({ content }) => {
-  
+  console.log(content,'content')
   return <div className="richtext-content">{renderRichText(content, options)}</div>
 };
 
