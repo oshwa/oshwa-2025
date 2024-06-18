@@ -3,6 +3,7 @@ import { Link, graphql } from 'gatsby';
 import Layout from '../components/layout';
 import { NotchedButtonLink } from '../components/Link';
 import { Video } from '../components/Video';
+import RichText from '../components/RichText';
 
 export default function ProfilePage({ data }) {
   const profile = data.contentfulPeople;
@@ -22,17 +23,17 @@ export default function ProfilePage({ data }) {
                 ></div>
               )}
               <div className="links-container">
-                {profile.buttonUrl && (
+                {profile.externalUrl && (
                   <NotchedButtonLink
-                    text={profile.buttonText}
-                    location={profile.buttonUrl}
+                    text={profile.externalUrlTitle}
+                    location={profile.externalUrl}
                     external={true}
                   />
                 )}
-                {profile.twitter && (
+                {profile.socialUrl && (
                   <NotchedButtonLink
-                    text="Twitter"
-                    location={profile.twitter}
+                    text={profile.socialUrlTitle}
+                    location={profile.socialUrl}
                     external={true}
                   />
                 )}
@@ -48,23 +49,13 @@ export default function ProfilePage({ data }) {
 
             <div className="profile col-span-1 md:col-span-1 lg:col-span-7 lg:col-start-5 notched">
               <div className="profile-info">
-                <p className="profile__type">OSHWA {profile.type}</p>
+                <p className="profile__type">{profile.type}</p>
                 <h1 className="generic-heading-1">{profile.displayName}</h1>
                 <p className="profile__title">{profile.title}</p>
               </div>
-              <p className="py-8">
-                Ad ea duis aliquip do irure. Reprehenderit sit qui culpa laboris
-                tempor sit mollit sint exercitation proident culpa minim Lorem
-                id. Dolore velit sit sunt deserunt duis. Laboris eu irure
-                cupidatat minim eu anim. Tempor excepteur sit nulla quis commodo
-                do anim non aliquip ea in magna reprehenderit consectetur. Magna
-                est officia duis consequat esse tempor velit aute ad laborum
-                consectetur eu mollit occaecat. Excepteur ipsum ut ea ipsum
-                excepteur cupidatat ea nisi occaecat Lorem eu. Qui occaecat qui
-                do incididunt non amet do deserunt reprehenderit. Aute minim
-                elit elit veniam anim elit do enim anim consectetur labore
-                eiusmod.
-              </p>
+              <div className="py-8">
+                <RichText content={profile.bio} />
+              </div>
             </div>
           </div>
           {profile.video && (
@@ -98,11 +89,11 @@ export default function ProfilePage({ data }) {
           </div>
         )}
 
-        {!!certifications.edges.length && (
+        {/* {!!certifications.edges.length && (
           <div className="p-10 pt-0 pb-5">
             <h2 className="generic-heading-2 py-8">Certifications</h2>
             <div className="grid lg:grid-cols-4 md:grid-cols-4 gap-5">
-              {/* {certifications &&
+              {certifications &&
                 certifications.edges.map(project => {
                   console.log(project);
                   return (
@@ -119,10 +110,10 @@ export default function ProfilePage({ data }) {
                       </div>
                     </Link>
                   );
-                })} */}
+                })}
             </div>
           </div>
-        )}
+        )} */}
       </>
     </Layout>
   );
@@ -131,15 +122,28 @@ export default function ProfilePage({ data }) {
 export const query = graphql`
   query ($id: String!) {
     contentfulPeople(id: { eq: $id }) {
+      id
+      prettyUrl
+      firstName
+      lastName
       displayName
+      title
+      affiliation
+      type
       image {
         url
+      }
+      bio {
+        raw
+      }
+      relatedResources {
         title
       }
-      title
-      type
       externalUrl
       externalUrlTitle
+      socialUrl
+      socialUrlTitle
+      videoSectionTitle
     }
     allOshwaCertifications {
       edges {

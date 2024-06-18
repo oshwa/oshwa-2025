@@ -10,10 +10,10 @@ export const MainNavA = ({ handleClick, active }) => {
       <Link className="home-icon" to="/" aria-label="home">
         <span className="material-icons">home</span>
       </Link>
-      <Link className="nav-link" to="/people">
-        People
+      <Link className="nav-link" to="/team">
+        Team
       </Link>
-      <Link className="nav-link" to="/people/alicia-seidle/">
+      <Link className="nav-link" to="/team/alicia-seidle/">
         Individual People
       </Link>
       <Link className="nav-link" to="/programs">
