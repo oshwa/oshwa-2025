@@ -50,7 +50,7 @@ export const EventsTemplate = () => {
             return (
               <Link
                 key={event.node.fields.slug}
-                className="lg:col-span-1 md:col-span-2 lg:mr-5 md:mr-5 notched notched--border section-card"
+                className="lg:col-span-1 md:col-span-2 lg:mr-5 md:mr-5 notched notched--border notched--border--hover section-card"
                 to={`/events/${event.node.fields.slug}`}
               >
                 <div className="event-container">
@@ -101,7 +101,7 @@ export const EventsTemplate = () => {
             return (
               <Link
                 key={event.node.fields.slug}
-                className="lg:col-span-1 md:col-span-2 lg:mr-5 md:mr-5 notched notched--border section-card"
+                className="lg:col-span-1 md:col-span-2 lg:mr-5 md:mr-5 notched notched--border notched--border--hover section-card"
                 to={`/events/${event.node.fields.slug}`}
               >
                 <div className="event-container">

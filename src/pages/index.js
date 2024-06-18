@@ -32,12 +32,12 @@ const IndexPage = () => {
                   className="main-logo"
                   src="../images/lockup-color.svg"
                   alt="Temp Oshwa Logo"
-                  placeholder='none'
+                  placeholder="none"
                 />
                 <ArrowLink text="About OSHWA" location="/about" />
               </div>
             </div>
-            <div className="lg:col-span-2 md:col-span-2 h-full notched notched--border notched--border--hover featured-box xs:col-span-3 sm:col-span-3 xs:mt-5">
+            <div className="lg:col-span-2 md:col-span-2 h-full notched notched--border notched--border--hover-x featured-box xs:col-span-3 sm:col-span-3 xs:mt-5">
               <div className="featured-box__header">
                 {/* <p className="featured-box__date">
                   {data.contentfulIndex.featuredResearch.publicationDate}
@@ -83,20 +83,20 @@ const IndexPage = () => {
         <div className="p-10 pt-0 pb-5">
           <div className="grid lg:grid-cols-4 md:grid-cols-4">
             <Link to="/programs">
-              <div className="section-card lg:col-span-1 md:col-span-2 lg:mr-5 md:mr-5 mb-5 md:mb-0 notched notched--bg notched--bg--hover green">
+              <div className="section-card lg:col-span-1 md:col-span-2 lg:mr-5 md:mr-5 mb-5 md:mb-0 notched notched--bg notched--bg--hover-x green">
                 <h3 className="section-card__title">Programs</h3>
                 <>
                   <StaticImage
                     className="section-card__image image-theme--dark"
                     src="../images/icon-programs.svg"
                     alt="Temp Oshwa Logo"
-                    placeholder='none'
+                    placeholder="none"
                   />
                   <StaticImage
                     className="section-card__image image-theme--light"
                     src="../images/icon-programs-white.svg"
                     alt="Temp Oshwa Logo"
-                    placeholder='none'
+                    placeholder="none"
                   />
                 </>
               </div>
@@ -105,10 +105,16 @@ const IndexPage = () => {
               <div className="section-card lg:col-span-1 md:col-span-2 lg:mr-5 md:mr-5 mb-5 md:mb-0 notched notched--bg blue">
                 <h3 className="section-card__title">Resources</h3>
                 <StaticImage
-                  className="section-card__image"
+                  className="section-card__image image-theme--dark"
                   src="../images/icon-resources.svg"
                   alt="Temp Oshwa Logo"
-                  placeholder='none'
+                  placeholder="none"
+                />
+                <StaticImage
+                  className="section-card__image image-theme--light"
+                  src="../images/icon-resources-white.svg"
+                  alt="Temp Oshwa Logo"
+                  placeholder="none"
                 />
               </div>
             </Link>
@@ -116,10 +122,16 @@ const IndexPage = () => {
               <div className="section-card lg:col-span-1 md:col-span-2 lg:mr-5 md:mr-5 mb-5 md:mb-0 notched notched--bg red">
                 <h3 className="section-card__title">Events</h3>
                 <StaticImage
-                  className="section-card__image"
+                  className="section-card__image image-theme--dark"
                   src="../images/icon-events.svg"
                   alt="Temp Oshwa Logo"
-                  placeholder='none'
+                  placeholder="none"
+                />
+                <StaticImage
+                  className="section-card__image image-theme--light"
+                  src="../images/icon-events-white.svg"
+                  alt="Temp Oshwa Logo"
+                  placeholder="none"
                 />
               </div>
             </Link>
@@ -127,10 +139,16 @@ const IndexPage = () => {
               <div className="section-card lg:col-span-1 md:col-span-2 notched notched--bg orange">
                 <h3 className="section-card__title">Community</h3>
                 <StaticImage
-                  className="section-card__image"
+                  className="section-card__image image-theme--dark"
                   src="../images/icon-community.svg"
                   alt="Temp Oshwa Logo"
-                  placeholder='none'
+                  placeholder="none"
+                />
+                <StaticImage
+                  className="section-card__image image-theme--light"
+                  src="../images/icon-community-white.svg"
+                  alt="Temp Oshwa Logo"
+                  placeholder="none"
                 />
               </div>
             </Link>

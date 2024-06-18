@@ -11,15 +11,15 @@ const Footer = () => {
           <div className="footer__logo-wrapper flex lg:justify-start md:justify-start sm:justify-center xs:justify-center my-8">
             <StaticImage
               className="footer__logo image-theme--dark"
-              src='../images/lockup-white.svg'
+              src="../images/lockup-white.svg"
               alt="Oshwa Logo"
-              placeholder='none'
+              placeholder="none"
             />
             <StaticImage
               className="footer__logo image-theme--light"
-              src='../images/lockup-black.svg'
+              src="../images/lockup-black.svg"
               alt="Oshwa Logo"
-              placeholder='none'
+              placeholder="none"
             />
           </div>
         </div>
@@ -31,7 +31,7 @@ const Footer = () => {
           <fieldset className="signup-submit-wrapper notched notched--border my-4">
             <input
               type="email"
-              // placeholder="Email Address"
+              placeholder="Enter your email address"
               className="signup-input"
             />
           </fieldset>
