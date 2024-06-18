@@ -6,6 +6,7 @@ import { PersonContainer } from '../components/PersonContainer';
 import GridCards from '../components/GridCards';
 import { GatsbyImage, getImage } from 'gatsby-plugin-image';
 import { NotchedButtonLink } from '../components/Link';
+import MarkdownText from '../components/MarkdownText';
 
 const ProgramYear = ({ data }) => {
   const pageData = data.contentfulProgramYear;
@@ -44,7 +45,7 @@ const ProgramYear = ({ data }) => {
         </div>
       )}
 
-      {pageData.featuredWork && (
+      {pageData.featuredWork != null && (
         <div className="p-10 pt-0 pb-5 featured-work">
           <div className="grid grid-cols-1 md:grid-cols-1 lg:grid-cols-12">
             <div className="col-span-1 md:col-span-1 lg:col-span-3 featured-work__img">
@@ -57,7 +58,7 @@ const ProgramYear = ({ data }) => {
             <div className="col-span-1 md:col-span-1 lg:col-span-7 lg:col-start-5">
               <h3>{pageData.featuredWork.title}</h3>
               <h4>{pageData.featuredWork.subtitle}</h4>
-              {/* <p>{pageData.featuredWork.shortDescription.shortDescription}</p> */}
+              <MarkdownText content={pageData.featuredWork.shortDescription.childrenMarkdownRemark[0].html} />
             </div>
           </div>
         </div>
@@ -145,7 +146,9 @@ export const query = graphql`
         title
         subtitle
         shortDescription {
-          shortDescription
+          childrenMarkdownRemark {
+            html
+          }
         }
         resourceImage {
           gatsbyImage(width: 600)
