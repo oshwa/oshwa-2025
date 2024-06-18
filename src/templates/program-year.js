@@ -11,7 +11,7 @@ const ProgramYear = ({ data }) => {
   const pageData = data.contentfulProgramYear;
   const description = (pageData.shortDescription === null) ? '' : pageData.shortDescription.shortDescription;
   const image = (pageData.headerImage === null) ? '' : pageData.headerImage.url;
-  const program = (pageData.program[0] === null) ? '' : pageData.program[0].title;
+  // const program = (pageData.program[0] === null) ? '' : pageData.program[0].title;
 
   return (
     <Layout>
@@ -19,7 +19,7 @@ const ProgramYear = ({ data }) => {
         title={pageData.title}
         description={description}
         headerImageUrl={image}
-        program={program}
+        program={"program"}
       />
       {pageData.fellows && (
         <div className="p-10 pt-0 pb-5">
