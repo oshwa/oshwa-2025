@@ -23,6 +23,7 @@ export default function BlogPost({ data }) {
                   {blogPost.fullAuthor.fullAuthor}
                 </p>
               )}
+              
               {blogPost.body && (
                 <RichText content={blogPost.body} />
               )}

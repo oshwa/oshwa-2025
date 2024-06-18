@@ -98,7 +98,7 @@ export default function GlobalResourcePage({ data, location }) {
           <div className="grid lg:grid-cols-6 md:grid-cols-6 resource-body">
             <div className="col-span-3">
               {translatedContent.body && (
-                <RichText content={translatedContent.body.raw} />
+                <RichText content={translatedContent.body} />
               )}
             </div>
             {translatedContent.buttonUrl && (

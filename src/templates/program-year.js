@@ -150,7 +150,7 @@ export const query = graphql`
       worksSectionTitle
       works {
         id
-        title
+        resourceTitle
         resourceType
       }
     }
