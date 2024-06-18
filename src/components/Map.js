@@ -181,7 +181,7 @@ const Map = () => {
     .map(shape => {
       const color = getColor(certificationStats[shape.properties.ADMIN]);
       const country = shape.properties.ADMIN;
-      console.log(shape.properties)
+      
       const count = certificationStats[shape.properties.ADMIN] || 'N/A';
 
       return (
