@@ -13,6 +13,9 @@ const ProgramsPage = () => {
             title
             shortDescription {
               shortDescription
+              childrenMarkdownRemark {
+                html
+              }
             }
             programs {
               id
@@ -31,7 +34,7 @@ const ProgramsPage = () => {
     <Layout>
       <GenericHeader
         title={pageData.title}
-        description={pageData.shortDescription.shortDescription}
+        description={pageData.shortDescription.childrenMarkdownRemark[0].html}
         headerImageUrl={'https://placehold.jp/800x500.png'}
       />
       <GridCards
