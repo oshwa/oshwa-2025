@@ -303,15 +303,12 @@ exports.createPages = async ({ graphql, actions }) => {
     `);
 
   allGenericPages.data.allContentfulGenericPage.edges.forEach(edge => {
-    let url = edge.node.prettyUrl;
-    if (edge.node.title === `OSHWA Events`) url = `events`;
-
     createPage({
-      path: `${url}`,
+      path: `${edge.node.prettyUrl}`,
       component: genericPageTemplate,
       context: {
         id: edge.node.id,
-        prettyUrl: url,
+        prettyUrl: edge.node.prettyUrl,
         title: edge.node.title,
       },
     });
@@ -326,15 +323,6 @@ exports.createPages = async ({ graphql, actions }) => {
             id
             title
             prettyUrl
-            shortDescription {
-              shortDescription
-            }
-            headerImage {
-              url
-            }
-            programYears {
-              title
-            }
           }
         }
       }
@@ -357,20 +345,9 @@ exports.createPages = async ({ graphql, actions }) => {
     query allProgramYearsQuery {
       allContentfulProgramYear {
         edges {
-          node{
+          node {
             id
             title
-            program {
-              id
-              title
-              prettyUrl
-            }
-            shortDescription {
-              shortDescription
-            }
-            headerImage {
-              url
-            }
             fields {
               slugProgram
             }

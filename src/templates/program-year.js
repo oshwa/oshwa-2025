@@ -112,9 +112,6 @@ export const query = graphql`
         prettyUrl
       }
       shortDescription {
-        internal {
-          content
-        }
         childrenMarkdownRemark {
            html
         }
