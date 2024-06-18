@@ -34,6 +34,7 @@ const GridCards = ({ items, listType }) => {
                   {
                     (listType === "resources" || listType === "resources-ref") &&
                     <>
+                    <p className="title">{item.resourceTitle}</p>
                     <p className="type">{item.resourceType}</p>
                     <p className="type">{item.resourceAudience} test</p>
                     </>
