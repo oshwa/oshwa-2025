@@ -8,6 +8,7 @@ import RichText from '../components/RichText';
 export default function ProfilePage({ data }) {
   const profile = data.contentfulPeople;
   const certifications = data.allOshwaCertifications;
+  const videoUrl = profile.video ? `https://www.youtube.com/embed/${profile.video.youTubeId}` : '';
   // console.log("certifications", certifications);
 
   return (
@@ -40,7 +41,7 @@ export default function ProfilePage({ data }) {
                 {profile.video && (
                   <Video
                     title={profile.video.videoTitle}
-                    url={profile.video.videoUrl}
+                    url={videoUrl}
                     size="large"
                   />
                 )}
@@ -61,7 +62,7 @@ export default function ProfilePage({ data }) {
           {profile.video && (
             <Video
               title={profile.video.videoTitle}
-              url={profile.video.videoUrl}
+              url={videoUrl}
               size="medium-small"
             />
           )}
@@ -144,6 +145,11 @@ export const query = graphql`
       socialUrl
       socialUrlTitle
       videoSectionTitle
+      video {
+        id
+        resourceTitle
+        youTubeId
+      }
     }
     allOshwaCertifications {
       edges {
