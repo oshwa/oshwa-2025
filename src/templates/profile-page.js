@@ -55,7 +55,7 @@ export default function ProfilePage({ data }) {
                 <p className="profile__title">{profile.title}</p>
               </div>
               <div className="py-8">
-                <RichText content={profile.bio} />
+                { profile.bio && <RichText content={profile.bio} />}
               </div>
             </div>
           </div>
