@@ -13,7 +13,7 @@ const GridCards = ({ items, listType }) => {
                 // item.prettyUrl && (
                 <Link
                   key={item.prettyUrl}
-                  to={listType === "resources" ? `/resources/${item.prettyUrl}` : `/blog-post/${item.prettyUrl}`}
+                  to={listType === "resources" ? `/resources/${item.prettyUrl}` : `/resources/${item.prettyUrl}`}
                   className="lg:col-span-1 notched notched--border notched--border--hover list-item"
                 >
                   <div>

@@ -29,7 +29,7 @@ const ProgramYear = ({ data }) => {
                 <Link
                   key={fellow.id}
                   className="lg:col-span-1 md:col-span-2 lg:mr-5 md:mr-5 notched notched--border"
-                  to={`/people/${fellow.prettyUrl}`}
+                  to={`/team/${fellow.prettyUrl}`}
                 >
                   <PersonContainer
                     name={fellow.displayName}
@@ -79,7 +79,7 @@ const ProgramYear = ({ data }) => {
                   <Link
                     key={mentor.id}
                     className="lg:col-span-1 md:col-span-2 lg:mr-5 md:mr-5 notched notched--border"
-                    to={`/people/${mentor.prettyUrl}`}
+                    to={`/team/${mentor.prettyUrl}`}
                   >
                     <PersonContainer
                       name={mentor.displayName}
@@ -150,6 +150,7 @@ export const query = graphql`
       worksSectionTitle
       works {
         id
+        prettyUrl
         resourceTitle
         resourceType
       }
