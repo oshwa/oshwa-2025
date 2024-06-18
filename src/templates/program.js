@@ -16,7 +16,7 @@ const Programs = ({ data }) => {
       />
       <GridCards
         items={pageData.programYears}
-        pageLocation="programs/years"
+        pageLocation={`programs/${pageData.programYears[0].fields.slugProgram}`}
       />
     </Layout>
   )
@@ -34,6 +34,9 @@ export const query = graphql`
       }
       programYears {
         title
+        fields {
+          slugProgram
+        }
       }
       headerImage {
         url

@@ -76,6 +76,16 @@ exports.onCreateNode = ({ node, actions }) => {
       value: slug,
     })
   }
+
+  if (node.internal.type === `ContentfulProgramYear`) {
+    const slug = _.kebabCase(node.program);
+
+    createNodeField({
+      node,
+      name: `slugProgram`,
+      value: slug,
+    })
+  }
 }
 
 exports.createPages = async ({ graphql, actions }) => {
@@ -361,6 +371,9 @@ exports.createPages = async ({ graphql, actions }) => {
             headerImage {
               url
             }
+            fields {
+              slugProgram
+            }
           }
         }
       }
@@ -369,7 +382,7 @@ exports.createPages = async ({ graphql, actions }) => {
 
   allProgramYears.data.allContentfulProgramYear.edges.forEach(edge => {
     createPage({
-      path: `programs/years/${edge.node.title}`,
+      path: `programs/${edge.node.fields.slugProgram}/${edge.node.title}`,
       component: programYearPageTemplate,
       context: {
         id: edge.node.id,
