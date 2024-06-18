@@ -5,6 +5,7 @@ import Layout from '../components/layout';
 import { GenericHeader } from '../components/GenericHeader';
 import { PeopleTemplate } from '../components/People';
 import { EventsTemplate } from '../components/Events';
+import MarkdownText from '../components/MarkdownText';
 
 export default function ProjectPage({ data }) {
   const pageData = data.contentfulGenericPage;
@@ -18,12 +19,27 @@ export default function ProjectPage({ data }) {
           headerImageUrl={pageData.headerImage.url}
         />
 
-        {pageData.title === "People" && (
+        {pageData.title === "Team" && (
           <PeopleTemplate />
         )}
 
-        {pageData.title === "OSHWA Events" && (
+        {pageData.title === "Events" && (
           <EventsTemplate />
+        )}
+
+        {(pageData.title !== "Events" || pageData.title !== "Team") && (
+          <div className="grid lg:grid-cols-6 md:grid-cols-6 resource-header">
+            <div className="resource-header__title-wrapper col-span-3">
+
+              {pageData.body && (
+                <MarkdownText content={pageData.body.internal.content} />
+              )}
+
+            </div>
+            <div className="resource-header__image col-span-2 col-start-5">
+              side column
+            </div>
+          </div>
         )}
       </>
     </Layout>
@@ -41,6 +57,11 @@ export const query = graphql`
       }
       headerImage {
         url
+      }
+      body {
+        internal {
+          content
+        }
       }
     }
   }

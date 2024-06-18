@@ -236,7 +236,7 @@ exports.createPages = async ({ graphql, actions }) => {
 
   allPeople.data.allContentfulPeople.edges.forEach(edge => {
     createPage({
-      path: `people/${edge.node.prettyUrl}`,
+      path: `team/${edge.node.prettyUrl}`,
       component: profilePageTemplate,
       context: {
         id: edge.node.id,
