@@ -27,6 +27,12 @@ export const MainNavA = ({ handleClick, active }) => {
       </Link>
       <Link
         className="nav-link"
+        to="/programs/open-hardware-creators-in-academia/2022-2023/"
+      >
+        Summit Fellows
+      </Link>
+      <Link
+        className="nav-link"
         to="/programs/open-hardware-creators-in-acadamia-fellows/"
       >
         OHCA Fellows Page
@@ -35,7 +41,7 @@ export const MainNavA = ({ handleClick, active }) => {
         Individual OHCA Fellows Page
       </Link>
 
-      <Link className="nav-link" to="/people/carlotta-berry/">
+      <Link className="nav-link" to="/team/carlotta-berry/">
         Individual Fellow
       </Link>
 

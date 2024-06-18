@@ -6,6 +6,7 @@ import GridCards from '../components/GridCardsB';
 
 const Programs = ({ data }) => {
   const pageData = data.contentfulProgram;
+  console.log(pageData.programYears)
 
   return (
     <Layout>
