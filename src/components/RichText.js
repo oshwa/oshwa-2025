@@ -15,13 +15,16 @@ const options = {
   },
   renderNode: {
     [BLOCKS.HEADING_2]: (node, children) => {
-      return <h2 className='heading-h2' id={slugify(children[0], { lower: true })}>{children}</h2>
+      // return <h2 className='heading-h2' id={slugify(children[0], { lower: true })}>{children}</h2>
+      return <h2 className='heading-h2'>{children}</h2>
     },
     [BLOCKS.HEADING_3]: (node, children) => {
-      return <h3 className='heading-h3' id={slugify(children[0], { lower: true })}>{children}</h3>
+      // return <h3 className='heading-h3' id={slugify(children[0], { lower: true })}>{children}</h3>
+      return <h3 className='heading-h3'>{children}</h3>
     },
     [BLOCKS.HEADING_4]: (node, children) => {
-      return <h4 className='heading-h4' id={slugify(children[0], { lower: true })}>{children}</h4>
+      // return <h4 className='heading-h4' id={slugify(children[0], { lower: true })}>{children}</h4>
+      return <h4 className='heading-h4'>{children}</h4>
     },
     [BLOCKS.PARAGRAPH]: (node, children) => <Text>{children}</Text>,
     [BLOCKS.EMBEDDED_ASSET]: node => {
