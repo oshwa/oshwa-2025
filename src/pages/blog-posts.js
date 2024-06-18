@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Layout from '../components/layout';
+import { Link } from 'gatsby';
+import dayjs from 'dayjs';
 import { FilterBar } from '../components/FilterBar';
 import GridCards from '../components/GridCards';
 const sessionsName = 'blog-post-filters';
@@ -93,7 +95,32 @@ const SearchBlogPosts = ({ location }) => {
             handleSearchQuery={handleSearchQuery}
             listType="blog-post"
           />
-          <GridCards items={results} listType="blog-post" />
+          
+
+          <div className={`p-10 pt-0 pb-5 list`}>
+            <div className="grid lg:grid-cols-4 md:grid-cols-3 gap-5">
+              {results &&
+                results.map(
+                  result => (
+                    // item.prettyUrl && (
+                    <Link
+                      key={result.prettyUrl}
+                      to={`/blog-posts/${result.prettyUrl}`}
+                      className="lg:col-span-1 notched notched--border notched--border--hover list-item"
+                    >
+                      <div>
+                        <p className="publicationDate publicationDate--blog">
+                          {dayjs(result.date).format('MMMM D, YYYY')}
+                        </p>
+
+                        <p className="title"> {result.title}</p>
+                      </div>
+                    </Link>
+                  )
+                  // )
+                )}
+            </div>
+          </div>
         </>
       </Layout>
     </>
