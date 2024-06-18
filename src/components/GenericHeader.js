@@ -1,4 +1,5 @@
 import React from 'react';
+import MarkdownText from './MarkdownText';
 
 export const GenericHeader = ({ title, description, headerImageUrl, program, location }) => {
   return (
@@ -11,7 +12,7 @@ export const GenericHeader = ({ title, description, headerImageUrl, program, loc
           )}
           <h1 className="generic-heading-1">{title}</h1>
           {description && (
-            <p>{description}</p>
+            <MarkdownText content={description} />
           )}
           {location && (
             <p className="location">{location}</p>

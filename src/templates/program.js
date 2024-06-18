@@ -12,7 +12,7 @@ const Programs = ({ data }) => {
     <Layout>
       <GenericHeader
         title={pageData.title}
-        description={pageData.shortDescription.shortDescription}
+        description={pageData.shortDescription.childrenMarkdownRemark[0].html}
         headerImageUrl={pageData.headerImage.gatsbyImageData.images.fallback.src}
       />
       <GridCards
@@ -32,6 +32,9 @@ export const query = graphql`
       title
       shortDescription {
         shortDescription
+         childrenMarkdownRemark {
+          html
+        }
       }
       programYears {
         title
