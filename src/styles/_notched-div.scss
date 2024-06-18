@@ -64,8 +64,10 @@
 
     &--hover {
       &:hover {
-        background-color: white;
-        color: black;
+        // background-color: white;
+        // color: var(---);
+        background-color: var(--theme-on-surface);
+        color: var($--theme-background);
         --notchSize: 10px;
 
         clip-path:
