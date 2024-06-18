@@ -10,8 +10,8 @@ import { NotchedButtonLink } from '../components/Link';
 const ProgramYear = ({ data }) => {
   const pageData = data.contentfulProgramYear;
   const image = (pageData.headerImage === null) ? '' : pageData.headerImage.url;
-  const description = pageData.shortDescription ? pageData.shortDescription.childrenMarkdownRemark[0].html : '';
-  const program = pageData.program ? pageData.program[0].title : '';
+  const description = pageData.shortDescription != null ? pageData.shortDescription.childrenMarkdownRemark[0].html : '';
+  const program = pageData.program != null ? pageData.program[0].title : '';
 
   return (
     <Layout>
