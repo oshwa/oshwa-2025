@@ -1,6 +1,6 @@
 import React from 'react';
 import { graphql } from 'gatsby';
-import { GatsbyImage, getImage } from 'gatsby-plugin-image';
+
 import Layout from '../components/layout';
 import RichText from '../components/RichText';
 import { SidebarGallery } from '../components/SidebarGallery';
