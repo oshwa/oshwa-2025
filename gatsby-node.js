@@ -119,26 +119,6 @@ exports.createPages = async ({ graphql, actions }) => {
             id
             prettyUrl
             resourceTitle
-            resourceType
-            resourceDate
-            resourceAudience
-            namedAuthors {
-              id
-              namedAuthors
-            }
-            translatedResources {
-              id
-              title
-              language
-              languageDisplay
-              body {
-                raw
-              }
-              shortDescription {
-                id
-                shortDescription
-              }
-            }
           }
         }
       }
