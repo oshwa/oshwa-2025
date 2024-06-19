@@ -3,6 +3,7 @@ import { renderRichText } from 'gatsby-source-contentful/rich-text';
 import { BLOCKS, MARKS } from '@contentful/rich-text-types';
 import { GatsbyImage, getImage } from 'gatsby-plugin-image';
 import slugify from 'slugify';
+import MarkdownText from './MarkdownText';
 
 const Text = ({ children }) => <p className="">{children}</p>
 const Bold = ({ children }) => <span className="font-bold">{children}</span>
@@ -45,7 +46,9 @@ const options = {
             image={getImage(node.data.target.image)}
             alt={node.data.target.title}
           />
-          <p className="figure-caption">{node.data.target.caption.caption}</p>
+          <p className="figure-caption">
+            <MarkdownText content={node.data.target.caption.childMarkdownRemark.html} />
+          </p>
         </div>
       )
     },
@@ -53,7 +56,7 @@ const options = {
 }
 
 const RichText = ({ content }) => {
-  console.log(content,'content')
+  console.log(content, 'content')
   return <div className="richtext-content">{renderRichText(content, options)}</div>
 };
 

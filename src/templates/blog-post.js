@@ -19,9 +19,9 @@ export default function BlogPost({ data }) {
                 {dayjs(blogPost.publicationDate).format('MMMM D, YYYY')}
               </p>
               <h1 className="resource-header__title">{blogPost.title}</h1>
-              {blogPost.fullAuthor && (
+              {blogPost.oshwaAuthor && (
                 <p className="resource-header__named_authors">
-                  {blogPost.fullAuthor.fullAuthor}
+                  {blogPost.oshwaAuthor.displayName}
                 </p>
               )}
 
@@ -53,6 +53,9 @@ export const query = graphql`
         description
         gatsbyImage(width: 600)
       }
+      oshwaAuthor {
+        displayName
+      }
       body {
         raw
         references {
@@ -67,6 +70,9 @@ export const query = graphql`
             }
             caption {
               caption
+              childMarkdownRemark {
+                html
+              }
             }
             sys {
               contentType {

@@ -17,7 +17,7 @@ export default function ProjectPage({ data }) {
       <>
         <GenericHeader
           title={pageData.title}
-          description={pageData.shortDescription.childrenMarkdownRemark[0].html}
+          description={pageData.shortDescription.childMarkdownRemark.html}
           headerImageUrl={pageData.headerImage.url}
         />
 
@@ -34,7 +34,7 @@ export default function ProjectPage({ data }) {
             <div className="grid grid-cols-8 lg:grid-cols-6">
               <div className="col-span-10 lg:col-span-3">
                 {pageData.body && (
-                  <MarkdownText content={pageData.body.childrenMarkdownRemark[0].html} />
+                  <MarkdownText content={pageData.body.childMarkdownRemark.html} />
                 )}
               </div>
 
@@ -56,7 +56,7 @@ export const query = graphql`
       prettyUrl
       title
       shortDescription {
-        childrenMarkdownRemark {
+        childMarkdownRemark {
            html
         }
       }
@@ -64,7 +64,7 @@ export const query = graphql`
         url
       }
       body {
-        childrenMarkdownRemark {
+        childMarkdownRemark {
            html
         }
       }

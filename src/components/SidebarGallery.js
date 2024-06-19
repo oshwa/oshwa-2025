@@ -1,7 +1,7 @@
 import React from 'react';
 import { GatsbyImage, getImage } from 'gatsby-plugin-image';
 
-export const SidebarGallery = ({ sidebarImageData, title }) => {
+export const SidebarGallery = ({ sidebarImageData }) => {
   return (
     <div className="col-span-8 lg:col-span-2 lg:col-start-5 sidebar-image">
       {sidebarImageData.map(sidebarImage => {
