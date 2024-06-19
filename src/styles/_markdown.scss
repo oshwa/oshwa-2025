@@ -31,6 +31,17 @@
   a {
     border-bottom: 1px dotted;
   }
+
+  ul,
+  ol {
+    @include typography-body-3;
+    padding: 1rem 0 0 1.5rem;
+
+    li {
+      list-style-type: square;
+      padding-bottom: 1rem;
+    }
+  }
 }
 
 .richtext-content {
