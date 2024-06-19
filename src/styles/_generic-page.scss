@@ -1,0 +1,18 @@
+.generic-container {
+  margin-top: 2rem;
+
+  .sidebar-image {
+    @include breakpoint ($medium-only) {
+      margin-top: 2rem;
+    }
+
+    &__container {
+      margin-bottom: 1rem;
+    }
+
+    &__description {
+      font-style: italic;
+      padding-top: 5px;
+    }
+  }
+}
