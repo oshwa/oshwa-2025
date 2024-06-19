@@ -7,6 +7,7 @@ import { GenericHeader } from '../components/GenericHeader';
 import { PeopleTemplate } from '../components/People';
 import { EventsTemplate } from '../components/Events';
 import MarkdownText from '../components/MarkdownText';
+import { SidebarGallery } from '../components/SidebarGallery';
 
 export default function ProjectPage({ data }) {
   const pageData = data.contentfulGenericPage;
@@ -16,7 +17,7 @@ export default function ProjectPage({ data }) {
       <>
         <GenericHeader
           title={pageData.title}
-          description={pageData.shortDescription.childrenMarkdownRemark[0].html}
+          description={pageData.shortDescription.childMarkdownRemark.html}
           headerImageUrl={pageData.headerImage.url}
         />
 
@@ -33,27 +34,12 @@ export default function ProjectPage({ data }) {
             <div className="grid grid-cols-8 lg:grid-cols-6">
               <div className="col-span-10 lg:col-span-3">
                 {pageData.body && (
-                  <MarkdownText content={pageData.body.childrenMarkdownRemark[0].html} />
+                  <MarkdownText content={pageData.body.childMarkdownRemark.html} />
                 )}
               </div>
 
               {pageData.sidebarGallery && (
-                <div className="col-span-8 lg:col-span-2 lg:col-start-5 sidebar-image">
-                  {pageData.sidebarGallery.map(sidebarImage => {
-                    return (
-                      <div
-                        key={sidebarImage.id}
-                        className="sidebar-image__container"
-                      >
-                        <GatsbyImage
-                          image={getImage(sidebarImage)}
-                          alt="sidebar image"
-                        />
-                        <p className="sidebar-image__description">{sidebarImage.description}</p>
-                      </div>
-                    )
-                  })}
-                </div>
+                <SidebarGallery sidebarImageData={pageData.sidebarGallery} />
               )}
             </div>
           </div>
@@ -70,7 +56,7 @@ export const query = graphql`
       prettyUrl
       title
       shortDescription {
-        childrenMarkdownRemark {
+        childMarkdownRemark {
            html
         }
       }
@@ -78,13 +64,14 @@ export const query = graphql`
         url
       }
       body {
-        childrenMarkdownRemark {
+        childMarkdownRemark {
            html
         }
       }
       sidebarGallery {
         id
         url
+        title
         description
         gatsbyImage(width: 600)
       }
