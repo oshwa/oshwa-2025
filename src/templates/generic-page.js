@@ -7,6 +7,7 @@ import { GenericHeader } from '../components/GenericHeader';
 import { PeopleTemplate } from '../components/People';
 import { EventsTemplate } from '../components/Events';
 import MarkdownText from '../components/MarkdownText';
+import { SidebarGallery } from '../components/SidebarGallery';
 
 export default function ProjectPage({ data }) {
   const pageData = data.contentfulGenericPage;
@@ -38,22 +39,7 @@ export default function ProjectPage({ data }) {
               </div>
 
               {pageData.sidebarGallery && (
-                <div className="col-span-8 lg:col-span-2 lg:col-start-5 sidebar-image">
-                  {pageData.sidebarGallery.map(sidebarImage => {
-                    return (
-                      <div
-                        key={sidebarImage.id}
-                        className="sidebar-image__container"
-                      >
-                        <GatsbyImage
-                          image={getImage(sidebarImage)}
-                          alt="sidebar image"
-                        />
-                        <p className="sidebar-image__description">{sidebarImage.description}</p>
-                      </div>
-                    )
-                  })}
-                </div>
+                <SidebarGallery sidebarImageData={pageData.sidebarGallery} />
               )}
             </div>
           </div>
@@ -85,6 +71,7 @@ export const query = graphql`
       sidebarGallery {
         id
         url
+        title
         description
         gatsbyImage(width: 600)
       }

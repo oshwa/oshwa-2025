@@ -1,8 +1,9 @@
 import React from 'react';
 import { graphql } from 'gatsby';
-// import { GatsbyImage, getImage } from 'gatsby-plugin-image';
+import { GatsbyImage, getImage } from 'gatsby-plugin-image';
 import Layout from '../components/layout';
 import RichText from '../components/RichText';
+import { SidebarGallery } from '../components/SidebarGallery';
 import dayjs from 'dayjs';
 
 export default function BlogPost({ data }) {
@@ -11,9 +12,9 @@ export default function BlogPost({ data }) {
   return (
     <Layout>
       <>
-        <div className="p-10 pt-0 pb-5">
-          <div className="grid lg:grid-cols-6 md:grid-cols-6 resource-header">
-            <div className="resource-header__title-wrapper col-span-3">
+        <div className="p-10 pt-0 pb-5 generic-container">
+          <div className="grid grid-cols-8 lg:grid-cols-6">
+            <div className="col-span-10 lg:col-span-3">
               <p className="resource-header__date">
                 {dayjs(blogPost.publicationDate).format('MMMM D, YYYY')}
               </p>
@@ -23,14 +24,15 @@ export default function BlogPost({ data }) {
                   {blogPost.fullAuthor.fullAuthor}
                 </p>
               )}
-              
+
               {blogPost.body && (
                 <RichText content={blogPost.body} />
               )}
             </div>
-            <div className="resource-header__image col-span-2 col-start-5">
-              side column
-            </div>
+
+            {blogPost.sidebarGallery && (
+              <SidebarGallery sidebarImageData={blogPost.sidebarGallery} />
+            )}
           </div>
         </div>
       </>
@@ -44,6 +46,13 @@ export const query = graphql`
       id
       title
       date
+      sidebarGallery {
+        id
+        url
+        title
+        description
+        gatsbyImage(width: 600)
+      }
       body {
         raw
         references {
