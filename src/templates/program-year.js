@@ -25,12 +25,12 @@ const ProgramYear = ({ data }) => {
       {pageData.fellows && (
         <div className="p-10 pt-0 pb-5">
           <h2 className="generic-heading-2 py-8">Fellows</h2>
-          <div className="grid lg:grid-cols-4 md:grid-cols-4">
+          <div className="grid lg:grid-cols-4 md:grid-cols-4 gap-5">
             {pageData.fellows.map(fellow => {
               return (
                 <Link
                   key={fellow.id}
-                  className="lg:col-span-1 md:col-span-2 lg:mr-5 md:mr-5 notched notched--border fellow-container"
+                  className="lg:col-span-1 md:col-span-2 notched notched--border fellow-container"
                   to={`/team/${fellow.prettyUrl}`}
                 >
                   <PersonContainer
@@ -75,12 +75,12 @@ const ProgramYear = ({ data }) => {
         pageData.mentors && (
           <div className="p-10 pt-0 pb-5">
             <h2 className="generic-heading-2 py-8">{pageData.mentorsSectionTitle}</h2>
-            <div className="grid lg:grid-cols-4 md:grid-cols-4">
+            <div className="grid lg:grid-cols-4 md:grid-cols-4 gap-5">
               {pageData.mentors.map(mentor => {
                 return (
                   <Link
                     key={mentor.id}
-                    className="lg:col-span-1 md:col-span-2 lg:mr-5 md:mr-5 notched notched--border"
+                    className="lg:col-span-1 md:col-span-2 notched notched--border"
                     to={`/team/${mentor.prettyUrl}`}
                   >
                     <PersonContainer
