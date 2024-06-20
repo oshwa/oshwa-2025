@@ -47,12 +47,12 @@ export const EventsTemplate = () => {
         {upcomingEvents.length > 0 && (
           <>
             <h2 className="generic-heading-2 py-8">Upcoming</h2>
-            <div className="grid lg:grid-cols-4 md:grid-cols-4">
+            <div className="grid lg:grid-cols-4 md:grid-cols-4 gap-5">
               {upcomingEvents.map(event => {
                 return (
                   <Link
                     key={event.node.fields.slug}
-                    className="lg:col-span-1 md:col-span-2 lg:mr-5 md:mr-5 notched notched--border notched--border--hover section-card"
+                    className="lg:col-span-1 md:col-span-2 notched notched--border notched--border--hover section-card"
                     to={`/events/${event.node.fields.slug}`}
                   >
                     <div className="event-container">
@@ -100,12 +100,12 @@ export const EventsTemplate = () => {
         )}
 
         <h2 className="generic-heading-2 generic-heading-2--2nd-heading py-8">Past</h2>
-        <div className="grid lg:grid-cols-4 md:grid-cols-4">
+        <div className="grid lg:grid-cols-4 md:grid-cols-4 gap-5">
           {pastEvents.map(event => {
             return (
               <Link
                 key={event.node.fields.slug}
-                className="lg:col-span-1 md:col-span-2 lg:mr-5 md:mr-5 notched notched--border notched--border--hover section-card"
+                className="lg:col-span-1 md:col-span-2 notched notched--border notched--border--hover section-card"
                 to={`/events/${event.node.fields.slug}`}
               >
                 <div className="event-container">
