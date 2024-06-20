@@ -97,12 +97,7 @@ exports.createPages = async ({ graphql, actions }) => {
   //   defer: true,
   // });
 
-  const globalResourceTemplate = path.resolve(
-    `src/templates/global-resource.js`
-  );
-  const markdownResourcePageTemplate = path.resolve(
-    `src/templates/markdown-resource-page.js`
-  );
+  const globalResourceTemplate = path.resolve(`src/templates/global-resource.js`);
   const profilePageTemplate = path.resolve(`src/templates/profile-page.js`);
   const projectPageTemplate = path.resolve(`src/templates/project-page.js`);
   const blogPostPageTemplate = path.resolve(`src/templates/blog-post.js`);
@@ -136,41 +131,6 @@ exports.createPages = async ({ graphql, actions }) => {
       },
     });
   });
-
-  // resource page query
-
-  // const allResources = await graphql(`
-  //   query allResourcesQuery {
-  //     allContentfulResource {
-  //       edges {
-  //         node {
-  //           id
-  //           title
-  //           prettyUrl
-  //           resourceType
-  //           resourceDate
-  //           people {
-  //             id
-  //             displayName
-  //             prettyUrl
-  //           }
-  //         }
-  //       }
-  //     }
-  //   }
-  // `);
-
-  // allResources.data.allContentfulResource.edges.forEach(edge => {
-
-  //   createPage({
-  //     path: `resources/${edge.node.prettyUrl}`,
-  //     component: markdownResourcePageTemplate,
-  //     context: {
-  //       id: edge.node.id,
-  //       title: edge.node.title,
-  //     },
-  //   });
-  // });
 
   const allBlogPosts = await graphql(`
     query allBlogPostsQuery {
