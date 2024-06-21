@@ -8,6 +8,7 @@ module.exports = {
       // custom breakpoint
       screens: {
         xs: { raw: '(max-width: 640px)' },
+        sm: { raw: '(max-width: 765px)' },
         // => @media (min-height: 800px) { ... }
       },
     },
