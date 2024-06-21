@@ -14,6 +14,10 @@ $secondary-font: 'Noto Sans', serif;
   font-size: 80px;
   font-weight: $bold;
   line-height: 1.2;
+
+  @include breakpoint($medium-only) {
+    font-size: 60px;
+  }
 }
 
 // used in featured box h2 and section card h2

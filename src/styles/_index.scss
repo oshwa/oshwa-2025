@@ -78,6 +78,10 @@
     line-height: 1;
     padding-bottom: 2rem;
 
+    @include breakpoint($between-large) {
+      font-size: 65px;
+    }
+
     @include breakpoint($medium-only) {
       font-size: 90px;
     }
@@ -102,8 +106,7 @@
   }
 }
 
-.map-container {
-}
+.map-container {}
 
 .section-card {
   height: 20rem;
@@ -113,7 +116,7 @@
 
   &__title {
     @include typography-headline-3;
-    
+
   }
 
   &__image {

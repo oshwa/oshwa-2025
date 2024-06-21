@@ -37,7 +37,7 @@ const IndexPage = () => {
                 <ArrowLink text="About OSHWA" location="/about" />
               </div>
             </div>
-            <div className="lg:col-span-2 md:col-span-2 h-full notched notched--border notched--border--hover-x featured-box xs:col-span-3 sm:col-span-3 xs:mt-5">
+            <div className="lg:col-span-2 md:col-span-2 h-full notched notched--border notched--border--hover-x featured-box xs:col-span-3 sm:col-span-3 xs:mt-5 sm:mt-5">
               <div className="featured-box__header">
                 {/* <p className="featured-box__date">
                   {data.contentfulIndex.featuredResearch.publicationDate}
@@ -62,7 +62,7 @@ const IndexPage = () => {
 
         <div className="p-10 pt-0 pb-5">
           <div className="grid lg:grid-cols-4 md:grid-cols-3">
-            <div className="lg:col-span-1 md:col-span-1 lg:mr-5 md:mr-5 mb-5 md:mb-0 notched notched--bg yellow project-highlight">
+            <div className="lg:col-span-1 md:col-span-1 lg:mr-5 md:mr-5 mb-5 md:mb-0 xs:mt-0 sm:mt-5 notched notched--bg yellow project-highlight">
               <div>
                 <p className="project-highlight__count">
                   {data.allOshwaCertifications.totalCount}
