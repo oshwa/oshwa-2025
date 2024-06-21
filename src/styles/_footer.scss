@@ -2,12 +2,18 @@ footer {
   min-height: 18rem;
 
   &.notched--border {
-
     display: grid;
   }
-}
 
-.footer-col form {}
+  .footer-img {
+    a {
+      @include breakpoint($large) {
+        width: fit-content;
+        padding: 1rem 4rem;
+      }
+    }
+  }
+}
 
 .footer__logo {
   height: 100%;
