@@ -7,8 +7,7 @@ import RichText from '../components/RichText';
 
 export default function ProfilePage({ data }) {
   const profile = data.contentfulPeople;
-  const certifications = data.allOshwaCertifications;
-  const videoUrl = profile.video ? `https://www.youtube.com/embed/${profile.video.youTubeId}` : '';
+  // const certifications = data.allOshwaCertifications;
   // console.log("certifications", certifications);
 
   return (
@@ -40,8 +39,9 @@ export default function ProfilePage({ data }) {
                 )}
                 {profile.video && (
                   <Video
-                    title={profile.video.videoTitle}
-                    url={videoUrl}
+                    title={profile.videoSectionTitle}
+                    resourceTitle={profile.video.resourceTitle}
+                    videoId={profile.video.youTubeId}
                     size="large"
                   />
                 )}
@@ -55,14 +55,15 @@ export default function ProfilePage({ data }) {
                 <p className="profile__title">{profile.title}</p>
               </div>
               <div className="py-8">
-                { profile.bio && <RichText content={profile.bio} />}
+                {profile.bio && <RichText content={profile.bio} />}
               </div>
             </div>
           </div>
           {profile.video && (
             <Video
-              title={profile.video.videoTitle}
-              url={videoUrl}
+              title={profile.videoSectionTitle}
+              resourceTitle={profile.video.resourceTitle}
+              videoId={profile.video.youTubeId}
               size="medium-small"
             />
           )}
