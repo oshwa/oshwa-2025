@@ -1,5 +1,15 @@
 .notched {
   padding: 2rem;
+  --notchSize: 10px;
+
+  clip-path: polygon(0% var(--notchSize),
+    var(--notchSize) 0%,
+    calc(100% - var(--notchSize)) 0%,
+    100% var(--notchSize),
+    100% calc(100% - var(--notchSize)),
+    calc(100% - var(--notchSize)) 100%,
+    var(--notchSize) 100%,
+    0% calc(100% - var(--notchSize)));
 
   h3 {
     @include typography-headline-4;
