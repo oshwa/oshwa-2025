@@ -91,50 +91,6 @@ const Map = () => {
     }
   }, []);
 
-  // useEffect(() => {
-  //   const getCertifications = async (url, headers) => {
-  //     const response = await fetch(url, { headers });
-  //     const data = await response.json();
-  //     return data;
-  //   };
-
-  //   const getAllCertifications = async (offset = 0, data = []) => {
-  //     let allCertifications = data;
-
-  //     const headers = {
-  //       Authorization: `Bearer ${process.env.OSHWA_BEARER_TOKEN}`,
-  //     };
-  //     console.log(headers, 'headers');
-  //     const limit = 1000;
-  //     let baseUrl = `https://certificationapi.oshwa.org/api/projects?offset=${offset}&limit=${limit}`;
-
-  //     let response = await getCertifications(baseUrl, headers);
-  //     console.log(response, 'response');
-  //     if (response.items.length >= limit) {
-  //       allCertifications = allCertifications.concat(response.items);
-  //       return getAllCertifications((offset += limit), allCertifications);
-  //     } else {
-  //       allCertifications = allCertifications.concat(response.items);
-  //     }
-  //     let certificationCountries = allCertifications.map(cert => cert.country);
-
-  //     let certificationCounts = {};
-
-  //     certificationCountries.forEach(country => {
-  //       if (certificationCounts[country]) {
-  //         certificationCounts[country] += 1;
-  //       } else {
-  //         certificationCounts[country] = 1;
-  //       }
-
-  //       setCertificationStats(certificationCounts);
-  //       setLoading(false);
-  //     });
-  //   };
-
-  //   getAllCertifications();
-  // }, []);
-
   const mapAttrs = {
     width: 800,
     height: 500,
@@ -181,7 +137,7 @@ const Map = () => {
     .map(shape => {
       const color = getColor(certificationStats[shape.properties.ADMIN]);
       const country = shape.properties.ADMIN;
-      
+
       const count = certificationStats[shape.properties.ADMIN] || 'N/A';
 
       return (
@@ -200,19 +156,30 @@ const Map = () => {
             const certificationsCount = (count || 'N/A').toLocaleString();
 
             // get x and y position relative to the chart
-            const [x, y] = d3.pointer(event, chartRef.current);
+            let [x, y] = d3.pointer(event, chartRef.current);
+
+            if (window.innerWidth <= 1400) {
+              x = adjustTooltipX(x);
+            }
 
             setTooltipData({
               country,
               certificationsCount,
               left: x,
-              top: y,
+              top: y - 10,
             });
           }}
         />
       );
     });
 
+  function adjustTooltipX(x) {
+    if (x >= 700) {
+      return x - 100;
+    } else {
+      return x - 10;
+    }
+  }
   return (
     <>
       <div id="map">
