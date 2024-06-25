@@ -19,14 +19,14 @@ const Event = ({ data }) => {
         program={dates}
       />
 
-      <div className="p-10 pt-0 pb-5 event-body">
-        <div className="grid lg:grid-cols-5 md:grid-cols-5">
-          <div className="col-span-3 lg:mr-5 md:mr-5 h-full">
+      <div className="px-8 event-body">
+        <div className="grid lg:grid-cols-5 md:grid-cols-5 gap-4">
+          <div className="lg:col-span-3 md:col-span-5 ">
             {pageData.body && (
               <RichText content={pageData.body} />
             )}
           </div>
-          <div className="col-span-2 h-full">
+          <div className="lg:col-span-2 md:col-span-5">
             <div className="event-btn-links">
               {/* {pageData.eventUrl && ( */}
               <NotchedButtonLink text="EVENT WEBSITE" location={pageData.eventUrl} />

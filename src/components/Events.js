@@ -43,11 +43,11 @@ export const EventsTemplate = () => {
 
   return (
     <>
-      <div className="p-10 pt-0 pb-5">
+      <div className="px-8">
         {upcomingEvents.length > 0 && (
           <>
             <h2 className="generic-heading-2 py-8">Upcoming</h2>
-            <div className="grid lg:grid-cols-4 md:grid-cols-4 gap-5">
+            <div className="grid lg:grid-cols-4 md:grid-cols-4 gap-4">
               {upcomingEvents.map(event => {
                 return (
                   <Link
@@ -100,12 +100,12 @@ export const EventsTemplate = () => {
         )}
 
         <h2 className="generic-heading-2 generic-heading-2--2nd-heading py-8">Past</h2>
-        <div className="grid lg:grid-cols-4 md:grid-cols-4 gap-5">
+        <div className="grid lg:grid-cols-4 md:grid-cols-4 gap-4">
           {pastEvents.map(event => {
             return (
               <Link
                 key={event.node.fields.slug}
-                className="lg:col-span-1 md:col-span-2 notched notched--border notched--border--hover section-card"
+                className="lg:col-span-1 md:col-span-4 sm:col-span-4 notched notched--border notched--border--hover section-card"
                 to={`/events/${event.node.fields.slug}`}
               >
                 <div className="event-container">

@@ -38,6 +38,8 @@ export const FilterBar = ({
       .map(node => node.publicationYear)
       .sort()
       .reverse()
+      .filter(year => year)
+   
   );
 
   const pubTypes = uniq(
@@ -45,6 +47,7 @@ export const FilterBar = ({
       .map(content => content.node)
       .map(node => node.resourceType)
       .sort()
+      .filter(type => type)
   );
 
   const pubAudience = uniq(
@@ -54,8 +57,8 @@ export const FilterBar = ({
       .join()
       .split(',')
       .sort()
+      .filter(audience => audience)
   );
-
 
   const pubDatesBlogPost = uniq(
     data.allContentfulBlogPost.edges
@@ -66,9 +69,11 @@ export const FilterBar = ({
   );
 
   return (
-    <div className="p-10 pt-0 pb-5">
-      <div className="filter-bar grid lg:grid-cols-8 md:grid-cols-5 notched--border">
-        <div className="filter-item lg:col-span-1 sm:col-span-5 ">
+    <div className="px-8">
+      <div className="p-8 w-full notched notched--border filter-container">
+      
+      <div className=" grid lg:grid-cols-12 md:grid-cols-12 gap-2 filter-bar px-8">
+        <div className="lg:col-span-3 md:col-span-4 filter-item">
           <CustomDropdown
             handleSearchQuery={handleSearchQuery}
             defaultLabel={`All Years`}
@@ -77,33 +82,38 @@ export const FilterBar = ({
           />
         </div>
         {listType === 'resources' && (
-          <>
-            <div className="filter-item lg:col-span-1 lg:col-start-2 sm:col-span-5">
-              <CustomDropdown
-                handleSearchQuery={handleSearchQuery}
-                defaultLabel={`All Types`}
-                label={`Publication Type`}
-                options={pubTypes}
-              />
-            </div>
-
-            <div className="filter-item lg:col-span-1 lg:col-start-2 sm:col-span-5">
-              <CustomDropdown
-                handleSearchQuery={handleSearchQuery}
-                defaultLabel={`All Audiences`}
-                label={`Publication Audience`}
-                options={pubAudience}
-              />
-            </div>
-          </>
+          <div className="lg:col-span-3 md:col-span-4 filter-item">
+            <CustomDropdown
+              handleSearchQuery={handleSearchQuery}
+              defaultLabel={`All Types`}
+              label={`Publication Type`}
+              options={pubTypes}
+            />
+          </div>
         )}
-        <button
-          onClick={handleClearFilters}
-          className="filters__filter--clear lg:col-span-1 sm:col-span-5 lg:col-start-5 sm:col-start-1 lg:text-right sm:text-left"
-        >
-          Clear filters
-        </button>
+
+        {listType === 'resources' && (
+          <div className="lg:col-span-3 md:col-span-4 filter-item">
+            <CustomDropdown
+              handleSearchQuery={handleSearchQuery}
+              defaultLabel={`All Audiences`}
+              label={`Publication Audience`}
+              options={pubAudience}
+            />
+          </div>
+        )}
+
+        <div className="lg:col-span-3 md:col-span-12 lg:col-start-11">
+          <button
+            onClick={handleClearFilters}
+            className="filters__filter--clear"
+          >
+            Clear filters
+          </button>
+        </div>
       </div>
+      </div>
+
     </div>
   );
 };

@@ -5,8 +5,8 @@ import dayjs from 'dayjs';
 const GridCards = ({ items, listType }) => {
   return (
     <>
-      <div className={listType === "resources-ref" ? `p-0 pt-0 pb-5 list` : `p-10 pt-0 pb-5 list`}>
-        <div className="grid lg:grid-cols-4 md:grid-cols-3 gap-5">
+      <div className={listType === "resources-ref" ? `list` : `list`}>
+        <div className="grid lg:grid-cols-4 md:grid-cols-3 gap-4">
           {items &&
             items.map(
               item =>
@@ -14,7 +14,7 @@ const GridCards = ({ items, listType }) => {
                 <Link
                   key={item.prettyUrl}
                   to={listType === "resources" ? `/resources/${item.prettyUrl}` : `/resources/${item.prettyUrl}`}
-                  className="lg:col-span-1 notched notched--border notched--border--hover list-item"
+                  className="lg:col-span-1 md:col-span-4 sm:col-span-4 notched notched--border notched--border--hover list-item"
                 >
                   <div>
                     {
@@ -36,7 +36,7 @@ const GridCards = ({ items, listType }) => {
                     <>
                     <p className="title">{item.resourceTitle}</p>
                     <p className="type">{item.resourceType}</p>
-                    <p className="type">{item.resourceAudience} test</p>
+                    <p className="type">{item.resourceAudience}</p>
                     </>
                   }
                 </Link>

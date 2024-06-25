@@ -13,7 +13,7 @@ export default function ProfilePage({ data }) {
   return (
     <Layout>
       <>
-        <div className="p-10 pt-0 pb-5">
+        <div className="px-8">
           <div className="grid grid-cols-1 md:grid-cols-1 lg:grid-cols-12 profile-header">
             <div className="col-span-1 md:col-span-1 lg:col-span-3">
               {profile.image && (

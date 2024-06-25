@@ -23,9 +23,9 @@ const ProgramYear = ({ data }) => {
         program={program}
       />
       {pageData.fellows && (
-        <div className="p-10 pt-0 pb-5">
+        <div className="p-8">
           <h2 className="generic-heading-2 py-8">Fellows</h2>
-          <div className="grid lg:grid-cols-4 md:grid-cols-4 gap-5">
+          <div className="grid lg:grid-cols-4 md:grid-cols-4 gap-4">
             {pageData.fellows.map(fellow => {
               return (
                 <Link
@@ -46,16 +46,16 @@ const ProgramYear = ({ data }) => {
       )}
 
       {pageData.featuredWork != null && (
-        <div className="p-10 pt-0 pb-5 featured-work">
-          <div className="grid grid-cols-1 md:grid-cols-1 lg:grid-cols-12">
-            <div className="col-span-1 md:col-span-1 lg:col-span-3 featured-work__img">
+        <div className="p-8 featured-work">
+          <div className="grid lg:grid-cols-7 md:grid-cols-1">
+            <div className="lg:col-span-2 md:col-span-1 featured-work__img">
               <GatsbyImage
                 image={getImage(pageData.featuredWork.resourceImage)}
                 alt={pageData.featuredWork.title + ` image`}
               />
               <NotchedButtonLink text={pageData.featuredWork.buttonText} location={pageData.featuredWork.buttonUrl} />
             </div>
-            <div className="col-span-1 md:col-span-1 lg:col-span-7 lg:col-start-5">
+            <div className="lg:col-span-4 lg:col-start-4 md:col-span-1">
               <h3>{pageData.featuredWork.title}</h3>
               <h4>{pageData.featuredWork.subtitle}</h4>
               <MarkdownText content={pageData.featuredWork.shortDescription.childrenMarkdownRemark[0].html} />
@@ -64,8 +64,9 @@ const ProgramYear = ({ data }) => {
         </div>
       )}
 
+
       {pageData.works && (
-        <div className="p-10 pt-0 pb-5">
+        <div className="p-8">
           <h2 className="generic-heading-2 py-8">{pageData.worksSectionTitle}</h2>
           <GridCards items={pageData.works} listType="resources-ref" />
         </div>
@@ -75,7 +76,7 @@ const ProgramYear = ({ data }) => {
         pageData.mentors && (
           <div className="p-10 pt-0 pb-5">
             <h2 className="generic-heading-2 py-8">{pageData.mentorsSectionTitle}</h2>
-            <div className="grid lg:grid-cols-4 md:grid-cols-4 gap-5">
+            <div className="grid lg:grid-cols-4 md:grid-cols-4 gap-4">
               {pageData.mentors.map(mentor => {
                 return (
                   <Link

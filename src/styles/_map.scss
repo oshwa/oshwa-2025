@@ -15,8 +15,10 @@
   }
 }
 .tooltip {
+  width: 8rem;
+  
   display: none;
-  transition: display 5s ease-in-out 5s;
+  transition: display .4s ease-in-out .4s;
   background: var($--theme-background);
   color: var($--theme-on-background);
   border: solid 1px var($--theme-on-background);

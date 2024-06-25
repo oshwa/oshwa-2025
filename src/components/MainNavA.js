@@ -37,7 +37,7 @@ export const MainNavA = ({ handleClick, active }) => {
       >
         OHCA Fellows Page
       </Link>
-      <Link className="nav-link" to="/programs/years/2022-2023/">
+      <Link className="nav-link" to="/programs/open-hardware-creators-in-academia/2022-2023/">
         Individual OHCA Fellows Page
       </Link>
 

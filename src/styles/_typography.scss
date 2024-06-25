@@ -27,9 +27,6 @@ $secondary-font: 'Noto Sans', serif;
   font-weight: $bold;
   line-height: 1.2;
 
-  @include breakpoint($medium-only) {
-    font-size: 40px;
-  }
 }
 
 @mixin typography-headline-4 {

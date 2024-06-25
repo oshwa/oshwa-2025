@@ -109,7 +109,6 @@ const Search = ({ data, location }) => {
     document.querySelector('#publicationType').selectedIndex = 0;
     document.querySelector('#publicationAudience').selectedIndex = 0;
     location.search = ''; // tk remove from url
-    
   };
 
   useEffect(() => {
@@ -123,14 +122,14 @@ const Search = ({ data, location }) => {
         return lunrIndex.store[ref];
       })
     );
-    console.log(results);
   }, [query, location]);
 
   return (
     <>
       <Layout>
         <>
-          <div className="p-10 pt-0 pb-0">
+          <div className="px-8">
+
             <div className="grid lg:grid-cols-5 md:grid-cols-5">
               <div className="col-span-10 mb-5 notched notched--border">
                 <h1 className="generic-heading-1">Resources</h1>
@@ -144,7 +143,9 @@ const Search = ({ data, location }) => {
             handleClearFilters={clearFilters}
             listType="resources"
           />
-          <GridCards items={results} listType="resources" />
+          <div class="resource-cards-wrapper px-8 py-4">
+            <GridCards items={results} listType="resources" />
+          </div>
         </>
       </Layout>
     </>
