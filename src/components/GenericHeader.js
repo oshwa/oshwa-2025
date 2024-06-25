@@ -3,10 +3,10 @@ import MarkdownText from './MarkdownText';
 
 export const GenericHeader = ({ title, description, headerImageUrl, program, location }) => {
   return (
-    <div className="p-10 pt-0">
-      <div className="grid lg:grid-cols-5 md:grid-cols-5">
-        <div className="col-span-3 lg:mr-5 md:mr-5 h-full notched notched--bg notched--bg--img header-img-container" style={{ backgroundImage: `url(${headerImageUrl})` }}></div>
-        <div className="generic-header col-span-2 h-full notched notched--border xs:mt-5 sm:mt-5">
+    <div className="px-8">
+      <div className="grid lg:grid-cols-5 md:grid-cols-5 gap-4">
+        <div className="lg:col-span-3 md:col-span-5 sm:col-span-5 h-full notched notched--bg notched--bg--img header-img-container" style={{ backgroundImage: `url(${headerImageUrl})` }}></div>
+        <div className="generic-header lg:col-span-2 md:col-span-5 sm:col-span-5 h-full notched notched--border">
           {program && (
             <span className="program-title">{program}</span>
           )}

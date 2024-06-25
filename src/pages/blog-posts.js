@@ -22,8 +22,6 @@ const SearchBlogPosts = ({ location }) => {
     );
   };
 
-  console.log(results);
-
   const matchFiltersToSessions = () => {
     let pubDateSelect = document.querySelector('#publicationDate');
     let savedSessionsQuery = JSON.parse(sessionStorage.getItem(sessionsName));
@@ -83,7 +81,7 @@ const SearchBlogPosts = ({ location }) => {
     <>
       <Layout>
         <>
-          <div className="p-10 pt-0 pb-0">
+          <div className="px-8">
             <div className="grid lg:grid-cols-5 md:grid-cols-5">
               <div className="col-span-10 mb-5 notched notched--border">
                 <h1 className="generic-heading-1">Blog Posts</h1>
@@ -97,8 +95,10 @@ const SearchBlogPosts = ({ location }) => {
           />
           
 
-          <div className={`p-10 pt-0 pb-5 list`}>
-            <div className="grid lg:grid-cols-4 md:grid-cols-3 gap-5">
+          <div className={`px-8 py-4 list`}>
+            <div className="grid grid lg:grid-cols-4 md:grid-cols-3 gap-4">
+
+            
               {results &&
                 results.map(
                   result => (
@@ -106,7 +106,7 @@ const SearchBlogPosts = ({ location }) => {
                     <Link
                       key={result.prettyUrl}
                       to={`/blog-posts/${result.prettyUrl}`}
-                      className="lg:col-span-1 notched notched--border notched--border--hover list-item"
+                      className="lg:col-span-1 md:col-span-4 sm:col-span-4 notched notched--border notched--border--hover list-item"
                     >
                       <div>
                         <p className="publicationDate publicationDate--blog">

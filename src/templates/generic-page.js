@@ -29,7 +29,7 @@ export default function ProjectPage({ data }) {
         )}
 
         {(pageData.title !== "Events" || pageData.title !== "Team") && (
-          <div className="p-10 pt-0 pb-5 generic-container">
+          <div className="px-8 generic-container">
             <div className="grid grid-cols-8 lg:grid-cols-6">
               <div className="col-span-10 lg:col-span-3">
                 {pageData.body && (
