@@ -15,6 +15,13 @@ const IndexPage = () => {
         id
         title
       }
+      contentfulBlogPost {
+        id
+        prettyUrl
+        date: date(formatString: "MMMM DD, YYYY")
+        title
+        shortDescription
+      }
       allOshwaCertifications {
         totalCount
       }
@@ -26,7 +33,7 @@ const IndexPage = () => {
       <>
         <div className="px-8 p">
           <div className="grid lg:grid-cols-5 md:grid-cols-5 gap-4 ">
-            <div className="col-span-3 notched notched--bg index-banner">
+            <div className="col-span-3 notched notched--bg index-banner white">
               <div className="index-image-container">
                 <StaticImage
                   className="main-logo"
@@ -39,21 +46,21 @@ const IndexPage = () => {
             </div>
             <div className="lg:col-span-2 md:col-span-2 notched notched--border notched--border--hover-x featured-box xs:col-span-3 sm:col-span-3">
               <div className="featured-box__header">
-                {/* <p className="featured-box__date">
-                  {data.contentfulIndex.featuredResearch.publicationDate}
-                </p> */}
-                {/* <h2 className="featured-box__title">
-                  {data.contentfulIndex.featuredResearch.title}
-                </h2> */}
+                <p className="featured-box__date">
+                  {data.contentfulBlogPost.date}
+                </p>
+                <h2 className="featured-box__title">
+                  {data.contentfulBlogPost.title}
+                </h2>
               </div>
               <div className="featured-box__body">
-                {/* <p className="featured-box__description">
-                  {data.contentfulIndex.featuredResearch.shortDescription}
-                </p> */}
+                <p className="featured-box__description">
+                  {data.contentfulBlogPost.shortDescription}
+                </p>
                 <ArrowLink
-                  text="About OSHWA"
-                  location="/about"
-                  variant={'inverted'}
+                  text="Read more"
+                  location={`/blog-posts/${data.contentfulBlogPost.prettyUrl}`}
+                  variant={''}
                 />
               </div>
             </div>
