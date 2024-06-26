@@ -28,10 +28,22 @@ const Event = ({ data }) => {
           </div>
           <div className="lg:col-span-2 md:col-span-5">
             <div className="event-btn-links">
-              {/* {pageData.eventUrl && ( */}
-              <NotchedButtonLink text="EVENT WEBSITE" location={pageData.eventUrl} />
-              {/* )} */}
-              <NotchedButtonLink text="SUMMIT FELLOWS" location="/" />
+              {pageData.eventUrl && (
+                <NotchedButtonLink text="EVENT WEBSITE" location={pageData.eventUrl} />
+              )}
+              {pageData.relatedPrograms && (
+                <>
+                  {pageData.relatedPrograms.map(program =>
+                    program.programYears.map(year =>
+                      <NotchedButtonLink
+                        key={year.title}
+                        text={`${year.program[0].title} ${year.title}`}
+                        location={`/programs/${year.fields.slugProgram}/${year.title}`}
+                      />
+                    )
+                  )}
+                </>
+              )}
             </div>
           </div>
         </div>
@@ -57,6 +69,19 @@ export const query = graphql`
       }
       body {
         raw
+      }
+      relatedPrograms {
+        title
+        prettyUrl
+        programYears {
+          title
+          program {
+            title
+          }
+          fields {
+            slugProgram
+          }
+        }
       }
     }
   }
