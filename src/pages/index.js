@@ -38,7 +38,7 @@ const IndexPage = () => {
                 <StaticImage
                   className="main-logo"
                   src="../images/lockup-color.svg"
-                  alt="Oshwa Logo"
+                  alt="Open Source Hardware Association logo"
                   placeholder="none"
                 />
                 <ArrowLink text="About OSHWA" location="/about" />
@@ -96,7 +96,7 @@ const IndexPage = () => {
                   <StaticImage
                     className="section-card__image"
                     src="../images/icon-programs.svg"
-                    alt="Temp Oshwa Logo"
+                    alt="Programs page link logo"
                     placeholder="none"
                   />
                 </>
@@ -108,7 +108,7 @@ const IndexPage = () => {
                 <StaticImage
                   className="section-card__image"
                   src="../images/icon-resources.svg"
-                  alt="Temp Oshwa Logo"
+                  alt="Resources page link logo"
                   placeholder="none"
                 />
               </div>
@@ -119,7 +119,7 @@ const IndexPage = () => {
                 <StaticImage
                   className="section-card__image"
                   src="../images/icon-events.svg"
-                  alt="Temp Oshwa Logo"
+                  alt="Events page link logo"
                   placeholder="none"
                 />
               </div>
@@ -130,7 +130,7 @@ const IndexPage = () => {
                 <StaticImage
                   className="section-card__image"
                   src="../images/icon-community.svg"
-                  alt="Temp Oshwa Logo"
+                  alt="Community page link logo"
                   placeholder="none"
                 />
               </div>
