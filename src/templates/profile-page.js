@@ -138,9 +138,6 @@ export const query = graphql`
       bio {
         raw
       }
-      relatedResources {
-        title
-      }
       externalUrl
       externalUrlTitle
       socialUrl

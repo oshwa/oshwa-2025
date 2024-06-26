@@ -49,10 +49,10 @@ const ProgramYear = ({ data }) => {
         <div className="p-8 featured-work">
           <div className="grid lg:grid-cols-7 md:grid-cols-1">
             <div className="lg:col-span-2 md:col-span-1 featured-work__img">
-              <GatsbyImage
+              {/* <GatsbyImage
                 image={getImage(pageData.featuredWork.resourceImage)}
                 alt={pageData.featuredWork.title + ` image`}
-              />
+              /> */}
               <NotchedButtonLink text={pageData.featuredWork.buttonText} location={pageData.featuredWork.buttonUrl} />
             </div>
             <div className="lg:col-span-4 lg:col-start-4 md:col-span-1">
@@ -147,9 +147,6 @@ export const query = graphql`
           childrenMarkdownRemark {
             html
           }
-        }
-        resourceImage {
-          gatsbyImage(width: 600)
         }
         buttonUrl
         buttonText

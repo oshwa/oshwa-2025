@@ -73,9 +73,9 @@ export default function GlobalResourcePage({ data, location }) {
               )}
             </div>
             <div className="resource-header__image lg:col-span-4 lg:col-start-9 md:col-span-12 md:col-start-1 ">
-              {translatedContent.resourceImage && (
+              {globalContent.resourceImage && (
                 <GatsbyImage
-                  image={getImage(translatedContent.resourceImage)}
+                  image={getImage(globalContent.resourceImage)}
                   alt="blog image"
                 />
               )}
@@ -130,6 +130,10 @@ export const query = graphql`
       namedAuthors {
         namedAuthors
       }
+      resourceImage {
+        id
+        gatsbyImageData
+      }
       translatedResources {
         id
         title
@@ -141,10 +145,6 @@ export const query = graphql`
         }
         shortDescription {
           shortDescription
-        }
-        resourceImage {
-          id
-          gatsbyImageData
         }
         buttonUrl
         buttonText
