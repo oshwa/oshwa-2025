@@ -7,8 +7,19 @@ import RichText from '../components/RichText';
 
 export default function ProfilePage({ data }) {
   const profile = data.contentfulPeople;
-  // const certifications = data.allOshwaCertifications;
-  // console.log("certifications", certifications);
+  const certifications = data.allOshwaCertifications;
+
+  // debugger;
+
+  const getProjectByUid = uid => {
+    let allCerts = certifications.edges;
+
+    return allCerts.filter(node => node.node.oshwaUid === uid)[0];
+  };
+
+  const certifiedProjects = profile.certificationUids && profile.certificationUids.map(projectId => {
+    return getProjectByUid(projectId).node;
+  });
 
   return (
     <Layout>
@@ -91,31 +102,51 @@ export default function ProfilePage({ data }) {
           </div>
         )}
 
-        {/* {!!certifications.edges.length && (
-          <div className="p-10 pt-0 pb-5">
+        {certifiedProjects && (
+          <div className="p-8">
             <h2 className="generic-heading-2 py-8">Certifications</h2>
-            <div className="grid lg:grid-cols-4 md:grid-cols-4 gap-5">
-              {certifications &&
-                certifications.edges.map(project => {
-                  console.log(project);
-                  return (
-                    <Link
-                      key={project.node.id}
-                      className="lg:col-span-1 md:col-span-2 notched notched--border resource-wrapper"
-                      to={`/projects/${project.node.oshwaUid.toLowerCase()}`}
-                    >
-                      <div className="profile-certification">
-                        <p className="profile-certifications__uid">
-                          {project.node.oshwaUid}
-                        </p>
-                        <h3>{project.node.projectName}</h3>
-                      </div>
-                    </Link>
-                  );
-                })}
+            <div className="list">
+              <div className="grid lg:grid-cols-4 md:grid-cols-3 gap-4">
+                {certifiedProjects &&
+                  certifiedProjects.map(project => {
+                    return (
+                      <a
+                        key={project.id}
+                        href={`https://certification.oshwa.org/${project.oshwaUid.toLowerCase()}`}
+                        className="lg:col-span-1 md:col-span-4 sm:col-span-4 notched notched--border notched--border--hover list-item"
+                      >
+                        <div>
+                          <p className="project-id">
+                            {project.oshwaUid}
+                          </p>
+
+                          <p className="title"> {project.projectName}</p>
+                        </div>
+                      </a>
+                    );
+                  })}
+              </div>
             </div>
           </div>
-        )} */}
+        )}
+        {/* {certifiedProjects &&
+          certifiedProjects.map(project => {
+            return (
+              <Link
+                key={project.id}
+                to="/"
+                className="lg:col-span-1 md:col-span-4 sm:col-span-4 notched notched--border notched--border--hover list-item"
+              >
+                <div>
+                  <p className="publicationDate publicationDate--blog">
+                    {project.oshwaUid}
+                  </p>
+
+                  <p className="title"> {project.projectName}</p>
+                </div>
+              </Link>
+            );
+          })} */}
       </>
     </Layout>
   );
@@ -151,6 +182,7 @@ export const query = graphql`
         resourceTitle
         youTubeId
       }
+      certificationUids
     }
     allOshwaCertifications {
       edges {

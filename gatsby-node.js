@@ -170,6 +170,7 @@ exports.createPages = async ({ graphql, actions }) => {
             title
             affiliation
             type
+            certificationUids
             image {
               id
               file {
