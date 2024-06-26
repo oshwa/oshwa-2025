@@ -38,7 +38,7 @@ const IndexPage = () => {
                 <StaticImage
                   className="main-logo"
                   src="../images/lockup-color.svg"
-                  alt="Temp Oshwa Logo"
+                  alt="Oshwa Logo"
                   placeholder="none"
                 />
                 <ArrowLink text="About OSHWA" location="/about" />
@@ -60,7 +60,7 @@ const IndexPage = () => {
                 <ArrowLink
                   text="Read more"
                   location={`/blog-posts/${data.contentfulBlogPost.prettyUrl}`}
-                  variant={''}
+                  variant={'inverted'}
                 />
               </div>
             </div>
