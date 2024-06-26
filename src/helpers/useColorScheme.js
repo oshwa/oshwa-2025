@@ -13,6 +13,7 @@ export function useColorScheme() {
   useEffect(() => {
     const imageDark = document.querySelectorAll('.image-theme--dark');
     const imageLight = document.querySelectorAll('.image-theme--light');
+    const arrowLinks = document.querySelectorAll('.inverted');
 
     const iterateImages = (imageSet, visibility) => {
       imageSet.forEach((item) => {
@@ -27,12 +28,24 @@ export function useColorScheme() {
       if (windowGlobal?.localStorage != null) {
         localStorage.setItem('colorScheme', 'dark');
       }
+      if (arrowLinks) {
+        arrowLinks.forEach((item) => {
+          item.classList.add('arrow-white');
+          item.classList.remove('arrow-black');
+        });
+      }
     } else {
       document.querySelector(':root').classList.remove('dark');
       iterateImages(imageDark, 'none');
       iterateImages(imageLight, 'block');
       if (windowGlobal?.localStorage != null) {
         localStorage.setItem('colorScheme', '');
+      }
+      if (arrowLinks) {
+        arrowLinks.forEach((item) => {
+          item.classList.add('arrow-black');
+          item.classList.remove('arrow-white');
+        });
       }
     }
   }, [isDark]);

@@ -21,6 +21,18 @@
   }
 }
 
+.arrow-white {
+  &::after {
+    content: url('../images/icons/arrow_forward_white_24dp.svg');
+  }
+}
+
+.arrow-black {
+  &::after {
+    content: url('../images/icons/arrow_forward_black_24dp.svg') !important;
+  }
+}
+
 .link--notched {
   @include typography-button;
   font-weight: $bold;
