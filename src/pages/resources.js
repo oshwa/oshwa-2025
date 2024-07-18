@@ -59,7 +59,7 @@ const Search = ({ data, location }) => {
         pubAudienceParam
       )}* +contentfulType:${contentfulType}`
     );
-  }, []);
+  }, [location]);
 
   const setPubDateQuery = paramVal => {
     let pubDateSelect = document.querySelector('#publicationDate');
@@ -138,7 +138,7 @@ const Search = ({ data, location }) => {
         return lunrIndex.store[ref];
       })
     );
-  }, [query, location]);
+  }, [query, location, handleUrlParams, matchFiltersToSessions]);
 
   return (
     <>
