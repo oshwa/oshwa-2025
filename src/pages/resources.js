@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import Layout from '../components/layout';
 import { FilterBar } from '../components/FilterBar';
 import GridCards from '../components/GridCards';
@@ -38,12 +38,13 @@ const Search = ({ data, location }) => {
     );
 
     setQuery(
-      `+title:* +resourceDate:${pubDateValue} +resourceType:${pubTypeValue} +resourceAudience:${formatAudienceQuery(pubAudienceValue)}* +contentfulType:${contentfulType}`
+      `+title:* +resourceDate:${pubDateValue} +resourceType:${pubTypeValue} +resourceAudience:${formatAudienceQuery(
+        pubAudienceValue
+      )}* +contentfulType:${contentfulType}`
     );
   };
 
-  const handleUrlParams = () => {
-    console.log(location.search, 'location search');
+  const handleUrlParams = useCallback(() => {
     let pubDateParam = new URLSearchParams(location.search).get('year') || '*';
     let pubTypeParam = new URLSearchParams(location.search).get('type') || '*';
     let pubAudienceParam =
@@ -54,9 +55,11 @@ const Search = ({ data, location }) => {
     setPubAudienceQuery(capFirstLet(pubAudienceParam));
 
     setQuery(
-      `+title:* +resourceDate:${pubDateParam} +resourceType:${pubTypeParam} +resourceAudience:${formatAudienceQuery(pubAudienceParam)}* +contentfulType:${contentfulType}`
+      `+title:* +resourceDate:${pubDateParam} +resourceType:${pubTypeParam} +resourceAudience:${formatAudienceQuery(
+        pubAudienceParam
+      )}* +contentfulType:${contentfulType}`
     );
-  };
+  }, []);
 
   const setPubDateQuery = paramVal => {
     let pubDateSelect = document.querySelector('#publicationDate');
@@ -85,7 +88,7 @@ const Search = ({ data, location }) => {
     });
   };
 
-  const matchFiltersToSessions = () => {
+  const matchFiltersToSessions = useCallback(() => {
     let pubDateSelect = document.querySelector('#publicationDate');
     let pubTypeSelect = document.querySelector('#publicationType');
     let pubAudienceSelect = document.querySelector('#publicationAudience');
@@ -112,7 +115,7 @@ const Search = ({ data, location }) => {
         pubAudienceSelect.value
       )} +contentfulType:${contentfulType}`
     );
-  };
+  }, []);
 
   const clearFilters = () => {
     sessionStorage.removeItem(sessionsName);
@@ -129,8 +132,7 @@ const Search = ({ data, location }) => {
     handleUrlParams();
     matchFiltersToSessions();
     const searchResults = lunrIndex.index.search(query);
-    console.log(query);
-    console.log(searchResults);
+
     setResults(
       searchResults.map(({ ref }) => {
         return lunrIndex.store[ref];
