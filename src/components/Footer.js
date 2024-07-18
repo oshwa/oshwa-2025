@@ -27,12 +27,13 @@ const Footer = () => {
 
       <div className="footer-form footer-col py-4 lg:col-span-1 lg:col-start-3 md:col-span-1 md:col-start-3 sm:col-start-1 sm:col-span-3 xs:col-span-3">
         <form className="flex flex-col">
-          <label className="signup-label">Subscribe for OSHWA Updates</label>
+          <label htmlFor="signup-input" className="signup-label">Subscribe for OSHWA Updates</label>
           <fieldset className="signup-submit-wrapper notched notched--border my-4">
             <input
               type="email"
               placeholder="Enter your email address"
               className="signup-input"
+              id="signup-input"
             />
           </fieldset>
           <fieldset className="signup-submit-wrapper notched notched--border w-1/2">

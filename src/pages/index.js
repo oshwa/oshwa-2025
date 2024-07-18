@@ -78,7 +78,11 @@ const IndexPage = () => {
                   Certified Open Source Hardware Projects
                 </p>
               </div>
-              <ArrowLink text="All Certified Projects" location="https://certification.oshwa.org/list.html" />
+              <ArrowLink
+                external
+                text="All Certified Projects"
+                location="https://certification.oshwa.org/list.html"
+              />
             </div>
 
             <div className="lg:col-span-3 md:col-span-3 notched notched--border map-container">

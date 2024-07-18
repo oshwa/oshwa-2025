@@ -15,6 +15,14 @@ const Search = ({ data, location }) => {
     }
   };
 
+  const formatAudienceQuery = audienceQuery => {
+    if (audienceQuery === 'Academic') {
+      return 'Academic -Non-academic';
+    } else {
+      return audienceQuery;
+    }
+  };
+
   const handleSearchQuery = event => {
     let pubDateSelect = document.querySelector('#publicationDate');
     let pubTypeSelect = document.querySelector('#publicationType');
@@ -30,7 +38,7 @@ const Search = ({ data, location }) => {
     );
 
     setQuery(
-      `+title:* +resourceDate:${pubDateValue} +resourceType:${pubTypeValue} +resourceAudience:${pubAudienceValue} +contentfulType:${contentfulType}`
+      `+title:* +resourceDate:${pubDateValue} +resourceType:${pubTypeValue} +resourceAudience:${formatAudienceQuery(pubAudienceValue)}* +contentfulType:${contentfulType}`
     );
   };
 
@@ -46,7 +54,7 @@ const Search = ({ data, location }) => {
     setPubAudienceQuery(capFirstLet(pubAudienceParam));
 
     setQuery(
-      `+title:* +resourceDate:${pubDateParam} +resourceType:${pubTypeParam} +resourceAudience:${pubAudienceParam} +contentfulType:${contentfulType}`
+      `+title:* +resourceDate:${pubDateParam} +resourceType:${pubTypeParam} +resourceAudience:${formatAudienceQuery(pubAudienceParam)}* +contentfulType:${contentfulType}`
     );
   };
 
@@ -98,7 +106,11 @@ const Search = ({ data, location }) => {
       setPubAudienceQuery(savedSessionsQuery.pubAudienceValue);
     }
     setQuery(
-      `+title:* +resourceDate:${pubDateSelect.value} +resourceType:${pubTypeSelect.value} +resourceAudience:${pubAudienceSelect.value} +contentfulType:${contentfulType}`
+      `+title:* +resourceDate:${pubDateSelect.value} +resourceType:${
+        pubTypeSelect.value
+      } +resourceAudience:${formatAudienceQuery(
+        pubAudienceSelect.value
+      )} +contentfulType:${contentfulType}`
     );
   };
 
@@ -117,6 +129,8 @@ const Search = ({ data, location }) => {
     handleUrlParams();
     matchFiltersToSessions();
     const searchResults = lunrIndex.index.search(query);
+    console.log(query);
+    console.log(searchResults);
     setResults(
       searchResults.map(({ ref }) => {
         return lunrIndex.store[ref];
@@ -129,7 +143,6 @@ const Search = ({ data, location }) => {
       <Layout>
         <>
           <div className="px-8">
-
             <div className="grid lg:grid-cols-5 md:grid-cols-5">
               <div className="col-span-10 mb-5 notched notched--border">
                 <h1 className="generic-heading-1">Resources</h1>
@@ -143,7 +156,7 @@ const Search = ({ data, location }) => {
             handleClearFilters={clearFilters}
             listType="resources"
           />
-          <div class="resource-cards-wrapper px-8 py-4">
+          <div className="resource-cards-wrapper px-8 py-4">
             <GridCards items={results} listType="resources" />
           </div>
         </>
