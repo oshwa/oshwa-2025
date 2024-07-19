@@ -1,9 +1,9 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import Layout from '../components/layout';
 import { Link } from 'gatsby';
 import dayjs from 'dayjs';
 import { FilterBar } from '../components/FilterBar';
-import GridCards from '../components/GridCards';
+// import GridCards from '../components/GridCards';
 const sessionsName = 'blog-post-filters';
 
 const SearchBlogPosts = ({ location }) => {
@@ -46,14 +46,14 @@ const SearchBlogPosts = ({ location }) => {
     location.search = ''; // tk remove from url
   };
 
-  const handleUrlParams = () => {
+  const handleUrlParams = useCallback(() => {
     let pubDateParam = new URLSearchParams(location.search).get('year') || '*';
 
     setPubDateQuery(pubDateParam);
     setQuery(
       `+title:* +date:${pubDateParam} +contentfulType:${contentfulType}`
     );
-  };
+  }, [location]);
 
   const setPubDateQuery = paramVal => {
     let pubDateSelect = document.querySelector('#publicationDate');
@@ -75,7 +75,7 @@ const SearchBlogPosts = ({ location }) => {
         return lunrIndex.store[ref];
       })
     );
-  }, [query]);
+  }, [query, handleUrlParams]);
 
   return (
     <>
@@ -93,12 +93,9 @@ const SearchBlogPosts = ({ location }) => {
             handleSearchQuery={handleSearchQuery}
             listType="blog-post"
           />
-          
 
           <div className={`px-8 py-4 list`}>
             <div className="grid grid lg:grid-cols-4 md:grid-cols-3 gap-4">
-
-            
               {results &&
                 results.map(
                   result => (
