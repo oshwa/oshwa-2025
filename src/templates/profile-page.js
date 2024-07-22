@@ -7,8 +7,20 @@ import RichText from '../components/RichText';
 
 export default function ProfilePage({ data }) {
   const profile = data.contentfulPeople;
-  // const certifications = data.allOshwaCertifications;
-  // console.log("certifications", certifications);
+  const certifications = data.allOshwaCertifications;
+
+  console.log(profile);
+
+  const getProjectByUid = uid => {
+    let allCerts = certifications.edges;
+    return allCerts.filter(node => node.node.oshwaUid === uid)[0];
+  };
+
+  const certifiedProjects =
+    profile.certificationUids &&
+    profile.certificationUids.map(projectId => {
+      return getProjectByUid(projectId).node;
+    });
 
   return (
     <Layout>
@@ -30,6 +42,7 @@ export default function ProfilePage({ data }) {
                     external={true}
                   />
                 )}
+
                 {profile.socialUrl && (
                   <NotchedButtonLink
                     text={profile.socialUrlTitle}
@@ -69,53 +82,82 @@ export default function ProfilePage({ data }) {
           )}
         </div>
 
-        {profile.featuredResearch && (
-          <div className="p-10 pt-0 pb-5">
-            <h2 className="generic-heading-2 py-8">Resources</h2>
-            <div className="grid lg:grid-cols-4 md:grid-cols-2 gap-5">
-              {profile.featuredResearch &&
-                profile.featuredResearch.map(resource => {
-                  return (
-                    <Link
-                      key={resource.id}
-                      className="col-span-1 mb-5 notched notched--border resource-wrapper"
-                      to={resource.prettyUrl}
-                    >
-                      <div className="resource">
-                        <h3>{resource.title}</h3>
-                      </div>
-                    </Link>
-                  );
-                })}
+        {profile.relatedResources && (
+          <div className="p-8">
+            <h2 className="generic-heading-2 py-8">Related Resources</h2>
+            <div className="list">
+              <div className="grid lg:grid-cols-4 md:grid-cols-3 gap-4">
+                {profile.relatedResources &&
+                  profile.relatedResources.map(resource => {
+                    return (
+                      <Link
+                        key={resource.id}
+                        to={`/resources/${resource.prettyUrl}`}
+                        className="lg:col-span-1 md:col-span-4 sm:col-span-4 notched notched--border notched--border--hover list-item"
+                      >
+                        <div>
+                          <p className="title"> {resource.resourceTitle}</p>
+                        </div>
+                      </Link>
+                    );
+                  })}
+              </div>
             </div>
           </div>
         )}
 
-        {/* {!!certifications.edges.length && (
-          <div className="p-10 pt-0 pb-5">
+        {certifiedProjects && (
+          <div className="p-8">
             <h2 className="generic-heading-2 py-8">Certifications</h2>
-            <div className="grid lg:grid-cols-4 md:grid-cols-4 gap-5">
-              {certifications &&
-                certifications.edges.map(project => {
-                  console.log(project);
-                  return (
-                    <Link
-                      key={project.node.id}
-                      className="lg:col-span-1 md:col-span-2 notched notched--border resource-wrapper"
-                      to={`/projects/${project.node.oshwaUid.toLowerCase()}`}
-                    >
-                      <div className="profile-certification">
-                        <p className="profile-certifications__uid">
-                          {project.node.oshwaUid}
-                        </p>
-                        <h3>{project.node.projectName}</h3>
-                      </div>
-                    </Link>
-                  );
-                })}
+            <div className="list">
+              <div className="grid lg:grid-cols-4 md:grid-cols-3 gap-4">
+                {certifiedProjects &&
+                  certifiedProjects.map(project => {
+                    return (
+                      <a
+                        key={project.id}
+                        href={`https://certification.oshwa.org/${project.oshwaUid.toLowerCase()}`}
+                        className="lg:col-span-1 md:col-span-4 sm:col-span-4 notched notched--border notched--border--hover list-item"
+                      >
+                        <div>
+                          <p className="project-id">{project.oshwaUid}</p>
+
+                          <p className="title"> {project.projectName}</p>
+                        </div>
+                      </a>
+                    );
+                  })}
+              </div>
             </div>
           </div>
-        )} */}
+        )}
+
+{profile.teamMembers && (
+          <div className="p-8">
+            <h2 className="generic-heading-2 py-8">Team Members</h2>
+            <div className="list">
+              <div className="grid lg:grid-cols-4 md:grid-cols-3 gap-16">
+                {
+                  profile.teamMembers.map(member => {
+                    return (
+                      <Link
+                        key={member.id}
+                        to={`/people/${member.prettyUrl}`}
+                        className="lg:col-span-1 md:col-span-4 sm:col-span-4 list-item"
+                      >
+                        <div>
+                        <p className="member-name"> {member.displayName}</p>
+                          <p className="member-title"> {member.title}</p>
+                          <p className="member-affiliation">{member.affiliation}</p>
+                        </div>
+                      </Link>
+                    );
+                  })}
+              </div>
+            </div>
+          </div>
+        )}
+
       </>
     </Layout>
   );
@@ -138,9 +180,6 @@ export const query = graphql`
       bio {
         raw
       }
-      relatedResources {
-        title
-      }
       externalUrl
       externalUrlTitle
       socialUrl
@@ -150,6 +189,19 @@ export const query = graphql`
         id
         resourceTitle
         youTubeId
+      }
+      certificationUids
+      relatedResources {
+        id
+        resourceTitle
+        prettyUrl
+      }
+      teamMembers {
+        id
+        displayName
+        prettyUrl
+        title
+        affiliation
       }
     }
     allOshwaCertifications {
