@@ -9,10 +9,10 @@ const GridCards = ({ items, listType }) => {
         <div className="grid lg:grid-cols-4 md:grid-cols-3 gap-4">
           {items &&
             items.map(
-              item => (
+              (item,idx) => (
                 // item.prettyUrl && (
                 <Link
-                  key={item.prettyUrl}
+                  key={`${item.prettyUrl}-${idx}`}
                   to={
                     listType === 'resources'
                       ? `/resources/${item.prettyUrl}`
