@@ -8,6 +8,7 @@ export const DarkModeToggle = () => {
 
   return (
     <Toggle
+      id="mode"
       checked={isDark}
       onChange={({ target }) => setIsDark(target.checked)}
       icons={{ checked: '', unchecked: '' }}
@@ -15,4 +16,4 @@ export const DarkModeToggle = () => {
     />
   );
 };
-// 
+//

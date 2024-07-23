@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import Layout from '../components/layout';
 import { FilterBar } from '../components/FilterBar';
 import GridCards from '../components/GridCards';
@@ -12,6 +12,14 @@ const Search = ({ data, location }) => {
   const capFirstLet = str => {
     if (str) {
       return str[0].toUpperCase() + str.slice(1);
+    }
+  };
+
+  const formatAudienceQuery = audienceQuery => {
+    if (audienceQuery === 'Academic') {
+      return 'Academic -Non-academic';
+    } else {
+      return audienceQuery;
     }
   };
 
@@ -30,12 +38,13 @@ const Search = ({ data, location }) => {
     );
 
     setQuery(
-      `+title:* +resourceDate:${pubDateValue} +resourceType:${pubTypeValue} +resourceAudience:${pubAudienceValue} +contentfulType:${contentfulType}`
+      `+title:* +resourceDate:${pubDateValue} +resourceType:${pubTypeValue} +resourceAudience:${formatAudienceQuery(
+        pubAudienceValue
+      )}* +contentfulType:${contentfulType}`
     );
   };
 
-  const handleUrlParams = () => {
-    console.log(location.search, 'location search');
+  const handleUrlParams = useCallback(() => {
     let pubDateParam = new URLSearchParams(location.search).get('year') || '*';
     let pubTypeParam = new URLSearchParams(location.search).get('type') || '*';
     let pubAudienceParam =
@@ -46,9 +55,11 @@ const Search = ({ data, location }) => {
     setPubAudienceQuery(capFirstLet(pubAudienceParam));
 
     setQuery(
-      `+title:* +resourceDate:${pubDateParam} +resourceType:${pubTypeParam} +resourceAudience:${pubAudienceParam} +contentfulType:${contentfulType}`
+      `+title:* +resourceDate:${pubDateParam} +resourceType:${pubTypeParam} +resourceAudience:${formatAudienceQuery(
+        pubAudienceParam
+      )}* +contentfulType:${contentfulType}`
     );
-  };
+  }, [location]);
 
   const setPubDateQuery = paramVal => {
     let pubDateSelect = document.querySelector('#publicationDate');
@@ -77,7 +88,7 @@ const Search = ({ data, location }) => {
     });
   };
 
-  const matchFiltersToSessions = () => {
+  const matchFiltersToSessions = useCallback(() => {
     let pubDateSelect = document.querySelector('#publicationDate');
     let pubTypeSelect = document.querySelector('#publicationType');
     let pubAudienceSelect = document.querySelector('#publicationAudience');
@@ -98,9 +109,13 @@ const Search = ({ data, location }) => {
       setPubAudienceQuery(savedSessionsQuery.pubAudienceValue);
     }
     setQuery(
-      `+title:* +resourceDate:${pubDateSelect.value} +resourceType:${pubTypeSelect.value} +resourceAudience:${pubAudienceSelect.value} +contentfulType:${contentfulType}`
+      `+title:* +resourceDate:${pubDateSelect.value} +resourceType:${
+        pubTypeSelect.value
+      } +resourceAudience:${formatAudienceQuery(
+        pubAudienceSelect.value
+      )} +contentfulType:${contentfulType}`
     );
-  };
+  }, []);
 
   const clearFilters = () => {
     sessionStorage.removeItem(sessionsName);
@@ -117,19 +132,19 @@ const Search = ({ data, location }) => {
     handleUrlParams();
     matchFiltersToSessions();
     const searchResults = lunrIndex.index.search(query);
+
     setResults(
       searchResults.map(({ ref }) => {
         return lunrIndex.store[ref];
       })
     );
-  }, [query, location]);
+  }, [query, location, handleUrlParams, matchFiltersToSessions]);
 
   return (
     <>
       <Layout>
         <>
           <div className="px-8">
-
             <div className="grid lg:grid-cols-5 md:grid-cols-5">
               <div className="col-span-10 mb-5 notched notched--border">
                 <h1 className="generic-heading-1">Resources</h1>
@@ -143,7 +158,7 @@ const Search = ({ data, location }) => {
             handleClearFilters={clearFilters}
             listType="resources"
           />
-          <div class="resource-cards-wrapper px-8 py-4">
+          <div className="resource-cards-wrapper px-8 py-4">
             <GridCards items={results} listType="resources" />
           </div>
         </>

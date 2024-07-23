@@ -26,7 +26,7 @@ const ProgramsPage = () => {
         }
       }
     }
-  `)
+  `);
 
   const pageData = data.allContentfulProgramsPage.edges[0].node;
 
@@ -43,7 +43,7 @@ const ProgramsPage = () => {
         page="programs-page"
       />
     </Layout>
-  )
+  );
 };
 
 export default ProgramsPage;

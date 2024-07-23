@@ -10,9 +10,15 @@ import MarkdownText from '../components/MarkdownText';
 
 const ProgramYear = ({ data }) => {
   const pageData = data.contentfulProgramYear;
-  const image = (pageData.headerImage === null) ? '' : pageData.headerImage.url;
-  const description = pageData.shortDescription != null ? pageData.shortDescription.childrenMarkdownRemark[0].html : '';
+  const image = pageData.headerImage === null ? '' : pageData.headerImage.url;
+  const description =
+    pageData.shortDescription != null
+      ? pageData.shortDescription.childrenMarkdownRemark[0].html
+      : '';
   const program = pageData.program != null ? pageData.program[0].title : '';
+  const defaultFeaturedWork = pageData.featuredWork.translatedResources.filter(
+    resource => resource.language === 'English'
+  )[0];
 
   return (
     <Layout>
@@ -51,56 +57,129 @@ const ProgramYear = ({ data }) => {
             <div className="lg:col-span-2 md:col-span-1 featured-work__img">
               <GatsbyImage
                 image={getImage(pageData.featuredWork.resourceImage)}
-                alt={pageData.featuredWork.title + ` image`}
+                alt={pageData.featuredWork.resourceTitle + ` image`}
               />
-              <NotchedButtonLink text={pageData.featuredWork.buttonText} location={pageData.featuredWork.buttonUrl} />
+              <NotchedButtonLink
+                external
+                text={defaultFeaturedWork.buttonText}
+                location={defaultFeaturedWork.buttonUrl}
+              />
             </div>
             <div className="lg:col-span-4 lg:col-start-4 md:col-span-1">
-              <h3>{pageData.featuredWork.title}</h3>
-              <h4>{pageData.featuredWork.subtitle}</h4>
-              <MarkdownText content={pageData.featuredWork.shortDescription.childrenMarkdownRemark[0].html} />
+              <h3>{defaultFeaturedWork.title}</h3>
+              <h4>{defaultFeaturedWork.subtitle}</h4>
+              <MarkdownText
+                content={
+                  defaultFeaturedWork.shortDescription.childrenMarkdownRemark[0]
+                    .html
+                }
+              />
             </div>
           </div>
         </div>
       )}
 
-
       {pageData.works && (
         <div className="p-8">
-          <h2 className="generic-heading-2 py-8">{pageData.worksSectionTitle}</h2>
+          <h2 className="generic-heading-2 py-8">
+            {pageData.worksSectionTitle}
+          </h2>
           <GridCards items={pageData.works} listType="resources-ref" />
         </div>
       )}
 
-      {
-        pageData.mentors && (
-          <div className="p-10 pt-0 pb-5">
-            <h2 className="generic-heading-2 py-8">{pageData.mentorsSectionTitle}</h2>
-            <div className="grid lg:grid-cols-4 md:grid-cols-4 gap-4">
-              {pageData.mentors.map(mentor => {
-                return (
-                  <Link
-                    key={mentor.id}
-                    className="lg:col-span-1 md:col-span-2 notched notched--border"
-                    to={`/team/${mentor.prettyUrl}`}
-                  >
-                    <PersonContainer
-                      name={mentor.displayName}
-                      title={mentor.title}
-                      profileImageUrl={mentor.image.url}
-                    />
-                  </Link>
-                );
-              })}
-            </div>
+      {pageData.mentors && (
+        <div className="p-10 pt-0 pb-5">
+          <h2 className="generic-heading-2 py-8">
+            {pageData.mentorsSectionTitle}
+          </h2>
+          <div className="grid lg:grid-cols-4 md:grid-cols-4 gap-4">
+            {pageData.mentors.map((mentor, idx) => {
+              return (
+                <Link
+                  key={`${mentor.id}-${idx}`}
+                  className="lg:col-span-1 md:col-span-2 notched notched--border"
+                  to={`/team/${mentor.prettyUrl}`}
+                >
+                  <PersonContainer
+                    name={mentor.displayName}
+                    title={mentor.title}
+                    profileImageUrl={mentor.image.url}
+                  />
+                </Link>
+              );
+            })}
           </div>
-        )
-      }
-    </Layout >
-  )
+        </div>
+      )}
+    </Layout>
+  );
 };
 
 export default ProgramYear;
+
+// export const query = graphql`
+//   query ($id: String!) {
+//     contentfulProgramYear(id: { eq: $id }) {
+//       id
+//       title
+//       program {
+//         id
+//         title
+//         prettyUrl
+//       }
+//       shortDescription {
+//         childrenMarkdownRemark {
+//            html
+//         }
+//       }
+//       headerImage {
+//         url
+//       }
+//       fellows {
+//         id
+//         displayName
+//         prettyUrl
+//         title
+//         affiliation
+//         image {
+//           url
+//         }
+//       }
+//       mentorsSectionTitle
+//       mentors {
+//         displayName
+//         prettyUrl
+//         title
+//         affiliation
+//         image {
+//           url
+//         }
+//       }
+//       featuredWork {
+//         title
+//         subtitle
+//         shortDescription {
+//           childrenMarkdownRemark {
+//             html
+//           }
+//         }
+//         resourceImage {
+//           gatsbyImage(width: 600)
+//         }
+//         buttonUrl
+//         buttonText
+//       }
+//       worksSectionTitle
+//       works {
+//         id
+//         prettyUrl
+//         resourceTitle
+//         resourceType
+//       }
+//     }
+//   }
+// `;
 
 export const query = graphql`
   query ($id: String!) {
@@ -114,7 +193,7 @@ export const query = graphql`
       }
       shortDescription {
         childrenMarkdownRemark {
-           html
+          html
         }
       }
       headerImage {
@@ -141,18 +220,23 @@ export const query = graphql`
         }
       }
       featuredWork {
-        title
-        subtitle
-        shortDescription {
-          childrenMarkdownRemark {
-            html
+        resourceTitle
+        prettyUrl
+        translatedResources {
+          title
+          subtitle
+          language
+          shortDescription {
+            childrenMarkdownRemark {
+              html
+            }
           }
+          buttonText
+          buttonUrl
         }
         resourceImage {
           gatsbyImage(width: 600)
         }
-        buttonUrl
-        buttonText
       }
       worksSectionTitle
       works {

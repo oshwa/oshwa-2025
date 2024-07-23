@@ -74,7 +74,7 @@ exports.onCreateNode = ({ node, actions }) => {
       node,
       name: `slug`,
       value: slug,
-    })
+    });
   }
 
   if (node.internal.type === `ContentfulProgramYear`) {
@@ -84,9 +84,9 @@ exports.onCreateNode = ({ node, actions }) => {
       node,
       name: `slugProgram`,
       value: slug,
-    })
+    });
   }
-}
+};
 
 exports.createPages = async ({ graphql, actions }) => {
   const { createPage } = actions;
@@ -97,9 +97,11 @@ exports.createPages = async ({ graphql, actions }) => {
   //   defer: true,
   // });
 
-  const globalResourceTemplate = path.resolve(`src/templates/global-resource.js`);
+  const globalResourceTemplate = path.resolve(
+    `src/templates/global-resource.js`
+  );
   const profilePageTemplate = path.resolve(`src/templates/profile-page.js`);
-  const projectPageTemplate = path.resolve(`src/templates/project-page.js`);
+
   const blogPostPageTemplate = path.resolve(`src/templates/blog-post.js`);
   const programPageTemplate = path.resolve(`src/templates/program.js`);
   const programYearPageTemplate = path.resolve(`src/templates/program-year.js`);
@@ -120,17 +122,19 @@ exports.createPages = async ({ graphql, actions }) => {
     }
   `);
 
-  allGlobalResourceContainers.data.allContentfulGlobalResourceContainer.edges.forEach(edge => {
-    createPage({
-      path: `resources/${edge.node.prettyUrl}`,
-      component: globalResourceTemplate,
-      context: {
-        id: edge.node.id,
-        title: edge.node.title,
-        prettyUrl: edge.node.prettyUrl,
-      },
-    });
-  });
+  allGlobalResourceContainers.data.allContentfulGlobalResourceContainer.edges.forEach(
+    edge => {
+      createPage({
+        path: `resources/${edge.node.prettyUrl}`,
+        component: globalResourceTemplate,
+        context: {
+          id: edge.node.id,
+          title: edge.node.title,
+          prettyUrl: edge.node.prettyUrl,
+        },
+      });
+    }
+  );
 
   const allBlogPosts = await graphql(`
     query allBlogPostsQuery {
@@ -196,51 +200,23 @@ exports.createPages = async ({ graphql, actions }) => {
     });
   });
 
-  // project page generation
-  const allProjects = await graphql(`
-    query allOshwaCertificationsQuery {
-      allOshwaCertifications {
+  // generic page generation
+  const genericPageTemplate = path.resolve(`src/templates/generic-page.js`);
+
+  // generic page generation
+  const allGenericPages = await graphql(`
+    query allGenericPageQuery {
+      allContentfulGenericPage {
         edges {
           node {
             id
-            oshwaUid
-            projectName
-            projectWebsite
-            projectDescription
+            prettyUrl
+            title
           }
         }
       }
     }
   `);
-
-  allProjects.data.allOshwaCertifications.edges.forEach(edge => {
-    createPage({
-      path: `projects/${edge.node.id.toLowerCase()}`,
-      component: projectPageTemplate,
-      context: {
-        id: edge.node.id,
-        title: edge.node.projectName,
-      },
-    });
-  });
-
-  // generic page generation
-  const genericPageTemplate = path.resolve(`src/templates/generic-page.js`);
-
-  // project page generation
-  const allGenericPages = await graphql(`
-      query allGenericPageQuery {
-        allContentfulGenericPage {
-          edges {
-            node {
-              id
-              prettyUrl
-              title
-            }
-          }
-        }
-      }
-    `);
 
   allGenericPages.data.allContentfulGenericPage.edges.forEach(edge => {
     createPage({
