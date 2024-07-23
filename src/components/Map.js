@@ -89,7 +89,7 @@ const Map = () => {
     if (certificationStats) {
       setLoading(false);
     }
-  }, []);
+  }, [certificationStats]);
 
   const mapAttrs = {
     width: 800,
