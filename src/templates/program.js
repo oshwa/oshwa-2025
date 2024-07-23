@@ -6,10 +6,10 @@ import GridCards from '../components/GridCardsB';
 
 const Programs = ({ data }) => {
   const pageData = data.contentfulProgram;
-  console.log(pageData.programYears)
-
+  
   return (
     <Layout>
+      
       <GenericHeader
         title={pageData.title}
         description={pageData.shortDescription.childrenMarkdownRemark[0].html}
