@@ -1,9 +1,8 @@
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { graphql } from 'gatsby';
 import { GatsbyImage, getImage } from 'gatsby-plugin-image';
 import Layout from '../components/layout';
-import MarkdownText from '../components/MarkdownText';
-import FixedNav from '../components/FixedNav';
+// import FixedNav from '../components/FixedNav';
 import RichText from '../components/RichText';
 import LanguagePicker from '../components/LanguagePicker';
 
@@ -22,12 +21,12 @@ export default function GlobalResourcePage({ data, location }) {
       return str[0].toUpperCase() + str.slice(1);
     }
   };
-  const handleUrlParams = () => {
+  const handleUrlParams = useCallback(() => {
     let languageSearchValue = new URLSearchParams(location.search).get(
       'language'
     );
     setSelectedLanguage(capFirstLet(languageSearchValue) || defaultLanguage);
-  };
+  }, [location]);
   const globalContent = data.contentfulGlobalResourceContainer;
 
   const translatedContent =
@@ -43,7 +42,8 @@ export default function GlobalResourcePage({ data, location }) {
 
   useEffect(() => {
     handleUrlParams();
-  }, []);
+  }, [handleUrlParams]);
+
   return (
     <Layout>
       <>
@@ -73,9 +73,9 @@ export default function GlobalResourcePage({ data, location }) {
               )}
             </div>
             <div className="resource-header__image lg:col-span-4 lg:col-start-9 md:col-span-12 md:col-start-1 ">
-              {translatedContent.resourceImage && (
+              {globalContent.resourceImage && (
                 <GatsbyImage
-                  image={getImage(translatedContent.resourceImage)}
+                  image={getImage(globalContent.resourceImage)}
                   alt="blog image"
                 />
               )}
@@ -93,7 +93,7 @@ export default function GlobalResourcePage({ data, location }) {
             }
             content={translatedContent.body}
           />
-        )} */}
+        )}  */}
         <div className="px-8">
           <div className="grid lg:grid-cols-12 resource-body">
             <div className="lg:col-span-7 md:col-span-12">
@@ -130,6 +130,10 @@ export const query = graphql`
       namedAuthors {
         namedAuthors
       }
+      resourceImage {
+        id
+        gatsbyImageData
+      }
       translatedResources {
         id
         title
@@ -141,10 +145,6 @@ export const query = graphql`
         }
         shortDescription {
           shortDescription
-        }
-        resourceImage {
-          id
-          gatsbyImageData
         }
         buttonUrl
         buttonText
