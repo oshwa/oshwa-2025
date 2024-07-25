@@ -51,7 +51,7 @@ const ProgramYear = ({ data }) => {
         </div>
       )}
 
-      {pageData.featuredWork != null && (
+      {pageData.featuredWork != null && defaultFeaturedWork && (
         <div className="p-8 featured-work">
           <div className="grid lg:grid-cols-7 md:grid-cols-1">
             <div className="lg:col-span-2 md:col-span-1 featured-work__img">
