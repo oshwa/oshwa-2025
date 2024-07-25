@@ -16,7 +16,7 @@ const ProgramYear = ({ data }) => {
       ? pageData.shortDescription.childrenMarkdownRemark[0].html
       : '';
   const program = pageData.program != null ? pageData.program[0].title : '';
-  const defaultFeaturedWork = pageData.featuredWork.translatedResources.filter(
+  const defaultFeaturedWork = pageData.featuredWork && pageData.featuredWork.translatedResources.filter(
     resource => resource.language === 'English'
   )[0];
 
