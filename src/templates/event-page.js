@@ -33,7 +33,20 @@ const Event = ({ data }) => {
                   location={pageData.eventUrl}
                 />
               )}
-              <NotchedButtonLink text="SUMMIT FELLOWS" location="/" />
+
+              {pageData.relatedPrograms &&
+                pageData.relatedPrograms.map(relatedProgram => {
+                  console.log(relatedProgram.program);
+                  return (
+                    relatedProgram.program !== null && (
+                      <NotchedButtonLink
+                        key={relatedProgram.id}
+                        text={`${relatedProgram.program[0].title} ${relatedProgram.title}`}
+                        location={`/programs/${relatedProgram.fields.slugProgram}/${relatedProgram.title}`}
+                      />
+                    )
+                  );
+                })}
             </div>
           </div>
         </div>
@@ -56,6 +69,18 @@ export const query = graphql`
       dateEnd: dateEnd(formatString: "MMMM DD, YYYY")
       location
       eventUrl
+      relatedPrograms {
+        id
+        title
+        program {
+          id
+          title
+          prettyUrl
+        }
+        fields {
+          slugProgram
+        }
+      }
       headerImage {
         url
       }

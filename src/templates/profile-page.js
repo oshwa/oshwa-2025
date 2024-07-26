@@ -142,7 +142,7 @@ export default function ProfilePage({ data }) {
                     return (
                       <Link
                         key={member.id}
-                        to={`/people/${member.prettyUrl}`}
+                        to={`/team/${member.prettyUrl}`}
                         className="lg:col-span-1 md:col-span-4 sm:col-span-4 list-item"
                       >
                         <div>
