@@ -94,7 +94,7 @@ const IndexPage = () => {
         <div className="px-8 pt-0 pb-5">
           <div className="grid lg:grid-cols-4 gap-4">
             <Link to="/programs">
-              <div className="section-card lg:col-span-1 md:col-span-4 sm:col-span-4 notched notched--bg notched--bg--hover green">
+              <div className="section-card section-card--color lg:col-span-1 md:col-span-4 sm:col-span-4 notched notched--bg notched--bg--hover green">
                 <h3 className="section-card__title">Programs</h3>
                 <>
                   <StaticImage
@@ -107,7 +107,7 @@ const IndexPage = () => {
               </div>
             </Link>
             <Link to="/resources">
-              <div className="section-card lg:col-span-1 md:col-span-4 sm:col-span-4 notched notched--bg notched--bg--hover blue">
+              <div className="section-card section-card--color lg:col-span-1 md:col-span-4 sm:col-span-4 notched notched--bg notched--bg--hover blue">
                 <h3 className="section-card__title">Resources</h3>
                 <StaticImage
                   className="section-card__image"
@@ -118,7 +118,7 @@ const IndexPage = () => {
               </div>
             </Link>
             <Link to="/events">
-              <div className="section-card lg:col-span-1 md:col-span-4 sm:col-span-4 notched notched--bg notched--bg--hover red">
+              <div className="section-card section-card--color lg:col-span-1 md:col-span-4 sm:col-span-4 notched notched--bg notched--bg--hover red">
                 <h3 className="section-card__title">Events</h3>
                 <StaticImage
                   className="section-card__image"
@@ -129,7 +129,7 @@ const IndexPage = () => {
               </div>
             </Link>
             <Link to="/community">
-              <div className="section-card lg:col-span-1 md:col-span-4 sm:col-span-4 notched notched--bg notched--bg--hover orange">
+              <div className="section-card section-card--color lg:col-span-1 md:col-span-4 sm:col-span-4 notched notched--bg notched--bg--hover orange">
                 <h3 className="section-card__title">Community</h3>
                 <StaticImage
                   className="section-card__image"

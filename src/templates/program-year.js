@@ -118,68 +118,6 @@ const ProgramYear = ({ data }) => {
 
 export default ProgramYear;
 
-// export const query = graphql`
-//   query ($id: String!) {
-//     contentfulProgramYear(id: { eq: $id }) {
-//       id
-//       title
-//       program {
-//         id
-//         title
-//         prettyUrl
-//       }
-//       shortDescription {
-//         childrenMarkdownRemark {
-//            html
-//         }
-//       }
-//       headerImage {
-//         url
-//       }
-//       fellows {
-//         id
-//         displayName
-//         prettyUrl
-//         title
-//         affiliation
-//         image {
-//           url
-//         }
-//       }
-//       mentorsSectionTitle
-//       mentors {
-//         displayName
-//         prettyUrl
-//         title
-//         affiliation
-//         image {
-//           url
-//         }
-//       }
-//       featuredWork {
-//         title
-//         subtitle
-//         shortDescription {
-//           childrenMarkdownRemark {
-//             html
-//           }
-//         }
-//         resourceImage {
-//           gatsbyImage(width: 600)
-//         }
-//         buttonUrl
-//         buttonText
-//       }
-//       worksSectionTitle
-//       works {
-//         id
-//         prettyUrl
-//         resourceTitle
-//         resourceType
-//       }
-//     }
-//   }
-// `;
 
 export const query = graphql`
   query ($id: String!) {
