@@ -9,7 +9,7 @@ const GridCards = ({ items, listType }) => {
         <div className="grid lg:grid-cols-4 md:grid-cols-3 gap-4">
           {items &&
             items.map(
-              (item,idx) => (
+              (item, idx) => (
                 // item.prettyUrl && (
                 <Link
                   key={`${item.prettyUrl}-${idx}`}
@@ -27,18 +27,12 @@ const GridCards = ({ items, listType }) => {
                       </p>
                     )}
                     <p className="title"> {item.title}</p>
-                    {listType === 'resources' && (
-                      <p className="publicationDate">
-                        {dayjs(item.resourceDate).format('MMMM D, YYYY')}
-                      </p>
-                    )}
                   </div>
                   {(listType === 'resources' ||
                     listType === 'resources-ref') && (
                     <>
                       <p className="title">{item.resourceTitle}</p>
                       <p className="type">{item.resourceType}</p>
-                      <p className="type">{item.resourceAudience}</p>
                     </>
                   )}
                 </Link>
