@@ -26,7 +26,7 @@ const Legend = ({ color }) => {
     .domain([-1, color.range().length - 1])
     .rangeRound([marginLeft, width - marginRight]);
 
-  const tickValues = d3.range(thresholds.length);
+  const tickValues = d3.range(thresholds.length -1);
   tickFormat = i => thresholdFormat(thresholds[i], i);
 
   useEffect(() => {
@@ -109,8 +109,8 @@ const Map = () => {
   const geoPathGenerator = d3.geoPath().projection(projection);
 
   const legendData = {
-    keys: [1, 5, 10, 20, 50],
-    colors: ['#333333', '#D7DF23', '#FBB040', '#F26C7A', '#19ACE2', '#56BFAB'],
+    keys: [5, 20, 50, 100, 101],
+    colors: ['#8859a5', '#F26C7A', '#FBB040', '#D7DF23', '#56BFAB'],
   };
 
   const colorScale = d3
@@ -119,16 +119,16 @@ const Map = () => {
     .range(legendData.colors);
 
   const getColor = d => {
-    return d > 50
+    return d > 100
       ? '#56BFAB'
-      : d > 20
-      ? '#19ACE2'
-      : d > 10
-      ? '#F26C7A'
-      : d > 5
-      ? '#FBB040'
-      : d > 1
+      : d > 50
       ? '#D7DF23'
+      : d > 20
+      ? '#FBB040'
+      : d > 5
+      ? '#F26C7A'
+      : d >= 1
+      ? '#8859a5'
       : '#333333';
   };
 
@@ -138,7 +138,7 @@ const Map = () => {
       const color = getColor(certificationStats[shape.properties.ADMIN]);
       const country = shape.properties.ADMIN;
 
-      const count = certificationStats[shape.properties.ADMIN] || 'N/A';
+      const count = certificationStats[shape.properties.ADMIN] || 0;
 
       return (
         <path
@@ -153,7 +153,7 @@ const Map = () => {
             setTooltipVisible(false);
           }}
           onMouseMove={event => {
-            const certificationsCount = (count || 'N/A').toLocaleString();
+            const certificationsCount = (count || 0).toLocaleString();
 
             // get x and y position relative to the chart
             let [x, y] = d3.pointer(event, chartRef.current);
