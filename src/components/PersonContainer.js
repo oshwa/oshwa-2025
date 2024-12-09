@@ -1,7 +1,7 @@
 import React from 'react';
 
 
-export const PersonContainer = ({ name, title, profileImageUrl }) => {
+export const PersonContainer = ({ name, title, affiliation,  profileImageUrl }) => {
 
   return (
     <div className="person-container">
@@ -11,6 +11,7 @@ export const PersonContainer = ({ name, title, profileImageUrl }) => {
       ></div>
       <p className="person-container__name">{name}</p>
       <p className="person-container__title">{title}</p>
+      <p className="person-container__affiliation">{affiliation}</p>
     </div>
   );
 };

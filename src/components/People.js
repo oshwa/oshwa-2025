@@ -85,6 +85,7 @@ export const PeopleTemplate = () => {
                 <PersonContainer
                   name={boardMember.node.displayName}
                   title={boardMember.node.title}
+                  affiliation={boardMember.node.affiliation}
                   profileImageUrl={boardMember.node.image.file.url}
                 />
               </Link>

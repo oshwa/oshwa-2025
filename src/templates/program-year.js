@@ -42,6 +42,7 @@ const ProgramYear = ({ data }) => {
                   <PersonContainer
                     name={fellow.displayName}
                     title={fellow.title}
+                    affiliation={fellow.affiliation}
                     profileImageUrl={fellow.image.url}
                   />
                 </Link>
@@ -104,6 +105,7 @@ const ProgramYear = ({ data }) => {
                   <PersonContainer
                     name={mentor.displayName}
                     title={mentor.title}
+                    affiliation={mentor.affiliation}
                     profileImageUrl={mentor.image.url}
                   />
                 </Link>
