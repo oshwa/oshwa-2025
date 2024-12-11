@@ -107,3 +107,25 @@
   font-size: 50px;
   word-wrap: break-word;
 }
+
+.profile-resource-card {
+  min-height: 22rem;
+
+  @include breakpoint($medium-only) {
+    min-height: 15rem;
+  }
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+  .title {
+    font-size: 1.7rem;
+    font-weight: 600;
+    overflow-wrap: break-word;
+  }
+
+  .type {
+    bottom: 2.5rem;
+    @include typography-body-6;
+  }
+}
