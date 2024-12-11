@@ -46,19 +46,6 @@ export default function GlobalResourcePage({ data, location }) {
     handleUrlParams();
   }, [handleUrlParams]);
 
-  const parseVideoUrl = url => {
-    const urlPattern = /(?:youtu\.be\/|youtube\.com\/(?:watch\?v=|embed\/|v\/|shorts\/))([^&?/]+)/;
-    const match = url.match(urlPattern);
-
-    if (!match) return null;
-
-    const videoId = match[1];
-    const urlObj = new URL(url);
-    const queryParams = urlObj.search;
-
-    return `${videoId}${queryParams}`;
-  };
-
   return (
     <Layout>
       <>
@@ -112,9 +99,9 @@ export default function GlobalResourcePage({ data, location }) {
         <div className="p-8">
           <div className="grid lg:grid-cols-12 resource-body">
             <div className="lg:col-span-7 md:col-span-12">
-              {translatedContent.buttonUrl && (
+              {data.contentfulGlobalResourceContainer.youTubeId && (
                 <Video
-                  videoId={parseVideoUrl(translatedContent.buttonUrl)}
+                  videoId={data.contentfulGlobalResourceContainer.youTubeId}
                   size="large"
                 />
               )}
@@ -145,6 +132,7 @@ export const query = graphql`
       id
       resourceTitle
       prettyUrl
+      youTubeId
       resourceType
       resourceDate
       resourceAudience
