@@ -22,24 +22,27 @@ export const EventsTemplate = () => {
     }
   `);
 
-  const today = new Date().toLocaleDateString();
+  const today = new Date();
   const pastEvents = [];
   const upcomingEvents = [];
 
-  data.allContentfulEvent.edges.forEach(event => {
-    (new Date(event.node.dateEnd).toLocaleDateString() >= today) ?
-      upcomingEvents.push(event) :
-      pastEvents.push(event)
+  data.allContentfulEvent.edges.forEach(({ node }) => {
+    const eventEndDate = new Date(node.dateEnd);
+    eventEndDate >= today
+      ? upcomingEvents.push({ ...node })
+      : pastEvents.push({ ...node });
   });
 
-  const sortDates = (eventData) => {
+  const sortDates = (eventData, ascending = true) => {
     eventData.sort((a, b) => {
-      return new Date(b.node.dateEnd) - new Date(a.node.dateEnd);
+      const dateA = new Date(a.dateEnd);
+      const dateB = new Date(b.dateEnd);
+      return ascending ? dateA - dateB : dateB - dateA;
     });
   };
 
-  sortDates(pastEvents);
   sortDates(upcomingEvents);
+  sortDates(pastEvents, false);
 
   return (
     <>
@@ -51,15 +54,15 @@ export const EventsTemplate = () => {
               {upcomingEvents.map(event => {
                 return (
                   <Link
-                    key={event.node.fields.slug}
+                    key={event.fields.slug}
                     className="lg:col-span-1 md:col-span-2 notched notched--border notched--border--hover section-card"
-                    to={`/events/${event.node.fields.slug}`}
+                    to={`/events/${event.fields.slug}`}
                   >
                     <div className="event-container">
-                      <p className="event-title">{event.node.title}</p>
+                      <p className="event-title">{event.title}</p>
                     </div>
 
-                    {event.node.type === 'Open Hardware Summit' && (
+                    {event.type === 'Open Hardware Summit' && (
                       <>
                         <StaticImage
                           className="section-card__image image-theme--light"
@@ -76,7 +79,7 @@ export const EventsTemplate = () => {
                       </>
                     )}
 
-                    {event.node.type === 'Open Hardware Month' && (
+                    {event.type === 'Open Hardware Month' && (
                       <>
                         <StaticImage
                           className="section-card__image image-theme--light"
@@ -104,15 +107,15 @@ export const EventsTemplate = () => {
           {pastEvents.map(event => {
             return (
               <Link
-                key={event.node.fields.slug}
+                key={event.fields.slug}
                 className="lg:col-span-1 md:col-span-4 sm:col-span-4 notched notched--border notched--border--hover section-card"
-                to={`/events/${event.node.fields.slug}`}
+                to={`/events/${event.fields.slug}`}
               >
                 <div className="event-container">
-                  <p className="event-title">{event.node.title}</p>
+                  <p className="event-title">{event.title}</p>
                 </div>
 
-                {event.node.type === 'Open Hardware Summit' && (
+                {event.type === 'Open Hardware Summit' && (
                   <>
                     <StaticImage
                       className="section-card__image image-theme--light"
@@ -129,7 +132,7 @@ export const EventsTemplate = () => {
                   </>
                 )}
 
-                {event.node.type === 'Open Hardware Month' && (
+                {event.type === 'Open Hardware Month' && (
                   <>
                     <StaticImage
                       className="section-card__image image-theme--light"
