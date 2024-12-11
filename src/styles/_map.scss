@@ -5,6 +5,9 @@
     height: 100%;
   }
 }
+path.clickable {
+  cursor: pointer;
+}
 .loading {
   height: 2rem;
   
@@ -15,8 +18,8 @@
   }
 }
 .tooltip {
-  width: 8rem;
-  
+  width: 10rem;
+  max-width: 10rem;
   display: none;
   transition: display .4s ease-in-out .4s;
   background: var($--theme-background);
@@ -33,4 +36,9 @@
 
 .legend {
   color: var($--theme-on-background);
+}
+
+a.be-the-first {
+  display: block;
+  font-weight: $bold;
 }
