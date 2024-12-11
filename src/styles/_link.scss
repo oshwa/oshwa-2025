@@ -1,4 +1,5 @@
-.link {}
+.link {
+}
 
 .link--arrow {
   @include typography-button;
@@ -18,6 +19,9 @@
     &::after {
       content: url('../images/icons/arrow_forward_white_24dp.svg');
     }
+  }
+  &.light-inverted {
+    color: var($--theme-on-secondary);
   }
 }
 
