@@ -93,10 +93,11 @@ export default function ProfilePage({ data }) {
                       <Link
                         key={resource.id}
                         to={`/resources/${resource.prettyUrl}`}
-                        className="lg:col-span-1 md:col-span-4 sm:col-span-4 notched notched--border notched--border--hover list-item"
+                        className="lg:col-span-1 md:col-span-4 sm:col-span-4 notched notched--border notched--border--hover "
                       >
-                        <div>
+                        <div className="profile-resource-card">
                           <p className="title"> {resource.resourceTitle}</p>
+                          <p className="type"> {resource.resourceType}</p>
                         </div>
                       </Link>
                     );
