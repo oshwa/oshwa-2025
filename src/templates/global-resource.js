@@ -6,6 +6,7 @@ import Layout from '../components/layout';
 import RichText from '../components/RichText';
 import LanguagePicker from '../components/LanguagePicker';
 import Video from '../components/Video';
+import MarkdownText from '../components/MarkdownText';
 
 export default function GlobalResourcePage({ data, location }) {
   const defaultLanguage = 'English';
@@ -81,9 +82,9 @@ export default function GlobalResourcePage({ data, location }) {
                 )}
 
               {translatedContent.shortDescription.shortDescription && (
-                <p className="resource-introduction">
-                  {translatedContent.shortDescription.shortDescription}{' '}
-                </p>
+                <div className="resource-introduction">
+                  <MarkdownText content={translatedContent.shortDescription.childMarkdownRemark.html} />
+                </div>
               )}
             </div>
             <div className="resource-header__image lg:col-span-4 lg:col-start-9 md:col-span-12 md:col-start-1 ">
@@ -165,6 +166,9 @@ export const query = graphql`
         }
         shortDescription {
           shortDescription
+          childMarkdownRemark {
+            html
+          }
         }
         buttonUrl
         buttonText
