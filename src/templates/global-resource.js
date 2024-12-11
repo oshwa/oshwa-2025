@@ -5,6 +5,8 @@ import Layout from '../components/layout';
 // import FixedNav from '../components/FixedNav';
 import RichText from '../components/RichText';
 import LanguagePicker from '../components/LanguagePicker';
+import Video from '../components/Video';
+import MarkdownText from '../components/MarkdownText';
 
 export default function GlobalResourcePage({ data, location }) {
   const defaultLanguage = 'English';
@@ -67,9 +69,9 @@ export default function GlobalResourcePage({ data, location }) {
                 )}
 
               {translatedContent.shortDescription.shortDescription && (
-                <p className="resource-introduction">
-                  {translatedContent.shortDescription.shortDescription}{' '}
-                </p>
+                <div className="resource-introduction">
+                  <MarkdownText content={translatedContent.shortDescription.childMarkdownRemark.html} />
+                </div>
               )}
             </div>
             <div className="resource-header__image lg:col-span-4 lg:col-start-9 md:col-span-12 md:col-start-1 ">
@@ -97,6 +99,12 @@ export default function GlobalResourcePage({ data, location }) {
         <div className="p-8">
           <div className="grid lg:grid-cols-12 resource-body">
             <div className="lg:col-span-7 md:col-span-12">
+              {data.contentfulGlobalResourceContainer.youTubeId && (
+                <Video
+                  videoId={data.contentfulGlobalResourceContainer.youTubeId}
+                  size="large"
+                />
+              )}
               {translatedContent.body && (
                 <RichText content={translatedContent.body} />
               )}
@@ -124,6 +132,7 @@ export const query = graphql`
       id
       resourceTitle
       prettyUrl
+      youTubeId
       resourceType
       resourceDate
       resourceAudience
@@ -145,6 +154,9 @@ export const query = graphql`
         }
         shortDescription {
           shortDescription
+          childMarkdownRemark {
+            html
+          }
         }
         buttonUrl
         buttonText
