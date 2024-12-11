@@ -8,7 +8,7 @@ import RichText from '../components/RichText';
 export default function ProfilePage({ data }) {
   const profile = data.contentfulPeople;
   const certifications = data.allOshwaCertifications;
-console.log(profile)
+  console.log(profile);
   console.log(profile);
 
   const getProjectByUid = uid => {
@@ -132,32 +132,40 @@ console.log(profile)
           </div>
         )}
 
-{profile.teamMembers && (
+        {profile.teamMembers && (
           <div className="p-8">
             <h2 className="generic-heading-2 py-8">Team Members</h2>
             <div className="list">
               <div className="grid lg:grid-cols-4 md:grid-cols-3 gap-16">
-                {
-                  profile.teamMembers.map(member => {
-                    return (
-                      <Link
-                        key={member.id}
-                        to={`/team/${member.prettyUrl}`}
-                        className="lg:col-span-1 md:col-span-4 sm:col-span-4 list-item"
-                      >
-                        <div>
+                {profile.teamMembers.map(member => {
+                  let peopleCard = member.externalUrl ? (
+                    <a
+                      key={member.id}
+                      href={member.externalUrl}
+                      className="lg:col-span-1 md:col-span-4 sm:col-span-4 list-item"
+                    >
+                      {' '}
+                      <div key={member.id} className="profile-team-card">
                         <p className="member-name"> {member.displayName}</p>
-                          <p className="member-title"> {member.title}</p>
-                          <p className="member-affiliation">{member.affiliation}</p>
-                        </div>
-                      </Link>
-                    );
-                  })}
+                        <p className="member-title"> {member.title}</p>
+                        <p className="member-affiliation">
+                          {member.affiliation}
+                        </p>
+                      </div>
+                    </a>
+                  ) : (
+                    <div key={member.id} className="profile-team-card">
+                      <p className="member-name"> {member.displayName}</p>
+                      <p className="member-title"> {member.title}</p>
+                      <p className="member-affiliation">{member.affiliation}</p>
+                    </div>
+                  );
+                  return peopleCard;
+                })}
               </div>
             </div>
           </div>
         )}
-
       </>
     </Layout>
   );
@@ -194,12 +202,14 @@ export const query = graphql`
       relatedResources {
         id
         resourceTitle
+        resourceType
         prettyUrl
       }
       teamMembers {
         id
         displayName
         prettyUrl
+        externalUrl
         title
         affiliation
       }
