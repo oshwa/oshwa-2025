@@ -48,8 +48,6 @@ const Layout = ({ children }) => {
       <Main navType={navType} active={active} setActive={setActive}>
         {children}
       </Main>
-
-
       <Footer />
     </>
   );

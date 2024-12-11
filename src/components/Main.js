@@ -1,10 +1,10 @@
 import React from 'react';
 
-const Main = ({ pageId, children, active, setActive }) => {
+const Main = ({ pageId, children, active }) => {
   return (
-    <main role="main" id={pageId} className={`${active ? 'left-push-nav main-active' : 'left-push-nav'}`}>
+    <main role="main" id={pageId} className={`${active ? `active` : ``}`}>
       {children}
-    </main>
+    </main >
   );
 };
 
