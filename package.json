@@ -60,7 +60,7 @@
   "license": "0BSD",
   "scripts": {
     "build": "gatsby build",
-    "dev": "gatsby clean && gatsby develop",
+    "dev": "gatsby clean && gatsby develop -H 0.0.0.0",
     "develop": "gatsby develop",
     "format": "prettier --write \"**/*.{js,jsx,ts,tsx,json,md,css}\"",
     "start": "gatsby develop",

@@ -10,8 +10,9 @@ export const ArrowLink = ({ text, location, external = false, variant }) => {
       break;
     default:
       isInverted = false;
+      
   }
-  let linkClasses = classNames(...['link', 'link--arrow', isInverted && 'inverted']);
+  let linkClasses = classNames(...['link', 'link--arrow', isInverted && 'inverted', variant === 'light-inverted' ? 'light-inverted' : '']);
   if (!external) {
     return (
       <Link to={location} className={linkClasses}>

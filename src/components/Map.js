@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
+import { navigate } from 'gatsby';
 import * as d3 from 'd3';
 import featureCollection from '../data/ne_110m_admin_0_countries.json';
 
@@ -26,7 +27,7 @@ const Legend = ({ color }) => {
     .domain([-1, color.range().length - 1])
     .rangeRound([marginLeft, width - marginRight]);
 
-  const tickValues = d3.range(thresholds.length -1);
+  const tickValues = d3.range(thresholds.length - 1);
   tickFormat = i => thresholdFormat(thresholds[i], i);
 
   useEffect(() => {
@@ -142,12 +143,20 @@ const Map = () => {
 
       return (
         <path
+          className={count === 0 ? 'clickable' : ''}
           key={shape.properties.WIKIDATAID}
           d={geoPathGenerator(shape)}
           stroke={color}
           fill={color}
           onMouseEnter={event => {
             setTooltipVisible(true);
+          }}
+          onPointerUp={event => {
+            if (event.pointerType === 'mouse') {
+              if (count === 0) {
+                navigate(`https://application.oshwa.org/`);
+              }
+            }
           }}
           onMouseLeave={() => {
             setTooltipVisible(false);
@@ -206,6 +215,13 @@ const Map = () => {
             Country: {tooltipData.country}
             <br />
             Certifications: {tooltipData.certificationsCount}
+            {tooltipData.certificationsCount === '0' ? (
+              <a className="be-the-first" href="https://application.oshwa.org/">
+                Be the first!
+              </a>
+            ) : (
+              ''
+            )}
           </div>
         )}
       </div>

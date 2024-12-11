@@ -33,7 +33,8 @@ const IndexPage = () => {
       <>
         <div className="px-8 p">
           <div className="grid lg:grid-cols-5 md:grid-cols-5 gap-4 ">
-            <div className="col-span-3 notched notched--bg index-banner white">
+            {/* <div className="col-span-3 notched notched--bg index-banner white"> */}
+            <div className="col-span-3 notched notched--border notched--border--hover-x index-banner white">
               <div className="index-image-container">
                 <StaticImage
                   className="main-logo"
@@ -41,7 +42,7 @@ const IndexPage = () => {
                   alt="Open Source Hardware Association logo"
                   placeholder="none"
                 />
-                <ArrowLink text="About OSHWA" location="/about" />
+                <ArrowLink text="About OSHWA" location="/about" variant={'light-inverted'} />
               </div>
             </div>
             <div className="lg:col-span-2 md:col-span-2 notched notched--border notched--border--hover-x featured-box xs:col-span-3 sm:col-span-3">
