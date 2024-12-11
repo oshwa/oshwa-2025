@@ -34,6 +34,9 @@ export const MainNavA = ({ handleClick, active }) => {
         <Link className="main-nav__link link" to="/events">
           Events
         </Link>
+        <Link className="main-nav__link link" to="/team">
+          Team
+        </Link>
       </div>
     </nav>
   );
