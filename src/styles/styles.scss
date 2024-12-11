@@ -13,6 +13,7 @@ $medium: screen and (min-width: 40em);
 $medium-only: screen and (min-width: 40em) and (max-width: 63.9375em);
 $between-large: screen and (min- width: 1024px) and (max-width: 1260px);
 $large: screen and (min-width: 64em);
+$nav-width: 350px;
 
 @import 'breakpoint';
 @import 'utils';
@@ -44,6 +45,14 @@ $large: screen and (min-width: 64em);
 @import 'program';
 @import 'events';
 @import 'generic-page';
+
+main {
+  transition: transform 0.2s ease-in;
+
+  &.active {
+    transform: translateX($nav-width);
+  }
+}
 
 body {
   background-color: var($--theme-background);

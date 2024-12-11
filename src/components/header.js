@@ -7,9 +7,9 @@ import useOnClickOutside from '../helpers/onClickOutside';
 
 const Header = ({ active, setActive, handleClick, navType }) => {
   const ref = useRef();
-  useOnClickOutside(ref, () => setActive(false));
-
   const headerClassNames = [`p-8 pb-4`];
+
+  useOnClickOutside(ref, () => setActive(false));
 
   return (
     <>

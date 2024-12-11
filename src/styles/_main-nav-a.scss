@@ -1,96 +1,82 @@
 .main-nav {
-  overflow-y: auto;
-  button {
-    border-radius: 0;
-    height: 3.5rem;
+  &.active {
+    left: 0;
   }
+}
 
-  z-index: 1;
-  padding-top: 96px;
-  background-color: var($--theme-primary);
-  width: $nav-active-margin;
-  height: 100vh;
+.main-nav {
   position: fixed;
   top: 0;
-  left: 0;
-  transform: translateX(calc(0px - $nav-active-margin));
-  transition: transform $nav-transition-speed;
-}
+  bottom: 0;
+  transition: left 0.2s ease-in;
+  left: -$nav-width;
+  width: $nav-width;
+  background-color: -theme-surface;
+  z-index: 1;
 
-.nav-link {
-  font-family: $primary-font;
-  color: var($--theme-on-primary);
-  display: block;
-  padding: 0.5rem 5rem 1rem;
-  font-family: $primary-font;
-  font-size: 1.3rem;
-  font-weight: $bold;
-  text-align: left;
-  transition: $nav-transition-speed;
-  text-decoration: none;
+  .home-icon {
+    z-index: 1;
+    color: --theme-on-primary;
+    position: absolute;
+    top: 1rem;
+    right: 3rem;
+    width: 5rem;
+    font-size: 2rem;
+    max-width: 2rem;
 
-  &:hover,
-  &:focus {
-    color: var($--theme-secondary);
+    span {
+      padding: 16px 4px;
+    }
+  }
+
+  .main-nav__links-wrapper {
+    padding-top: 96px;
+    position: fixed;
+    top: 0;
+    bottom: 0;
+
+    .link {
+      color: --theme-on-primary;
+      padding: 0.5rem 5rem 1rem;
+      font-size: 1.3rem;
+      text-align: left;
+      transition: 0.4s ease;
+      text-decoration: none;
+      font-weight: bold;
+      display: block;
+
+      &:hover,
+      &:focus {
+        color: $red;
+      }
+    }
+  }
+
+  .close-nav {
+    z-index: 1;
+    cursor: pointer;
+    color: --theme-on-primary;
+    font-size: 2rem;
+    position: absolute;
+    right: 4px;
+    top: 1rem;
+    padding: 12px 4px;
   }
 }
 
-.home-icon,
-.close-nav {
-
-  &:hover,
-  &:focus {
-    color: var($--theme-secondary);
-  }
+.main-nav button {
+  border-radius: 0;
 }
 
-.home-icon {
-  color: var($--theme-on-primary);
-  position: absolute;
-  top: 0;
-  right: 3rem;
-  width: 5rem;
-  font-size: 2rem;
-  max-width: 2rem;
-
-  span {
-    padding: 16px 4px;
-  }
+.nav-is-active {
+  z-index: 1;
 }
 
-.close-nav {
-  background-color: var($--theme-primary);
-  cursor: pointer;
-  color: var($--theme-on-primary);
-  font-size: 2rem;
-  position: absolute;
-  right: 4px;
-  top: 0;
+.navbar-a {
+  transform: translateX(0);
+  transition: transform 0.2s ease-in;
 }
 
-
-// Left push nav 
-
-// push body
-main.left-push-nav {
-  transition: $nav-transition;
-}
-
-// navmenu transition
-.left-push-nav {
-  .nav-active {
-    transform: translateX($nav-default-margin);
-  }
-
-  .main-active {
-    transform: translateX($nav-active-margin);
-  }
-
-  navbar-a.open-nav {
-    transition: $nav-transition;
-  }
-
-  .nav-is-active>.open-nav {
-    margin-left: $nav-active-margin;
-  }
+.nav-is-active .navbar-a {
+  transform: translateX($nav-width);
 }

@@ -12,6 +12,15 @@ footer {
         padding: 1rem 4rem;
       }
     }
+
+    .link--notched {
+      display: block;
+      margin-bottom: 1rem;
+
+      @include breakpoint($large) {
+        width: 20rem;
+      }
+    }
   }
 }
 
@@ -22,7 +31,10 @@ footer {
 
 .footer__logo-wrapper {
   width: 22rem;
-  margin-top: 10rem;
+
+  @include breakpoint($large) {
+    padding-top: 2rem
+  }
 }
 
 footer.footer {
@@ -54,6 +66,7 @@ footer.footer {
   .signup-submit-wrapper {
     display: inline;
     padding: 0;
+    width: 100%;
 
     .signup-submit {
       @include typography-body-3;
@@ -67,5 +80,11 @@ footer.footer {
         @include notched-div-hover-state;
       }
     }
+  }
+}
+
+.footer-form {
+  @include breakpoint($large) {
+    padding-left: 3rem;
   }
 }

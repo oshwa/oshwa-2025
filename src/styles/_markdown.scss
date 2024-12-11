@@ -31,6 +31,10 @@
   a {
     border-bottom: 1px dotted;
     word-wrap: break-word;
+
+    &:hover {
+      border-color: #F05347;
+    }
   }
 
   ul,
