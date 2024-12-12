@@ -1,14 +1,14 @@
 $primary-font: 'Roboto Condensed', sans-serif;
 $secondary-font: 'Noto Sans', serif;
 
-// used in project count 
+// used in project count
 @mixin typography-headline-1 {
   font-family: $primary-font;
   font-size: 120px;
   font-weight: $bold;
 }
 
-// used in generic header 
+// used in generic header
 @mixin typography-headline-2 {
   font-family: $primary-font;
   font-size: 80px;
@@ -18,6 +18,9 @@ $secondary-font: 'Noto Sans', serif;
   @include breakpoint($medium-only) {
     font-size: 60px;
   }
+  @include breakpoint($small-only) {
+    font-size: 2.7rem;
+  }
 }
 
 // used in featured box h2 and section card h2
@@ -26,7 +29,9 @@ $secondary-font: 'Noto Sans', serif;
   font-size: 50px;
   font-weight: $bold;
   line-height: 1.2;
-
+  @include breakpoint($small-only) {
+    font-size: 2.4rem;
+  }
 }
 
 @mixin typography-headline-4 {
@@ -55,7 +60,7 @@ $secondary-font: 'Noto Sans', serif;
   font-size: 30px;
 }
 
-// default p state in body 
+// default p state in body
 @mixin typography-body-3 {
   font-family: $secondary-font;
   font-size: 18px;
@@ -74,7 +79,7 @@ $secondary-font: 'Noto Sans', serif;
   font-size: 26px;
 }
 
-// noto sans 24px dropdown and types 
+// noto sans 24px dropdown and types
 @mixin typography-body-6 {
   font-family: $secondary-font;
   font-size: 20px;
@@ -92,7 +97,7 @@ $secondary-font: 'Noto Sans', serif;
   font-size: 14px;
 }
 
-// used for arrow links 
+// used for arrow links
 @mixin typography-button {
   font-family: $secondary-font;
   font-size: 18px;

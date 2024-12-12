@@ -56,8 +56,8 @@ export default function GlobalResourcePage({ data, location }) {
             currentLanguage={selectedLanguage}
           />
 
-          <div className="grid lg:grid-cols-12 resource-header">
-            <div className="resource-header__title-wrapper lg:col-span-7 md:col-span-12">
+          <div className="grid grid-cols-12 resource-header">
+            <div className="resource-header__title-wrapper lg:col-span-7 md:col-span-12 sm:col-span-12">
               <h1 className="resource-header__title">
                 {translatedContent.title}
               </h1>
@@ -74,7 +74,7 @@ export default function GlobalResourcePage({ data, location }) {
                 </div>
               )}
             </div>
-            <div className="resource-header__image lg:col-span-4 lg:col-start-9 md:col-span-12 md:col-start-1 ">
+            <div className="resource-header__image lg:col-span-4 lg:col-start-9 md:col-span-12 md:col-start-1  sm:col-span-12 sm:col-start-1">
               {globalContent.resourceImage && (
                 <GatsbyImage
                   image={getImage(globalContent.resourceImage)}

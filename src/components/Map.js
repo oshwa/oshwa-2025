@@ -57,7 +57,7 @@ const Legend = ({ color }) => {
   ]);
 
   return (
-    <svg ref={svgRef} width={width} height={height}>
+    <svg id="map-legend" ref={svgRef} width={width} height={height} viewBox={`0 0 ${width} ${height}`}>
       <g>
         {color.range().map((d, i) => (
           <rect
