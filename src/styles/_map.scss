@@ -38,6 +38,9 @@ path.clickable {
   color: var($--theme-on-background);
 }
 
+#map-legend {
+  width: 100%;
+}
 a.be-the-first {
   display: block;
   font-weight: $bold;
