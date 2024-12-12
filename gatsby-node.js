@@ -332,14 +332,14 @@ exports.sourceNodes = async ({
   await downloadMapData();
 };
 
-exports.createSchemaCustomization = ({ actions }) => {
-  const { createTypes } = actions;
-  createTypes(`
-    type ContentfulBlogPost implements Node {
-      sidebarGallery: [ContentfulAsset] @link(by: "id", from: "sidebarGallery___NODE")
-    }
-    type ContentfulGenericPage implements Node {
-      sidebarGallery: [ContentfulAsset] @link(by: "id", from: "sidebarGallery___NODE")
-    }
-  `);
-};
+// exports.createSchemaCustomization = ({ actions }) => {
+//   const { createTypes } = actions;
+//   createTypes(`
+//     type ContentfulBlogPost implements Node {
+//       sidebarGallery: [ContentfulAsset] @link(by: "id", from: "sidebarGallery___NODE")
+//     }
+//     type ContentfulGenericPage implements Node {
+//       sidebarGallery: [ContentfulAsset] @link(by: "id", from: "sidebarGallery___NODE")
+//     }
+//   `);
+// };

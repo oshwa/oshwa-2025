@@ -37,12 +37,14 @@ const options = {
     },
     [BLOCKS.EMBEDDED_ENTRY]: node => {
       return (
-        <div className="figure-container notched notched--border ">
+        <div className="figure-container notched notched--border">
           <h4>{node.data.target.title}</h4>
-          <GatsbyImage
-            image={getImage(node.data.target.image)}
-            alt={node.data.target.title}
-          />
+          <div className="img-container">
+            <GatsbyImage
+              image={getImage(node.data.target.image)}
+              alt={node.data.target.title}
+            />
+          </div>
           <p className="figure-caption">
             <MarkdownText content={node.data.target.caption.childMarkdownRemark.html} />
           </p>

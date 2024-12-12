@@ -14,7 +14,7 @@ export default function BlogPost({ data }) {
       <>
         <div className="p-10 pt-0 pb-5 generic-container">
           <div className="grid grid-cols-8 lg:grid-cols-6">
-            <div className="col-span-10 lg:col-span-3">
+            <div className="col-span-10 lg:col-span-4 content-container">
               <p className="resource-header__date">
                 {dayjs(blogPost.publicationDate).format('MMMM D, YYYY')}
               </p>
@@ -31,7 +31,7 @@ export default function BlogPost({ data }) {
             </div>
 
             {blogPost.sidebarGallery && (
-              <SidebarGallery sidebarImageData={blogPost.sidebarGallery} />
+              <SidebarGallery data={blogPost.sidebarGallery} />
             )}
           </div>
         </div>
@@ -48,10 +48,17 @@ export const query = graphql`
       date
       sidebarGallery {
         id
-        url
         title
-        description
-        gatsbyImage(width: 600)
+        caption {
+          childMarkdownRemark {
+            html
+          }
+        }
+        image {
+          url
+          title
+          description
+        }
       }
       oshwaAuthor {
         displayName
