@@ -13,7 +13,7 @@ $medium: screen and (min-width: 40em);
 $medium-only: screen and (min-width: 40em) and (max-width: 63.9375em);
 $between-large: screen and (min- width: 1024px) and (max-width: 1260px);
 $large: screen and (min-width: 64em);
-$nav-width: 350px;
+$nav-width: 320px;
 
 @import 'breakpoint';
 @import 'utils';
@@ -45,6 +45,11 @@ $nav-width: 350px;
 @import 'program';
 @import 'events';
 @import 'generic-page';
+
+html,
+body {
+  overflow-x: hidden;
+}
 
 main {
   transition: transform 0.2s ease-in;
