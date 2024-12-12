@@ -1,20 +1,19 @@
 import React from 'react';
-import { GatsbyImage, getImage } from 'gatsby-plugin-image';
+import MarkdownText from './MarkdownText';
 
-export const SidebarGallery = ({ sidebarImageData }) => {
+export const SidebarGallery = ({ data }) => {
   return (
-    <div className="col-span-8 lg:col-span-2 lg:col-start-5 sidebar-image">
-      {sidebarImageData.map(sidebarImage => {
+    <div className="col-span-8 lg:col-span-2 sidebar-image">
+      {data.map(figure => {
         return (
           <div
-            key={sidebarImage.id}
+            key={figure.id}
             className="sidebar-image__container"
           >
-            <GatsbyImage
-              image={getImage(sidebarImage)}
-              alt={`${sidebarImage.title} image`}
-            />
-            <p className="sidebar-image__description">{sidebarImage.description}</p>
+            <img src={figure.image.url} alt={figure.image.description} />
+            <div className="sidebar-image__description">
+              <MarkdownText content={figure.caption.childMarkdownRemark.html} />
+            </div>
           </div>
         )
       })}

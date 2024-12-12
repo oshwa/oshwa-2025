@@ -29,16 +29,16 @@ export default function ProjectPage({ data }) {
         )}
 
         {(pageData.title !== "Events" || pageData.title !== "Team") && (
-          <div className="px-8 generic-container">
+          <div className="px-8 pb-5 generic-container">
             <div className="grid grid-cols-8 lg:grid-cols-6">
-              <div className="col-span-10 lg:col-span-3">
+              <div className="col-span-10 lg:col-span-4 content-container">
                 {pageData.body && (
                   <MarkdownText content={pageData.body.childMarkdownRemark.html} />
                 )}
               </div>
 
               {pageData.sidebarGallery && (
-                <SidebarGallery sidebarImageData={pageData.sidebarGallery} />
+                <SidebarGallery data={pageData.sidebarGallery} />
               )}
             </div>
           </div>
@@ -69,10 +69,17 @@ export const query = graphql`
       }
       sidebarGallery {
         id
-        url
         title
-        description
-        gatsbyImage(width: 600)
+        caption {
+          childMarkdownRemark {
+            html
+          }
+        }
+        image {
+          url
+          title
+          description
+        }
       }
     }
   }
