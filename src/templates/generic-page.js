@@ -43,6 +43,28 @@ export default function ProjectPage({ data }) {
             </div>
           </div>
         )}
+
+        {pageData.relatedResources && (
+          <div className="p-8 pb-5">
+            <h2 className="generic-heading-2 py-8">{pageData.pinnedTitle}</h2>
+            <div className="list">
+              <div className="grid lg:grid-cols-4 md:grid-cols-3 gap-4">
+                {pageData.relatedResources &&
+                  pageData.relatedResources.map(resource => {
+                    return (
+                      <a
+                        key={resource.id}
+                        href={`/resources/${resource.prettyUrl}`}
+                        className="lg:col-span-1 md:col-span-4 sm:col-span-4 notched notched--border notched--border--hover list-item"
+                      >
+                        <p className="title"> {resource.resourceTitle}</p>
+                      </a>
+                    );
+                  })}
+              </div>
+            </div>
+          </div>
+        )}
       </>
     </Layout>
   );
@@ -80,6 +102,12 @@ export const query = graphql`
           title
           description
         }
+      }
+      pinnedTitle
+      relatedResources {
+        id
+        resourceTitle
+        prettyUrl
       }
     }
   }

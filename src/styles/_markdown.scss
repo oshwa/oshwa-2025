@@ -82,7 +82,7 @@
   }
 
   @include breakpoint($between-large) {
-    padding-right: 3rem;
+    padding-right: 5rem;
   }
 
   @include breakpoint($medium-only) {
