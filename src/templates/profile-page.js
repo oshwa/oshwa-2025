@@ -145,7 +145,7 @@ export default function ProfilePage({ data }) {
                       href={member.externalUrl}
                       className="lg:col-span-1 md:col-span-4 sm:col-span-4 list-item"
                     >
-                      {' '}
+            
                       <div key={member.id} className="profile-team-card">
                         <p className="member-name"> {member.displayName}</p>
                         <p className="member-title"> {member.title}</p>
@@ -153,7 +153,7 @@ export default function ProfilePage({ data }) {
                           {member.affiliation}
                         </p>
                       </div>
-                    </a>
+                     </a>
                   ) : (
                     <div key={member.id} className="profile-team-card">
                       <p className="member-name"> {member.displayName}</p>

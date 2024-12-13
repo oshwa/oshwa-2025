@@ -74,9 +74,17 @@
     @include breakpoint($medium-only) {
       min-height: 15rem;
     }
+    .profile-team-card > .member-name {
+      color:red;
+      @include typography-body-2;
+      font-weight: $bold;
+      font-size: 2.7rem;
+      // font-size: 50px;
+      // word-wrap: break-word;
+    }
+    
 
-    .title,
-    .member-name {
+    .title {
       font-size: 1.7rem;
       font-weight: 600;
       overflow-wrap: break-word;
