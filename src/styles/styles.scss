@@ -50,7 +50,8 @@ body {
   overflow-x: hidden;
 }
 
-main {
+main,
+footer {
   transition: transform 0.2s ease-in;
 
   &.active {

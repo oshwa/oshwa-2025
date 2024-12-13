@@ -45,10 +45,10 @@ const Layout = ({ children }) => {
         handleClick={handleClick}
         siteTitle={data.site.siteMetadata?.title || `Title`}
       />
-      <Main navType={navType} active={active} setActive={setActive}>
+      <Main navType={navType} active={active} >
         {children}
       </Main>
-      <Footer />
+      <Footer active={active} />
     </>
   );
 };
