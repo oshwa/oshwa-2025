@@ -17,7 +17,7 @@ export default function ProjectPage({ data }) {
         <GenericHeader
           title={pageData.title}
           description={pageData.shortDescription.childMarkdownRemark.html}
-          headerImageUrl={pageData.headerImage.url}
+          headerImageUrl={pageData.headerImage ? pageData.headerImage.url : null}
         />
 
         {pageData.title === "Team" && (

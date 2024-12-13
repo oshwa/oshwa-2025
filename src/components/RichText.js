@@ -45,9 +45,11 @@ const options = {
               alt={node.data.target.title}
             />
           </div>
-          <p className="figure-caption">
-            <MarkdownText content={node.data.target.caption.childMarkdownRemark.html} />
-          </p>
+          {node.data.target.caption && (
+            <p className="figure-caption">
+              <MarkdownText content={node.data.target.caption.childMarkdownRemark.html} />
+            </p>
+          )}
         </div>
       )
     },

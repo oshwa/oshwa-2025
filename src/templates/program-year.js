@@ -43,7 +43,7 @@ const ProgramYear = ({ data }) => {
                     name={fellow.displayName}
                     title={fellow.title}
                     affiliation={fellow.affiliation}
-                    profileImageUrl={fellow.image.url}
+                    profileImageUrl={fellow.image ? fellow.image.url : null}
                   />
                 </Link>
               );
@@ -119,7 +119,6 @@ const ProgramYear = ({ data }) => {
 };
 
 export default ProgramYear;
-
 
 export const query = graphql`
   query ($id: String!) {
