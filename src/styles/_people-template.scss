@@ -22,3 +22,12 @@
     text-align: center;
   }
 }
+
+.community-alumni {
+  // display: none;
+  .person-container {
+    &__name {
+      margin-top: 0;
+    }
+  }
+}

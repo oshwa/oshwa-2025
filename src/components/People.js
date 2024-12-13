@@ -135,7 +135,7 @@ export const PeopleTemplate = () => {
                 let profileCard = alum.node.externalUrl ? (
                   <a
                     key={alum.node.id}
-                    className="lg:col-span-1 md:col-span-2 notched notched--border"
+                    className="lg:col-span-1 md:col-span-2 notched notched--border community-alumni"
                     href={alum.node.externalUrl}
                   >
                     <PersonContainer
@@ -148,7 +148,7 @@ export const PeopleTemplate = () => {
                 ) : (
                   <div
                     key={alum.node.id}
-                    className="lg:col-span-1 md:col-span-2 notched notched--border"
+                    className="lg:col-span-1 md:col-span-2 notched notched--border community-alumni"
                     href={alum.node.externalUrl}
                   >
                     <PersonContainer
