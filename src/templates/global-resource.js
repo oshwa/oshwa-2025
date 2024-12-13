@@ -70,7 +70,12 @@ export default function GlobalResourcePage({ data, location }) {
 
               {translatedContent.shortDescription.shortDescription && (
                 <div className="resource-introduction">
-                  <MarkdownText content={translatedContent.shortDescription.childMarkdownRemark.html} />
+                  <MarkdownText
+                    content={
+                      translatedContent.shortDescription.childMarkdownRemark
+                        .html
+                    }
+                  />
                 </div>
               )}
             </div>
@@ -151,6 +156,24 @@ export const query = graphql`
         languageDisplay
         body {
           raw
+          references {
+            __typename
+            ... on ContentfulFigure {
+              contentful_id
+              title
+              image {
+                id
+                gatsbyImageData
+              }
+              caption {
+                id
+                childMarkdownRemark {
+                  id
+                  html
+                }
+              }
+            }
+          }
         }
         shortDescription {
           shortDescription
