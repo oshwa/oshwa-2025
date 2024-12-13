@@ -35,7 +35,7 @@ const ProgramsPage = () => {
       <GenericHeader
         title={pageData.title}
         description={pageData.shortDescription.childrenMarkdownRemark[0].html}
-        headerImageUrl={'https://placehold.jp/800x500.png'}
+        headerImageUrl={null}
       />
       <GridCards
         items={pageData.programs}

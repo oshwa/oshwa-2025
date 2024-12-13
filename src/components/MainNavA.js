@@ -19,23 +19,35 @@ export const MainNavA = ({ handleClick, active }) => {
       </div>
 
       <div className="main-nav__links-wrapper">
-        <Link className="main-nav__link link" to="/">
+        {/* <Link className="main-nav__link link" to="/">
           Home
-        </Link>
+        </Link> */}
         <Link className="main-nav__link link" to="/about">
           About
+        </Link>
+        <Link className="main-nav__link link" to="/team">
+          Team
+        </Link>
+        <Link className="main-nav__link link" to="/programs">
+          Programs
+        </Link>
+        <Link className="main-nav__link link" to="/community">
+          Community
+        </Link>
+        <Link className="main-nav__link link" to="/membership">
+          Membership
+        </Link>
+        <Link className="main-nav__link link" to="/events">
+          Events
+        </Link>
+        <Link className="main-nav__link link" to="/oshw-101">
+          OSHW 101
         </Link>
         <Link className="main-nav__link link" to="/resources">
           Resources
         </Link>
         <Link className="main-nav__link link" to="/blog-posts">
           Blog Posts
-        </Link>
-        <Link className="main-nav__link link" to="/events">
-          Events
-        </Link>
-        <Link className="main-nav__link link" to="/team">
-          Team
         </Link>
       </div>
     </nav>
