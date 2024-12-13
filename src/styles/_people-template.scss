@@ -7,7 +7,14 @@
     background-repeat: none;
     width: 10rem;
     height: 11.5rem;
-    -webkit-clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+    -webkit-clip-path: polygon(
+      50% 0%,
+      100% 25%,
+      100% 75%,
+      50% 100%,
+      0% 75%,
+      0% 25%
+    );
     clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
   }
 
@@ -18,13 +25,14 @@
     font-weight: $bold;
   }
 
-  &__title, &__affiliation {
+  &__title,
+  &__affiliation {
     text-align: center;
   }
 }
 
-.community-alumni {
-  // display: none;
+.community-alumni,
+.profile-team-card {
   .person-container {
     &__name {
       margin-top: 0;
