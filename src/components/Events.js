@@ -46,7 +46,7 @@ export const EventsTemplate = () => {
 
   return (
     <>
-      <div className="px-8">
+      <div className="px-8 pb-5">
         {upcomingEvents.length > 0 && (
           <>
             <h2 className="generic-heading-2 py-8">Upcoming</h2>

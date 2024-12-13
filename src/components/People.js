@@ -75,7 +75,7 @@ export const PeopleTemplate = () => {
 
   return (
     <>
-      <div className="px-8">
+      <div className="px-8 pb-5">
         {data.teamMembers && (
           <>
             <h2 className="generic-heading-2 py-8">Team</h2>
