@@ -43,6 +43,10 @@
       // width: 100%;
       text-align: left;
       padding: 1rem 0;
+
+      @include breakpoint($large) {
+        float: right;
+      }
     }
   }
 }
@@ -71,7 +75,8 @@
       min-height: 15rem;
     }
 
-    .title, .member-name {
+    .title,
+    .member-name {
       font-size: 1.7rem;
       font-weight: 600;
       overflow-wrap: break-word;
