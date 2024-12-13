@@ -22,6 +22,10 @@
 
 .resource-body {
   .video-container {
-    padding-top: 0;
+    padding: 0;
+
+    &__video {
+      margin-top: 0;
+    }
   }
 }

@@ -96,7 +96,7 @@ export default function GlobalResourcePage({ data, location }) {
             content={translatedContent.body}
           />
         )}  */}
-        <div className="p-8">
+        <div className="p-8 pb-5">
           <div className="grid lg:grid-cols-12 resource-body">
             <div className="lg:col-span-7 md:col-span-12">
               {data.contentfulGlobalResourceContainer.youTubeId && (

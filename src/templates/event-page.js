@@ -19,7 +19,7 @@ const Event = ({ data }) => {
         program={dates}
       />
 
-      <div className="px-8 event-body">
+      <div className="px-8 pb-5 event-body">
         <div className="grid lg:grid-cols-5 md:grid-cols-5 gap-4">
           <div className="lg:col-span-3 md:col-span-5 ">
             {pageData.body && <RichText content={pageData.body} />}
