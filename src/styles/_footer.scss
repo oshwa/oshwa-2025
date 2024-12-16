@@ -85,7 +85,24 @@ footer.footer {
 }
 
 .footer-form {
+  position: relative;
+
   @include breakpoint($large) {
     padding-left: 3rem;
+  }
+
+  .socials {
+    text-align: right;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+
+    @include breakpoint($medium-only) {
+      position: static;
+    }
+
+    .fab {
+      font-size: 1.5rem;
+    }
   }
 }
