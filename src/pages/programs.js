@@ -11,6 +11,9 @@ const ProgramsPage = () => {
         edges {
           node {
             title
+            headerImage {
+              url
+            }
             shortDescription {
               shortDescription
               childrenMarkdownRemark {
@@ -35,7 +38,7 @@ const ProgramsPage = () => {
       <GenericHeader
         title={pageData.title}
         description={pageData.shortDescription.childrenMarkdownRemark[0].html}
-        headerImageUrl={null}
+        headerImageUrl={pageData.headerImage.url}
       />
       <GridCards
         items={pageData.programs}
