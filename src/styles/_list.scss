@@ -72,13 +72,21 @@
     justify-content: space-between;
 
     @include breakpoint($medium-only) {
-      min-height: 15rem;
+      min-height: 20rem;
     }
 
     .title {
       font-size: 1.7rem;
       font-weight: 600;
       overflow-wrap: break-word;
+
+      @include breakpoint($between-large) {
+        font-size: 1.4rem;
+      }
+
+      @include breakpoint($medium-only) {
+        font-size: 1.6rem;
+      }
     }
 
     .type {
