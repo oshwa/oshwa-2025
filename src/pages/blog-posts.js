@@ -95,7 +95,7 @@ const SearchBlogPosts = ({ location }) => {
           />
 
           <div className={`px-8 py-4 list`}>
-            <div className="grid grid lg:grid-cols-4 md:grid-cols-3 gap-4">
+            <div className="grid grid lg:grid-cols-4 md:grid-cols-4 gap-4">
               {results &&
                 results.map(
                   result => (
@@ -103,7 +103,7 @@ const SearchBlogPosts = ({ location }) => {
                     <Link
                       key={result.prettyUrl}
                       to={`/blog-posts/${result.prettyUrl}`}
-                      className="lg:col-span-1 md:col-span-4 sm:col-span-4 notched notched--border notched--border--hover list-item"
+                      className="lg:col-span-1 md:col-span-2 sm:col-span-4 notched notched--border notched--border--hover list-item"
                     >
                       <div>
                         <p className="publicationDate publicationDate--blog">
