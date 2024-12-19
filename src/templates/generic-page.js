@@ -5,8 +5,8 @@ import Layout from '../components/layout';
 import { GenericHeader } from '../components/GenericHeader';
 import { PeopleTemplate } from '../components/People';
 import { EventsTemplate } from '../components/Events';
-import MarkdownText from '../components/MarkdownText';
 import { SidebarGallery } from '../components/SidebarGallery';
+import RichText from '../components/RichText';
 
 export default function ProjectPage({ data }) {
   const pageData = data.contentfulGenericPage;
@@ -33,7 +33,7 @@ export default function ProjectPage({ data }) {
             <div className="grid grid-cols-8 lg:grid-cols-6">
               <div className="col-span-10 lg:col-span-4 content-container">
                 {pageData.body && (
-                  <MarkdownText content={pageData.body.childMarkdownRemark.html} />
+                  <RichText content={pageData.body} />
                 )}
               </div>
 
@@ -85,9 +85,7 @@ export const query = graphql`
         url
       }
       body {
-        childMarkdownRemark {
-           html
-        }
+       raw
       }
       sidebarGallery {
         id
