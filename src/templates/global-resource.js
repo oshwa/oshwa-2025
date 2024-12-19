@@ -173,6 +173,20 @@ export const query = graphql`
                 }
               }
             }
+            ... on ContentfulButton {
+              contentful_id
+              __typename
+              id
+              buttonText
+              buttonUrl
+              sys {
+                contentType {
+                  sys {
+                    id
+                  }
+                }
+              }
+            }
           }
         }
         shortDescription {
