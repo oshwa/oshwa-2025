@@ -1,6 +1,5 @@
 .markdown-content,
 .richtext-content {
-
   h2 {
     @include typography-headline-3;
     margin: 1rem 0;
@@ -53,6 +52,21 @@
       p {
         padding: 0;
       }
+    }
+  }
+
+  blockquote {
+    font-style: italic;
+    border-left: 1px dotted;
+    padding-left: 1.6rem;
+    margin: 1rem 0;
+
+    p:first-of-type {
+      padding-top: 0;
+    }
+
+    p:last-of-type {
+      padding-bottom: 0;
     }
   }
 }
