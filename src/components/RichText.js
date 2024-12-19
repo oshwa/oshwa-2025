@@ -4,6 +4,7 @@ import { BLOCKS, MARKS } from '@contentful/rich-text-types';
 import { GatsbyImage, getImage } from 'gatsby-plugin-image';
 import slugify from 'slugify';
 import MarkdownText from './MarkdownText';
+import { NotchedButtonLink } from './Link';
 
 const Text = ({ children }) => <p className="">{children}</p>
 const Bold = ({ children }) => <span className="font-bold">{children}</span>
@@ -36,22 +37,30 @@ const options = {
       )
     },
     [BLOCKS.EMBEDDED_ENTRY]: node => {
-      return (
-        <div className="figure-container notched notched--border">
-          <h4>{node.data.target.title}</h4>
-          <div className="img-container">
-            <GatsbyImage
-              image={getImage(node.data.target.image)}
-              alt={node.data.target.title}
-            />
+      const targetType = node.data.target.__typename
+
+      if (targetType === 'ContentfulFigure') {
+        return (
+          <div className="figure-container notched notched--border">
+            <h4>{node.data.target.title}</h4>
+            <div className="img-container">
+              <GatsbyImage
+                image={getImage(node.data.target.image)}
+                alt={node.data.target.title}
+              />
+            </div>
+            {node.data.target.caption && (
+              <p className="figure-caption">
+                <MarkdownText content={node.data.target.caption.childMarkdownRemark.html} />
+              </p>
+            )}
           </div>
-          {node.data.target.caption && (
-            <p className="figure-caption">
-              <MarkdownText content={node.data.target.caption.childMarkdownRemark.html} />
-            </p>
-          )}
-        </div>
-      )
+        );
+      }
+
+      if (targetType === 'ContentfulButton') {
+        return <NotchedButtonLink text={node.data.target.buttonText} location={node.data.target.buttonUrl} />
+      }
     },
   },
 }

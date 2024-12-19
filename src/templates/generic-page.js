@@ -85,7 +85,23 @@ export const query = graphql`
         url
       }
       body {
-       raw
+        raw
+        references {
+          ... on ContentfulButton {
+            contentful_id
+            __typename
+            id
+            buttonText
+            buttonUrl
+            sys {
+              contentType {
+                sys {
+                  id
+                }
+              }
+            }
+          }
+        }
       }
       sidebarGallery {
         id

@@ -37,6 +37,10 @@
     }
   }
 
+  .link--notched {
+    margin: 1rem 0;
+  }
+
   ul,
   ol {
     @include typography-body-3;
