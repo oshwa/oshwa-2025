@@ -64,17 +64,20 @@ const SearchBlogPosts = ({ location }) => {
     });
   };
 
+  const sortByDateDesc = (results) => {
+    return results.sort(
+      (a, b) => new Date(b.date) - new Date(a.date)
+    );
+  }
   useEffect(() => {
     const lunrIndex = window.__LUNR__['en'];
     handleUrlParams();
     matchFiltersToSessions();
     const searchResults = lunrIndex.index.search(query);
-
-    setResults(
-      searchResults.map(({ ref }) => {
-        return lunrIndex.store[ref];
-      })
-    );
+    const searchResultsMapped = searchResults.map(({ ref }) => {
+      return lunrIndex.store[ref];
+    });
+    setResults(sortByDateDesc(searchResultsMapped));
   }, [query, handleUrlParams]);
 
   return (
