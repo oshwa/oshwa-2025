@@ -126,6 +126,11 @@ const Search = ({ data, location }) => {
     location.search = ''; // tk remove from url
   };
 
+  const sortResultsByReportDateDesc = results => {
+    return results.sort(
+      (a, b) => new Date(b.resourceDate) - new Date(a.resourceDate)
+    );
+  };
   useEffect(() => {
     const lunrIndex = window.__LUNR__['en'];
 
@@ -133,11 +138,10 @@ const Search = ({ data, location }) => {
     matchFiltersToSessions();
     const searchResults = lunrIndex.index.search(query);
 
-    setResults(
-      searchResults.map(({ ref }) => {
-        return lunrIndex.store[ref];
-      })
-    );
+    const searchResultsMapped = searchResults.map(({ ref }) => {
+      return lunrIndex.store[ref];
+    });
+    setResults(sortResultsByReportDateDesc(searchResultsMapped));
   }, [query, location, handleUrlParams, matchFiltersToSessions]);
 
   return (
