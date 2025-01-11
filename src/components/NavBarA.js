@@ -1,5 +1,5 @@
 import React from 'react';
-import { DarkModeToggle } from './DarkModeToggle';
+import NavControls from './NavControls';
 
 export const NavBarA = ({ handleClick, active }) => {
   return (
@@ -11,7 +11,7 @@ export const NavBarA = ({ handleClick, active }) => {
         <span className="navbar-a-button__decorator material-icons">menu</span>{' '}
         <span className="navbar-a-button__text">menu</span>
       </button>
-      <DarkModeToggle />
+      <NavControls />
     </div>
   );
 };
