@@ -28,6 +28,14 @@ module.exports = {
     `gatsby-plugin-image`,
     `gatsby-plugin-postcss`,
     `gatsby-transformer-remark`,
+    {
+      resolve: 'gatsby-plugin-react-svg',
+      options: {
+        rule: {
+          include: /images/,
+        },
+      },
+    },
     // {
     //   resolve: `gatsby-transformer-remark`,
     //   options: {
