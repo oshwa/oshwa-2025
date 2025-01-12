@@ -142,7 +142,6 @@ export const PeopleTemplate = () => {
                       name={alum.node.displayName}
                       title={alum.node.title}
                       affiliation={alum.node.affiliation}
-                      profileImageUrl={alum.node.image?.file.url}
                     />
                   </a>
                 ) : (
@@ -155,7 +154,6 @@ export const PeopleTemplate = () => {
                       name={alum.node.displayName}
                       title={alum.node.title}
                       affiliation={alum.node.affiliation}
-                      profileImageUrl={alum.node.image?.file.url}
                     />
                   </div>
                 );
