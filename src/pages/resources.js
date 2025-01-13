@@ -4,7 +4,7 @@ import { FilterBar } from '../components/FilterBar';
 import GridCards from '../components/GridCards';
 const sessionsName = 'resource-filters';
 
-const Search = ({ data, location }) => {
+const Search = ({ location }) => {
   const [query, setQuery] = useState(``);
   const [results, setResults] = useState([]);
   const contentfulType = 'ContentfulGlobalResourceContainer';
@@ -23,7 +23,29 @@ const Search = ({ data, location }) => {
     }
   };
 
-  const handleSearchQuery = event => {
+  const formatQuery = ({
+    resourceDate = '',
+    resourceType = '',
+    resourceAudience = '',
+    contentfulType = '',
+  }) => {
+    let resourceDateQuery = resourceDate && resourceDate !== '*' ? `+resourceDate:${resourceDate}` : '';
+    let resourceTypeQuery =
+      resourceType && resourceType !== '*'
+        ? `+resourceType:${resourceType.split(' ').join(' +')}`
+        : '';
+    let resourceAudienceQuery = resourceAudience && resourceAudience !== '*' ? `+resourceAudience:${resourceAudience}` : '';
+    let contentfulTypeQuery = `+contentfulType:${contentfulType}`;
+
+    return `
+      ${resourceDateQuery}
+      ${resourceTypeQuery}
+      ${resourceAudienceQuery}
+      ${contentfulTypeQuery}
+    `;
+  };
+
+  const handleSearchQuery = () => {
     let pubDateSelect = document.querySelector('#publicationDate');
     let pubTypeSelect = document.querySelector('#publicationType');
     let pubAudienceSelect = document.querySelector('#publicationAudience');
@@ -37,11 +59,14 @@ const Search = ({ data, location }) => {
       JSON.stringify({ pubDateValue, pubTypeValue, pubAudienceValue })
     );
 
-    setQuery(
-      `+title:* +resourceDate:${pubDateValue} +resourceType:${pubTypeValue} +resourceAudience:${formatAudienceQuery(
-        pubAudienceValue
-      )}* +contentfulType:${contentfulType}`
-    );
+    const formattedQuery = formatQuery({
+      resourceDate: pubDateValue,
+      resourceType: pubTypeValue,
+      resourceAudience: formatAudienceQuery(pubAudienceValue),
+      contentfulType,
+    });
+
+    setQuery(formattedQuery);
   };
 
   const handleUrlParams = useCallback(() => {
@@ -54,11 +79,14 @@ const Search = ({ data, location }) => {
     setPubTypeQuery(capFirstLet(pubTypeParam));
     setPubAudienceQuery(capFirstLet(pubAudienceParam));
 
-    setQuery(
-      `+title:* +resourceDate:${pubDateParam} +resourceType:${pubTypeParam} +resourceAudience:${formatAudienceQuery(
-        pubAudienceParam
-      )}* +contentfulType:${contentfulType}`
-    );
+    const formattedQuery = formatQuery({
+      resourceDate: pubDateParam,
+      resourceType: pubTypeParam,
+      resourceAudience: formatAudienceQuery(pubAudienceParam),
+      contentfulType,
+    });
+
+    setQuery(formattedQuery);
   }, [location]);
 
   const setPubDateQuery = paramVal => {
@@ -108,22 +136,32 @@ const Search = ({ data, location }) => {
     if (savedSessionsQuery && savedSessionsQuery.pubAudienceValue) {
       setPubAudienceQuery(savedSessionsQuery.pubAudienceValue);
     }
-    setQuery(
-      `+title:* +resourceDate:${pubDateSelect.value} +resourceType:${
-        pubTypeSelect.value
-      } +resourceAudience:${formatAudienceQuery(
-        pubAudienceSelect.value
-      )} +contentfulType:${contentfulType}`
-    );
+
+    const formattedQuery = formatQuery({
+      title: '*',
+      resourceDate: pubDateSelect.value,
+      resourceType: pubTypeSelect.value,
+      resourceAudience: formatAudienceQuery(pubAudienceSelect.value),
+      contentfulType,
+    });
+
+    setQuery(formattedQuery);
   }, []);
 
   const clearFilters = () => {
     sessionStorage.removeItem(sessionsName);
-    setQuery(`+title:* +resourceDate:* +resourceType:* +resourceAudience:*`);
     document.querySelector('#publicationDate').selectedIndex = 0;
     document.querySelector('#publicationType').selectedIndex = 0;
     document.querySelector('#publicationAudience').selectedIndex = 0;
-    location.search = ''; // tk remove from url
+    location.search = '';
+
+    setQuery(
+      formatQuery({
+        resourceDate: '*',
+        resourceType: '*',
+        resourceAudience: '*',
+        contentfulType: contentfulType
+      }));
   };
 
   const sortResultsByReportDateDesc = results => {
@@ -131,6 +169,7 @@ const Search = ({ data, location }) => {
       (a, b) => new Date(b.resourceDate) - new Date(a.resourceDate)
     );
   };
+
   useEffect(() => {
     const lunrIndex = window.__LUNR__['en'];
 
