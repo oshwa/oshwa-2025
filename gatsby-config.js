@@ -24,6 +24,9 @@ module.exports = {
     author: ``,
     siteUrl: `http://example.com`,
   },
+  flags: {
+    PARALLEL_QUERY_RUNNING: true
+  },
   plugins: [
     `gatsby-plugin-image`,
     `gatsby-plugin-postcss`,
