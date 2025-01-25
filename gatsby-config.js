@@ -9,7 +9,7 @@
  */
 
 require('dotenv').config({
-  path: `.env.${process.env.NODE_ENV}`,
+  path: `.env`,
 });
 
 const resolveConfig = require('tailwindcss/resolveConfig');
@@ -18,7 +18,7 @@ const tailwindConfig = require('./tailwind.config.js');
 const fullConfig = resolveConfig(tailwindConfig);
 
 module.exports = {
-  pathPrefix: "/oshwa-2.0",
+  pathPrefix: "/oshwa-2025",
   siteMetadata: {
     title: `Objectively Gatsby Starter`,
     description: ``,
