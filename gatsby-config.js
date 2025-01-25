@@ -18,6 +18,7 @@ const tailwindConfig = require('./tailwind.config.js');
 const fullConfig = resolveConfig(tailwindConfig);
 
 module.exports = {
+  pathPrefix: "/oshwa-2.0",
   siteMetadata: {
     title: `Objectively Gatsby Starter`,
     description: ``,
