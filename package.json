@@ -63,6 +63,7 @@
   "license": "0BSD",
   "scripts": {
     "deploy": "gatsby build --prefix-paths && gh-pages -d public",
+    "gh-build": "gatsby build --prefix-path",
     "build": "gatsby build",
     "dev": "gatsby clean && gatsby develop -H 0.0.0.0",
     "develop": "gatsby develop",

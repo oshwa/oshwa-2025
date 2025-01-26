@@ -1,0 +1,13 @@
+name: Gatsby Build on Contentful Publish Event
+on:
+  repository_dispatch:
+    types: [publish-event]
+jobs:
+  call-build-workflow:
+    uses: ./.github/workflows/build.yml
+    secrets:
+      ACTIONS_DEPLOY_KEY: ${{ secrets.ACTIONS_DEPLOY_KEY }}
+      CONTENTFUL_SPACE_ID: ${{ secrets.CONTENTFUL_SPACE_ID }}
+      CONTENTFUL_ACCESS_TOKEN: ${{ secrets.CONTENTFUL_ACCESS_TOKEN }}
+      CONTENTFUL_ENVIRONMENT: ${{ secrets.CONTENTFUL_ENVIRONMENT }}
+      OSHWA_BEARER_TOKEN: ${{ secrets.OSHWA_BEARER_TOKEN }}
