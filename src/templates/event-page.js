@@ -36,7 +36,6 @@ const Event = ({ data }) => {
 
               {pageData.relatedPrograms &&
                 pageData.relatedPrograms.map(relatedProgram => {
-                  console.log(relatedProgram.program);
                   return (
                     relatedProgram.program !== null && (
                       <NotchedButtonLink

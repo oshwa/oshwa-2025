@@ -8,8 +8,6 @@ import RichText from '../components/RichText';
 export default function ProfilePage({ data }) {
   const profile = data.contentfulPeople;
   const certifications = data.allOshwaCertifications;
-  console.log(profile);
-  console.log(profile);
 
   const getProjectByUid = uid => {
     let allCerts = certifications.edges;
