@@ -61,6 +61,11 @@ export default function GlobalResourcePage({ data, location }) {
               <h1 className="resource-header__title">
                 {translatedContent.title}
               </h1>
+              {translatedContent.subtitle && (
+                <h2 className="resource-header__subtitle">
+                  {translatedContent.subtitle}
+                </h2>
+              )}
               {globalContent.namedAuthors &&
                 globalContent.namedAuthors.namedAuthors && (
                   <p className="resource-header__named_authors">

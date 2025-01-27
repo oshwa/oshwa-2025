@@ -84,7 +84,7 @@ export const PeopleTemplate = () => {
                 return (
                   <Link
                     key={teamMember.node.id}
-                    className="lg:col-span-1 md:col-span-2 notched notched--border"
+                    className="lg:col-span-1 md:col-span-2 notched notched--border notched--border--hover"
                     to={teamMember.node.prettyUrl}
                   >
                     <PersonContainer
@@ -109,7 +109,7 @@ export const PeopleTemplate = () => {
                 return (
                   <Link
                     key={boardMember.node.id}
-                    className="lg:col-span-1 md:col-span-2 notched notched--border"
+                    className="lg:col-span-1 md:col-span-2 notched notched--border notched--border--hover"
                     to={boardMember.node.prettyUrl}
                   >
                     <PersonContainer
@@ -135,7 +135,7 @@ export const PeopleTemplate = () => {
                 let profileCard = alum.node.externalUrl ? (
                   <a
                     key={alum.node.id}
-                    className="lg:col-span-1 md:col-span-2 notched notched--border community-alumni"
+                    className="lg:col-span-1 md:col-span-2 notched notched--border notched--border--hover community-alumni"
                     href={alum.node.externalUrl}
                   >
                     <PersonContainer
@@ -147,7 +147,7 @@ export const PeopleTemplate = () => {
                 ) : (
                   <div
                     key={alum.node.id}
-                    className="lg:col-span-1 md:col-span-2 notched notched--border community-alumni"
+                    className="lg:col-span-1 md:col-span-2 notched notched--border notched--border--hover community-alumni"
                     href={alum.node.externalUrl}
                   >
                     <PersonContainer
