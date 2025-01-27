@@ -13,7 +13,7 @@ export const SidebarGallery = ({ data }) => {
           >
             { figure.image && <img src={figure.image.url} alt={figure.image.description} />}
             <div className="sidebar-image__description">
-              <MarkdownText content={figure.caption.childMarkdownRemark.html} />
+              <MarkdownText content={figure.caption && figure.caption.childMarkdownRemark.html} />
             </div>
           </div>
         )
