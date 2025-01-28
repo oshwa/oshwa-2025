@@ -32,7 +32,7 @@
     word-wrap: break-word;
 
     &:hover {
-      border-color: #F05347;
+      border-color: #f05347;
     }
   }
 
@@ -110,5 +110,37 @@
 
   @include breakpoint($medium-only) {
     padding-right: 0;
+  }
+}
+
+.richtext-content {
+  .embedded-table {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    margin: 2rem 0;
+    h3 {
+      @include typography-body-4;
+    }
+    table {
+      margin-top: 2rem;
+      width: 100%;
+
+      th {
+        @include typography-body-3;
+        font-weight: $bold;
+        text-align: left;
+      }
+      thead  tr  {
+        border-bottom: solid 2px var($--theme-on-background);
+       th { padding: 4px 0;}
+      }
+      tbody tr {
+        border-bottom: dotted 2px var($--theme-on-background);
+        td { padding: 4px 0;}
+      }
+      @include typography-body-3;
+    }
+    width: 100% !important;
   }
 }
