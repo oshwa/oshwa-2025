@@ -115,6 +115,7 @@ export default function GlobalResourcePage({ data, location }) {
                   size="large"
                 />
               )}
+              
               {translatedContent.body && (
                 <RichText content={translatedContent.body} />
               )}
@@ -163,6 +164,24 @@ export const query = graphql`
           raw
           references {
             __typename
+            ... on ContentfulTable {
+              contentful_id
+              title
+              table {
+                id
+                childMarkdownRemark {
+                  id
+                  html
+                }
+              }
+              caption {
+                id
+                childMarkdownRemark {
+                  id
+                  html
+                }
+              }
+            }
             ... on ContentfulFigure {
               contentful_id
               title
