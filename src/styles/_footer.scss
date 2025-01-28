@@ -1,8 +1,27 @@
 footer {
   min-height: 18rem;
+  position: relative;
 
   &.notched--border {
     display: grid;
+  }
+
+  .form-container {
+    margin-bottom: 3.5rem;
+  }
+
+  .signup-submit-wrapper {
+    margin-bottom: 0;
+  }
+
+  .submit-btn {
+    display: block;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+  }
+
+  .form-message {
+    position: absolute;
   }
 
   .footer-img {
@@ -27,16 +46,16 @@ footer {
 .footer__logo {
   height: 100%;
   width: auto;
-}
-
-.footer__logo-wrapper {
-  width: 100%;
+  max-width: 20rem;
 
   @include breakpoint($large) {
-    width: 22rem;
-    padding-top: 2rem;
+    max-width: 24rem;
   }
 }
+
+// .footer__logo-wrapper {
+// width: 100%;
+// }
 
 footer.footer {
   .signup-label {
@@ -85,6 +104,7 @@ footer.footer {
 }
 
 .footer-form {
+
   position: relative;
 
   @include breakpoint($large) {
@@ -98,11 +118,12 @@ footer.footer {
     right: 0;
 
     @include breakpoint($medium-only) {
-      position: static;
+      // position: static;
     }
 
     .fab {
       font-size: 1.5rem;
     }
   }
+
 }
