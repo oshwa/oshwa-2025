@@ -8,7 +8,7 @@ import RichText from '../components/RichText';
 const Event = ({ data }) => {
   const pageData = data.contentfulEvent;
   const image = pageData.headerImage === null ? '' : pageData.headerImage.url;
-  const dates = `${pageData.dateStart} - ${pageData.dateEnd}`;
+  const dates = pageData.dateEnd ? `${pageData.dateStart} - ${pageData.dateEnd}` : `${pageData.dateStart}`;
 
   return (
     <Layout>
