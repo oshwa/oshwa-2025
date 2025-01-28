@@ -74,6 +74,7 @@
 .richtext-content {
   .figure-container {
     width: 100%;
+    height: auto;
     padding: 2rem 2rem 0 2rem;
     margin: 2rem 0;
 
@@ -85,15 +86,17 @@
 
     .img-container {
       position: relative;
-      width: 100%;
-      padding-bottom: 56%;
 
       .gatsby-image-wrapper {
-        position: absolute;
-        top: 0;
-        left: 0;
+        position: relative;
+   
         width: 100%;
-        height: 100%;
+        height: auto;
+        img {
+          width: 100%;
+          height: auto;
+        }
+        
       }
     }
   }
