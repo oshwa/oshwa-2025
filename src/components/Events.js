@@ -27,7 +27,7 @@ export const EventsTemplate = () => {
   const upcomingEvents = [];
 
   data.allContentfulEvent.edges.forEach(({ node }) => {
-    const eventEndDate = new Date(node.dateEnd);
+    const eventEndDate = new Date(node.dateStart);
     eventEndDate >= today
       ? upcomingEvents.push({ ...node })
       : pastEvents.push({ ...node });
@@ -35,8 +35,8 @@ export const EventsTemplate = () => {
 
   const sortDates = (eventData, ascending = true) => {
     eventData.sort((a, b) => {
-      const dateA = new Date(a.dateEnd);
-      const dateB = new Date(b.dateEnd);
+      const dateA = new Date(a.dateStart);
+      const dateB = new Date(b.dateStart);
       return ascending ? dateA - dateB : dateB - dateA;
     });
   };
@@ -113,6 +113,7 @@ export const EventsTemplate = () => {
               >
                 <div className="event-container">
                   <p className="event-title">{event.title}</p>
+                  {/* {event.dateStart} */}
                 </div>
 
                 {event.type === 'Open Hardware Summit' && (
