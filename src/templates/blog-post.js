@@ -16,7 +16,7 @@ export default function BlogPost({ data }) {
           <div className="grid grid-cols-8 lg:grid-cols-6">
             <div className="col-span-10 lg:col-span-4 content-container">
               <p className="resource-header__date">
-                {dayjs(blogPost.publicationDate).format('MMMM D, YYYY')}
+                {dayjs(blogPost.date).format('MMMM D, YYYY')}
               </p>
               <h1 className="resource-header__title">{blogPost.title}</h1>
               {blogPost.oshwaAuthor && (

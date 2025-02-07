@@ -14,13 +14,13 @@ const IndexPage = () => {
       contentfulIndex {
         id
         title
-      }
-      contentfulBlogPost {
-        id
-        prettyUrl
-        date: date(formatString: "MMMM DD, YYYY")
-        title
-        shortDescription
+        featuredPost {
+          id
+          prettyUrl
+          date: date(formatString: "MMMM DD, YYYY")
+          title
+          shortDescription
+        }
       }
       allOshwaCertifications {
         totalCount
@@ -48,19 +48,25 @@ const IndexPage = () => {
             <div className="lg:col-span-2 md:col-span-2 notched notched--border notched--border--hover-x featured-box xs:col-span-3 sm:col-span-3">
               <div className="featured-box__header">
                 <p className="featured-box__date">
-                  {data.contentfulBlogPost.date}
+                  {data.contentfulIndex.featuredPost.date}
                 </p>
                 <h2 className="featured-box__title">
-                  {data.contentfulBlogPost.title}
+                  {data.contentfulIndex.featuredPost.title}
                 </h2>
               </div>
               <div className="featured-box__body">
                 <p className="featured-box__description">
-                  {data.contentfulBlogPost.shortDescription}
+                  {data.contentfulIndex.featuredPost.shortDescription}
                 </p>
                 <ArrowLink
                   text="Read more"
-                  location={`/blog-posts/${data.contentfulBlogPost.prettyUrl}`}
+                  location={`/announcements/${data.contentfulIndex.featuredPost.prettyUrl}`}
+                  variant={'inverted'}
+                />
+                <br />
+                <ArrowLink
+                  text="See all announcements"
+                  location={`/announcements`}
                   variant={'inverted'}
                 />
               </div>

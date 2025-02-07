@@ -13,12 +13,12 @@ const SearchBlogPosts = ({ location }) => {
 
   const handleSearchQuery = () => {
     let pubDateSelect = document.querySelector('#publicationDate');
-    let pubDateValue = pubDateSelect.value;
+    let date = pubDateSelect.value;
 
-    sessionStorage.setItem(sessionsName, JSON.stringify({ pubDateValue }));
+    sessionStorage.setItem(sessionsName, JSON.stringify({ date }));
 
     setQuery(
-      `+title:* +date:${pubDateValue} +contentfulType:${contentfulType}`
+      `+date:${date} +contentfulType:${contentfulType}`
     );
   };
 
@@ -27,21 +27,21 @@ const SearchBlogPosts = ({ location }) => {
     let savedSessionsQuery = JSON.parse(sessionStorage.getItem(sessionsName));
 
     // set date filter to sessions
-    if (savedSessionsQuery && savedSessionsQuery.pubDateValue) {
+    if (savedSessionsQuery && savedSessionsQuery.date) {
       Array.from(pubDateSelect.options).forEach((option, idx) => {
-        if (option.value === savedSessionsQuery.pubDateValue) {
+        if (option.value === savedSessionsQuery.date) {
           pubDateSelect.selectedIndex = idx;
         }
       });
     }
     setQuery(
-      `+title:* +date:${pubDateSelect.value} +contentfulType:${contentfulType}`
+      `+date:${pubDateSelect.value} +contentfulType:${contentfulType}`
     );
   };
 
   const clearFilters = () => {
     sessionStorage.removeItem(sessionsName);
-    setQuery(`+title:* +date:*`);
+    setQuery(`+date:*`);
     document.querySelector('#publicationDate').selectedIndex = 0;
     location.search = ''; // tk remove from url
   };
@@ -51,7 +51,7 @@ const SearchBlogPosts = ({ location }) => {
 
     setPubDateQuery(pubDateParam);
     setQuery(
-      `+title:* +date:${pubDateParam} +contentfulType:${contentfulType}`
+      `+date:${pubDateParam} +contentfulType:${contentfulType}`
     );
   }, [location]);
 
@@ -87,7 +87,7 @@ const SearchBlogPosts = ({ location }) => {
           <div className="px-8">
             <div className="grid lg:grid-cols-5 md:grid-cols-5">
               <div className="col-span-10 mb-5 notched notched--border">
-                <h1 className="generic-heading-1">Blog Posts</h1>
+                <h1 className="generic-heading-1">Announcements</h1>
               </div>
             </div>
           </div>
@@ -104,8 +104,8 @@ const SearchBlogPosts = ({ location }) => {
                   result => (
                     // item.prettyUrl && (
                     <Link
-                      key={result.prettyUrl}
-                      to={`/blog-posts/${result.prettyUrl}`}
+                      key={result.id}
+                      to={`/announcements/${result.prettyUrl}`}
                       className="lg:col-span-1 md:col-span-2 sm:col-span-4 notched notched--border notched--border--hover list-item"
                     >
                       <div>
