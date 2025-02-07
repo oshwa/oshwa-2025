@@ -36,7 +36,7 @@ const ProgramYear = ({ data }) => {
               return (
                 <Link
                   key={fellow.id}
-                  className="lg:col-span-1 md:col-span-2 notched notched--border fellow-container"
+                  className="lg:col-span-1 md:col-span-2 notched notched--border notched--border--hover fellow-container"
                   to={`/team/${fellow.prettyUrl}`}
                 >
                   <PersonContainer
