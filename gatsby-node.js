@@ -153,7 +153,7 @@ exports.createPages = async ({ graphql, actions }) => {
 
   allBlogPosts.data.allContentfulBlogPost.edges.forEach(edge => {
     createPage({
-      path: `blog-posts/${edge.node.prettyUrl}`,
+      path: `announcements/${edge.node.prettyUrl}`,
       component: blogPostPageTemplate,
       context: {
         id: edge.node.id,

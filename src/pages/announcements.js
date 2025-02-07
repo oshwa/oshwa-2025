@@ -87,7 +87,7 @@ const SearchBlogPosts = ({ location }) => {
           <div className="px-8">
             <div className="grid lg:grid-cols-5 md:grid-cols-5">
               <div className="col-span-10 mb-5 notched notched--border">
-                <h1 className="generic-heading-1">Blog Posts</h1>
+                <h1 className="generic-heading-1">Announcements</h1>
               </div>
             </div>
           </div>
@@ -105,7 +105,7 @@ const SearchBlogPosts = ({ location }) => {
                     // item.prettyUrl && (
                     <Link
                       key={result.prettyUrl}
-                      to={`/blog-posts/${result.prettyUrl}`}
+                      to={`/announcements/${result.prettyUrl}`}
                       className="lg:col-span-1 md:col-span-2 sm:col-span-4 notched notched--border notched--border--hover list-item"
                     >
                       <div>
