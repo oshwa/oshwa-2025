@@ -43,11 +43,7 @@ export const MainNavA = ({ handleClick, active }) => {
             className="main-nav__link link"
             to={
               menuItem.prettyUrl
-<<<<<<< HEAD
-                ? menuItem.prettyUrl
-=======
                 ? `/${menuItem.prettyUrl}`
->>>>>>> 832d6d7 (Link nav menu to contentful)
                 : `/${kebabCase(menuItem.title)}`
             }
           >
