@@ -21,6 +21,7 @@ const GridCards = ({ items, listType }) => {
                   className="lg:col-span-1 md:col-span-2 sm:col-span-4 notched notched--border notched--border--hover list-item"
                 >
                   <div>
+                    {/* {item.origin && (item.origin)} */}
                     {listType === 'blog-post' && (
                       <p className="publicationDate publicationDate--blog">
                         {dayjs(item.date).format('MMMM D, YYYY')}

@@ -153,7 +153,8 @@ module.exports = {
           { name: 'resourceAudience', store: true },
           { name: 'prettyUrl', store: true },
           { name: 'contentfulType', store: true },
-          { name: 'id', store: true }
+          { name: 'id', store: true },
+          { name: 'origin', store: true }
         ],
         // How to resolve each field's value for a supported node type
         resolvers: {
@@ -165,6 +166,7 @@ module.exports = {
             resourceAudience: node => node.resourceAudience,
             prettyUrl: node => node.prettyUrl,
             contentfulType: node => node.internal.type,
+            origin: node => node.origin,
           },
           ContentfulBlogPost: {
             id: node => node.id,

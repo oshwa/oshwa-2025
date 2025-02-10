@@ -164,10 +164,20 @@ const Search = ({ location }) => {
       }));
   };
 
-  const sortResultsByReportDateDesc = results => {
-    return results.sort(
-      (a, b) => new Date(b.resourceDate) - new Date(a.resourceDate)
-    );
+  // const sortResultsByReportDateDesc = results => {
+  //   return results.sort(
+  //     (a, b) => new Date(b.resourceDate) - new Date(a.resourceDate)
+  //   );
+  // };
+
+  const sortResults = results => {
+    return results.sort((a, b) => {
+      // Prioritize OSHWA first
+      const originOrder = (b.origin === 'OSHWA') - (a.origin === 'OSHWA');
+      if (originOrder !== 0) return originOrder;
+
+      return a.title.localeCompare(b.title);
+    });
   };
 
   useEffect(() => {
@@ -180,7 +190,7 @@ const Search = ({ location }) => {
     const searchResultsMapped = searchResults.map(({ ref }) => {
       return lunrIndex.store[ref];
     });
-    setResults(sortResultsByReportDateDesc(searchResultsMapped));
+    setResults(sortResults(searchResultsMapped));
   }, [query, location, handleUrlParams, matchFiltersToSessions]);
 
   return (
