@@ -1,7 +1,26 @@
 import React from 'react';
-import { Link } from 'gatsby';
+import { Link, useStaticQuery, graphql } from 'gatsby';
+import kebabCase from 'lodash.kebabcase';
 
 export const MainNavA = ({ handleClick, active }) => {
+  const data = useStaticQuery(graphql`
+    query MyQuery1 {
+      contentfulNavMenu {
+        menuItems {
+          ... on ContentfulGenericPage {
+            id
+            title
+            prettyUrl
+          }
+          ... on ContentfulProgramsPage {
+            id
+            title
+          }
+        }
+      }
+    }
+  `);
+
   const openMenu = () => {
     handleClick();
   };
@@ -19,36 +38,18 @@ export const MainNavA = ({ handleClick, active }) => {
       </div>
 
       <div className="main-nav__links-wrapper">
-        {/* <Link className="main-nav__link link" to="/">
-          Home
-        </Link> */}
-        <Link className="main-nav__link link" to="/about">
-          About
-        </Link>
-        <Link className="main-nav__link link" to="/team">
-          Team
-        </Link>
-        <Link className="main-nav__link link" to="/programs">
-          Programs
-        </Link>
-        <Link className="main-nav__link link" to="/community">
-          Community
-        </Link>
-        <Link className="main-nav__link link" to="/membership">
-          Membership
-        </Link>
-        <Link className="main-nav__link link" to="/events">
-          Events
-        </Link>
-        <Link className="main-nav__link link" to="/oshw-101">
-          OSHW 101
-        </Link>
-        <Link className="main-nav__link link" to="/resources">
-          Resources
-        </Link>
-        <Link className="main-nav__link link" to="/announcements">
-          Announcements
-        </Link>
+        {data.contentfulNavMenu.menuItems.map(menuItem => (
+          <Link
+            className="main-nav__link link"
+            to={
+              menuItem.prettyUrl
+                ? menuItem.prettyUrl
+                : `/${kebabCase(menuItem.title)}`
+            }
+          >
+            {menuItem.title}
+          </Link>
+        ))}
       </div>
     </nav>
   );
