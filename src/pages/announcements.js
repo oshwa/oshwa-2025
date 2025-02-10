@@ -3,7 +3,6 @@ import Layout from '../components/layout';
 import { Link } from 'gatsby';
 import dayjs from 'dayjs';
 import { FilterBar } from '../components/FilterBar';
-// import GridCards from '../components/GridCards';
 const sessionsName = 'blog-post-filters';
 
 const SearchBlogPosts = ({ location }) => {
@@ -11,22 +10,27 @@ const SearchBlogPosts = ({ location }) => {
   const [results, setResults] = useState([]);
   const contentfulType = 'ContentfulBlogPost';
 
+  const formatQuery = ({ date = '', contentfulType = '' }) => {
+    let dateQuery = date && date !== '*' ? `+date:${date}` : '';
+    let contentfulTypeQuery = `+contentfulType:${contentfulType}`;
+
+    return `${dateQuery} ${contentfulTypeQuery}`;
+  };
+
   const handleSearchQuery = () => {
     let pubDateSelect = document.querySelector('#publicationDate');
     let date = pubDateSelect.value;
 
     sessionStorage.setItem(sessionsName, JSON.stringify({ date }));
 
-    setQuery(
-      `+date:${date} +contentfulType:${contentfulType}`
-    );
+    const formattedQuery = formatQuery({ date, contentfulType });
+    setQuery(formattedQuery);
   };
 
-  const matchFiltersToSessions = () => {
+  const matchFiltersToSessions = useCallback(() => {
     let pubDateSelect = document.querySelector('#publicationDate');
     let savedSessionsQuery = JSON.parse(sessionStorage.getItem(sessionsName));
 
-    // set date filter to sessions
     if (savedSessionsQuery && savedSessionsQuery.date) {
       Array.from(pubDateSelect.options).forEach((option, idx) => {
         if (option.value === savedSessionsQuery.date) {
@@ -34,51 +38,47 @@ const SearchBlogPosts = ({ location }) => {
         }
       });
     }
-    setQuery(
-      `+date:${pubDateSelect.value} +contentfulType:${contentfulType}`
-    );
-  };
+
+    const formattedQuery = formatQuery({ date: pubDateSelect.value, contentfulType });
+    setQuery(formattedQuery);
+  }, [contentfulType]);
 
   const clearFilters = () => {
     sessionStorage.removeItem(sessionsName);
-    setQuery(`+date:*`);
     document.querySelector('#publicationDate').selectedIndex = 0;
-    location.search = ''; // tk remove from url
+    location.search = '';
+    setQuery(formatQuery({ date: '*', contentfulType }));
   };
 
   const handleUrlParams = useCallback(() => {
     let pubDateParam = new URLSearchParams(location.search).get('year') || '*';
 
-    setPubDateQuery(pubDateParam);
-    setQuery(
-      `+date:${pubDateParam} +contentfulType:${contentfulType}`
-    );
-  }, [location]);
-
-  const setPubDateQuery = paramVal => {
     let pubDateSelect = document.querySelector('#publicationDate');
     Array.from(pubDateSelect.options).forEach((option, idx) => {
-      if (option.value === paramVal) {
+      if (option.value === pubDateParam) {
         pubDateSelect.selectedIndex = idx;
       }
     });
+
+    const formattedQuery = formatQuery({ date: pubDateParam, contentfulType });
+    setQuery(formattedQuery);
+  }, [location, contentfulType]);
+
+  const sortByDateDesc = results => {
+    return results.sort((a, b) => new Date(b.date) - new Date(a.date));
   };
 
-  const sortByDateDesc = (results) => {
-    return results.sort(
-      (a, b) => new Date(b.date) - new Date(a.date)
-    );
-  }
   useEffect(() => {
     const lunrIndex = window.__LUNR__['en'];
+
     handleUrlParams();
     matchFiltersToSessions();
+
     const searchResults = lunrIndex.index.search(query);
-    const searchResultsMapped = searchResults.map(({ ref }) => {
-      return lunrIndex.store[ref];
-    });
+    const searchResultsMapped = searchResults.map(({ ref }) => lunrIndex.store[ref]);
+
     setResults(sortByDateDesc(searchResultsMapped));
-  }, [query, handleUrlParams]);
+  }, [query, location, handleUrlParams, matchFiltersToSessions]);
 
   return (
     <>
@@ -102,7 +102,6 @@ const SearchBlogPosts = ({ location }) => {
               {results &&
                 results.map(
                   result => (
-                    // item.prettyUrl && (
                     <Link
                       key={result.id}
                       to={`/announcements/${result.prettyUrl}`}
@@ -117,7 +116,6 @@ const SearchBlogPosts = ({ location }) => {
                       </div>
                     </Link>
                   )
-                  // )
                 )}
             </div>
           </div>
