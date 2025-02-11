@@ -50,6 +50,12 @@ export const MainNavA = ({ handleClick, active }) => {
             {menuItem.title}
           </Link>
         ))}
+        <Link className="main-nav__link link" to="/resources">
+          Resources
+        </Link>
+        <Link className="main-nav__link link" to="/announcements">
+          Announcements
+        </Link>
       </div>
     </nav>
   );
