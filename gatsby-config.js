@@ -19,12 +19,11 @@ const tailwindConfig = require('./tailwind.config.js');
 const fullConfig = resolveConfig(tailwindConfig);
 
 module.exports = {
-  pathPrefix: "/oshwa-2025",
   siteMetadata: {
-    title: `Objectively Gatsby Starter`,
-    description: ``,
+    title: `OSHWA`,
+    description: `Open Source Hardware Association`,
     author: ``,
-    siteUrl: `http://example.com`,
+    siteUrl: `http://new.oshwa.org`,
   },
   plugins: [
     `gatsby-plugin-image`,
