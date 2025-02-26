@@ -35,18 +35,16 @@ concurrency:
   cancel-in-progress: true
 jobs:
   pull-build-deploy:
-    runs-on: ubuntu-22.04
-    strategy:
-      matrix:
-        node-version: [18.9.0]
+    runs-on: ubuntu-24.04
     steps:
       - uses: actions/checkout@v4
       - name: Update Main Branch
         run: git pull origin main
-      - name: Use Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v3
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
         with:
-          node-version: ${{ matrix.node-version }}
+          node-version-file: ".node-version"
+          cache: npm
       - name: Install npm dependencies
         run: npm install
       - name: Build
