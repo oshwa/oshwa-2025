@@ -5,7 +5,7 @@ import Layout from '../components/layout';
 import { GenericHeader } from '../components/GenericHeader';
 import { SidebarGallery } from '../components/SidebarGallery';
 import RichText from '../components/RichText';
-import Seo from "../components/seo"
+import Seo from "../components/seo";
 
 const NotFoundPage = () => {
   const data = useStaticQuery(graphql`
