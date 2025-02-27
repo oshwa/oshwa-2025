@@ -1,5 +1,4 @@
 import React from 'react';
-import MarkdownText from './MarkdownText';
 
 const EmbeddedTable = ({ title, table, caption }) => {
   return (

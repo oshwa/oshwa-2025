@@ -41,6 +41,7 @@ export const MainNavA = ({ handleClick, active }) => {
         {data.contentfulNavMenu.menuItems.map(menuItem => (
           <Link
             className="main-nav__link link"
+            key={menuItem.prettyUrl || kebabCase(menuItem.title)}
             to={
               menuItem.prettyUrl
                 ? `/${menuItem.prettyUrl}`

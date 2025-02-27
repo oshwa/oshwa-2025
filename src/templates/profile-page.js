@@ -117,10 +117,10 @@ export default function ProfilePage({ data }) {
                         key={project.id}
                         href={`https://certification.oshwa.org/${project.oshwaUid.toLowerCase()}`}
                         className="lg:col-span-1 md:col-span-4 sm:col-span-4 notched notched--border notched--border--hover list-item"
+                        aria-label={`View certification for ${project.projectName}`}
                       >
                         <div>
                           <p className="project-id">{project.oshwaUid}</p>
-
                           <p className="title"> {project.projectName}</p>
                         </div>
                       </a>
@@ -141,7 +141,8 @@ export default function ProfilePage({ data }) {
                   <a
                     key={member.id}
                     href={member.externalUrl}
-                    className="lg:col-span-1 md:col-span-4 sm:col-span-4 list-item notched notched--border "
+                    className="lg:col-span-1 md:col-span-4 sm:col-span-4 list-item notched notched--border"
+                    aria-label={`View profile of ${member.displayName}`}
                   >
                     <div
                       key={member.id}
