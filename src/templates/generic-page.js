@@ -7,6 +7,7 @@ import { PeopleTemplate } from '../components/People';
 import { EventsTemplate } from '../components/Events';
 import { SidebarGallery } from '../components/SidebarGallery';
 import RichText from '../components/RichText';
+import Seo from '../components/seo';
 
 export default function ProjectPage({ data }) {
   const pageData = data.contentfulGenericPage;
@@ -70,12 +71,23 @@ export default function ProjectPage({ data }) {
   );
 }
 
+export const Head = ({ data }) => {
+  const pageData = data.contentfulGenericPage;
+  return (
+    <Seo
+      title={pageData.title}
+      description={pageData.seoDescription || ''}
+    />
+  )
+}
+
 export const query = graphql`
   query ($id: String!) {
     contentfulGenericPage(id: { eq: $id }) {
       id
       prettyUrl
       title
+      seoDescription
       shortDescription {
         childMarkdownRemark {
            html

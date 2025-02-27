@@ -1,9 +1,11 @@
 import React from 'react';
 import { Link, graphql } from 'gatsby';
+
 import Layout from '../components/layout';
 import { NotchedButtonLink } from '../components/Link';
 import { Video } from '../components/Video';
 import RichText from '../components/RichText';
+import Seo from '../components/seo';
 
 export default function ProfilePage({ data }) {
   const profile = data.contentfulPeople;
@@ -182,6 +184,8 @@ export default function ProfilePage({ data }) {
     </Layout>
   );
 }
+
+export const Head = ({ data }) => <Seo title={data.contentfulPeople.displayName} />
 
 export const query = graphql`
   query ($id: String!) {

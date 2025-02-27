@@ -1,8 +1,10 @@
 import * as React from 'react';
 import { useStaticQuery, graphql } from 'gatsby';
+
 import Layout from '../components/layout';
 import { GenericHeader } from '../components/GenericHeader';
 import GridCards from '../components/GridCardsB';
+import Seo from '../components/seo';
 
 const ProgramsPage = () => {
   const data = useStaticQuery(graphql`
@@ -48,5 +50,11 @@ const ProgramsPage = () => {
     </Layout>
   );
 };
+
+export const Head = () =>
+  <Seo
+    title="Programs"
+    description="OSHWA's programs are designed to advance open hardware."
+  />;
 
 export default ProgramsPage;

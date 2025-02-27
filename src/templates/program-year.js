@@ -1,12 +1,14 @@
 import * as React from 'react';
 import { graphql, Link } from 'gatsby';
+import { GatsbyImage, getImage } from 'gatsby-plugin-image';
+
 import Layout from '../components/layout';
 import { GenericHeader } from '../components/GenericHeader';
 import { PersonContainer } from '../components/PersonContainer';
 import GridCards from '../components/GridCards';
-import { GatsbyImage, getImage } from 'gatsby-plugin-image';
 import { NotchedButtonLink } from '../components/Link';
 import MarkdownText from '../components/MarkdownText';
+import Seo from '../components/seo';
 
 const ProgramYear = ({ data }) => {
   const pageData = data.contentfulProgramYear;
@@ -117,6 +119,8 @@ const ProgramYear = ({ data }) => {
     </Layout>
   );
 };
+
+export const Head = ({ data }) => <Seo title={data.contentfulProgramYear.title} />
 
 export default ProgramYear;
 
