@@ -1,8 +1,7 @@
 import React from 'react';
-import { Link } from 'gatsby';
 import dayjs from 'dayjs';
 
-const GridCards = ({ items, listType }) => {
+const GridCards = ({ items, listType, openInNewTab = false }) => {
   return (
     <>
       <div className={listType === 'resources-ref' ? `list` : `list`}>
@@ -10,18 +9,18 @@ const GridCards = ({ items, listType }) => {
           {items &&
             items.map(
               (item, idx) => (
-                // item.prettyUrl && (
-                <Link
+                <a
                   key={`${item.prettyUrl}-${idx}`}
-                  to={
+                  href={
                     listType === 'resources'
                       ? `/resources/${item.prettyUrl}`
                       : `/resources/${item.prettyUrl}`
                   }
                   className="lg:col-span-1 md:col-span-2 sm:col-span-4 notched notched--border notched--border--hover list-item"
+                  target={openInNewTab ? '_blank' : '_self'}
+                  rel={openInNewTab ? 'noopener noreferrer' : undefined}
                 >
                   <div>
-                    {/* {item.origin && (item.origin)} */}
                     {listType === 'blog-post' && (
                       <p className="publicationDate publicationDate--blog">
                         {dayjs(item.date).format('MMMM D, YYYY')}
@@ -36,9 +35,8 @@ const GridCards = ({ items, listType }) => {
                         <p className="type">{item.resourceType}</p>
                       </>
                     )}
-                </Link>
+                </a>
               )
-              // )
             )}
         </div>
       </div>

@@ -1,6 +1,5 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import Layout from '../components/layout';
-import { Link } from 'gatsby';
 import dayjs from 'dayjs';
 import { FilterBar } from '../components/FilterBar';
 const sessionsName = 'blog-post-filters';
@@ -102,19 +101,22 @@ const SearchBlogPosts = ({ location }) => {
               {results &&
                 results.map(
                   result => (
-                    <Link
+                    <a
                       key={result.id}
-                      to={`/announcements/${result.prettyUrl}`}
+                      href={`/announcements/${result.prettyUrl}`}
                       className="lg:col-span-1 md:col-span-2 sm:col-span-4 notched notched--border notched--border--hover list-item"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      aria-label={result.title}
                     >
                       <div>
                         <p className="publicationDate publicationDate--blog">
                           {dayjs(result.date).format('MMMM D, YYYY')}
                         </p>
 
-                        <p className="title"> {result.title}</p>
+                        <p className="title">{result.title}</p>
                       </div>
-                    </Link>
+                    </a>
                   )
                 )}
             </div>

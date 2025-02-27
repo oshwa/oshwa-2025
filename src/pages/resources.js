@@ -122,17 +122,14 @@ const Search = ({ location }) => {
     let pubAudienceSelect = document.querySelector('#publicationAudience');
     let savedSessionsQuery = JSON.parse(sessionStorage.getItem(sessionsName));
 
-    // set date filter to sessions
     if (savedSessionsQuery && savedSessionsQuery.pubDateValue) {
       setPubDateQuery(savedSessionsQuery.pubDateValue);
     }
 
-    // set type filter to sessions
     if (savedSessionsQuery && savedSessionsQuery.pubTypeValue) {
       setPubTypeQuery(savedSessionsQuery.pubTypeValue);
     }
 
-    // set audience filter to sessions
     if (savedSessionsQuery && savedSessionsQuery.pubAudienceValue) {
       setPubAudienceQuery(savedSessionsQuery.pubAudienceValue);
     }
@@ -164,15 +161,8 @@ const Search = ({ location }) => {
       }));
   };
 
-  // const sortResultsByReportDateDesc = results => {
-  //   return results.sort(
-  //     (a, b) => new Date(b.resourceDate) - new Date(a.resourceDate)
-  //   );
-  // };
-
   const sortResults = results => {
     return results.sort((a, b) => {
-      // Prioritize OSHWA first
       const originOrder = (b.origin === 'OSHWA') - (a.origin === 'OSHWA');
       if (originOrder !== 0) return originOrder;
 
@@ -202,7 +192,6 @@ const Search = ({ location }) => {
               <div className="col-span-10 mb-5 notched notched--border">
                 <h1 className="generic-heading-1">Resources</h1>
               </div>
-              {/* <div>{sessionStorage.getItem('resource-filters')}</div> */}
             </div>
           </div>
 
@@ -212,7 +201,7 @@ const Search = ({ location }) => {
             listType="resources"
           />
           <div className="resource-cards-wrapper px-8 py-4">
-            <GridCards items={results} listType="resources" />
+            <GridCards items={results} listType="resources" openInNewTab />
           </div>
         </>
       </Layout>

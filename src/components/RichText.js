@@ -61,9 +61,6 @@ const options = {
       const targetType = node.data.target.__typename;
 
       if (targetType === 'ContentfulTable') {
-        {
-          console.log(node);
-        }
         return (
           <EmbeddedTable
             title={node.data.target.title}

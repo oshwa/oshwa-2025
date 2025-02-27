@@ -32,6 +32,7 @@ const MailchimpForm = () => {
         }
       );
 
+      console.log('response', response);
       setStatus(<div className='form-message'><p>Thank you for subscribing!</p></div>);
     } catch (error) {
       setStatus('An error occurred. Please try again.');
