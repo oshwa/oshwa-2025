@@ -1,12 +1,11 @@
 import * as React from 'react';
 import { useStaticQuery, graphql, Link } from 'gatsby';
 import { StaticImage } from 'gatsby-plugin-image';
+
 import Layout from '../components/layout';
-import Seo from '../components/seo';
-
 import { ArrowLink } from '../components/Link';
-
 import Map from '../components/Map';
+import Seo from '../components/seo';
 
 const IndexPage = () => {
   const data = useStaticQuery(graphql`
@@ -153,11 +152,10 @@ const IndexPage = () => {
   );
 };
 
-/**
- * Head export to define metadata for the page
- *
- * See: https://www.gatsbyjs.com/docs/reference/built-in-components/gatsby-head/
- */
-export const Head = () => <Seo title="Home" />;
+export const Head = () =>
+  <Seo
+    title="Home"
+    description="The Open Source Hardware Association (OSHWA) aims to foster technological knowledge and encourage research that is accessible, collaborative and respects user freedom."
+  />;
 
 export default IndexPage;

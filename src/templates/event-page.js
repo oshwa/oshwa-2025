@@ -1,9 +1,11 @@
 import * as React from 'react';
 import { graphql } from 'gatsby';
+
 import Layout from '../components/layout';
 import { GenericHeader } from '../components/GenericHeader';
 import { NotchedButtonLink } from '../components/Link';
 import RichText from '../components/RichText';
+import Seo from '../components/seo';
 
 const Event = ({ data }) => {
   const pageData = data.contentfulEvent;
@@ -53,6 +55,8 @@ const Event = ({ data }) => {
     </Layout>
   );
 };
+
+export const Head = ({ data }) => <Seo title={data.contentfulEvent.title} />
 
 export default Event;
 

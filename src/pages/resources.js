@@ -1,7 +1,9 @@
 import React, { useState, useEffect, useCallback } from 'react';
+
 import Layout from '../components/layout';
 import { FilterBar } from '../components/FilterBar';
 import GridCards from '../components/GridCards';
+import Seo from '../components/seo';
 const sessionsName = 'resource-filters';
 
 const Search = ({ location }) => {
@@ -208,5 +210,11 @@ const Search = ({ location }) => {
     </>
   );
 };
+
+export const Head = () =>
+  <Seo
+    title="Resources"
+    description="The Open Source Hardware Association (OSHWA) aims to foster technological knowledge and encourage research that is accessible, collaborative and respects user freedom."
+  />;
 
 export default Search;

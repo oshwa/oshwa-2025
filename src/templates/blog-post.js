@@ -1,10 +1,11 @@
 import React from 'react';
 import { graphql } from 'gatsby';
+import dayjs from 'dayjs';
 
 import Layout from '../components/layout';
 import RichText from '../components/RichText';
 import { SidebarGallery } from '../components/SidebarGallery';
-import dayjs from 'dayjs';
+import Seo from '../components/seo';
 
 export default function BlogPost({ data }) {
   const blogPost = data.contentfulBlogPost;
@@ -39,6 +40,8 @@ export default function BlogPost({ data }) {
     </Layout>
   );
 }
+
+export const Head = ({ data }) => <Seo title={data.contentfulBlogPost.title} />
 
 export const query = graphql`
   query ($id: String!) {

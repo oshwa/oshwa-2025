@@ -1,12 +1,14 @@
 import React, { useCallback, useEffect, useState } from 'react';
 import { graphql } from 'gatsby';
 import { GatsbyImage, getImage } from 'gatsby-plugin-image';
+
 import Layout from '../components/layout';
 // import FixedNav from '../components/FixedNav';
 import RichText from '../components/RichText';
 import LanguagePicker from '../components/LanguagePicker';
 import Video from '../components/Video';
 import MarkdownText from '../components/MarkdownText';
+import Seo from '../components/seo';
 
 export default function GlobalResourcePage({ data, location }) {
   const defaultLanguage = 'English';
@@ -115,7 +117,7 @@ export default function GlobalResourcePage({ data, location }) {
                   size="large"
                 />
               )}
-              
+
               {translatedContent.body && (
                 <RichText content={translatedContent.body} />
               )}
@@ -136,6 +138,8 @@ export default function GlobalResourcePage({ data, location }) {
     </Layout>
   );
 }
+
+export const Head = ({ data }) => <Seo title={data.contentfulGlobalResourceContainer.resourceTitle} />
 
 export const query = graphql`
   query ($id: String!) {

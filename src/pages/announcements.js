@@ -1,7 +1,9 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import Layout from '../components/layout';
 import dayjs from 'dayjs';
+
 import { FilterBar } from '../components/FilterBar';
+import Seo from '../components/seo';
 const sessionsName = 'blog-post-filters';
 
 const SearchBlogPosts = ({ location }) => {
@@ -126,5 +128,11 @@ const SearchBlogPosts = ({ location }) => {
     </>
   );
 };
+
+export const Head = () =>
+  <Seo
+    title="Announcements"
+    description="The Open Source Hardware Association (OSHWA) aims to foster technological knowledge and encourage research that is accessible, collaborative and respects user freedom."
+  />;
 
 export default SearchBlogPosts;
