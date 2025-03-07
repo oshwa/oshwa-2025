@@ -1,8 +1,8 @@
 .markdown-content,
 .richtext-content {
   h2 {
-    @include typography-headline-3;
     margin: 1rem 0;
+    @include typography-headline-3;
   }
 
   h3 {

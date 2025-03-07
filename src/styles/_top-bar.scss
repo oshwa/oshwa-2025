@@ -1,10 +1,4 @@
 .top-bar {
-  &__button--gray {
-    // color: gray;
-  }
-}
-
-.top-bar {
   height: 3.5rem;
   left: 0;
   position: fixed;
@@ -59,11 +53,11 @@
   background-color: transparent;
 }
 
-.top-bar--no-logo>.top-bar__logo-container {
+.top-bar--no-logo > .top-bar__logo-container {
   display: none;
 }
 
-.top-bar--white>.top-bar__logo-container {
+.top-bar--white > .top-bar__logo-container {
   display: flex;
 }
 
@@ -172,11 +166,17 @@
 }
 
 .top-bar__button--right.js-toggle-filters {
+  position: absolute;
+  background-color: yellow;
+  height: 3.5rem;
+  width: 3rem;
+  right: 0;
+  top: 0;
+  border-radius: 0;
+
   @include breakpoint($large) {
     display: none;
   }
-
-  border-radius: 0;
 
   .filter-decorator {
     &::before {
@@ -195,11 +195,4 @@
       color: white;
     }
   }
-
-  background-color: yellow;
-  height: 3.5rem;
-  width: 3rem;
-  position: absolute;
-  right: 0;
-  top: 0;
 }

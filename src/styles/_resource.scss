@@ -1,18 +1,16 @@
 .resource-header {
   &__title {
-    @include typography-headline-2;
     margin-bottom: 1rem;
     margin-top: 1rem;
-
+    @include typography-headline-2;
     @include breakpoint($medium-only) {
       margin-top: 1rem;
     }
   }
   &__subtitle {
-    @include typography-headline-3;
     margin-bottom: 1rem;
     margin-top: 1rem;
-
+    @include typography-headline-3;
     @include breakpoint($medium-only) {
       margin-top: 1rem;
     }

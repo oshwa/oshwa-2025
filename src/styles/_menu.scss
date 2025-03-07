@@ -1,3 +1,4 @@
+@use "sass:color";
 .menu {
   background-color:  $--theme-primary-variant;
   display: none;
@@ -21,7 +22,7 @@
       font-size: 0.9rem;
       font-weight: 600;
       text-transform: uppercase;
-      border-bottom: 3px solid lighten(gray, 15);
+      border-bottom: 3px solid color.adjust(gray, $lightness: 15%);
       padding-bottom: 0.2rem;
       @include breakpoint($medium-only) {
         margin-top: 2rem;
@@ -30,7 +31,7 @@
         margin-top: 2rem;
       }
       &:hover {
-        color: darken(gray, 20);
+        color: color.adjust(gray, $lightness: -20%);
       }
     }
   }
@@ -45,7 +46,7 @@
     padding: 0;
     background-color: transparent;
     &:hover {
-      color: darken(gray, 20);
+      color: color.adjust(gray, $lightness: -20%);
       background-color: transparent;
     }
     &--home {
@@ -54,7 +55,7 @@
   }
 
   &__link-container {
-    border-left: 1px solid lighten(gray, 15);
+    border-left: 1px solid color.adjust(gray, $lightness: 15%);
     margin-top: 1rem;
     a {
       font-size: 0.9rem;
@@ -64,7 +65,8 @@
       text-decoration: none;
       text-transform: uppercase;
       &:hover {
-        background-color: darken(gray, 5);
+        background-color: color.adjust(gray, $lightness: -5%);
+        
       }
     }
   }
