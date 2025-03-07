@@ -1,3 +1,7 @@
+@use 'colors';
+
+$--theme-primary: colors.$blue;
+
 .react-toggle--checked .react-toggle-track {
   background-color: var($--theme-primary);
 }

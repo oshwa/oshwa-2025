@@ -1,31 +1,30 @@
+@use 'breakpoints';
+@use 'typography';
 .generic-header {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   padding-bottom: 3rem;
 
-  @include breakpoint($medium-only) {
-    // margin-top: 1rem;
-  }
 
   p:first-of-type {
     padding-top: 2rem;
   }
 
   .program-title {
-    @include typography-body-6;
+    @include typography.typography-body-6;
     font-size: 1.7rem;
     padding-bottom: 1rem;
   }
 
   .location {
-    @include typography-body-6;
+    @include typography.typography-body-6;
     padding-top: 1rem !important;
   }
 }
 
 .header-img-container {
-  @include breakpoint($medium-only) {
+  @include breakpoints.breakpoint(medium-only) {
     min-height: 20rem;
   }
 }

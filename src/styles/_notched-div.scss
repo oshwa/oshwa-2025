@@ -1,3 +1,7 @@
+@use 'variables';
+@use 'typography';
+@use 'colors';
+
 .notched {
   padding: 2rem;
   --notchSize: 10px;
@@ -14,8 +18,8 @@
   );
 
   h3 {
-    @include typography-headline-4;
-    font-weight: $bold;
+    @include typography.typography-headline-4;
+    font-weight: variables.$bold;
     line-height: 1.3;
   }
 
@@ -35,8 +39,10 @@
 
     &--hover {
       &:hover {
-        background-color: var(--theme-on-surface);
-        color: var($--theme-background);
+        // background-color: var(--theme-on-surface); TK 
+        // color: var($--theme-background); TK 
+        background-color: hotpink;
+        color: hotpink;
       }
     }
 
@@ -59,7 +65,8 @@
       position: absolute;
       inset: 0;
       z-index: -1;
-      background: var($--theme-on-surface);
+      // background: var($--theme-on-surface); TK 
+      background: hotpink;
 
       --g1: #000 var(--b), #0000 0 calc(100% - var(--b)), #000 0;
       --g2: #0000 calc(0.707 * var(--s)),
@@ -76,10 +83,11 @@
 
     &--hover {
       &:hover {
-        // background-color: white;
-        // color: var(---);
-        background-color: var(--theme-on-surface);
-        color: var($--theme-background);
+
+        // background-color: var(--theme-on-surface); TK 
+        // color: var($--theme-background); TK 
+        background-color: hotpink;
+        color: hotpink;
         --notchSize: 10px;
 
         clip-path: polygon(
@@ -98,23 +106,23 @@
 }
 
 .yellow {
-  background-color: $yellow;
+  background-color: colors.$yellow;
 }
 
 .green {
-  background-color: $green;
+  background-color: colors.$green;
 }
 
 .blue {
-  background-color: $blue;
+  background-color: colors.$blue;
 }
 
 .red {
-  background-color: $red;
+  background-color: colors.$red;
 }
 
 .orange {
-  background-color: $orange;
+  background-color: colors.$orange;
 }
 
 .white {

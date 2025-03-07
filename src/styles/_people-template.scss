@@ -1,3 +1,6 @@
+@use 'typography';
+@use 'variables';
+
 .person-container {
   &__image {
     margin: auto;
@@ -21,8 +24,8 @@
   &__name {
     margin-top: 1rem;
     text-align: center;
-    @include typography-body-4;
-    font-weight: $bold;
+    @include typography.typography-body-4;
+    font-weight: variables.$bold;
   }
 
   &__title,

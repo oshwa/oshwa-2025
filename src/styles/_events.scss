@@ -1,7 +1,10 @@
+@use 'typography';
+@use 'variables';
+
 .event-container {
   .event-title {
-    @include typography-body-4;
-    font-weight: $bold;
+    @include typography.typography-body-4;
+    font-weight: variables.$bold;
   }
 }
 

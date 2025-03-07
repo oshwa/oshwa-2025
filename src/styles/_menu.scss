@@ -1,6 +1,10 @@
 @use "sass:color";
+@use 'breakpoints';
+@use 'typography';
+
 .menu {
-  background-color:  $--theme-primary-variant;
+  // background-color:  $--theme-primary-variant; TK
+  background-color: hotpink;
   display: none;
   position: absolute;
   top: 0;
@@ -8,10 +12,10 @@
   left: 0;
   padding: 3.5rem 2rem 4rem 4rem;
   text-align: left;
-  @include breakpoint(medium-only) {
+  @include breakpoints.breakpoint(medium-only) {
     padding-top: 1.5rem;
   }
-  @include breakpoint($small-only) {
+  @include breakpoints.breakpoint(small-only) {
     padding-top: 1.5rem;
   }
 
@@ -24,10 +28,10 @@
       text-transform: uppercase;
       border-bottom: 3px solid color.adjust(gray, $lightness: 15%);
       padding-bottom: 0.2rem;
-      @include breakpoint($medium-only) {
+      @include breakpoints.breakpoint(medium-only) {
         margin-top: 2rem;
       }
-      @include breakpoint($small-only) {
+      @include breakpoints.breakpoint(small-only) {
         margin-top: 2rem;
       }
       &:hover {
@@ -79,7 +83,7 @@
 
 .menu-button {
   font-size: 1.3rem;
-  font-family: $primary-font;
+  font-family: typography.$primary-font;
   position: absolute;
   left: 0;
   top: 0;

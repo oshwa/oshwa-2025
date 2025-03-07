@@ -1,11 +1,12 @@
+@use 'typography';
 h1.generic-heading-1 {
-  @include typography-headline-2;
+  @include typography.typography-headline-2;
 }
 
 h2.generic-heading-2 {
   font-weight: 700;
   margin-top: 0.5rem;
-  @include typography-headline-3;
+  @include typography.typography-headline-3;
   &--2nd-heading {
     margin-top: 2.5rem;
   }
