@@ -3,10 +3,8 @@
 
 button.btn {
   background-color: var(--theme-background);
-  // color: var(--theme-on-surface); 
-  // border: 2px solid var(--theme-on-surface); 
-  color: hotpink;
-  border: 2px solid red;
+  color: var(--theme-on-surface); 
+  border: 2px solid var(--theme-on-surface); 
   border-radius: 0;
   @include typography.typography-body-3;
   text-transform: uppercase;
@@ -15,8 +13,7 @@ button.btn {
 }
 
 button.btn:hover {
-  // background-color: var($--theme-on-surface); TK
-  background-color: hotpink;
+  background-color: var(--theme-on-surface);
   color: var(--theme-background);
   border: none;
 }
@@ -30,9 +27,7 @@ button.btn:hover {
 .btn.language-selector {
   &.selected {
     background-color: var(--theme-on-surface);
-    // color: var($--theme-background); TK
-    // border: 2px solid var($--theme-on-surface); TK
-    color: hotpink;
-    border: 2px solid hotpink;
+    color: var(--theme-background);
+    border: 2px solid var(--theme-on-surface);
   }
 }

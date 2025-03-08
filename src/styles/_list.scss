@@ -13,12 +13,9 @@
     -moz-appearance: none;
     @include typography.typography-body-6;
     height: 2rem;
-    // background-color: var($--theme-background); TK
-    // color: var($--theme-on-surface); TK
-    background-color: hotpink;
-    color: hotpink;
+    background-color: var(--theme-background);
+    color: var(--theme-on-surface);
     padding-right: 2rem;
-
     @include breakpoints.breakpoint(small-only) {
       width: auto;
     }

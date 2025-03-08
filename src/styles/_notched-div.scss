@@ -81,10 +81,8 @@
     &--hover {
       &:hover {
 
-        // background-color: var(--theme-on-surface); TK 
-        // color: var($--theme-background); TK 
-        background-color: hotpink;
-        color: hotpink;
+        background-color: var(--theme-on-surface);
+        color: var(--theme-background);
         --notchSize: 10px;
 
         clip-path: polygon(

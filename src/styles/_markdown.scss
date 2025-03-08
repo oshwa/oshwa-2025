@@ -139,13 +139,11 @@
         text-align: left;
       }
       thead  tr  {
-        // border-bottom: solid 2px var($--theme-on-background); TK
-        border-bottom: solid 2px hotpink;
+        border-bottom: solid 2px var(--theme-on-background);
        th { padding: 4px 0;}
       }
       tbody tr {
-        // border-bottom: dotted 2px var($--theme-on-background); TK
-        border-bottom: dotted 2px hotpink;
+        border-bottom: dotted 2px var(--theme-on-background);
         td { padding: 4px 0;}
       }
       @include typography.typography-body-3;
