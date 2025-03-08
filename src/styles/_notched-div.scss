@@ -39,10 +39,8 @@
 
     &--hover {
       &:hover {
-        // background-color: var(--theme-on-surface); TK 
-        // color: var($--theme-background); TK 
-        background-color: hotpink;
-        color: hotpink;
+        background-color: var(--theme-on-surface); 
+        color: var(--theme-background); 
       }
     }
 
@@ -65,9 +63,8 @@
       position: absolute;
       inset: 0;
       z-index: -1;
-      // background: var($--theme-on-surface); TK 
-      background: hotpink;
-
+      background: var(--theme-on-surface); 
+  
       --g1: #000 var(--b), #0000 0 calc(100% - var(--b)), #000 0;
       --g2: #0000 calc(0.707 * var(--s)),
         #000 0 calc(0.707 * var(--s) + var(--b)),

@@ -23,12 +23,9 @@ path.clickable {
   max-width: 10rem;
   display: none;
   transition: display .4s ease-in-out .4s;
-  // background: var($--theme-background); TK
-  // color: var($--theme-on-background); TK
-  // border: solid 1px var($--theme-on-background); TK
-  background: hotpink;
-  color: hotpink;
-  border: solid 1px hotpink;
+  background: var(--theme-background);
+  color: var(--theme-on-background);
+  border: solid 1px var(--theme-on-background);
   border-radius: 2px;
   padding: 4px;
   position: absolute;
@@ -39,8 +36,7 @@ path.clickable {
 }
 
 .legend {
-  // color: var($--theme-on-background); TK
-  color: hotpink;
+  color: var(--theme-on-background);
 }
 
 #map-legend {

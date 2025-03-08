@@ -3,10 +3,10 @@
 
 button.btn {
   background-color: var(--theme-background);
-  // color: var($--theme-on-surface); TK
-  // border: 2px solid var($--theme-on-surface); TK
+  // color: var(--theme-on-surface); 
+  // border: 2px solid var(--theme-on-surface); 
   color: hotpink;
-  border: 2px solid hotpink;
+  border: 2px solid red;
   border-radius: 0;
   @include typography.typography-body-3;
   text-transform: uppercase;

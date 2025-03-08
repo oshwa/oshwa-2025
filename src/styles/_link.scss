@@ -22,8 +22,7 @@
     }
   }
   &.light-inverted {
-    // color: var($--theme-on-secondary); TK 
-    color: hotpink;
+    color: var(--theme-on-secondary);
   }
 }
 
