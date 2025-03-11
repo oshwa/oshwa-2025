@@ -10,7 +10,7 @@ export const DarkModeToggle = () => {
 
   return (
     <>
-      // <LightModeIcon />
+      <LightModeIcon />
       <Toggle
         id="mode"
         checked={isDark}
@@ -18,7 +18,7 @@ export const DarkModeToggle = () => {
         icons={{ checked: '', unchecked: '' }}
         aria-label="Dark mode toggle"
       />
-      // <DarkModeIcon />
+      <DarkModeIcon />
     </>
   );
 };
