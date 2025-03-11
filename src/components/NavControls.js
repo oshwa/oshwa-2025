@@ -1,6 +1,6 @@
 import React from 'react';
 import { DarkModeToggle } from './DarkModeToggle';
-import SavingsIcon from '../images/icons/savings_24dp_FFFFFF_FILL0_wght400_GRAD0_opsz24.inline.svg';
+import SavingsIcon from './SavingsIcon';
 const NavControls = () => {
   return (
     <div className="nav-controls">

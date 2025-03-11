@@ -1,5 +1,6 @@
 @use 'typography';
 h1.generic-heading-1 {
+  margin: 0;
   @include typography.typography-headline-2;
 }
 
