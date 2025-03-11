@@ -1,4 +1,6 @@
-@import './themes.scss';
+@use 'typography';
+@use 'variables';
+@use 'colors';
 
 .navbar-a {
   display: flex !important;
@@ -6,12 +8,11 @@
   align-items: center;
   background-color: var(--theme-background);
   height: 3.5rem;
-  transition: $nav-transition;
+  transition: variables.$nav-transition;
 
   .navbar-a-button {
     display: flex;
     border-radius: 0;
-    // height: 3.5rem;
     line-height: initial;
     cursor: pointer;
 
@@ -22,9 +23,9 @@
     }
 
     &__text {
-      font-family: $secondary-font;
+      font-family: typography.$secondary-font;
       font-size: 1.4rem;
-      font-weight: $bold;
+      font-weight: variables.$bold;
       text-transform: uppercase;
     }
   }
@@ -55,7 +56,7 @@
       }
       &:hover {
         svg {
-          fill: $red;
+          fill: colors.$red;
         }
       }
     }

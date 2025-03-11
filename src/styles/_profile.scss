@@ -1,19 +1,24 @@
+@use 'breakpoints';
+@use 'typography';
+@use 'variables';
+@use 'mixins';
+
 .profile {
   padding: 0;
 
   &__type {
-    @include typography-body-3;
-    font-weight: $bold;
+    @include typography.typography-body-3;
+    font-weight: variables.$bold;
     text-transform: uppercase;
 
-    @include breakpoint($medium-only) {
+    @include breakpoints.breakpoint(medium-only) {
       padding-top: 2rem;
     }
   }
 
   &__title {
-    @include typography-headline-3;
-    font-weight: $bold;
+    font-weight: variables.$bold;
+    @include typography.typography-headline-3;
   }
 }
 
@@ -27,15 +32,13 @@
 
 .resource-wrapper {
   &:hover {
-    // background-color: var($--theme-on-background);
-    // color: var($--theme-surface);
-    @include notched-div-hover-state;
+    @include mixins.notched-div-hover-state;
   }
 }
 
 .resource {
-  @include typography-body-5;
-  font-weight: $bold;
+  @include typography.typography-body-5;
+  font-weight: variables.$bold;
   word-wrap: break-word;
   min-height: 18rem;
 }
@@ -44,14 +47,14 @@
   min-height: 18rem;
 
   p {
-    @include typography-body-5;
-    font-weight: $bold;
+    @include typography.typography-body-5;
+    font-weight: variables.$bold;
     font-size: 50px;
     word-wrap: break-word;
   }
 
-  @include typography-body-5;
-  font-weight: $bold;
+  @include typography.typography-body-5;
+  font-weight: variables.$bold;
   word-wrap: break-word;
 }
 
@@ -60,21 +63,21 @@
   display: none;
 
   &--large {
-    @include breakpoint($large) {
+    @include breakpoints.breakpoint(large) {
       display: block;
       padding-top: 3rem;
     }
   }
 
   &--medium-small {
-    @include breakpoint($medium-only) {
+    @include breakpoints.breakpoint(medium-only) {
       display: block;
     }
   }
 
   &__title {
-    @include typography-body-5;
-    font-weight: $bold;
+    @include typography.typography-body-5;
+    font-weight: variables.$bold;
   }
 
   &__video {
@@ -83,11 +86,11 @@
     aspect-ratio: 16/9;
     width: 100%;
 
-    @include breakpoint($medium-only) {
+    @include breakpoints.breakpoint(medium-only) {
       height: 30rem;
     }
 
-    @include breakpoint($small-only) {
+    @include breakpoints.breakpoint(small-only) {
       height: 15rem;
     }
 
@@ -101,18 +104,17 @@
   }
 }
 
-
-
 .profile-resource-card {
   min-height: 22rem;
-
-  @include breakpoint($medium-only) {
-    min-height: 15rem;
-  }
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   height: 100%;
+
+  @include breakpoints.breakpoint(medium-only) {
+    min-height: 15rem;
+  }
+
   .title {
     font-size: 1.7rem;
     font-weight: 600;
@@ -121,6 +123,6 @@
 
   .type {
     bottom: 2.5rem;
-    @include typography-body-6;
+    @include typography.typography-body-6;
   }
 }

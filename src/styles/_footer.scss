@@ -1,3 +1,8 @@
+@use 'typography';
+@use 'breakpoints';
+@use 'variables';
+@use 'mixins';
+
 footer {
   min-height: 18rem;
   position: relative;
@@ -26,7 +31,7 @@ footer {
 
   .footer-img {
     a {
-      @include breakpoint($large) {
+      @include breakpoints.breakpoint(large) {
         width: fit-content;
         padding: 1rem 4rem;
       }
@@ -36,7 +41,7 @@ footer {
       display: block;
       margin-bottom: 1rem;
 
-      @include breakpoint($large) {
+      @include breakpoints.breakpoint(large) {
         width: 20rem;
       }
     }
@@ -48,24 +53,20 @@ footer {
   width: auto;
   max-width: 20rem;
 
-  @include breakpoint($large) {
+  @include breakpoints.breakpoint(large) {
     max-width: 24rem;
   }
 }
 
-// .footer__logo-wrapper {
-// width: 100%;
-// }
-
 footer.footer {
   .signup-label {
-    @include typography-body-2;
+    @include typography.typography-body-2;
     font-size: 1.5rem;
-    font-weight: $bold;
+    font-weight: variables.$bold;
   }
 
   .signup-input {
-    @include button-styles;
+    @include mixins.button-styles;
   }
 
   .signup-input {
@@ -78,7 +79,7 @@ footer.footer {
 
     &::placeholder {
       text-transform: uppercase;
-      font-weight: $bold;
+      font-weight: variables.$bold;
       color: var(--theme-on-background);
     }
   }
@@ -89,15 +90,15 @@ footer.footer {
     width: 100%;
 
     .signup-submit {
-      @include typography-body-3;
-      font-weight: $bold;
+      @include typography.typography-body-3;
+      font-weight: variables.$bold;
       padding: 1rem;
       text-align: center;
       text-transform: uppercase;
       width: 100%;
 
       &:hover {
-        @include notched-div-hover-state;
+        @include mixins.notched-div-hover-state;
       }
     }
   }
@@ -107,7 +108,7 @@ footer.footer {
 
   position: relative;
 
-  @include breakpoint($large) {
+  @include breakpoints.breakpoint(large) {
     padding-left: 3rem;
   }
 
@@ -116,11 +117,6 @@ footer.footer {
     position: absolute;
     bottom: 0;
     right: 0;
-
-    @include breakpoint($medium-only) {
-      // position: static;
-    }
-
     .fab {
       font-size: 1.5rem;
     }

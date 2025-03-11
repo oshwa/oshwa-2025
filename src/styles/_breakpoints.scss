@@ -1,0 +1,56 @@
+@mixin breakpoint($point) {
+  @if $point == small-only {
+    @media (max-width: 39.9375em) {
+      @content;
+    }
+  }
+  @if $point == medium-only {
+    @media screen and (min-width: 40em) and (max-width: 63.9375em) {
+      @content;
+    }
+  }
+
+  @if $point == between-large {
+    @media screen and (min-width: 1024px) and (max-width: 1260px) {
+      @content;
+    }
+  }
+  @if $point == large {
+    @media screen and (min-width: 64em) {
+      @content;
+    }
+  }
+  @if $point == x-large {
+    @media screen and (min-width: 1024px) and (max-width: 1200px) {
+      @content;
+    }
+  }
+  // @elseif $point == large {
+  //   @media (max-width: 1200px) { @content; }
+  // }
+}
+
+// $small-only: screen and
+//   (
+//     max-width: 39.9375em,
+//   );
+// $touch: screen and
+//   (
+//     max-width: 64em,
+//   );
+// $medium: screen and
+//   (
+//     min-width: 40em,
+//   );
+// $medium-only: screen and
+//   (
+//     min-width: 40em,
+//   )
+//   and
+//   (
+//     max-width: 63.9375em,
+//   );
+// $large: screen and
+//   (
+//     min-width: 64em,
+//   );

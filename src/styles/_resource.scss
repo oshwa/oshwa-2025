@@ -1,38 +1,38 @@
+@use 'breakpoints';
+@use 'typography';
+
 .resource-header {
   &__title {
-    @include typography-headline-2;
     margin-bottom: 1rem;
     margin-top: 1rem;
-
-    @include breakpoint($medium-only) {
+    @include typography.typography-headline-2;
+    @include breakpoints.breakpoint(medium-only) {
       margin-top: 1rem;
     }
   }
   &__subtitle {
-    @include typography-headline-3;
     margin-bottom: 1rem;
     margin-top: 1rem;
-
-    @include breakpoint($medium-only) {
+    @include typography.typography-headline-3;
+    @include breakpoints.breakpoint(medium-only) {
       margin-top: 1rem;
     }
   }
 
   &__named_authors {
-    @include typography-body-6;
+    @include typography.typography-body-6;
     text-transform: none;
     margin-bottom: 1.5rem;
   }
 
   &__date {
-    @include typography-body-6;
+    @include typography.typography-body-6;
   }
 }
 
 .resource-body {
   .video-container {
     padding: 0;
-
     &__video {
       margin-top: 0;
     }

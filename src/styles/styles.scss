@@ -1,50 +1,71 @@
-@import 'tailwindcss/base';
-@import 'tailwindcss/components';
-@import 'tailwindcss/utilities';
+@use 'sass:meta';
+@use 'typography';
+@use 'variables';
 
 * {
   box-sizing: border-box;
 }
 
 // Breakpoints
-$small-only: screen and (max-width: 39.9375em);
-$touch: screen and (max-width: 64em);
-$medium: screen and (min-width: 40em);
-$medium-only: screen and (min-width: 40em) and (max-width: 63.9375em);
-$between-large: screen and (min- width: 1024px) and (max-width: 1260px);
-$large: screen and (min-width: 64em);
+$small-only: screen and
+  (
+    max-width: 39.9375em,
+  );
+$touch: screen and
+  (
+    max-width: 64em,
+  );
+$medium: screen and
+  (
+    min-width: 40em,
+  );
+$medium-only: screen and
+  (
+    min-width: 40em,
+  )
+  and
+  (
+    max-width: 63.9375em,
+  );
+$between-large: screen and (min- width: 1024px) and
+  (
+    max-width: 1260px,
+  );
+$large: screen and
+  (
+    min-width: 64em,
+  );
 $nav-width: 320px;
 
-@import 'breakpoint';
-@import 'utils';
-@import 'colors';
-@import 'variables';
-@import 'mixins';
-@import 'typography';
-@import 'toggle';
-@import 'top-bar';
-@import 'menu';
-@import 'navbar-a';
-@import 'main-nav-a';
-@import 'dark-mode-toggle';
-@import 'notched-div';
-@import 'people-template';
-@import 'link';
-@import 'index';
-@import 'generic-header';
-@import 'profile';
-@import 'heading';
-@import 'list';
-@import 'resource';
-@import 'markdown';
-@import 'fixed-nav';
-@import 'toc';
-@import 'footer';
-@import 'button';
-@import 'map';
-@import 'program';
-@import 'events';
-@import 'generic-page';
+@include meta.load-css('breakpoints');
+@include meta.load-css('utils');
+@include meta.load-css('colors');
+@include meta.load-css('variables');
+@include meta.load-css('mixins');
+@include meta.load-css('typography');
+@include meta.load-css('toggle');
+@include meta.load-css('top-bar');
+@include meta.load-css('menu');
+@include meta.load-css('navbar-a');
+@include meta.load-css('main-nav-a');
+@include meta.load-css('dark-mode-toggle');
+@include meta.load-css('notched-div');
+@include meta.load-css('people-template');
+@include meta.load-css('link');
+@include meta.load-css('index');
+@include meta.load-css('generic-header');
+@include meta.load-css('profile');
+@include meta.load-css('heading');
+@include meta.load-css('list');
+@include meta.load-css('resource');
+@include meta.load-css('markdown');
+@include meta.load-css('fixed-nav');
+@include meta.load-css('toc');
+@include meta.load-css('footer');
+@include meta.load-css('button');
+@include meta.load-css('map');
+@include meta.load-css('program');
+@include meta.load-css('events');
 
 body {
   overflow-x: hidden;
@@ -60,11 +81,10 @@ footer {
 }
 
 body {
-  background-color: var($--theme-background);
-  color: var($--theme-on-surface);
-
+  background-color: var(variables.$theme-background);
+  color: var(variables.$theme-on-surface);
   p {
-    @include typography-body-3;
+    @include typography.typography-body-3;
   }
 }
 
@@ -75,6 +95,3 @@ ul[role='menu'] {
 ul[role='menu'].visible {
   visibility: visible;
 }
-
-// div {outline: red solid 1px;}
-

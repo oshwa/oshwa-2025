@@ -1,22 +1,26 @@
+@use 'typography';
+@use 'variables';
+@use 'breakpoints';
+
 .markdown-content,
 .richtext-content {
   h2 {
-    @include typography-headline-3;
     margin: 1rem 0;
+    @include typography.typography-headline-3;
   }
 
   h3 {
-    @include typography-headline-4;
+    @include typography.typography-headline-4;
   }
 
   h4 {
-    @include typography-headline-5;
+    @include typography.typography-headline-5;
   }
 
   h2,
   h3,
   h4 {
-    font-weight: $bold;
+    font-weight: variables.$bold;
   }
 
   p {
@@ -24,7 +28,7 @@
   }
 
   .font-bold {
-    font-weight: $bold;
+    font-weight: variables.$bold;
   }
 
   a {
@@ -42,7 +46,7 @@
 
   ul,
   ol {
-    @include typography-body-3;
+    @include typography.typography-body-3;
     padding: 1rem 0 0 1.5rem;
 
     li {
@@ -79,7 +83,7 @@
     margin: 2rem 0;
 
     h4 {
-      @include typography-body-4;
+      @include typography.typography-body-4;
       font-weight: bold;
       margin-bottom: 1rem;
     }
@@ -103,15 +107,15 @@
 }
 
 .content-container {
-  @include breakpoint($large) {
+  @include breakpoints.breakpoint(large) {
     padding-right: 7rem;
   }
 
-  @include breakpoint($between-large) {
+  @include breakpoints.breakpoint(between-large) {
     padding-right: 5rem;
   }
 
-  @include breakpoint($medium-only) {
+  @include breakpoints.breakpoint(medium-only) {
     padding-right: 0;
   }
 }
@@ -123,26 +127,26 @@
     justify-content: space-between;
     margin: 2rem 0;
     h3 {
-      @include typography-body-4;
+      @include typography.typography-body-4;
     }
     table {
       margin-top: 2rem;
       width: 100%;
 
       th {
-        @include typography-body-3;
-        font-weight: $bold;
+        @include typography.typography-body-3;
+        font-weight: variables.$bold;
         text-align: left;
       }
       thead  tr  {
-        border-bottom: solid 2px var($--theme-on-background);
+        border-bottom: solid 2px var(--theme-on-background);
        th { padding: 4px 0;}
       }
       tbody tr {
-        border-bottom: dotted 2px var($--theme-on-background);
+        border-bottom: dotted 2px var(--theme-on-background);
         td { padding: 4px 0;}
       }
-      @include typography-body-3;
+      @include typography.typography-body-3;
     }
     width: 100% !important;
   }

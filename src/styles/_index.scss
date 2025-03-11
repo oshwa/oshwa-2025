@@ -1,9 +1,13 @@
+@use 'breakpoints';
+@use 'typography';
+@use 'variables';
+
 .index-banner {
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
 
-  @include breakpoint($medium-only) {
+  @include breakpoints.breakpoint(medium-only) {
     display: block;
     position: relative;
   }
@@ -13,14 +17,14 @@
   display: flex;
   justify-content: space-between;
 
-  @include breakpoint($medium-only) {
+  @include breakpoints.breakpoint(medium-only) {
     padding-top: 10rem;
   }
 
   a {
     align-self: end;
 
-    @include breakpoint($medium-only) {
+    @include breakpoints.breakpoint(medium-only) {
       position: absolute;
       bottom: 1rem;
       right: 1rem;
@@ -30,7 +34,7 @@
   .main-logo {
     width: 60%;
 
-    @include breakpoint($medium-only) {
+    @include breakpoints.breakpoint(medium-only) {
       position: absolute;
       bottom: 4.5rem;
       left: 1.5rem;
@@ -45,18 +49,14 @@
   flex-direction: column;
   justify-content: space-between;
 
-  // @include breakpoint($medium-only) {
-  //   margin-top: 1rem;
-  // }
-
   &__title {
-    @include typography-headline-3;
-    font-weight: $bold;
+    font-weight: variables.$bold;
+    @include typography.typography-headline-3;
   }
 
   &__date {
-    @include typography-button;
-    font-weight: $bold;
+    @include typography.typography-button;
+    font-weight: variables.$bold;
     text-transform: uppercase;
     padding-bottom: 0.5rem;
   }
@@ -72,31 +72,31 @@
   justify-content: space-between;
 
   &__count {
-    @include typography-headline-1;
+    @include typography.typography-headline-1;
     font-family: 'Antonio', sans-serif;
     font-size: 130px;
     line-height: 1;
     padding-bottom: 2rem;
 
-    @include breakpoint($between-large) {
+    @include breakpoints.breakpoint(between-large) {
       font-size: 65px;
     }
 
-    @include breakpoint($medium-only) {
+    @include breakpoints.breakpoint(medium-only) {
       font-size: 90px;
     }
 
-    @include breakpoint($small-only) {
+    @include breakpoints.breakpoint(small-only) {
       font-size: 130px;
     }
   }
 
   &__text {
-    @include typography-body-2;
-    font-weight: $bold;
+    @include typography.typography-body-2;
+    font-weight: variables.$bold;
     line-height: 1.3;
 
-    @include breakpoint($medium-only) {
+    @include breakpoints.breakpoint(medium-only) {
       margin-bottom: 10rem;
     }
   }
@@ -106,9 +106,6 @@
   }
 }
 
-.map-container {
-}
-
 .section-card {
   height: 20rem;
   display: flex;
@@ -116,17 +113,17 @@
   justify-content: space-between;
 
   &__title {
-    @include typography-headline-3;
+    @include typography.typography-headline-3;
   }
 
   &__image {
     width: 28%;
 
-    @include breakpoint($medium-only) {
+    @include breakpoints.breakpoint(medium-only) {
       width: 20%;
     }
 
-    @include breakpoint($small-only) {
+    @include breakpoints.breakpoint(small-only) {
       width: 24%;
     }
   }

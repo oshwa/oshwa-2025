@@ -1,42 +1,42 @@
-@import 'colors';
+@use 'colors';
 
-$--theme-primary: --theme-primary;
-$--theme-primary-variant: --theme-primary-variant;
+$theme-primary: --theme-primary;
+$theme-primary-variant: --theme-primary-variant;
 $--theme-secondary: --theme-secondary;
 $--theme-secondary-variant: --theme-secondary-variant;
-$--theme-background: --theme-background;
+$theme-background: --theme-background;
 $--theme-surface: --theme-surface;
 $--theme-on-primary: --theme-on-primary;
 $--theme-on-secondary: --theme-on-secondary;
-$--theme-on-background: --theme-on-background;
-$--theme-on-surface: --theme-on-surface;
+$theme-on-background: --theme-on-background;
+$theme-on-surface: --theme-on-surface;
 
 // Default theme
 $theme-map-light: (
-  $--theme-primary: $blue,
-  $--theme-primary-variant: #3700b3,
+  $theme-primary: colors.$blue,
+  $theme-primary-variant: #3700b3,
   $--theme-secondary: #03dac6,
   $--theme-secondary-variant: #018786,
   $--theme-surface: #ffffff,
-  $--theme-background: #ffffff,
+  $theme-background: #ffffff,
   $--theme-on-primary: #ffffff,
   $--theme-on-secondary: #000000,
-  $--theme-on-background: #000000,
-  $--theme-on-surface: #000000,
+  $theme-on-background: #000000,
+  $theme-on-surface: #000000,
 );
 
 // Override the default light theme
 $theme-map-dark: (
-  $--theme-primary: $blue,
-  $--theme-primary-variant: #3700b3,
+  $theme-primary: colors.$blue,
+  $theme-primary-variant: #3700b3,
   $--theme-secondary: #03dac6,
   $--theme-secondary-variant: #018786,
   $--theme-surface: #121212,
-  $--theme-background: #121212,
+  $theme-background: #121212,
   $--theme-on-primary: #000000,
   $--theme-on-secondary: #000000,
-  $--theme-on-background: #ffffff,
-  $--theme-on-surface: #ffffff,
+  $theme-on-background: #ffffff,
+  $theme-on-surface: #ffffff,
 );
 
 $transparent: transparent;
@@ -44,6 +44,7 @@ $bold: 700;
 $regular: 400;
 
 // nav variables
+$nav-width: 320px;
 $nav-default-margin: 0;
 $nav-active-margin: 350px;
 $nav-transition: margin-left .2s ease;

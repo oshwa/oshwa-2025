@@ -1,22 +1,24 @@
+@use 'typography';
+@use 'breakpoints';
+@use 'variables';
+@use 'mixins';
+
 .filter-item {
-  // padding: 1rem 0 1rem 2rem;
   padding: 1rem 0;
-  @include typography-body-6;
+  @include typography.typography-body-6;
 
   select {
-    @include typography-body-6;
-    height: 2rem;
-    background-color: var($--theme-background);
-    color: var($--theme-on-surface);
-    padding-right: 2rem;
-
-    @include breakpoint($small-only) {
-      width: auto;
-    }
-
     // remove default arrow
     -webkit-appearance: none;
     -moz-appearance: none;
+    @include typography.typography-body-6;
+    height: 2rem;
+    background-color: var(--theme-background);
+    color: var(--theme-on-surface);
+    padding-right: 2rem;
+    @include breakpoints.breakpoint(small-only) {
+      width: auto;
+    }
   }
 }
 
@@ -37,14 +39,13 @@
 .filter-bar {
   &__filter {
     &--clear {
-      @include typography-body-6;
+      @include typography.typography-body-6;
       border-radius: 0;
       height: 100%;
-      // width: 100%;
       text-align: left;
       padding: 1rem 0;
 
-      @include breakpoint($large) {
+      @include breakpoints.breakpoint(large) {
         float: right;
       }
     }
@@ -66,12 +67,11 @@
 .list {
   .list-item {
     min-height: 22rem;
-    // position: relative;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
 
-    @include breakpoint($medium-only) {
+    @include breakpoints.breakpoint(medium-only) {
       min-height: 20rem;
     }
 
@@ -80,22 +80,22 @@
       font-weight: 600;
       overflow-wrap: break-word;
 
-      @include breakpoint($between-large) {
+      @include breakpoints.breakpoint(between-large) {
         font-size: 1.4rem;
       }
 
-      @include breakpoint($medium-only) {
+      @include breakpoints.breakpoint(medium-only) {
         font-size: 1.6rem;
       }
     }
 
     .type {
       bottom: 2.5rem;
-      @include typography-body-6;
+      @include typography.typography-body-6;
     }
 
     .publicationDate {
-      font-weight: $bold;
+      font-weight: variables.$bold;
 
       &--blog {
         padding-bottom: 0.5rem;

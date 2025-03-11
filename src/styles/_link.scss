@@ -1,9 +1,10 @@
-.link {
-}
+@use 'variables';
+@use 'typography';
+@use 'mixins';
 
 .link--arrow {
-  @include typography-button;
-  font-weight: $bold;
+  @include typography.typography-button;
+  font-weight: variables.$bold;
 
   &::after {
     content: url('../images/icons/arrow_forward_black_24dp.svg');
@@ -21,7 +22,7 @@
     }
   }
   &.light-inverted {
-    color: var($--theme-on-secondary);
+    color: var(--theme-on-secondary);
   }
 }
 
@@ -38,24 +39,21 @@
 }
 
 .link--notched {
-  @include typography-button;
-  font-weight: $bold;
+  @include typography.typography-button;
+  font-weight: variables.$bold;
   text-transform: uppercase;
   width: 100%;
   padding: 1rem;
   text-align: center;
 
   &:hover {
-    // background-color: var($--theme-on-background);
-    // color: var($--theme-surface);
-    @include notched-div-hover-state;
+    @include mixins.notched-div-hover-state;
   }
 
   &.inverted {
     &:hover {
       background-color: red;
-      // color: var($--theme-surface);
-      @include notched-div-hover-state;
+      @include mixins.notched-div-hover-state;
     }
   }
 }

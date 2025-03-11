@@ -1,12 +1,13 @@
-@import "variables";
-@import "mixins";
+
+@use "mixins";
+@use 'variables';
 
 :root.dark {
-  @include spread-map($theme-map-dark);
+  @include mixins.spread-map(variables.$theme-map-dark);
 }
 
 :root {
-  @include spread-map($theme-map-light);
+  @include mixins.spread-map(variables.$theme-map-light);
 }
 
 // body.dark {
