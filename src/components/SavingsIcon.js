@@ -1,5 +1,4 @@
 import React from 'react';
-import iconImg from '../images/icons/savings_24dp_FFFFFF_FILL0_wght400_GRAD0_opsz24.inline.svg';
 
 const SavingsIcon = () => {
   return (
