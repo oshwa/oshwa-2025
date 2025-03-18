@@ -45,6 +45,13 @@ export const query = graphql`
         fields {
           slugProgram
         }
+        shortDescription {
+          shortDescription
+          childrenMarkdownRemark {
+            html
+          }
+        }
+        summaryOnly
       }
       headerImage {
         url

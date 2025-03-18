@@ -1,7 +1,9 @@
 import React from 'react';
 import { Link } from 'gatsby';
+import MarkdownText from './MarkdownText';
 
 const GridCardsB = ({ items, pageLocation, page }) => {
+  const itemClassName = "lg:col-span-1 md:col-span-2 sm:col-span-4 notched notched--border notched--border--hover list-item";
   return (
     <>
       <div className="px-8 py-4 list">
@@ -26,11 +28,16 @@ const GridCardsB = ({ items, pageLocation, page }) => {
           )}
           {items &&
             items.map(item => (
+              item.summaryOnly ?
+              <div class={itemClassName}>
+                <h3>{item.title}</h3>
+                <MarkdownText content={item.shortDescription.childrenMarkdownRemark[0].html}></MarkdownText>
+              </div>
+              :
               <Link
                 key={item.title}
-                to={`/${pageLocation}/${item.prettyUrl ? item.prettyUrl : item.title
-                  }`}
-                className="lg:col-span-1 md:col-span-2 sm:col-span-4 notched notched--border notched--border--hover list-item"
+                to={`/${pageLocation}/${item.prettyUrl ? item.prettyUrl : item.title}`}
+                className={itemClassName}
               >
                 <h3>{item.title}</h3>
               </Link>
