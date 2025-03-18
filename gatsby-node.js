@@ -23,14 +23,20 @@ let headers = {
 
 async function getAllCertifications(offset = 0) {
   let url = `https://certificationapi.oshwa.org/api/projects?offset=${offset}`;
-  let certifications = await fetch(url, headers);
-  let data = await certifications.json();
-  // let allCertifications = []
+  let resp = await fetch(url, headers);
 
-  if (data.items.length >= 100) {
-    return data.items.concat(await getAllCertifications((offset += 100)));
+  if(resp.status != 200) {
+    throw `Failed to fetch certifications: ${resp.status}: ${resp.statusText}: ${await resp.text()}`;
+  }
+
+  let respData = await resp.json();
+
+  console.log(`fetched ${respData.items.length} certifications`)
+
+  if (respData.items.length >= 100) {
+    return respData.items.concat(await getAllCertifications((offset += 100)));
   } else {
-    return data.items;
+    return respData.items;
   }
 }
 
