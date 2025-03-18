@@ -41,7 +41,7 @@ const MailchimpForm = () => {
 
   return (
     <form onSubmit={handleSubmit} className="form-container">
-      <label htmlFor="signup-input" className="signup-label">Subscribe</label>
+      <label htmlFor="signup-input" className="signup-label">Newsletter</label>
 
       <fieldset className="signup-submit-wrapper notched notched--border my-4">
         <input
