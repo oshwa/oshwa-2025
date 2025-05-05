@@ -38,6 +38,10 @@ $secondary-font: 'Noto Sans', serif;
   font-weight: variables.$bold;
   line-height: 1.2;
 
+  @include breakpoints.breakpoint(medium-only) {
+    font-size: 2.4rem;
+  }
+
   @include breakpoints.breakpoint(small-only) {
     font-size: 2.4rem;
   }

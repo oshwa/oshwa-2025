@@ -10,6 +10,8 @@
   transition: left 0.2s ease-in;
   background-color: -theme-surface;
   z-index: 1;
+  display: flex;
+  flex-direction: column;
 
   &.active {
     left: 0;
@@ -33,6 +35,8 @@
 
   .main-nav__links-wrapper {
     padding-top: 6rem;
+    flex: 1;
+    overflow-y: auto;
 
     .link {
       color: --theme-on-primary;
