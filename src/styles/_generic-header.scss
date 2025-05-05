@@ -1,5 +1,6 @@
 @use 'breakpoints';
 @use 'typography';
+
 .generic-header {
   display: flex;
   flex-direction: column;
@@ -25,6 +26,10 @@
 
 .header-img-container {
   @include breakpoints.breakpoint(medium-only) {
+    min-height: 20rem;
+  }
+
+  @include breakpoints.breakpoint(small-only) {
     min-height: 20rem;
   }
 }

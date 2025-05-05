@@ -32,7 +32,6 @@ const IndexPage = () => {
       <>
         <div className="px-8 p">
           <div className="grid lg:grid-cols-5 md:grid-cols-5 gap-4 ">
-            {/* <div className="col-span-3 notched notched--bg index-banner white"> */}
             <div className="col-span-3 notched notched--border notched--border--hover-x index-banner white">
               <div className="index-image-container">
                 <StaticImage

@@ -21,6 +21,10 @@
     padding-top: 10rem;
   }
 
+  @include breakpoints.breakpoint(small-only) {
+    padding-top: 4rem;
+  }
+
   a {
     align-self: end;
 
@@ -31,14 +35,31 @@
     }
   }
 
+  @include breakpoints.breakpoint(medium-only) {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-top: 5rem;
+  }
+
+  @include breakpoints.breakpoint(small-only) {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
   .main-logo {
     width: 60%;
 
     @include breakpoints.breakpoint(medium-only) {
       position: absolute;
       bottom: 4.5rem;
-      left: 1.5rem;
       width: 75%;
+    }
+
+    @include breakpoints.breakpoint(small-only) {
+      width: 100%;
+      margin-bottom: 1rem;
     }
   }
 }
@@ -50,6 +71,7 @@
   justify-content: space-between;
 
   &__title {
+    margin-bottom: 2rem;
     font-weight: variables.$bold;
     @include typography.typography-headline-3;
   }
@@ -128,6 +150,7 @@
     }
   }
 }
+
 .section-card {
   &:hover {
     .section-card__image {
