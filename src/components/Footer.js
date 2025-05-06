@@ -18,7 +18,7 @@ const Footer = ({ active }) => {
             text="Donate"
             location="https://secure.lglforms.com/form_engine/s/SpkKq95XVPOuQ2d-UNFtXQ"
           />
-          <div className="footer__logo-wrapper flex lg:absolute lg:bottom-8 lg:left-8 md:absolute md:bottom-8 md:left-8 sm:static xs:static sm:justify-center xs:justify-center sm:my-20 md:mt-20">
+          <div className="flex lg:absolute lg:bottom-8 lg:left-8 md:absolute md:bottom-8 md:left-8 sm:static xs:static sm:justify-center xs:justify-center sm:my-20 md:mt-20">
             <StaticImage
               className="footer__logo image-theme--dark"
               src="../images/lockup-white.svg"
@@ -69,6 +69,16 @@ const Footer = ({ active }) => {
             aria-label="LinkedIn"
           >
             <i className="fab fa-linkedin ml-4"></i>
+          </a>
+          <a
+            href="https://www.hackster.io/open-source-hardware-association/"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Hackster"
+            className="fab ml-4"
+          >
+            <i class="hackster hackster--white image-theme--light"></i>
+            <i class="hackster hackster--black image-theme--dark"></i>
           </a>
         </div>
       </div>

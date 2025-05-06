@@ -59,7 +59,7 @@ const NotFoundPage = () => {
           headerImageUrl={pageData.headerImage ? pageData.headerImage.url : null}
         />
 
-        <div className="px-8 pb-5 generic-container">
+        <div className="px-8 mt-8 pb-5 generic-container">
           <div className="grid grid-cols-8 lg:grid-cols-6">
             <div className="col-span-10 lg:col-span-4 content-container">
               {pageData.body && (
