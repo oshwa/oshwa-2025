@@ -117,8 +117,25 @@ footer.footer {
     position: absolute;
     bottom: 0;
     right: 0;
+    display: inline-block;
+
     .fab {
       font-size: 1.5rem;
+    }
+
+    .hackster::after {
+      display: inline-block;
+      width: 24px;
+      height: 24px;
+      vertical-align: bottom;
+    }
+
+    .hackster--white::after {
+      content: url('../images/hackster-icon-black.svg');
+    }
+
+    .hackster--black::after {
+      content: url('../images/hackster-icon-white.svg');
     }
   }
 
