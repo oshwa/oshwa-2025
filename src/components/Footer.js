@@ -77,8 +77,8 @@ const Footer = ({ active }) => {
             aria-label="Hackster"
             className="fab ml-4"
           >
-            <i class="hackster hackster--white image-theme--light"></i>
-            <i class="hackster hackster--black image-theme--dark"></i>
+            <i className="hackster hackster--white image-theme--light"></i>
+            <i className="hackster hackster--black image-theme--dark"></i>
           </a>
         </div>
       </div>

@@ -92,10 +92,11 @@ const options = {
       }
 
       if (targetType === 'ContentfulButton') {
+        console.log(node.data.target)
         return (
           <NotchedButtonLink
             text={node.data.target.buttonText}
-            location={node.data.target.buttonUrl}
+            location={node.data.target.buttonUrl.trim()}
           />
         );
       }
