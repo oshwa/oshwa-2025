@@ -5,7 +5,7 @@ import { StaticImage } from 'gatsby-plugin-image';
 export const EventsTemplate = () => {
   const data = useStaticQuery(graphql`
     query {
-       allContentfulEvent {
+      allContentfulEvent {
         edges {
           node {
             id
@@ -68,13 +68,13 @@ export const EventsTemplate = () => {
                           className="section-card__image image-theme--light"
                           src="../images/icon-summit.svg"
                           alt="Temp Oshwa Logo"
-                          placeholder='none'
+                          placeholder="none"
                         />
                         <StaticImage
                           className="section-card__image image-theme--dark"
                           src="../images/icon-summit-white.svg"
                           alt="Temp Oshwa Logo"
-                          placeholder='none'
+                          placeholder="none"
                         />
                       </>
                     )}
@@ -85,13 +85,30 @@ export const EventsTemplate = () => {
                           className="section-card__image image-theme--light"
                           src="../images/icon-ohmonth.svg"
                           alt="Temp Oshwa Logo"
-                          placeholder='none'
+                          placeholder="none"
                         />
                         <StaticImage
                           className="section-card__image image-theme--dark"
                           src="../images/icon-ohmonth-white.svg"
                           alt="Temp Oshwa Logo"
-                          placeholder='none'
+                          placeholder="none"
+                        />
+                      </>
+                    )}
+
+                    {event.type === 'Open Healthware Conference' && (
+                      <>
+                        <StaticImage
+                          className="section-card__image image-theme--light"
+                          src="../images/ohc-icon-black.svg"
+                          alt="Light Open Healthcare Conference Icon"
+                          placeholder="none"
+                        />
+                        <StaticImage
+                          className="section-card__image image-theme--dark"
+                          src="../images/ohc-icon-white.svg"
+                          alt="Dark Open Healthcare Conference Icon"
+                          placeholder="none"
                         />
                       </>
                     )}
@@ -102,7 +119,9 @@ export const EventsTemplate = () => {
           </>
         )}
 
-        <h2 className="generic-heading-2 generic-heading-2--2nd-heading py-8">Past</h2>
+        <h2 className="generic-heading-2 generic-heading-2--2nd-heading py-8">
+          Past
+        </h2>
         <div className="grid lg:grid-cols-4 md:grid-cols-4 gap-4">
           {pastEvents.map(event => {
             return (
@@ -122,13 +141,13 @@ export const EventsTemplate = () => {
                       className="section-card__image image-theme--light"
                       src="../images/icon-summit.svg"
                       alt="Temp Oshwa Logo"
-                      placeholder='none'
+                      placeholder="none"
                     />
                     <StaticImage
                       className="section-card__image image-theme--dark"
                       src="../images/icon-summit-white.svg"
                       alt="Temp Oshwa Logo"
-                      placeholder='none'
+                      placeholder="none"
                     />
                   </>
                 )}
@@ -139,13 +158,13 @@ export const EventsTemplate = () => {
                       className="section-card__image image-theme--light"
                       src="../images/icon-ohmonth.svg"
                       alt="Temp Oshwa Logo"
-                      placeholder='none'
+                      placeholder="none"
                     />
                     <StaticImage
                       className="section-card__image image-theme--dark"
                       src="../images/icon-ohmonth-white.svg"
                       alt="Temp Oshwa Logo"
-                      placeholder='none'
+                      placeholder="none"
                     />
                   </>
                 )}
@@ -153,7 +172,7 @@ export const EventsTemplate = () => {
             );
           })}
         </div>
-      </div >
+      </div>
     </>
   );
-}
+};
