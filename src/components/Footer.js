@@ -63,7 +63,7 @@ const Footer = ({ active }) => {
             <i className="fab fa-mastodon ml-4"></i>
           </a>
           <a
-            href="https://linkedin.com/in/open-source-hardware-association"
+            href="https://www.linkedin.com/company/open-source-hardware-association/"
             target="_blank"
             rel="noopener noreferrer"
             aria-label="LinkedIn"
