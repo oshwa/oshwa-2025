@@ -19,7 +19,7 @@ export default function ProfilePage({ data }) {
   const certifiedProjects =
     profile.certificationUids &&
     profile.certificationUids.map(projectId => {
-      return getProjectByUid(projectId).node;
+      return getProjectByUid(projectId.trim()).node;
     });
 
   return (
