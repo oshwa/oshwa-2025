@@ -53,6 +53,9 @@
     "gatsby"
   ],
   "license": "0BSD",
+  "engines": {
+    "node": ">=22.0.0"
+  },
   "scripts": {
     "deploy": "gatsby build --prefix-paths && gh-pages -d public",
     "gh-build": "gatsby build --prefix-paths",
