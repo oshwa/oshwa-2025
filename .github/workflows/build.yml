@@ -46,7 +46,7 @@ jobs:
           node-version-file: ".node-version"
           cache: npm
       - name: Install npm dependencies
-        run: npm install
+        run: npm ci
       - name: Build
         run: npm run gh-build
       - name: Upload artifact
