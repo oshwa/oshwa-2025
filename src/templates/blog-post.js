@@ -76,7 +76,7 @@ export const query = graphql`
             title
             image {
               url
-              gatsbyImage(width: 900)
+              gatsbyImageData
             }
             caption {
               caption
