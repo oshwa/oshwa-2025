@@ -71,14 +71,25 @@ const options = {
       }
 
       if (targetType === 'ContentfulFigure') {
+        const figureImage = node.data.target.image;
+        const gatsbyImg = figureImage && getImage(figureImage);
         return (
           <div className="figure-container notched notched--border">
             <h4>{node.data.target.title}</h4>
             <div className="img-container">
-              <GatsbyImage
-                image={getImage(node.data.target.image)}
-                alt={node.data.target.title}
-              />
+              {gatsbyImg ? (
+                <GatsbyImage
+                  image={gatsbyImg}
+                  alt={node.data.target.title || ''}
+                />
+              ) : (
+                figureImage?.url && (
+                  <img
+                    src={figureImage.url}
+                    alt={node.data.target.title || ''}
+                  />
+                )
+              )}
             </div>
             {node.data.target.caption && (
               <p className="figure-caption">
