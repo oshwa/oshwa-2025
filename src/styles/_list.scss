@@ -7,6 +7,48 @@
   padding: 1rem 0;
   @include typography.typography-body-6;
 
+  &__label {
+    display: block;
+    margin-bottom: 0.35rem;
+    font-weight: variables.$bold;
+  }
+
+  &__text-input {
+    font-weight: 200;
+    font-size: 1.2rem;
+    font-style: italic;
+    width: 100%;
+    height: 2rem;
+    background-color: var(--theme-background);
+    color: var(--theme-on-surface);
+    border-bottom: 1px dotted var(--theme-on-surface);
+  }
+
+  &__text-input-wrap {
+    position: relative;
+    width: 100%;
+
+    &::before {
+      @extend .u-material-icons;
+      content: 'search';
+      position: absolute;
+      right: 0rem;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--theme-on-surface);
+      pointer-events: none;
+      font-size: 1.3rem;
+    }
+
+    @include breakpoints.breakpoint(medium-only) {
+      width: 95%;
+    }
+
+    @include breakpoints.breakpoint(small-only) {
+      width: 100%;
+    }
+  }
+
   select {
     // remove default arrow
     -webkit-appearance: none;
@@ -16,8 +58,9 @@
     background-color: var(--theme-background);
     color: var(--theme-on-surface);
     padding-right: 2rem;
+
     @include breakpoints.breakpoint(small-only) {
-      width: auto;
+      width: 100%;
     }
   }
 }
@@ -41,13 +84,11 @@
     &--clear {
       @include typography.typography-body-6;
       border-radius: 0;
-      height: 100%;
-      text-align: left;
+      height: auto;
+      text-align: right;
       padding: 1rem 0;
-
-      @include breakpoints.breakpoint(large) {
-        float: right;
-      }
+      display: block;
+      margin-left: auto;
     }
   }
 }
@@ -61,7 +102,17 @@
   .select-wrapper {
     position: relative;
     width: calc(100% - 16px);
+
+    @include breakpoints.breakpoint(small-only) {
+      width: 100%;
+    }
   }
+}
+
+.filter-item--clear-wrap {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
 }
 
 .list {
