@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState, useEffect, useCallback, useRef } from 'react';
 
 import Layout from '../components/layout';
 import { FilterBar } from '../components/FilterBar';
@@ -6,9 +6,37 @@ import GridCards from '../components/GridCards';
 import Seo from '../components/seo';
 const sessionsName = 'resource-filters';
 
+const mergeResourceSession = partial => {
+  let prev = {};
+  try {
+    prev = JSON.parse(sessionStorage.getItem(sessionsName)) || {};
+  } catch {
+    prev = {};
+  }
+  sessionStorage.setItem(sessionsName, JSON.stringify({ ...prev, ...partial }));
+};
+
+const resourceMatchesTextSearch = (doc, searchText) => {
+  const terms = searchText
+    .toLowerCase()
+    .trim()
+    .split(/\s+/)
+    .filter(Boolean);
+  if (!terms.length) return true;
+
+  const title = (doc.title || '').toLowerCase();
+  const type = (doc.resourceType || '').toLowerCase();
+  const stack = `${title} ${type}`;
+
+  return terms.every(term => stack.includes(term));
+};
+
 const Search = ({ location }) => {
   const [query, setQuery] = useState(``);
   const [results, setResults] = useState([]);
+  const [searchInput, setSearchInput] = useState('');
+  const [debouncedSearch, setDebouncedSearch] = useState('');
+  const searchDebounceRef = useRef(null);
   const contentfulType = 'ContentfulGlobalResourceContainer';
 
   const capFirstLet = str => {
@@ -56,10 +84,12 @@ const Search = ({ location }) => {
     let pubTypeValue = pubTypeSelect.value;
     let pubAudienceValue = pubAudienceSelect.value;
 
-    sessionStorage.setItem(
-      sessionsName,
-      JSON.stringify({ pubDateValue, pubTypeValue, pubAudienceValue })
-    );
+    const textSearchValue =
+      typeof document !== 'undefined'
+        ? document.querySelector('#resourceSearchInput')?.value || ''
+        : '';
+
+    mergeResourceSession({ pubDateValue, pubTypeValue, pubAudienceValue, textSearchValue });
 
     const formattedQuery = formatQuery({
       resourceDate: pubDateValue,
@@ -76,6 +106,10 @@ const Search = ({ location }) => {
     let pubTypeParam = new URLSearchParams(location.search).get('type') || '*';
     let pubAudienceParam =
       new URLSearchParams(location.search).get('audience') || '*';
+    const params = new URLSearchParams(location.search);
+    if (params.has('q')) {
+      setSearchInput(params.get('q') || '');
+    }
 
     setPubDateQuery(pubDateParam);
     setPubTypeQuery(capFirstLet(pubTypeParam));
@@ -122,7 +156,14 @@ const Search = ({ location }) => {
     let pubDateSelect = document.querySelector('#publicationDate');
     let pubTypeSelect = document.querySelector('#publicationType');
     let pubAudienceSelect = document.querySelector('#publicationAudience');
-    let savedSessionsQuery = JSON.parse(sessionStorage.getItem(sessionsName));
+    let savedSessionsQuery = {};
+    try {
+      savedSessionsQuery = JSON.parse(sessionStorage.getItem(sessionsName)) || {};
+    } catch {
+      savedSessionsQuery = {};
+    }
+
+    const urlHasQ = new URLSearchParams(location.search).has('q');
 
     if (savedSessionsQuery && savedSessionsQuery.pubDateValue) {
       setPubDateQuery(savedSessionsQuery.pubDateValue);
@@ -136,6 +177,10 @@ const Search = ({ location }) => {
       setPubAudienceQuery(savedSessionsQuery.pubAudienceValue);
     }
 
+    if (!urlHasQ && typeof savedSessionsQuery.textSearchValue === 'string') {
+      setSearchInput(savedSessionsQuery.textSearchValue);
+    }
+
     const formattedQuery = formatQuery({
       title: '*',
       resourceDate: pubDateSelect.value,
@@ -145,13 +190,14 @@ const Search = ({ location }) => {
     });
 
     setQuery(formattedQuery);
-  }, []);
+  }, [location.search]);
 
   const clearFilters = () => {
     sessionStorage.removeItem(sessionsName);
     document.querySelector('#publicationDate').selectedIndex = 0;
     document.querySelector('#publicationType').selectedIndex = 0;
     document.querySelector('#publicationAudience').selectedIndex = 0;
+    setSearchInput('');
     location.search = '';
 
     setQuery(
@@ -173,17 +219,37 @@ const Search = ({ location }) => {
   };
 
   useEffect(() => {
-    const lunrIndex = window.__LUNR__['en'];
-
     handleUrlParams();
     matchFiltersToSessions();
+  }, [location, handleUrlParams, matchFiltersToSessions]);
+
+  useEffect(() => {
+    if (searchDebounceRef.current) {
+      clearTimeout(searchDebounceRef.current);
+    }
+    searchDebounceRef.current = setTimeout(() => {
+      setDebouncedSearch(searchInput.trim());
+      mergeResourceSession({ textSearchValue: searchInput });
+    }, 250);
+    return () => clearTimeout(searchDebounceRef.current);
+  }, [searchInput]);
+
+  useEffect(() => {
+    if (typeof window === 'undefined' || !window.__LUNR__?.['en']) {
+      return;
+    }
+    const lunrIndex = window.__LUNR__['en'];
     const searchResults = lunrIndex.index.search(query);
 
     const searchResultsMapped = searchResults.map(({ ref }) => {
       return lunrIndex.store[ref];
     });
-    setResults(sortResults(searchResultsMapped));
-  }, [query, location, handleUrlParams, matchFiltersToSessions]);
+    const facetResults = sortResults(searchResultsMapped);
+    const filtered = debouncedSearch
+      ? facetResults.filter(doc => resourceMatchesTextSearch(doc, debouncedSearch))
+      : facetResults;
+    setResults(filtered);
+  }, [query, debouncedSearch]);
 
   return (
     <>
@@ -201,6 +267,8 @@ const Search = ({ location }) => {
             handleSearchQuery={handleSearchQuery}
             handleClearFilters={clearFilters}
             listType="resources"
+            searchValue={searchInput}
+            onSearchChange={setSearchInput}
           />
           <div className="resource-cards-wrapper px-8 py-4">
             <GridCards items={results} listType="resources" openInNewTab />

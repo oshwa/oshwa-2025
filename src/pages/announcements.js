@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState, useEffect, useCallback, useRef } from 'react';
 import Layout from '../components/layout';
 import dayjs from 'dayjs';
 
@@ -6,9 +6,24 @@ import { FilterBar } from '../components/FilterBar';
 import Seo from '../components/seo';
 const sessionsName = 'blog-post-filters';
 
+const blogPostMatchesTextSearch = (doc, searchText) => {
+  const terms = searchText
+    .toLowerCase()
+    .trim()
+    .split(/\s+/)
+    .filter(Boolean);
+  if (!terms.length) return true;
+
+  const title = (doc.title || '').toLowerCase();
+  return terms.every(term => title.includes(term));
+};
+
 const SearchBlogPosts = ({ location }) => {
   const [query, setQuery] = useState(``);
   const [results, setResults] = useState([]);
+  const [searchInput, setSearchInput] = useState('');
+  const [debouncedSearch, setDebouncedSearch] = useState('');
+  const searchDebounceRef = useRef(null);
   const contentfulType = 'ContentfulBlogPost';
 
   const formatQuery = ({ date = '', contentfulType = '' }) => {
@@ -21,8 +36,12 @@ const SearchBlogPosts = ({ location }) => {
   const handleSearchQuery = () => {
     let pubDateSelect = document.querySelector('#publicationDate');
     let date = pubDateSelect.value;
+    const textSearchValue =
+      typeof document !== 'undefined'
+        ? document.querySelector('#resourceSearchInput')?.value || ''
+        : '';
 
-    sessionStorage.setItem(sessionsName, JSON.stringify({ date }));
+    sessionStorage.setItem(sessionsName, JSON.stringify({ date, textSearchValue }));
 
     const formattedQuery = formatQuery({ date, contentfulType });
     setQuery(formattedQuery);
@@ -30,7 +49,12 @@ const SearchBlogPosts = ({ location }) => {
 
   const matchFiltersToSessions = useCallback(() => {
     let pubDateSelect = document.querySelector('#publicationDate');
-    let savedSessionsQuery = JSON.parse(sessionStorage.getItem(sessionsName));
+    let savedSessionsQuery = {};
+    try {
+      savedSessionsQuery = JSON.parse(sessionStorage.getItem(sessionsName)) || {};
+    } catch {
+      savedSessionsQuery = {};
+    }
 
     if (savedSessionsQuery && savedSessionsQuery.date) {
       Array.from(pubDateSelect.options).forEach((option, idx) => {
@@ -40,6 +64,11 @@ const SearchBlogPosts = ({ location }) => {
       });
     }
 
+    const urlHasQ = new URLSearchParams(location.search).has('q');
+    if (!urlHasQ && typeof savedSessionsQuery.textSearchValue === 'string') {
+      setSearchInput(savedSessionsQuery.textSearchValue);
+    }
+
     const formattedQuery = formatQuery({ date: pubDateSelect.value, contentfulType });
     setQuery(formattedQuery);
   }, [contentfulType]);
@@ -47,12 +76,17 @@ const SearchBlogPosts = ({ location }) => {
   const clearFilters = () => {
     sessionStorage.removeItem(sessionsName);
     document.querySelector('#publicationDate').selectedIndex = 0;
+    setSearchInput('');
     location.search = '';
     setQuery(formatQuery({ date: '*', contentfulType }));
   };
 
   const handleUrlParams = useCallback(() => {
     let pubDateParam = new URLSearchParams(location.search).get('year') || '*';
+    const params = new URLSearchParams(location.search);
+    if (params.has('q')) {
+      setSearchInput(params.get('q') || '');
+    }
 
     let pubDateSelect = document.querySelector('#publicationDate');
     Array.from(pubDateSelect.options).forEach((option, idx) => {
@@ -70,16 +104,44 @@ const SearchBlogPosts = ({ location }) => {
   };
 
   useEffect(() => {
-    const lunrIndex = window.__LUNR__['en'];
-
     handleUrlParams();
     matchFiltersToSessions();
+  }, [location, handleUrlParams, matchFiltersToSessions]);
 
+  useEffect(() => {
+    if (searchDebounceRef.current) {
+      clearTimeout(searchDebounceRef.current);
+    }
+    searchDebounceRef.current = setTimeout(() => {
+      setDebouncedSearch(searchInput.trim());
+      let savedSessionsQuery = {};
+      try {
+        savedSessionsQuery = JSON.parse(sessionStorage.getItem(sessionsName)) || {};
+      } catch {
+        savedSessionsQuery = {};
+      }
+      sessionStorage.setItem(
+        sessionsName,
+        JSON.stringify({ ...savedSessionsQuery, textSearchValue: searchInput })
+      );
+    }, 250);
+    return () => clearTimeout(searchDebounceRef.current);
+  }, [searchInput]);
+
+  useEffect(() => {
+    if (typeof window === 'undefined' || !window.__LUNR__?.['en']) {
+      return;
+    }
+    const lunrIndex = window.__LUNR__['en'];
     const searchResults = lunrIndex.index.search(query);
     const searchResultsMapped = searchResults.map(({ ref }) => lunrIndex.store[ref]);
+    const sorted = sortByDateDesc(searchResultsMapped);
+    const filtered = debouncedSearch
+      ? sorted.filter(doc => blogPostMatchesTextSearch(doc, debouncedSearch))
+      : sorted;
 
-    setResults(sortByDateDesc(searchResultsMapped));
-  }, [query, location, handleUrlParams, matchFiltersToSessions]);
+    setResults(filtered);
+  }, [query, debouncedSearch]);
 
   return (
     <>
@@ -96,6 +158,8 @@ const SearchBlogPosts = ({ location }) => {
             handleClearFilters={clearFilters}
             handleSearchQuery={handleSearchQuery}
             listType="blog-post"
+            searchValue={searchInput}
+            onSearchChange={setSearchInput}
           />
 
           <div className={`px-8 py-4 list`}>
