@@ -17,6 +17,10 @@ const fs = require('fs');
 const fetch = require('node-fetch');
 const _ = require('lodash');
 
+const { getValidations } = require('./src/services/getValidations');
+
+const { getAllProjects } = require('./src/services/getProjects');
+
 let headers = {
   headers: { Authorization: `Bearer ${process.env.OSHWA_BEARER_TOKEN}` },
 };
@@ -25,13 +29,13 @@ async function getAllCertifications(offset = 0) {
   let url = `https://certificationapi.oshwa.org/api/projects?offset=${offset}`;
   let resp = await fetch(url, headers);
 
-  if(resp.status != 200) {
+  if (resp.status != 200) {
     throw `Failed to fetch certifications: ${resp.status}: ${resp.statusText}: ${await resp.text()}`;
   }
 
   let respData = await resp.json();
 
-  console.log(`fetched ${respData.items.length} certifications`)
+  console.log(`fetched ${respData.items.length} certifications`);
 
   if (respData.items.length >= 100) {
     return respData.items.concat(await getAllCertifications((offset += 100)));
@@ -66,7 +70,7 @@ async function downloadMapData() {
         //   fs.readFileSync(`${__dirname}/src/data/oshwa-certifications.json`)
         // );
       }
-    }
+    },
   );
 }
 
@@ -104,7 +108,7 @@ exports.createPages = async ({ graphql, actions }) => {
   // });
 
   const globalResourceTemplate = path.resolve(
-    `src/templates/global-resource.js`
+    `src/templates/global-resource.js`,
   );
   const profilePageTemplate = path.resolve(`src/templates/profile-page.js`);
 
@@ -139,7 +143,7 @@ exports.createPages = async ({ graphql, actions }) => {
           prettyUrl: edge.node.prettyUrl,
         },
       });
-    }
+    },
   );
 
   const allBlogPosts = await graphql(`
@@ -333,6 +337,26 @@ exports.sourceNodes = async ({
         contentDigest: createContentDigest(item),
       },
     });
+  });
+
+  let validations = await getValidations();
+  createNode({
+    ...validations,
+    id: 'certify-validations',
+    internal: {
+      type: 'CertifyValidations',
+      contentDigest: createContentDigest(validations),
+    },
+  });
+
+  let projects = await getAllProjects();
+  createNode({
+    projects,
+    id: 'projects',
+    internal: {
+      type: 'Projects',
+      contentDigest: createContentDigest(projects),
+    },
   });
 
   await downloadMapData();

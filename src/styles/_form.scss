@@ -1,0 +1,104 @@
+@use 'typography';
+@use 'breakpoints';
+@use 'variables';
+@use 'mixins';
+
+form.certify {
+  @include typography.typography-body-3;
+  .form_question {
+    @apply my-6;
+  }
+
+  input[type='text'],
+  textarea,
+  select {
+    @apply w-full;
+    height: 2rem;
+    border-radius: 0;
+    border-bottom: 2px solid;
+    border-color: var(--theme-on-surface);
+    opacity: 0.5;
+    font-style: italic;
+    height: 3rem;
+    background-color: var(--theme-background);
+    color: var(--theme-on-surface);
+    padding-right: 2rem;
+  }
+
+  input[type='submit'] {
+    width: initial !important;
+  }
+
+  select,
+  .select {
+    @apply appearance-none;
+    background: none;
+    padding: 0;
+
+    position: relative;
+    width: 100%;
+    &::after {
+      color: white;
+      @extend .u-material-icons;
+      content: 'expand_more';
+      position: absolute;
+      right: 0;
+      top: 5px;
+    }
+  }
+
+  .isRequired {
+    outline: purple;
+    color: pink;
+  }
+
+  .form-hidden {
+    display: none;
+  }
+  .form-half {
+    @apply grid grid-cols-2 gap-6;
+  }
+  .form-half .instructions {
+    @apply w-full;
+  }
+
+  .form-full-stacked {
+    @apply flex flex-col w-full;
+  }
+  .form-half-stacked {
+    @apply flex flex-col w-1/2;
+  }
+
+  .form-third {
+    @apply flex flex-col w-1/3;
+  }
+
+  .form-one-third {
+    @apply grid grid-cols-3 gap-6 [&>*:first-child]:col-span-1 [&>*:nth-child(2)]:col-span-2;
+  }
+
+  .form-three-fourths {
+    @apply w-3/4;
+  }
+  .form-inline {
+    @apply w-1/4;
+    display: inline;
+  }
+  .form-four-fifths {
+    @apply grid grid-cols-5 gap-6 [&>*:first-child]:col-span-4 [&>*:nth-child(2)]:col-span-1;
+  }
+  .form-width {
+    @apply flex flex-col justify-between max-w-6xl mx-auto px-4;
+  }
+
+  .checkbox label {
+    padding: 0 0 0 20px;
+  }
+  .instructions {
+    font-style: italic;
+  }
+}
+
+.error-message {
+  color: red;
+}
