@@ -1,6 +1,6 @@
-import { createClient } from 'contentful';
+const { createClient } = require('contentful');
 
-export const client = createClient({
+const client = createClient({
   space: process.env.CERTIFICATION_SPACE_ID,
   environment: process.env.CERTIFICATION_ENVIRONMENT,
   accessToken: process.env.CERTIFICATION_DELIVERY,
@@ -14,11 +14,11 @@ const getFormValuesFromContentful = () =>
   ]);
 
 // get projects
-export const getProjectsList = () => {
+const getProjectsList = () => {
   return getAllProjects();
 };
 
-export const getAllProjects = (limitOption = 1000, skipOption = 0, allData) => {
+const getAllProjects = (limitOption = 1000, skipOption = 0, allData) => {
   let limit = limitOption;
   let skip = skipOption;
   allData = allData || [];
@@ -126,3 +126,5 @@ const getExamplesFromData = contentfulData => {
   examples.documentationExamples = documentationExamples[0].fields.examples;
   return examples;
 };
+
+module.exports = getAllProjects;

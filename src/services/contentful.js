@@ -1,4 +1,4 @@
-const { createClient } = require('contentful-management');
+import { createClient } from 'contentful-management';
 
 export const client = createClient(
   {
@@ -27,7 +27,6 @@ export default async function submitFormToContentful(fields) {
 
     return entry;
   } catch (error) {
-    
     console.error('Error creating entry:', error);
     return error;
   }

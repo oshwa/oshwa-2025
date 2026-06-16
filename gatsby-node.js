@@ -17,9 +17,9 @@ const fs = require('fs');
 const fetch = require('node-fetch');
 const _ = require('lodash');
 
-const { getValidations } = require('./src/services/getValidations');
+const getValidations = require('./scripts/getValidations')
 
-const { getAllProjects } = require('./src/services/getProjects');
+const getAllProjects  = require('./scripts/getProjects');
 
 let headers = {
   headers: { Authorization: `Bearer ${process.env.OSHWA_BEARER_TOKEN}` },
