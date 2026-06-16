@@ -104,12 +104,10 @@ export const OshwaCertifyForm = () => {
     }
   };
 
-  const { fields, append, remove } = useFieldArray(
-    {
-      control,
-      name: 'citations',
-    },
-  );
+  const { fields, append, remove } = useFieldArray({
+    control,
+    name: 'citations',
+  });
 
   const formatQuestion = question => {
     switch (question.fieldType) {
@@ -431,7 +429,7 @@ export const OshwaCertifyForm = () => {
         <Captcha
           ref={captchaRef}
           size="invisible"
-          sitekey={process.env.RECAPTCHA_SITE_KEY}
+          sitekey={process.env.GATSBY_SITE_RECAPTCHA_KEY}
         />
       )}
 
