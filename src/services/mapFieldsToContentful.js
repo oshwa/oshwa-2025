@@ -52,7 +52,7 @@ export default function mapFieldsToContentful(values) {
       keyValue = returnBooleanFromCheckbox(formValues[key]);
     } else if (isCheckboxArray(key)) {
       const checkedValues = returnArrayFromCheckbox(formValues[key]);
-      console.log(checkedValues, 'checkedValues');
+
       if (checkedValues.length !== 0) {
         keyValue = checkedValues;
       } else {

@@ -1,5 +1,5 @@
 import * as z from 'zod';
-
+const certificationMarkTermsCount = 5;
 // Define the validation rules across fields
 export const formSchema = z
   .object({
@@ -29,7 +29,8 @@ export const formSchema = z
       .string()
       .max(256, { message: 'Maximum length is 256 characters' }),
     privateContact: z
-      .string().min(1, { message: 'Contact email address is required' })
+      .string()
+      .min(1, { message: 'Contact email address is required' })
       .email({ message: 'Please enter a valid email address' })
       .or(z.literal('')),
     publicContact: z
@@ -93,7 +94,7 @@ export const formSchema = z
     technologyNeutral: z.string(),
     explanationTn: z.string().optional().or(z.literal('')),
     certificationMarkTerms: z.array(z.string()).optional(),
-    explanationCertificationTerms: z.string().optional(''),
+    explanationCertificationTerms: z.string().optional(),
     relationship: z.string(),
     agreementTerms: z.boolean().refine(val => val === true, {
       message: 'You must agree to the terms and conditions',
@@ -209,7 +210,7 @@ export const formSchema = z
     }
 
     if (
-      values.certificationMarkTerms.length !== 5 &&
+      values.certificationMarkTerms.length !== certificationMarkTermsCount &&
       values.explanationCertificationTerms === ''
     ) {
       context.addIssue({

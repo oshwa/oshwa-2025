@@ -13,7 +13,7 @@ const Confirmation = () => {
       />
       <div className="p-8">
         <p>
-          Your application us now under review by the OSHWA team. In most cases
+          Your application is now under review by the OSHWA team. In most cases
           this review is completed in less than two weeks. Once it is complete
           you will be notified at the email address you provided in your
           application. If the team has questions they will reach out to you

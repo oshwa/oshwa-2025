@@ -1,19 +1,15 @@
 export const returnArrayFromCheckbox = values => {
   if (typeof values === 'string') {
-    return values.length > 0 ? values.split() : [];
+    return values.length > 0 ? values.split(', ') : [];
   }
   return values || [];
 };
 
 export const returnArrayFromTextField = str => {
-  const arr = str.split(',');
-  const results = [];
-
-  arr.forEach(item => {
-    results.push(decodeURI(item.trim()));
-  });
-
-  return arr;
+  if (!str) {
+    return [];
+  }
+  return str.split(',').map(item => decodeURI(item.trim()));
 };
 
 export const returnBooleanFromCheckbox = value => !!value;

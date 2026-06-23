@@ -32,7 +32,10 @@ import mapFieldsToContentful from '../services/mapFieldsToContentful';
 
 export const OshwaCertifyForm = () => {
   const captchaRef = useRef(null);
-  const [captchaEnabled, setCaptchaEnabled] = useState(false);
+
+  const [submitError, setSubmitError] = useState('');
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
   const data = useStaticQuery(graphql`
     query CertifyQuery {
       certifyValidations {
@@ -60,7 +63,6 @@ export const OshwaCertifyForm = () => {
   `);
 
   const {
-    getValues,
     register,
     handleSubmit,
     watch,
@@ -78,16 +80,17 @@ export const OshwaCertifyForm = () => {
     },
   });
 
-  const [projectName] = watch(['projectName']);
-  if (projectName && !captchaEnabled) {
-    setCaptchaEnabled(true);
-  }
+  const projectName = watch('projectName');
 
-  const handleFormSubmit = async data => {
-    const captcha = await captchaRef.current?.executeAsync();
+  const captchaEnabled = Boolean(projectName);
 
-    const fields = await mapFieldsToContentful(getValues());
+  const handleFormSubmit = async values => {
+    setSubmitError('');
+    setIsSubmitting(true);
+
     try {
+      const captcha = await captchaRef.current?.executeAsync();
+      const fields = await mapFieldsToContentful(values);
       const response = await fetch('/api/submit', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -96,11 +99,23 @@ export const OshwaCertifyForm = () => {
 
       if (response.ok) {
         navigate('/confirmation');
-      } else {
-        console.log(response, 'error response');
+        return;
       }
+
+      const result = await response.json().catch(() => ({}));
+      setSubmitError(
+        result.message ||
+          'Something went wrong submitting the form. Please try again.',
+      );
+      captchaRef.current?.reset();
     } catch (error) {
       console.error('Submission error:', error);
+      setSubmitError(
+        'Something went wrong submitting the form. Please try again.',
+      );
+      captchaRef.current?.reset();
+    } finally {
+      setIsSubmitting(false);
     }
   };
 
@@ -204,7 +219,7 @@ export const OshwaCertifyForm = () => {
     }
   };
 
-  console.log(watch(), 'watch');
+  // console.log(watch(), 'watch');
 
   useEffect(() => {
     const subscription = watch((_value, { name }) => {
@@ -304,9 +319,10 @@ export const OshwaCertifyForm = () => {
           <div dangerouslySetInnerHTML={{ __html: formText.p2_introduction }} />
         </div>
         <div className="flex flex-col justify-center">
-          {sectionTwo.map(question => {
+          {sectionTwo.map((question, idx) => {
             return question.children ? (
               <div
+                key={kebabCase(`section-two-group-${idx}`)}
                 className={
                   question.children ? question.layout : 'grid grid-cols-3 gap-4'
                 }
@@ -349,9 +365,10 @@ export const OshwaCertifyForm = () => {
         </div>
 
         <div className="flex flex-col justify-center">
-          {sectionThree.map(question => {
+          {sectionThree.map((question, idx) => {
             return question.children ? (
               <div
+                key={kebabCase(`section-three-group-${idx}`)}
                 className={
                   question.children ? question.layout : 'grid grid-cols-3 gap-4'
                 }
@@ -394,9 +411,10 @@ export const OshwaCertifyForm = () => {
         </div>
 
         <div className="flex flex-col justify-center">
-          {sectionFour.map(question => {
+          {sectionFour.map((question, idx) => {
             return question.children ? (
               <div
+                key={kebabCase(`section-four-group-${idx}`)}
                 className={
                   question.children ? question.layout : 'grid grid-cols-3 gap-4'
                 }
@@ -425,6 +443,7 @@ export const OshwaCertifyForm = () => {
           })}
         </div>
       </div>
+
       {captchaEnabled && (
         <Captcha
           ref={captchaRef}
@@ -433,10 +452,21 @@ export const OshwaCertifyForm = () => {
         />
       )}
 
+      {submitError && (
+        <div className="error-message w-full py-4 px-8">
+          <p>{submitError}</p>
+        </div>
+      )}
+
       <div className="flex justify-end px-8 pb-5">
         <div className=" w-1/4">
           <div className="link link--notched notched notched--border">
-            <input className="form-submit w-1/4" type="submit" />
+            <input
+              className="form-submit w-1/4"
+              type="submit"
+              value={isSubmitting ? 'Submitting…' : 'Submit'}
+              disabled={isSubmitting}
+            />
           </div>
         </div>
       </div>

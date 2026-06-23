@@ -205,7 +205,7 @@ export const CreateCertificationMarkTerms = ({ content, register, errors }) => {
           {...register(contentfulFieldName)}
         />
         <label
-          htmlFor={option}
+          htmlFor={option.title}
           dangerouslySetInnerHTML={{ __html: option.term }}
         />
       </div>
@@ -343,7 +343,7 @@ export const CreateCitationFields = ({
                   type="text"
                   className="url_create url_address"
                   placeholder="Enter citation url"
-                  {...register(`${contentfulFieldName}[${index}].url`)}
+                  {...register(`${contentfulFieldName}.${index}.url`)}
                 ></input>
               </div>
             </div>

@@ -9,25 +9,14 @@ export const client = createClient(
     type: 'plain',
   },
 );
-const spaceID = process.env.CERTIFICATION_SPACE_ID;
-const environmentID = process.env.CERTIFICATION_ENVIRONMENT;
-const contentModelType = 'project';
 
 export default async function submitFormToContentful(fields) {
-  try {
-    let entry = await client.entry.create(
-      {
-        accessToken: process.env.CERTIFICATION_MANAGEMENT_KEY,
-        spaceId: process.env.CERTIFICATION_SPACE_ID,
-        environmentId: process.env.CERTIFICATION_ENVIRONMENT,
-        contentTypeId: 'project',
-      },
-      fields,
-    );
-
-    return entry;
-  } catch (error) {
-    console.error('Error creating entry:', error);
-    return error;
-  }
+  return client.entry.create(
+    {
+      spaceId: process.env.CERTIFICATION_SPACE_ID,
+      environmentId: process.env.CERTIFICATION_ENVIRONMENT,
+      contentTypeId: 'project',
+    },
+    fields,
+  );
 }
