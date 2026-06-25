@@ -3,7 +3,6 @@ import { createClient } from 'contentful-management';
 export const client = createClient(
   {
     accessToken: process.env.CERTIFICATION_MANAGEMENT_KEY,
-    environment: process.env.CERTIFICATION_ENVIRONMENT,
   },
   {
     type: 'plain',

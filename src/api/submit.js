@@ -1,6 +1,5 @@
 import * as z from 'zod';
 import submitFormToContentful from '../services/contentful';
-import ReCAPTCHA from 'react-google-recaptcha';
 
 const RECAPTCHA_VERIFY_ENDPOINT =
   'https://www.google.com/recaptcha/api/siteverify';
@@ -103,7 +102,7 @@ export default async function handler(req, res) {
 
   try {
     const entry = await submitFormToContentful({ fields: parsed.data });
-    console.log(parsed.data, 'parsed data');
+    
     if (entry?.sys?.id) {
       return res.status(200).json({ success: true, id: entry.sys.id });
     }

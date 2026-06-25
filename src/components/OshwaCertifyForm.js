@@ -219,8 +219,6 @@ export const OshwaCertifyForm = () => {
     }
   };
 
-  // console.log(watch(), 'watch');
-
   useEffect(() => {
     const subscription = watch((_value, { name }) => {
       if (name === 'responsiblePartyType') {

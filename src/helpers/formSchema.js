@@ -51,7 +51,12 @@ export const formSchema = z
     projectVersion: z
       .string()
       .max(256, { message: 'Maximum length is 256 characters' }),
-    previousVersions: z.array(z.object()),
+    previousVersions: z.array(
+      z.object({
+        label: z.string(),
+        value: z.string(),
+      }),
+    ),
     primaryType: z.string().min(1, {
       message: `You must select a project type. If your project doesn't fall into any of these types, select "Other".`,
     }),

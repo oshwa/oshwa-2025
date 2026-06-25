@@ -33,7 +33,6 @@ const isBooleanSelect = key =>
   getFieldTypes('boolean_select').indexOf(key) !== -1;
 const isCheckboxArray = key =>
   getFieldTypes('checkbox_array').indexOf(key) !== -1;
-const isReferenceField = key => getFieldTypes('reference').indexOf(key) !== -1;
 
 export default function mapFieldsToContentful(values) {
   let formValues = values;
@@ -56,13 +55,10 @@ export default function mapFieldsToContentful(values) {
       if (checkedValues.length !== 0) {
         keyValue = checkedValues;
       } else {
-        return [];
+        return;
       }
     } else if (isBooleanSelect(key)) {
       keyValue = returnBooleanFromSelect(formValues[key]);
-    } else if (isReferenceField(key)) {
-      keyValue = returnReferences(formValues[key]);
-      // keyValue = formValues[key].map(item => item.value );
     } else if (isArrayField(key)) {
       keyValue = returnArrayFromTextField(formValues[key]);
     } else {
@@ -80,12 +76,16 @@ export default function mapFieldsToContentful(values) {
   });
 
   fields.citations = { 'en-US': citations };
+
   delete fields['previousVersions[]'];
   delete fields['captcha'];
-  fields.previousVersions = formValues['previousVersions'] && {
-    'en-US': returnReferences(
-      Array.from(formValues['previousVersions']).map(item => item.value),
-    ),
-  };
+
+  fields.previousVersions = formValues['previousVersions']
+    ? {
+        'en-US': returnReferences(
+          Array.from(formValues['previousVersions']).map(item => item.value),
+        ),
+      }
+    : [];
   return fields;
 }
