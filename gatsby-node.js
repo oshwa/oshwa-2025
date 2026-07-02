@@ -212,7 +212,7 @@ exports.createPages = async ({ graphql, actions }) => {
   // generic page generation
   const allGenericPages = await graphql(`
     query allGenericPageQuery {
-      allContentfulGenericPage {
+      allContentfulGenericPage(filter: { site: { eq: "OSHWA" } }) {
         edges {
           node {
             id

@@ -10,7 +10,7 @@ import Seo from "../components/seo";
 const NotFoundPage = () => {
   const data = useStaticQuery(graphql`
     query notFoundQuery {
-      allContentfulGenericPage(filter: {title: {eq: "404"}}) {
+      allContentfulGenericPage(filter: {title: {eq: "404"}, site: {eq: "OSHWA"}}) {
         edges {
           node {
             id
