@@ -5,7 +5,7 @@ import kebabCase from 'lodash.kebabcase';
 export const MainNavA = ({ handleClick, active }) => {
   const data = useStaticQuery(graphql`
     query MyQuery1 {
-      contentfulNavMenu {
+      contentfulNavMenu(site: { eq: "OSHWA" }) {
         menuItems {
           ... on ContentfulGenericPage {
             id
