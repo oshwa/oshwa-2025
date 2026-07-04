@@ -20,6 +20,14 @@ const requiredText = label =>
       }),
   );
 
+const requiredEmail = label =>
+  localized(
+    z
+      .string()
+      .min(1, { message: `${label} is required` })
+      .email({ message: `${label} must be a valid email address` }),
+  );
+  
 const optionalEmail = label =>
   localized(
     z
@@ -38,7 +46,6 @@ const submissionSchema = z.looseObject({
   softwareLicense: requiredText('Software license'),
   documentationLicense: requiredText('Documentation license'),
   privateContact: optionalEmail('Contact email address'),
-  publicContact: optionalEmail('Public contact email address'),
   agreementTerms: localized(
     z.literal(true, {
       message: 'You must agree to the terms and conditions',
@@ -102,7 +109,7 @@ export default async function handler(req, res) {
 
   try {
     const entry = await submitFormToContentful({ fields: parsed.data });
-    
+
     if (entry?.sys?.id) {
       return res.status(200).json({ success: true, id: entry.sys.id });
     }

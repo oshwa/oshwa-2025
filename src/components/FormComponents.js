@@ -30,12 +30,12 @@ export const CreateTextInput = ({ content, register, errors }) => {
             {...register(contentfulFieldName)}
             placeholder={formPlaceholder}
           />
-          <p className="py-2">{instructions}</p>
+          <p className="instructions">{renderInstructions(instructions)}</p>
         </div>
         {errors[contentfulFieldName] && (
-          <div className="error-message w-full py-4">
-            <p>{errors[contentfulFieldName]?.message}</p>
-          </div>
+          <p className="error-message w-full">
+            {errors[contentfulFieldName]?.message}
+          </p>
         )}
       </div>
     </>
@@ -56,39 +56,44 @@ export const CreateDropdownSelect = ({
   return (
     <>
       <CreateLabel content={content} />
-      <div className="select">
-        <select
-          id={contentfulFieldName}
-          {...register(contentfulFieldName)}
-          defaultValue={''}
-        >
-          <option
-            key={kebabCase(`${contentfulFieldName} default`)}
-            value=""
-            disabled
+      <div>
+        <div className="select">
+          <select
+            id={contentfulFieldName}
+            {...register(contentfulFieldName)}
+            defaultValue={''}
           >
-            {formPlaceholder}
-          </option>
-
-          {validationOptions.map(option => (
             <option
-              key={kebabCase(`${contentfulFieldName} ${option}`)}
-              value={option}
+              key={kebabCase(`${contentfulFieldName} default`)}
+              value=""
+              disabled
             >
-              {option}
+              {formPlaceholder}
             </option>
-          ))}
-        </select>
-        {errors[contentfulFieldName] && (
-          <div className="error-message w-full py-4">
-            <p>{errors[contentfulFieldName]?.message}</p>
-          </div>
-        )}
 
-        <div
+            {validationOptions.map(option => (
+              <option
+                key={kebabCase(`${contentfulFieldName} ${option}`)}
+                value={option}
+              >
+                {option}
+              </option>
+            ))}
+          </select>
+        </div>
+
+        <p
           className="instructions"
-          dangerouslySetInnerHTML={{ __html: renderInstructions(instructions) }}
+          dangerouslySetInnerHTML={{
+            __html: renderInstructions(instructions),
+          }}
         />
+
+        {errors[contentfulFieldName] && (
+          <p className="error-message w-full">
+            {errors[contentfulFieldName]?.message}
+          </p>
+        )}
       </div>
     </>
   );
@@ -107,11 +112,11 @@ export const CreateCheckbox = ({ content, register, errors, validations }) => {
       />
 
       <CreateLabel content={content} />
-      <div className="instructions">{renderInstructions(instructions)}</div>
+      <p className="instructions">{renderInstructions(instructions)}</p>
       {errors[contentfulFieldName] && (
-        <div className="error-message w-full py-4">
-          <p>{errors[contentfulFieldName]?.message}</p>
-        </div>
+        <p className="error-message w-full">
+          {errors[contentfulFieldName]?.message}
+        </p>
       )}
     </div>
   );
@@ -139,7 +144,7 @@ export const CreateCheckboxes = ({
         value={option}
         {...register(`${contentfulFieldName}[]`)}
       />
-      <label htmlFor={option}>{option}</label>
+      <label className="checkbox-label" htmlFor={option}>{option}</label>
     </div>
   ));
   return (
@@ -151,9 +156,9 @@ export const CreateCheckboxes = ({
         </legend>
         <div className="row">{allCheckboxes}</div>
         {errors[contentfulFieldName] && (
-          <span className="error-message">
+          <p className="error-message w-full">
             {errors[contentfulFieldName]?.message}
-          </span>
+          </p>
         )}
       </fieldset>
     </>
@@ -166,7 +171,28 @@ export const renderInstructions = instructions =>
 export const CreateTextArea = ({ content, register, errors }) => {
   const { instructions, contentfulFieldName, formPlaceholder } = content;
 
-  return (
+  return contentfulFieldName === 'explanationCertificationTerms' ? (
+    <>
+      <div className="form_question form-full-stacked">
+        <CreateLabel content={content} />
+        <textarea
+          id={contentfulFieldName}
+          type="text"
+          name={contentfulFieldName}
+          placeholder={formPlaceholder}
+          {...register(contentfulFieldName)}
+          style={{ width: '100%', height: '7rem' }}
+        ></textarea>
+      </div>
+      <div className="textarea-message"></div>
+      <p className="instructions">{renderInstructions(instructions)}</p>
+      {errors[contentfulFieldName] && (
+        <p className="error-message w-full">
+          {errors[contentfulFieldName]?.message}
+        </p>
+      )}
+    </>
+  ) : (
     <>
       <CreateLabel content={content} />
       <textarea
@@ -178,11 +204,11 @@ export const CreateTextArea = ({ content, register, errors }) => {
         style={{ width: '100%', height: '7rem' }}
       ></textarea>
       <div className="textarea-message"></div>
-      <div className="instructions">{renderInstructions(instructions)}</div>
+      <p className="instructions">{renderInstructions(instructions)}</p>
       {errors[contentfulFieldName] && (
-        <span className="error-message">
+        <p className="error-message w-full">
           {errors[contentfulFieldName]?.message}
-        </span>
+        </p>
       )}
     </>
   );
@@ -218,7 +244,6 @@ export const CreateCertificationMarkTerms = ({ content, register, errors }) => {
       <fieldset>
         <legend>{instructions}</legend>
 
-        <div className="instructions"></div>
         {allCheckboxes}
       </fieldset>
     </div>
@@ -244,11 +269,11 @@ export const CreateBooleanDropdown = ({ content, register, errors }) => {
           <option value="false">No</option>
         </select>
       </div>
-      <div className="instructions">{renderInstructions(instructions)}</div>
+      <p className="instructions">{renderInstructions(instructions)}</p>
       {errors[contentfulFieldName] && (
-        <span className="error-message">
+        <p className="error-message w-full">
           {errors[contentfulFieldName]?.message}
-        </span>
+        </p>
       )}
     </>
   );
@@ -290,11 +315,11 @@ export const CreateMultiSelect = ({
           />
         )}
       ></Controller>
-      <div className="instructions">{renderInstructions(instructions)}</div>
+      <p className="instructions">{renderInstructions(instructions)}</p>
       {errors[contentfulFieldName] && (
-        <span className="error-message">
+        <p className="error-message w-full">
           {errors[contentfulFieldName]?.message}
-        </span>
+        </p>
       )}
     </>
   );
@@ -358,9 +383,9 @@ export const CreateCitationFields = ({
         append
       </button>
       {errors[contentfulFieldName] && (
-        <span className="error-message">
+        <p className="error-message w-full">
           {errors[contentfulFieldName]?.message}
-        </span>
+        </p>
       )}
     </>
   );

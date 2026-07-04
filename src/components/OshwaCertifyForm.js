@@ -5,7 +5,9 @@ import Captcha from 'react-google-recaptcha';
 import { useForm, useFieldArray } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { formSchema } from '../helpers/formSchema';
-import formText from '../data/certify-form-text.json';
+import formText from '../data/certify-form-text';
+import FormSectionHeader from './FormSectionHeader';
+import FormSection from './FormSection';
 
 import {
   sectionOne,
@@ -124,101 +126,6 @@ export const OshwaCertifyForm = () => {
     name: 'citations',
   });
 
-  const formatQuestion = question => {
-    switch (question.fieldType) {
-      case 'input':
-        return (
-          <CreateTextInput
-            content={question}
-            register={register}
-            errors={errors}
-          />
-        );
-      case 'string_array':
-        return (
-          <CreateTextInput
-            content={question}
-            register={register}
-            errors={errors}
-          />
-        );
-      case 'single_select':
-        return (
-          <CreateDropdownSelect
-            content={question}
-            register={register}
-            errors={errors}
-            validations={data.certifyValidations}
-          />
-        );
-      case 'textarea':
-        return (
-          <CreateTextArea
-            content={question}
-            register={register}
-            errors={errors}
-          />
-        );
-      case 'checkbox_array':
-        return (
-          <CreateCheckboxes
-            content={question}
-            register={register}
-            errors={errors}
-            validations={data.certifyValidations}
-          />
-        );
-      case 'boolean_checkbox':
-        return (
-          <CreateCheckbox
-            content={question}
-            register={register}
-            errors={errors}
-          />
-        );
-      case 'checkbox_object':
-        return (
-          <CreateCertificationMarkTerms
-            content={question}
-            register={register}
-            errors={errors}
-          />
-        );
-      case 'boolean_select':
-        return (
-          <CreateBooleanDropdown
-            content={question}
-            register={register}
-            errors={errors}
-          />
-        );
-      case 'reference':
-        return (
-          <CreateMultiSelect
-            content={question}
-            register={register}
-            errors={errors}
-            options={data.allProjects.edges[0].node.projects}
-            control={control}
-          />
-        );
-      case 'add_url':
-        return (
-          <CreateCitationFields
-            fields={fields}
-            append={append}
-            remove={remove}
-            content={question}
-            register={register}
-            errors={errors}
-            control={control}
-          />
-        );
-      default:
-        return <></>;
-    }
-  };
-
   useEffect(() => {
     const subscription = watch((_value, { name }) => {
       if (name === 'responsiblePartyType') {
@@ -264,181 +171,54 @@ export const OshwaCertifyForm = () => {
     <form className="certify" onSubmit={handleSubmit(handleFormSubmit)}>
       {/* section one  */}
       <div className="form-section form-width">
-        <div className="form-section-header">
-          <div className=" flex justify-between">
-            <h2 className="generic-heading-2 py-8">Basic Information</h2>
-            <p className="form-heading py-8">Section 1 of 4</p>
-          </div>
-          <div
-            className="py-4"
-            dangerouslySetInnerHTML={{ __html: formText.p1_introduction }}
-          />
-        </div>
+        <FormSectionHeader content={formText.sectionOne} />
         <div className="flex flex-col justify-center">
-          {sectionOne.map((question, idx) => {
-            return question.children ? (
-              <div
-                key={kebabCase(`section one ${idx}`)}
-                className={
-                  question.children ? question.layout : 'grid grid-cols-3 gap-4'
-                }
-              >
-                {question.children.map(child => (
-                  <div
-                    key={kebabCase(
-                      `${child.contentfulFieldName} ${child.title}`,
-                    )}
-                    className={`form_question ${child.layout}`}
-                  >
-                    {formatQuestion(child)}
-                  </div>
-                ))}
-              </div>
-            ) : (
-              <div
-                key={kebabCase(
-                  `${question.contentfulFieldName} ${question.title}`,
-                )}
-                className={`form_question ${question.layout}`}
-              >
-                {formatQuestion(question)}
-              </div>
-            );
-          })}
+          <FormSection
+            content={sectionOne}
+            data={data}
+            register={register}
+            errors={errors}
+          />
         </div>
       </div>
       {/* section two */}
       <div className="form-section form-width">
-        <div className="form-section-header">
-          <div className=" flex justify-between">
-            <h2 className="generic-heading-2 py-8">Project Information</h2>
-            <p className="form-heading py-8">Section 2 of 4</p>
-          </div>
-          <div dangerouslySetInnerHTML={{ __html: formText.p2_introduction }} />
-        </div>
+        <FormSectionHeader content={formText.sectionTwo} />
         <div className="flex flex-col justify-center">
-          {sectionTwo.map((question, idx) => {
-            return question.children ? (
-              <div
-                key={kebabCase(`section-two-group-${idx}`)}
-                className={
-                  question.children ? question.layout : 'grid grid-cols-3 gap-4'
-                }
-              >
-                {question.children.map(child => (
-                  <div
-                    key={kebabCase(
-                      `${child.contentfulFieldName} ${child.title}`,
-                    )}
-                    className={`form_question ${child.layout}`}
-                  >
-                    {formatQuestion(child)}
-                  </div>
-                ))}
-              </div>
-            ) : (
-              <div
-                key={kebabCase(
-                  `${question.contentfulFieldName} ${question.title}`,
-                )}
-                className={`form_question ${question.layout}`}
-              >
-                {formatQuestion(question)}
-              </div>
-            );
-          })}
+          <FormSection
+            content={sectionTwo}
+            data={data}
+            register={register}
+            errors={errors}
+            control={control}
+            append={append}
+            remove={remove}
+            fields={fields}
+          />
         </div>
       </div>
       {/* section three  */}
       <div className="form-section form-width">
-        <div className="form-section-header">
-          <div className=" flex justify-between">
-            <h2 className="generic-heading-2 py-8">Licensing Information</h2>
-            <p className="form-heading py-8">Section 3 of 4</p>
-          </div>
-          <div
-            className="py-4"
-            dangerouslySetInnerHTML={{ __html: formText.p3_introduction }}
-          />
-        </div>
-
+        <FormSectionHeader content={formText.sectionThree} />
         <div className="flex flex-col justify-center">
-          {sectionThree.map((question, idx) => {
-            return question.children ? (
-              <div
-                key={kebabCase(`section-three-group-${idx}`)}
-                className={
-                  question.children ? question.layout : 'grid grid-cols-3 gap-4'
-                }
-              >
-                {question.children.map(child => (
-                  <div
-                    key={kebabCase(
-                      `${child.contentfulFieldName} ${child.title}`,
-                    )}
-                    className={`form_question ${child.layout}`}
-                  >
-                    {formatQuestion(child)}
-                  </div>
-                ))}
-              </div>
-            ) : (
-              <div
-                key={kebabCase(
-                  `${question.contentfulFieldName} ${question.title}`,
-                )}
-                className={`form_question ${question.layout}`}
-              >
-                {formatQuestion(question)}
-              </div>
-            );
-          })}
+          <FormSection
+            content={sectionThree}
+            data={data}
+            register={register}
+            errors={errors}
+          />
         </div>
       </div>
       {/* section four  */}
       <div className="form-section form-width">
-        <div className="form-section-header">
-          <div className=" flex justify-between">
-            <h2 className="generic-heading-2 py-8">Certification</h2>
-            <p className="form-heading py-8">Section 4 of 4</p>
-          </div>
-          <div
-            className="py-4"
-            dangerouslySetInnerHTML={{ __html: formText.p4_introduction }}
-          />
-        </div>
-
+        <FormSectionHeader content={formText.sectionFour} />
         <div className="flex flex-col justify-center">
-          {sectionFour.map((question, idx) => {
-            return question.children ? (
-              <div
-                key={kebabCase(`section-four-group-${idx}`)}
-                className={
-                  question.children ? question.layout : 'grid grid-cols-3 gap-4'
-                }
-              >
-                {question.children.map(child => (
-                  <div
-                    key={kebabCase(
-                      `${child.contentfulFieldName} ${child.title}`,
-                    )}
-                    className={`form_question ${child.layout}`}
-                  >
-                    {formatQuestion(child)}
-                  </div>
-                ))}
-              </div>
-            ) : (
-              <div
-                key={kebabCase(
-                  `${question.contentfulFieldName} ${question.title}`,
-                )}
-                className={`form_question ${question.layout}`}
-              >
-                {formatQuestion(question)}
-              </div>
-            );
-          })}
+          <FormSection
+            content={sectionFour}
+            data={data}
+            register={register}
+            errors={errors}
+          />
         </div>
       </div>
 

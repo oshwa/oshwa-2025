@@ -6,9 +6,11 @@
 form.certify {
   @include typography.typography-body-3;
   .form_question {
-    @apply my-6;
+    @apply my-4;
   }
-
+  fieldset {
+    padding: 0;
+  }
   input[type='text'],
   textarea,
   select {
@@ -23,6 +25,9 @@ form.certify {
     background-color: var(--theme-background);
     color: var(--theme-on-surface);
     padding-right: 2rem;
+  }
+  .select {
+    margin-bottom: 1rem;
   }
 
   input[type='submit'] {
@@ -46,7 +51,11 @@ form.certify {
       top: 5px;
     }
   }
-
+  .instructions,
+  .error-message {
+    margin: 4px 0;
+    @include typography.typography-caption;
+  }
   .isRequired {
     outline: purple;
     color: pink;
@@ -56,7 +65,7 @@ form.certify {
     display: none;
   }
   .form-half {
-    @apply grid grid-cols-2 gap-6;
+    @apply grid grid-cols-2 gap-8;
   }
   .form-half .instructions {
     @apply w-full;
@@ -91,6 +100,11 @@ form.certify {
     @apply flex flex-col justify-between max-w-6xl mx-auto px-4;
   }
 
+  .bold {
+    label:not(.checkbox-label) {
+      font-weight: 600;
+    }
+  }
   .checkbox label {
     padding: 0 0 0 20px;
   }

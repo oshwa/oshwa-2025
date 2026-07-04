@@ -4,11 +4,18 @@ h1.generic-heading-1 {
   @include typography.typography-headline-2;
 }
 
-h2.generic-heading-2 {
+h2.generic-heading-2,
+.form-heading {
   font-weight: 700;
   margin-top: 0.5rem;
   @include typography.typography-headline-3;
   &--2nd-heading {
     margin-top: 2.5rem;
   }
+}
+
+.form-subheading {
+  @include typography.typography-body-5;
+  font-weight: 700;
+  @apply my-2;
 }
