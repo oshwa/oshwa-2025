@@ -46,6 +46,7 @@ const submissionSchema = z.looseObject({
   softwareLicense: requiredText('Software license'),
   documentationLicense: requiredText('Documentation license'),
   privateContact: optionalEmail('Contact email address'),
+  publicContact: optionalEmail('Public contact email address'),
   agreementTerms: localized(
     z.literal(true, {
       message: 'You must agree to the terms and conditions',

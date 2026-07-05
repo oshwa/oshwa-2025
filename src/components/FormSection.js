@@ -162,38 +162,6 @@ const FormSection = ({
       })}
     </>
   );
-
-  // return (
-  //   <>
-  //     {content.map((question, idx) => {
-  //       {question?.subheading}
-  //       return question.children ? (
-  //         <div
-  //           key={kebabCase(`section one ${idx}`)}
-  //           className={
-  //             question.children ? question.layout : 'grid grid-cols-3 gap-4'
-  //           }
-  //         >
-  //           {question.children.map(child => (
-  //             <div
-  //               key={kebabCase(`${child.contentfulFieldName} ${child.title}`)}
-  //               className={`form_question ${child.layout}`}
-  //             >
-  //               {formatQuestion(child)}
-  //             </div>
-  //           ))}
-  //         </div>
-  //       ) : (
-  //         <div
-  //           key={kebabCase(`${question.contentfulFieldName} ${question.title}`)}
-  //           className={`form_question ${question.layout}`}
-  //         >
-  //           {formatQuestion(question)}
-  //         </div>
-  //       );
-  //     })}
-  //   </>
-  // );
 };
 
 export default FormSection;
