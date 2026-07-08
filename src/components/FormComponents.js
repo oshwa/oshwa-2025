@@ -1,5 +1,5 @@
 import React from 'react';
-import { Controller } from 'react-hook-form';
+import { Controller, useFieldArray } from 'react-hook-form';
 import kebabCase from 'lodash.kebabcase';
 import Select from 'react-select';
 
@@ -7,11 +7,12 @@ export const CreateLabel = ({ content }) => {
   const { contentfulFieldName, title, hidden } = content;
   return (
     <label
-      className="label py-2"
+      className="label pb-4"
       htmlFor={contentfulFieldName}
       dangerouslySetInnerHTML={{ __html: title || '' }}
       style={{
         visibility: hidden ? `hidden` : `visible`,
+        display: hidden ? `none` : `initial`,
       }}
     />
   );
@@ -103,22 +104,24 @@ export const CreateCheckbox = ({ content, register, errors, validations }) => {
   const { instructions, contentfulFieldName, required } = content;
 
   return (
-    <div className="checkbox">
-      <input
-        type="checkbox"
-        id={contentfulFieldName}
-        name={contentfulFieldName}
-        {...register(contentfulFieldName, { required })}
-      />
-
-      <CreateLabel content={content} />
+    <>
+      <div className="checkbox-item flex items-start gap-4">
+        <input
+          className="mt-2"
+          type="checkbox"
+          id={contentfulFieldName}
+          name={contentfulFieldName}
+          {...register(contentfulFieldName, { required })}
+        />
+        <CreateLabel content={content} />
+      </div>
       <p className="instructions">{renderInstructions(instructions)}</p>
       {errors[contentfulFieldName] && (
         <p className="error-message w-full">
           {errors[contentfulFieldName]?.message}
         </p>
       )}
-    </div>
+    </>
   );
 };
 
@@ -135,16 +138,19 @@ export const CreateCheckboxes = ({
   let allCheckboxes = validationOptions.map((option, idx) => (
     <div
       key={`${contentfulFieldName}-${idx}`}
-      className="columns large-3 medium-4 small-12 checkbox"
+      className="checkbox flex items-start"
     >
       <input
+        className="mt-2"
         type="checkbox"
         id={option}
         name={contentfulFieldName}
         value={option}
         {...register(`${contentfulFieldName}[]`)}
       />
-      <label className="checkbox-label" htmlFor={option}>{option}</label>
+      <label className="checkbox-label" htmlFor={option}>
+        {option}
+      </label>
     </div>
   ));
   return (
@@ -154,7 +160,9 @@ export const CreateCheckboxes = ({
         <legend className="instructions">
           {renderInstructions(instructions)}
         </legend>
-        <div className="row">{allCheckboxes}</div>
+        <div className="checkboxes-container py-4 grid lg:grid-cols-4 gap-4">
+          {allCheckboxes}
+        </div>
         {errors[contentfulFieldName] && (
           <p className="error-message w-full">
             {errors[contentfulFieldName]?.message}
@@ -219,11 +227,10 @@ export const CreateCertificationMarkTerms = ({ content, register, errors }) => {
   const certificationMarkTerms = terms;
   let allCheckboxes = certificationMarkTerms.map((option, idx) => {
     return (
-      <div
-        key={`certification-mark-terms-${idx}`}
-        className="columns small-12 checkbox"
-      >
+      <div key={`certification-mark-terms-${idx}`} className="checkbox">
+        <div className="checkbox-item my-2 flex items-start"></div>
         <input
+          className="mt-2"
           type="checkbox"
           id={option.title}
           name={contentfulFieldName}
@@ -250,6 +257,43 @@ export const CreateCertificationMarkTerms = ({ content, register, errors }) => {
   );
 };
 
+export const CreateCheckboxItem = ({ content, register, errors }) => {
+  const { instructions, contentfulFieldName, terms } = content;
+  const checkboxTerms = terms;
+  let allCheckboxes = checkboxTerms.map((option, idx) => {
+    return (
+      <div key={`certification-mark-terms-${idx}`} className="checkbox ">
+        <div className="checkbox-item my-2 flex items-start">
+          <input
+            className="mt-2"
+            type="checkbox"
+            id={option.title}
+            name={contentfulFieldName}
+            value={option.title}
+            {...register(contentfulFieldName)}
+          />
+          <label
+            className="checkbox-label"
+            htmlFor={option.title}
+            dangerouslySetInnerHTML={{ __html: option.term }}
+          />
+        </div>
+      </div>
+    );
+  });
+
+  return (
+    <>
+      <p className="label-bold">{content.title}</p>
+
+      <CreateLabel content={content} hidden />
+      <legend className="py-4">{instructions}</legend>
+      <div className="">
+        <fieldset>{allCheckboxes}</fieldset>
+      </div>
+    </>
+  );
+};
 export const CreateBooleanDropdown = ({ content, register, errors }) => {
   const { instructions, contentfulFieldName, required } = content;
 
@@ -308,6 +352,8 @@ export const CreateMultiSelect = ({
         rules={required ? { required: requiredErrorMessage } : {}}
         render={({ field }) => (
           <Select
+            className="react-select-container"
+            classNamePrefix="react-select"
             {...field}
             options={allOptions}
             isMulti
@@ -324,69 +370,97 @@ export const CreateMultiSelect = ({
     </>
   );
 };
-
 export const CreateCitationFields = ({
   content,
   register,
   errors,
   options,
   control,
-  fields,
-  append,
-  remove,
 }) => {
   const { title, contentfulFieldName } = content;
 
+  const { fields, append, remove } = useFieldArray({
+    control,
+    name: contentfulFieldName,
+  });
   return (
     <>
-      <p>{title}</p>
-
-      {fields.map((field, index) => {
-        return (
-          <div key={field.id} className={`${contentfulFieldName}-container`}>
-            <div>
-              <label htmlFor={`${contentfulFieldName}[${index}]--url_title`}>
-                Citation Title
-              </label>
-              <input
-                id={`${contentfulFieldName}[${index}]--url_title`}
-                type="text"
-                className="url_create url_title"
-                placeholder="Enter citation title"
-                {...register(`${contentfulFieldName}.${index}.title`)}
-              ></input>
-            </div>
-            <div>
-              <div>
-                <label
-                  htmlFor={`${contentfulFieldName}[${index}]--url_address`}
+      <div className="grid grid-cols-6 gap-4">
+        <div className=" col-span-6 lg:col-span-2">
+          <p>{title}</p>
+        </div>
+        <div className="col-span-6 lg:col-span-4">
+          <div>
+            {fields.map((field, index) => {
+              return (
+                <div
+                  key={field.id}
+                  className={`grid grid-cols-11 gap-4 pb-4 ${contentfulFieldName}-container`}
                 >
-                  Citation URL
-                </label>
-                <input
-                  id={`${contentfulFieldName}[${index}]--url_address`}
-                  type="text"
-                  className="url_create url_address"
-                  placeholder="Enter citation url"
-                  {...register(`${contentfulFieldName}.${index}.url`)}
-                ></input>
-              </div>
-            </div>
-            <button type="button" onClick={() => remove(index)}>
-              Delete
-            </button>
+                  <div className="col-span-1 lg:col-span-1 flex justify-end align-top">
+                    <button
+                      className=""
+                      type="button"
+                      onClick={() => remove(index)}
+                    >
+                      <span className="material-icons material-symbols-outlined">
+                        remove_circle
+                      </span>
+                    </button>
+                  </div>
+                  <div className="col-span-10 lg:col-span-5">
+                    <label
+                      htmlFor={`${contentfulFieldName}[${index}]--url_title`}
+                    >
+                      Citation Title
+                    </label>
+                    <input
+                      id={`${contentfulFieldName}[${index}]--url_title`}
+                      type="text"
+                      className="url_create url_title"
+                      placeholder="Enter citation title"
+                      {...register(`${contentfulFieldName}.${index}.title`)}
+                    ></input>
+                  </div>
+                  <div className="col-span-10 col-start-2 lg:col-span-5">
+                    <label
+                      htmlFor={`${contentfulFieldName}[${index}]--url_address`}
+                    >
+                      Citation URL
+                    </label>
+                    <input
+                      id={`${contentfulFieldName}[${index}]--url_address`}
+                      type="text"
+                      className="url_create url_address"
+                      placeholder="Enter citation url"
+                      {...register(`${contentfulFieldName}.${index}.url`)}
+                    ></input>
+                  </div>
+                </div>
+              );
+            })}
           </div>
-        );
-      })}
+          <div className="grid grid-cols-11 gap-4 py-4">
+            <div className="lg:col-span-1 flex justify-end align-top">
+              <button
+                type="button"
+                onClick={() => append({ title: '', url: '' })}
+              >
+                <span className="material-icons material-symbols-outlined">
+                  add_circle
+                </span>
+              </button>
+            </div>
+            <div className="col-span-10">Add another document</div>
+          </div>
+        </div>
 
-      <button type="button" onClick={() => append({ title: '', url: '' })}>
-        append
-      </button>
-      {errors[contentfulFieldName] && (
-        <p className="error-message w-full">
-          {errors[contentfulFieldName]?.message}
-        </p>
-      )}
+        {errors[contentfulFieldName] && (
+          <p className="error-message w-full">
+            {errors[contentfulFieldName]?.message}
+          </p>
+        )}
+      </div>
     </>
   );
 };

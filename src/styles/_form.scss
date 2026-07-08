@@ -2,8 +2,12 @@
 @use 'breakpoints';
 @use 'variables';
 @use 'mixins';
+@use 'link';
 
 form.certify {
+  a {
+    @include link.link-dotted;
+  }
   @include typography.typography-body-3;
   .form_question {
     @apply my-4;
@@ -33,29 +37,14 @@ form.certify {
 
   select,
   .select {
-    @apply appearance-none;
-    background: none;
     padding: 0;
-
     position: relative;
     width: 100%;
-    &::after {
-      color: white;
-      @extend .u-material-icons;
-      content: 'expand_more';
-      position: absolute;
-      right: 0;
-      top: 5px;
-    }
   }
   .instructions,
   .error-message {
     margin: 4px 0;
     @include typography.typography-caption;
-  }
-  .isRequired {
-    outline: purple;
-    color: pink;
   }
 
   .form-hidden {
@@ -63,6 +52,10 @@ form.certify {
   }
   .form-half {
     @apply grid grid-cols-2 gap-8;
+    label,
+    div {
+      @apply col-span-2 lg:col-span-1;
+    }
   }
   .form-half .instructions {
     @apply w-full;
@@ -72,7 +65,7 @@ form.certify {
     @apply flex flex-col w-full;
   }
   .form-half-stacked {
-    @apply flex flex-col w-1/2;
+    @apply flex flex-col lg:w-1/2;
   }
 
   .form-third {
@@ -80,7 +73,7 @@ form.certify {
   }
 
   .form-one-third {
-    @apply grid grid-cols-3 gap-6 [&>*:first-child]:col-span-1 [&>*:nth-child(2)]:col-span-2;
+    @apply grid  grid-cols-1 lg:grid-cols-3 gap-6 [&>*:first-child]:col-span-1 [&>*:nth-child(2)]:col-span-2;
   }
 
   .form-three-fourths {
@@ -98,9 +91,13 @@ form.certify {
   }
 
   .bold {
+    .label-bold,
     label:not(.checkbox-label) {
       font-weight: 600;
     }
+  }
+  .checkbox {
+    padding-left: 0;
   }
   .checkbox label {
     padding: 0 0 0 20px;
@@ -112,4 +109,34 @@ form.certify {
 
 .error-message {
   color: red;
+}
+
+.react-select__control {
+  border: none !important;
+  border-radius: 0;
+  border-bottom: 2px solid !important;
+  border-color: var(--theme-on-surface);
+  opacity: 0.5;
+  background-color: var(--theme-background) !important;
+  color: var(--theme-on-surface);
+}
+.react-select__input-container {
+  color: var(--theme-on-surface);
+}
+.react-select__menu {
+  background-color: var(--theme-background) !important;
+  color: var(--theme-on-surface);
+}
+.react-select__option--is-focused {
+  background-color: var(--theme-background) !important;
+  opacity: 0.5 !important;
+}
+.react-select__indicator-separator {
+  visibility: hidden;
+}
+.react-select__placeholder {
+  margin-left: 0;
+}
+.react-select__value-container {
+  padding-left: 0;
 }

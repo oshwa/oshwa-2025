@@ -27,7 +27,7 @@ const requiredEmail = label =>
       .min(1, { message: `${label} is required` })
       .email({ message: `${label} must be a valid email address` }),
   );
-  
+
 const optionalEmail = label =>
   localized(
     z
@@ -45,7 +45,7 @@ const submissionSchema = z.looseObject({
   hardwareLicense: requiredText('Hardware license'),
   softwareLicense: requiredText('Software license'),
   documentationLicense: requiredText('Documentation license'),
-  privateContact: optionalEmail('Contact email address'),
+  privateContact: requiredEmail('Contact email address'),
   publicContact: optionalEmail('Public contact email address'),
   agreementTerms: localized(
     z.literal(true, {

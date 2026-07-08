@@ -1,15 +1,15 @@
 const contentful = require('contentful-management');
 // Client init
 const client = contentful.createClient({
-  accessToken: process.env.CERTIFICATION_MANAGEMENT_KEY,
+  accessToken: process.env.CERTIFICATION_CONTENTFUL_MANAGEMENT_KEY,
 });
 
 // get validations
 const getValidations = async () => {
   const validations = await client.contentType.get({
     contentTypeId: 'project',
-    spaceId: process.env.CERTIFICATION_SPACE_ID,
-    environmentId: process.env.CERTIFICATION_ENVIRONMENT,
+    spaceId: process.env.CERTIFICATION_CONTENTFUL_SPACE_ID,
+    environmentId: process.env.CERTIFICATION_CONTENTFUL_ENVIRONMENT,
   });
   const validationFields = [
     'country',
@@ -33,11 +33,12 @@ const getValidations = async () => {
 };
 
 const getValidationsFromContentful = (validations, contentfulField) => {
-  return contentfulField === 'additionalType'
-    ? validations.fields.filter(field => field.id === contentfulField)[0].items
-        .validations[0]['in']
-    : validations.fields.filter(field => field.id === contentfulField)[0]
-        .validations[0]['in'];
+  let validationModel = validations.fields.filter(
+    field => field.id === contentfulField,
+  )[0];
+  return validationModel.items
+    ? validationModel.items.validations[0]['in']
+    : validationModel.validations[0]['in'];
 };
 
 module.exports = getValidations;

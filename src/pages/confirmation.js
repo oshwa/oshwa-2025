@@ -7,10 +7,9 @@ import { GenericHeader } from '../components/GenericHeader';
 const Confirmation = () => {
   return (
     <Layout>
-      <GenericHeader
-        title={'Confirmation'}
-        headerImageUrl={'https://placehold.co/600x400'}
-      />
+      <div className="p-8">
+        <h1 className="generic-heading-1">Confirmation</h1>
+      </div>
       <div className="p-8">
         <p>
           Your application is now under review by the OSHWA team. In most cases
@@ -23,18 +22,26 @@ const Confirmation = () => {
         </p>
       </div>
       <div className="px-8">
-
         <div className="p-4 w-full flex justify-center">
           <div className="w-1/2">
             <NotchedButtonLink
               text="Submit another project"
-              location="/certify"
+              location="/apply"
             />
           </div>
         </div>
         <div className="p-4 w-full flex justify-center">
           <div className="w-1/2">
             <NotchedButtonLink text="Go back to the homepage" location="/" />
+          </div>
+        </div>
+        <div className="p-4 w-full flex justify-center">
+          <div className="w-1/2">
+            <NotchedButtonLink
+              external
+              text="Donate"
+              location="https://secure.lglforms.com/form_engine/s/SpkKq95XVPOuQ2d-UNFtXQ"
+            />
           </div>
         </div>
       </div>

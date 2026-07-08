@@ -74,7 +74,7 @@ export const sectionOne = [
     layout: 'form-full-stacked bold',
   },
   {
-    layout: 'group grid grid-cols-3 gap-4',
+    layout: 'group grid grid-cols-1 lg:grid-cols-3 gap-4',
     children: [
       {
         title: 'City/town/village',
@@ -83,7 +83,7 @@ export const sectionOne = [
         type: 'string',
         fieldType: 'input',
         instructions: '',
-        layout: 'form-full-stacked bold',
+        layout: 'form-subgroup bold',
       },
       {
         title: 'State/Province/Region',
@@ -92,7 +92,7 @@ export const sectionOne = [
         type: 'string',
         fieldType: 'input',
         instructions: '',
-        layout: 'form-full-stacked bold',
+        layout: 'form-subgroup bold',
       },
       {
         title: 'Zip Code/Postal code',
@@ -101,7 +101,7 @@ export const sectionOne = [
         type: 'string',
         fieldType: 'input',
         instructions: '',
-        layout: 'form-full-stacked bold',
+        layout: 'form-subgroup bold',
       },
     ],
   },

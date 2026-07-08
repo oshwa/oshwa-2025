@@ -57,3 +57,8 @@
     }
   }
 }
+
+@mixin link-dotted {
+  word-wrap: break-word;
+  border-bottom: 1px dotted;
+}

@@ -7,7 +7,7 @@ export const sectionFour = [
     fieldType: 'checkbox_object',
     instructions: 'You agree to the following terms: ',
     hidden: true,
-    layout: 'form-full-stacked',
+    layout: 'form-full-stacked bold',
     terms: [
       {
         title: 'Accurate Contact Information',

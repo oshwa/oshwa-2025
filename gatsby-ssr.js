@@ -6,8 +6,19 @@
 
 /**
  * @type {import('gatsby').GatsbySSR['onRenderBody']}
- */
+
+*/
 const React = require('react');
+
+const applyDarkModeClass = `
+(function() {
+  try {
+    var mode = localStorage.getItem('colorScheme');
+    document.getElementsByTagName("html")[0].className = mode === 'dark' ? 'dark' : '';
+  } catch (e) {}
+})();
+`;
+
 const HeadComponents = [
   <link
     href="https://fonts.googleapis.com/icon?family=Material+Icons"
@@ -31,7 +42,18 @@ const HeadComponents = [
   />,
 ];
 
-exports.onRenderBody = ({ setHtmlAttributes, setHeadComponents }) => {
+exports.onRenderBody = ({
+  setHtmlAttributes,
+  setHeadComponents,
+  setPreBodyComponents,
+}) => {
   setHtmlAttributes({ lang: `en` });
   setHeadComponents(HeadComponents);
+
+  const script = React.createElement('script', {
+    dangerouslySetInnerHTML: {
+      __html: applyDarkModeClass,
+    },
+  });
+  setPreBodyComponents([script]);
 };

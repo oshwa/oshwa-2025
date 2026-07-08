@@ -1,9 +1,9 @@
 const { createClient } = require('contentful');
 
 const client = createClient({
-  space: process.env.CERTIFICATION_SPACE_ID,
-  environment: process.env.CERTIFICATION_ENVIRONMENT,
-  accessToken: process.env.CERTIFICATION_DELIVERY,
+  space: process.env.CERTIFICATION_CONTENTFUL_SPACE_ID,
+  environment: process.env.CERTIFICATION_CONTENTFUL_ENVIRONMENT,
+  accessToken: process.env.CERTIFICATION_CONTENTFUL_ACCESS_TOKEN,
 });
 
 const getAllProjects = (limitOption = 1000, skipOption = 0, allData) => {

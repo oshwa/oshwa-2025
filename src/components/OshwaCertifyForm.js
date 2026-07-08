@@ -16,18 +16,6 @@ import {
   sectionFour,
 } from '../data/form_fields';
 
-import {
-  CreateDropdownSelect,
-  CreateTextInput,
-  CreateCheckboxes,
-  CreateCheckbox,
-  CreateTextArea,
-  CreateCertificationMarkTerms,
-  CreateBooleanDropdown,
-  CreateMultiSelect,
-  CreateCitationFields,
-} from './FormComponents';
-
 import kebabCase from 'lodash.kebabcase';
 
 import mapFieldsToContentful from '../services/mapFieldsToContentful';
@@ -77,7 +65,7 @@ export const OshwaCertifyForm = () => {
     defaultValues: {
       certificationMarkTerms: [],
       previousVersions: [],
-      additionalType: '',
+      additionalType: [],
       citations: [{ title: '', url: '' }],
     },
   });
@@ -93,6 +81,7 @@ export const OshwaCertifyForm = () => {
     try {
       const captcha = await captchaRef.current?.executeAsync();
       const fields = await mapFieldsToContentful(values);
+
       const response = await fetch('/api/submit', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -120,11 +109,6 @@ export const OshwaCertifyForm = () => {
       setIsSubmitting(false);
     }
   };
-
-  const { fields, append, remove } = useFieldArray({
-    control,
-    name: 'citations',
-  });
 
   useEffect(() => {
     const subscription = watch((_value, { name }) => {
@@ -168,7 +152,7 @@ export const OshwaCertifyForm = () => {
   }, [watch, trigger]);
 
   return (
-    <form className="certify" onSubmit={handleSubmit(handleFormSubmit)}>
+    <form className="certify my-8" onSubmit={handleSubmit(handleFormSubmit)}>
       {/* section one  */}
       <div className="form-section form-width">
         <FormSectionHeader content={formText.sectionOne} />
@@ -191,9 +175,6 @@ export const OshwaCertifyForm = () => {
             register={register}
             errors={errors}
             control={control}
-            append={append}
-            remove={remove}
-            fields={fields}
           />
         </div>
       </div>
@@ -231,12 +212,12 @@ export const OshwaCertifyForm = () => {
       )}
 
       {submitError && (
-        <div className="error-message w-full py-4 px-8">
+        <div className="error-message w-full p-8">
           <p>{submitError}</p>
         </div>
       )}
 
-      <div className="flex justify-end px-8 pb-5">
+      <div className="flex justify-end lg:px-12">
         <div className=" w-1/4">
           <div className="link link--notched notched notched--border">
             <input

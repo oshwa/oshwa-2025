@@ -6,7 +6,7 @@ import Seo from '../components/seo';
 import { OshwaCertifyForm } from '../components/OshwaCertifyForm';
 import { AltHeader } from '../components/AltHeader';
 
-const CertifyPage = () => {
+const ApplyPage = () => {
   return (
     <>
       <Layout>
@@ -32,4 +32,4 @@ export const Head = () => (
   />
 );
 
-export default CertifyPage;
+export default ApplyPage;

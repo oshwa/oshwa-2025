@@ -1,6 +1,6 @@
 export const sectionTwo = [
   {
-    layout: 'group grid grid-cols-4 gap-4',
+    layout: 'group grid lg:grid-cols-4 gap-4',
     children: [
       {
         title: 'Project name',
@@ -8,8 +8,10 @@ export const sectionTwo = [
         formPlaceholder: 'Enter the name of your project',
         type: 'string',
         fieldType: 'input',
+        requiredErrorMessage: '',
+        requiredDependency: '',
         instructions: '',
-        layout: 'col-span-3 bold',
+        layout: 'lg:col-span-3 bold',
       },
       {
         title: 'Project version',
@@ -17,6 +19,8 @@ export const sectionTwo = [
         formPlaceholder: 'e.g. 1.0',
         type: 'string',
         fieldType: 'input',
+        requiredErrorMessage: '',
+        requiredDependency: '',
         instructions: '',
         layout: 'col-span-1 bold',
       },

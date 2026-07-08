@@ -6,13 +6,14 @@ import {
   CreateTextInput,
   CreateCheckboxes,
   CreateCheckbox,
+  CreateCheckboxItem,
   CreateTextArea,
   CreateCertificationMarkTerms,
   CreateBooleanDropdown,
   CreateMultiSelect,
   CreateCitationFields,
+  
 } from './FormComponents';
-import { de } from 'zod/v4/locales';
 
 const FormSection = ({
   content,
@@ -78,7 +79,7 @@ const FormSection = ({
         );
       case 'checkbox_object':
         return (
-          <CreateCertificationMarkTerms
+          <CreateCheckboxItem
             content={question}
             register={register}
             errors={errors}
@@ -123,7 +124,10 @@ const FormSection = ({
     <>
       {content.map((question, idx) => {
         return (
-          <>
+          <div
+            className="content-container"
+            key={`${kebabCase(question.layout)}-${idx}`}
+          >
             {question.subheading && (
               <h3 className="form-subheading">{question?.subheading}</h3>
             )}
@@ -157,7 +161,7 @@ const FormSection = ({
                 </div>
               )
             )}
-          </>
+          </div>
         );
       })}
     </>
