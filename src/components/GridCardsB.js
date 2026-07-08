@@ -24,23 +24,30 @@ const GridCardsB = ({ items, pageLocation, page }) => {
               >
                 <h3>Certification API</h3>
               </a>
+              <a
+                key="Open Healthware"
+                href="https://healthware.oshwa.org/"
+                className="lg:col-span-1 md:col-span-2 sm:col-span-4 notched notched--border notched--border--hover list-item"
+              >
+                <h3>Open Healthware</h3>
+              </a>
             </>
           )}
           {items &&
             items.map(item => (
               item.summaryOnly ?
-              <div class={itemClassName}>
-                <h3>{item.title}</h3>
-                <MarkdownText content={item.shortDescription.childrenMarkdownRemark[0].html}></MarkdownText>
-              </div>
-              :
-              <Link
-                key={item.title}
-                to={`/${pageLocation}/${item.prettyUrl ? item.prettyUrl : item.title}`}
-                className={itemClassName}
-              >
-                <h3>{item.title}</h3>
-              </Link>
+                <div class={itemClassName}>
+                  <h3>{item.title}</h3>
+                  <MarkdownText content={item.shortDescription.childrenMarkdownRemark[0].html}></MarkdownText>
+                </div>
+                :
+                <Link
+                  key={item.title}
+                  to={`/${pageLocation}/${item.prettyUrl ? item.prettyUrl : item.title}`}
+                  className={itemClassName}
+                >
+                  <h3>{item.title}</h3>
+                </Link>
             ))}
         </div>
       </div>
