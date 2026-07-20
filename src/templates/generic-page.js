@@ -99,6 +99,14 @@ export const query = graphql`
       body {
         raw
         references {
+          ... on ContentfulAsset {
+            contentful_id
+            __typename
+            gatsbyImageData
+            title
+            description
+            url
+          }
           ... on ContentfulButton {
             contentful_id
             __typename
