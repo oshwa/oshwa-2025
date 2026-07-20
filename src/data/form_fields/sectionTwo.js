@@ -48,6 +48,29 @@ export const sectionTwo = [
     layout: 'form-full-stacked bold',
   },
   {
+    title: 'Intended Use Case',
+    contentfulFieldName: 'intendedUseCase',
+    formPlaceholder:
+      'Provide a brief description of the intended use case (maximum 50000 characters)',
+    type: 'string',
+    fieldType: 'textarea',
+    requiredErrorMessage: '',
+    requiredDependency: '',
+    instructions:
+      'Please describe the intended situation(s) of use or use case for this project',
+    layout: 'form-full-stacked bold',
+  },
+  {
+    title:
+      'I understand that my intended use case may not be the intended use case used in a derivative project.',
+    contentfulFieldName: 'intendedUseCaseStatement',
+    formPlaceholder: '',
+    type: 'boolean',
+    fieldType: 'boolean_checkbox',
+    instructions: '',
+    layout: 'form-full-stacked',
+  },
+  {
     title: 'Project website',
     contentfulFieldName: 'projectWebsite',
     formPlaceholder:

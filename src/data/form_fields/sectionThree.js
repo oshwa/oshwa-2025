@@ -36,4 +36,81 @@ export const sectionThree = [
     layout: 'form-half',
     options: 'documentationLicense',
   },
+  {
+    title: 'Licensing Checklist',
+    contentfulFieldName: 'licensingChecklist',
+    formPlaceholder: '',
+    type: 'json',
+    fieldType: 'checkbox_object',
+    instructions: 'Mark each item that pertains to your project',
+    hidden: true,
+    layout: 'form-full-stacked bold',
+    terms: [
+      {
+        title: 'noCommercialRestriction',
+        term: 'The project is licensed in a way to allow for modifications and derivative works without commercial restriction.',
+        name: 'No Commercial Restriction',
+        explanationField: 'explanationNcr',
+      },
+      {
+        title: 'noDocumentationRestriction',
+        term: 'There is no restriction within my control to selling or giving away the project documentation.',
+        name: 'No Documentation Restriction',
+        explanationField: 'explanationNdr',
+      },
+      {
+        title: 'openHardwareComponents',
+        term: 'Where possible, I have chosen to use components in my hardware that are openly licensed.',
+        name: 'Open Hardware Component',
+        explanationField: 'explanationOhwc',
+      },
+      {
+        title: 'creatorContribution',
+        term: 'I understand and comply with the "Creator Contribution requirement," explained in the <a target="_blank" href=\'https://certification.oshwa.org/requirements.html\' target=\'blank\'>Requirements for Certification.</a>',
+        name: 'Creator Contribution',
+        explanationField: 'explanationCcr',
+      },
+      {
+        title: 'noUseRestriction',
+        term: 'There is no restriction on the use by persons or groups, or by the field of endeavor.',
+        name: 'No Use Restriction',
+        explanationField: 'explanationNur',
+      },
+      {
+        title: 'redistributedWork',
+        term: 'The rights granted by any license on the project applies to all whom the work is redistributed to.',
+        name: 'Redistributed Work',
+        explanationField: 'explanationRwr',
+      },
+      {
+        title: 'noSpecificProduct',
+        term: 'The rights granted under any license on the project do not depend on the licensed work being part of a specific product.',
+        name: 'No Specific Product',
+        explanationField: 'explanationNsp',
+      },
+      {
+        title: 'noComponentRestriction',
+        term: 'The rights granted under any license on the project do not restrict other hardware or software, for example by requiring that all other hardware or software sold with the item be open source',
+        name: 'No Component Restriction',
+        explanationField: 'explanationNor',
+      },
+      {
+        title: 'technologyNeutral',
+        term: 'The rights granted under any license on the project are <a target="_blank" href="https://interoperable-europe.ec.europa.eu/collection/common-assessment-method-standards-and-specifications-camss/solution/elap/technology-neutrality">technology neutral.</a>',
+        name: 'Technology Neutral',
+        explanationField: 'explanationTn',
+      },
+    ],
+  },
+  {
+    title:
+      'If you left any item in the licensing checklist above, unchecked please explain why',
+    contentfulFieldName: 'licensingChecklistExplanation',
+    formPlaceholder: 'Provide a brief explanation (maximim 50000 characters)',
+    type: 'string',
+    fieldType: 'textarea',
+    instructions:
+      'This explanation is required if you left any item unchecked. Please limit your response to 50000 characters',
+    layout: 'form-full-stacked bold',
+  },
 ];

@@ -1,6 +1,6 @@
 export const sectionFour = [
   {
-    title: 'Certificate mark terms question',
+    title: 'Certification Mark Terms',
     contentfulFieldName: 'certificationMarkTerms',
     formPlaceholder: '',
     type: 'json',
